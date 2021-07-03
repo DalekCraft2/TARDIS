@@ -1,6 +1,6 @@
 # TARDIS
 
-TARDIS is a Spigot / Paper plugin that allows you to create a TARDIS that lets you time travel (teleport) to random locations. It adds a Whovian twist to the typical /sethome and /home commands.
+TARDIS is a Spigot/Paper plugin that allows you to create a TARDIS that lets you time travel (teleport) to random locations. It adds a Whovian twist to the typical /sethome and /home commands.
 
 **As a player, you can:**
 
@@ -12,7 +12,6 @@ TARDIS is a Spigot / Paper plugin that allows you to create a TARDIS that lets y
 * Collect Artron Energy to power your TARDIS.
 * And so much more...
 
-Plugin documentation can be found here:
-[http://eccentricdevotion.github.io/TARDIS/site-map.html](http://eccentricdevotion.github.io/TARDIS/site-map.html)
+Plugin documentation can be found here:[http://eccentricdevotion.github.io/TARDIS/site-map.html](http://eccentricdevotion.github.io/TARDIS/site-map.html)
 
 Jenkins CI builds can be found here: [http://tardisjenkins.duckdns.org:8080/job/TARDIS/](http://tardisjenkins.duckdns.org:8080/job/TARDIS/)
