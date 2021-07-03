@@ -16,7 +16,10 @@
  */
 package me.eccentric_nz.TARDIS.utility;
 
-import com.massivecraft.factions.*;
+import com.massivecraft.factions.entity.BoardColl;
+import com.massivecraft.factions.entity.Faction;
+import com.massivecraft.factions.entity.MPlayer;
+import com.massivecraft.massivecore.ps.PS;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -33,17 +36,17 @@ class TARDISFactionsUUID {
      * Checks whether a location is in the player's faction or 'wilderness'... ie NOT in a claimed faction that this
      * player doesn't belong to.
      *
-     * @param p a player
-     * @param l the location instance to check.
+     * @param player   a player
+     * @param location the location instance to check.
      * @return true or false depending on whether the player belongs to the faction who controls the location
      */
-    boolean isInFaction(Player p, Location l) {
+    boolean isInFaction(Player player, Location location) {
         boolean bool = true;
-        FPlayer uplayer = FPlayers.getInstance().getByPlayer(p);
-        Faction ufac = uplayer.getFaction();
-        FLocation flocation = new FLocation(l);
-        Faction lfac = Board.getInstance().getFactionAt(flocation);
-        if (!ufac.equals(lfac) && !lfac.isWilderness()) {
+        MPlayer mPlayer = MPlayer.get(player);
+        Faction mPlayerFaction = mPlayer.getFaction();
+        Location factionLocation = location.clone();
+        Faction locationFaction = BoardColl.get().getFactionAt(PS.valueOf(factionLocation));
+        if (!mPlayerFaction.equals(locationFaction) && !locationFaction.isNone()) {
             bool = false;
         }
         return bool;
