@@ -17,7 +17,6 @@
 package me.eccentric_nz.TARDIS.arch;
 
 import me.eccentric_nz.TARDIS.TARDIS;
-import me.eccentric_nz.TARDIS.utility.TARDISMultiInvChecker;
 import me.eccentric_nz.TARDIS.utility.TARDISMultiverseInventoriesChecker;
 import me.eccentric_nz.TARDIS.utility.TARDISPerWorldInventoryChecker;
 import org.bukkit.entity.Player;
@@ -48,7 +47,6 @@ public class TARDISInventoryPluginHelper implements Listener {
 
         Player player = event.getPlayer();
         boolean shouldSwitch = switch (plugin.getInvManager()) {
-            case MULTI -> !TARDISMultiInvChecker.checkWorldsCanShare(event.getFrom().getName(), player.getWorld().getName());
             case MULTIVERSE -> !TARDISMultiverseInventoriesChecker.checkWorldsCanShare(event.getFrom().getName(), player.getWorld().getName());
             case PER_WORLD -> !TARDISPerWorldInventoryChecker.checkWorldsCanShare(event.getFrom().getName(), player.getWorld().getName());
             default ->
@@ -73,7 +71,6 @@ public class TARDISInventoryPluginHelper implements Listener {
 
         Player player = event.getPlayer();
         boolean shouldSwitch = switch (plugin.getInvManager()) {
-            case MULTI -> !TARDISMultiInvChecker.checkWorldsCanShare(event.getFrom().getName(), player.getWorld().getName());
             case MULTIVERSE -> !TARDISMultiverseInventoriesChecker.checkWorldsCanShare(event.getFrom().getName(), player.getWorld().getName());
             case PER_WORLD -> !TARDISPerWorldInventoryChecker.checkWorldsCanShare(event.getFrom().getName(), player.getWorld().getName());
             default ->

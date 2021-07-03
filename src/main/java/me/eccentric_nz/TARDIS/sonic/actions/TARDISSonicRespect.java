@@ -28,7 +28,6 @@ import me.eccentric_nz.TARDIS.utility.TARDISTownyChecker;
 import nl.rutgerkok.blocklocker.BlockLockerAPIv2;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
-import org.yi.acru.bukkit.Lockette.Lockette;
 
 public class TARDISSonicRespect {
 
@@ -79,10 +78,6 @@ public class TARDISSonicRespect {
             // BlockLocker
             if (plugin.getPM().isPluginEnabled("BlockLocker")) {
                 return !BlockLockerAPIv2.isProtected(block);
-            }
-            // Lockette
-            if (plugin.getPM().isPluginEnabled("Lockette")) {
-                return !Lockette.isProtected(block);
             }
         }
         return true;

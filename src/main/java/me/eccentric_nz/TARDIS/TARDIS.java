@@ -775,9 +775,6 @@ public class TARDIS extends JavaPlugin {
     }
 
     private void loadInventoryManager() {
-        if (pm.isPluginEnabled("MultiInv")) {
-            invManager = InventoryManager.MULTI;
-        }
         if (pm.isPluginEnabled("Multiverse-Inventories")) {
             invManager = InventoryManager.MULTIVERSE;
         }
