@@ -634,11 +634,10 @@ public class TARDISTravelCommands implements CommandExecutor {
                             } else {
                                 TARDISMessage.send(player, "SAVE_NO_WORLD");
                             }
-                            return true;
                         } else {
                             TARDISMessage.send(player, "TRAVEL_NO_PERM_SAVE");
-                            return true;
                         }
+                        return true;
                     }
                     if (args.length == 2 && args[0].equalsIgnoreCase("area")) {
                         // we're thinking this is admin defined area name
