@@ -43,11 +43,11 @@ public class GlowStickRunnable implements Runnable {
             PlayerInventory inventory = player.getInventory();
             // item in hands
             ItemStack mainHand = inventory.getItemInMainHand();
-            if (mainHand != null && isGlowStick(mainHand)) {
+            if (isGlowStick(mainHand)) {
                 damage(mainHand, player, inventory, true);
             }
             ItemStack offHand = inventory.getItemInOffHand();
-            if (offHand != null && isGlowStick(offHand)) {
+            if (isGlowStick(offHand)) {
                 damage(offHand, player, inventory, false);
             }
         }

@@ -27,6 +27,7 @@ import me.eccentric_nz.TARDIS.database.resultset.*;
 import me.eccentric_nz.TARDIS.enumeration.Adaption;
 import me.eccentric_nz.TARDIS.enumeration.PRESET;
 import me.eccentric_nz.TARDIS.messaging.TARDISMessage;
+import me.eccentric_nz.TARDIS.move.TARDISDoorListener;
 import me.eccentric_nz.TARDIS.travel.TARDISDoorLocation;
 import me.eccentric_nz.TARDIS.utility.TARDISBlockSetters;
 import me.eccentric_nz.TARDIS.utility.TARDISParticles;
@@ -157,7 +158,7 @@ class TARDISMaterialisePreset implements Runnable {
                     UUID playerUUID = plugin.getTrackerKeeper().getRescue().get(bd.getTardisID());
                     Player saved = plugin.getServer().getPlayer(playerUUID);
                     if (saved != null) {
-                        TARDISDoorLocation idl = plugin.getGeneralKeeper().getDoorListener().getDoor(1, bd.getTardisID());
+                        TARDISDoorLocation idl = TARDISDoorListener.getDoor(1, bd.getTardisID());
                         Location l = idl.getL();
                         plugin.getGeneralKeeper().getDoorListener().movePlayer(saved, l, false, world, false, 0, bd.useMinecartSounds(), false);
                         TARDISSounds.playTARDISSound(saved, "tardis_land_fast", 5L);

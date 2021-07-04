@@ -132,7 +132,6 @@ public class TARDISConsoleCloseListener implements Listener {
                                 String first = lore.get(0);
                                 if (!first.equals("Blank")) {
                                     TravelType travelType = TravelType.SAVE;
-                                    ;
                                     switch (mat) {
                                         case MUSIC_DISC_BLOCKS: // area
                                             // check the current location is not in this area already

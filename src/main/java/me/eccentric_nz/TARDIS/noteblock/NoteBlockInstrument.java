@@ -23,7 +23,6 @@ class NoteBlockInstrument {
 
     static Sound getInstrument(byte instrument) {
         return switch (instrument) {
-            case 0 -> Sound.BLOCK_NOTE_BLOCK_HARP;
             case 1 -> Sound.BLOCK_NOTE_BLOCK_BASS;
             case 2 -> Sound.BLOCK_NOTE_BLOCK_BASEDRUM;
             case 3 -> Sound.BLOCK_NOTE_BLOCK_SNARE;
