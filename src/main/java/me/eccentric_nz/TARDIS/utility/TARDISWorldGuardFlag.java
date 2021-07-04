@@ -19,8 +19,6 @@ package me.eccentric_nz.TARDIS.utility;
 import com.sk89q.worldguard.protection.flags.Flags;
 import com.sk89q.worldguard.protection.flags.StateFlag;
 
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
