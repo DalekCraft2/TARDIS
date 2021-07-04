@@ -165,8 +165,8 @@ public class TARDISDiskWriterCommand {
                         return false;
                     }
                 }
-            } catch (IOException ex) {
-                plugin.debug("Could not get save disks: " + ex);
+            } catch (IOException ioException) {
+                plugin.debug("Could not get save disks: " + ioException.getMessage());
             }
         }
         return false;

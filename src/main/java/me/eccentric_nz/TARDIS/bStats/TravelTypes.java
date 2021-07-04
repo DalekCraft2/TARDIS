@@ -45,8 +45,8 @@ public class TravelTypes {
                     data.put(rs.getString("travel_type"), rs.getInt("count_of"));
                 }
             }
-        } catch (SQLException e) {
-            plugin.debug("ResultSet error for travel_stats table getting travel types! " + e.getMessage());
+        } catch (SQLException sqlException) {
+            plugin.debug("ResultSet error for travel_stats table getting travel types: " + sqlException.getMessage());
         } finally {
             try {
                 if (rs != null) {
@@ -55,8 +55,8 @@ public class TravelTypes {
                 if (statement != null) {
                     statement.close();
                 }
-            } catch (SQLException e) {
-                plugin.debug("Error closing travel_stats table for travel types! " + e.getMessage());
+            } catch (SQLException sqlException) {
+                plugin.debug("Error closing travel_stats table for travel types: " + sqlException.getMessage());
             }
         }
         return data;

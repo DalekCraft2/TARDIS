@@ -65,8 +65,8 @@ public class TARDISBook {
                 }
                 book_str = fileContents.toString();
             }
-        } catch (FileNotFoundException f) {
-            plugin.debug("Could not find file");
+        } catch (FileNotFoundException fileNotFoundException) {
+            plugin.debug("Could not find file: " + fileNotFoundException.getMessage());
         }
         book_str = book_str.replaceAll("@p", p.getName());
         // two line breaks = new page

@@ -211,7 +211,7 @@ public class TARDISBuilderInner implements Runnable {
             // determine 'use_clay' material
             try {
                 use_clay = UseClay.valueOf(plugin.getConfig().getString("creation.use_clay"));
-            } catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException illegalArgumentException) {
                 use_clay = UseClay.WOOL;
             }
             // get input array

@@ -234,7 +234,7 @@ public class TARDIS extends JavaPlugin {
                     ver = new Version(split[0]);
                 }
                 return (ver.compareTo(minver) >= 0);
-            } catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException illegalArgumentException) {
                 getServer().getLogger().log(Level.WARNING, "TARDIS failed to get the version for {0}.", plg);
                 getServer().getLogger().log(Level.WARNING, "This could cause issues with enabling the plugin.");
                 getServer().getLogger().log(Level.WARNING, "Please check you have at least v{0}", min);
@@ -400,8 +400,8 @@ public class TARDIS extends JavaPlugin {
             generalKeeper.setQuotes(quotes());
             try {
                 difficulty = Difficulty.valueOf(getConfig().getString("preferences.difficulty").toUpperCase(Locale.ENGLISH));
-            } catch (IllegalArgumentException e) {
-                debug("Could not determine difficulty setting, using EASY");
+            } catch (IllegalArgumentException illegalArgumentException) {
+                debug("Could not determine difficulty setting, defaulting to EASY: " + illegalArgumentException.getMessage());
                 difficulty = Difficulty.EASY;
             }
             // register recipes
@@ -571,8 +571,8 @@ public class TARDIS extends JavaPlugin {
                 TARDISMySQLDatabase mysql = new TARDISMySQLDatabase(this);
                 mysql.createTables();
             }
-        } catch (Exception e) {
-            console.sendMessage(pluginName + "Connection and Tables Error: " + e);
+        } catch (Exception exception) {
+            console.sendMessage(pluginName + "Connection and Tables Error: " + exception.getMessage());
         }
     }
 
@@ -582,8 +582,8 @@ public class TARDIS extends JavaPlugin {
     private void closeDatabase() {
         try {
             service.connection.close();
-        } catch (SQLException e) {
-            console.sendMessage(pluginName + "Could not close database connection: " + e);
+        } catch (SQLException sqlException) {
+            console.sendMessage(pluginName + "Could not close database connection: " + sqlException.getMessage());
         }
     }
 
@@ -881,14 +881,14 @@ public class TARDIS extends JavaPlugin {
                 if (quotes.size() < 1) {
                     quotes.add("");
                 }
-            } catch (IOException io) {
-                console.sendMessage(pluginName + "Could not read quotes file");
+            } catch (IOException ioException) {
+                console.sendMessage(pluginName + "Could not read quotes file: " + ioException.getMessage());
             } finally {
                 if (bufRdr != null) {
                     try {
                         bufRdr.close();
-                    } catch (IOException e) {
-                        debug("Error closing quotes reader! " + e.getMessage());
+                    } catch (IOException ioException) {
+                        debug("Error closing quotes reader: " + ioException.getMessage());
                     }
                 }
             }
@@ -913,16 +913,16 @@ public class TARDIS extends JavaPlugin {
                 try {
                     Material m = Material.valueOf(getRoomsConfig().getString("rooms." + s + ".seed"));
                     map.put(m, s);
-                } catch (IllegalArgumentException e) {
-                    debug("Invalid room seed: " + getRoomsConfig().getString("rooms." + s + ".seed"));
+                } catch (IllegalArgumentException illegalArgumentException) {
+                    debug("Invalid room seed: \"" + getRoomsConfig().getString("rooms." + s + ".seed") + "\": " + illegalArgumentException.getMessage());
                 }
             }
         }
         if (r > 0) {
             try {
                 getRoomsConfig().save(new File(getDataFolder(), "rooms.yml"));
-            } catch (IOException io) {
-                debug("Could not save rooms.yml, " + io.getMessage());
+            } catch (IOException ioException) {
+                debug("Could not save rooms.yml: " + ioException.getMessage());
             }
         }
         return map;
@@ -973,19 +973,19 @@ public class TARDIS extends JavaPlugin {
             properties.load(in);
             String texture_pack = properties.getProperty("texture-pack");
             return (texture_pack != null && texture_pack.isEmpty()) ? link : texture_pack;
-        } catch (FileNotFoundException ex) {
-            debug("Could not find server.properties!");
+        } catch (FileNotFoundException fileNotFoundException) {
+            debug("Could not find server.properties: " + fileNotFoundException.getMessage());
             return link;
-        } catch (IOException ex) {
-            debug("Could not read server.properties!");
+        } catch (IOException ioException) {
+            debug("Could not read server.properties: " + ioException.getMessage());
             return link;
         } finally {
             try {
                 if (in != null) {
                     in.close();
                 }
-            } catch (IOException ex) {
-                debug("Could not close server.properties!");
+            } catch (IOException ioException) {
+                debug("Could not close server.properties: " + ioException.getMessage());
             }
         }
     }
@@ -1674,8 +1674,8 @@ public class TARDIS extends JavaPlugin {
         try {
             String planetsPath = plugin.getDataFolder() + File.separator + "planets.yml";
             planetsConfig.save(new File(planetsPath));
-        } catch (IOException io) {
-            plugin.debug("Could not save planets.yml, " + io.getMessage());
+        } catch (IOException ioException) {
+            plugin.debug("Could not save planets.yml: " + ioException.getMessage());
         }
     }
 }

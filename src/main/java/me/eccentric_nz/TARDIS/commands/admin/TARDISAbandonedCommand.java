@@ -68,14 +68,14 @@ class TARDISAbandonedCommand {
         PRESET preset;
         try {
             preset = PRESET.valueOf(args[2].toUpperCase(Locale.ENGLISH));
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException illegalArgumentException) {
             TARDISMessage.send(sender, "ABANDONED_PRESET");
             return true;
         }
         COMPASS d;
         try {
             d = COMPASS.valueOf(args[3].toUpperCase(Locale.ENGLISH));
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException illegalArgumentException) {
             TARDISMessage.send(sender, "ABANDONED_COMPASS");
             return true;
         }

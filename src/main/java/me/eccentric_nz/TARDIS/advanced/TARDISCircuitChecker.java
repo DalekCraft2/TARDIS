@@ -134,8 +134,8 @@ public class TARDISCircuitChecker {
                         }
                     }
                 }
-            } catch (IOException ex) {
-                plugin.debug("Could not get console items: " + ex);
+            } catch (IOException ioException) {
+                plugin.debug("Could not get console items: " + ioException.getMessage());
             }
         }
     }

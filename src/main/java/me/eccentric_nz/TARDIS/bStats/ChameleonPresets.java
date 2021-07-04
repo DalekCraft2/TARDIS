@@ -45,8 +45,8 @@ public class ChameleonPresets {
                     data.put(rs.getString("chameleon_preset"), rs.getInt("count_of"));
                 }
             }
-        } catch (SQLException e) {
-            plugin.debug("ResultSet error for tardis table getting chameleon presets! " + e.getMessage());
+        } catch (SQLException sqlException) {
+            plugin.debug("ResultSet error for tardis table getting chameleon presets: " + sqlException.getMessage());
         } finally {
             try {
                 if (rs != null) {
@@ -55,8 +55,8 @@ public class ChameleonPresets {
                 if (statement != null) {
                     statement.close();
                 }
-            } catch (SQLException e) {
-                plugin.debug("Error closing tardis table for chameleon presets! " + e.getMessage());
+            } catch (SQLException sqlException) {
+                plugin.debug("Error closing tardis table for chameleon presets: " + sqlException.getMessage());
             }
         }
         return data;

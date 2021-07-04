@@ -42,8 +42,8 @@ public class TardisCount {
                 rs.next();
                 return rs.getInt("count");
             }
-        } catch (SQLException e) {
-            plugin.debug("ResultSet error for tardis getting count! " + e.getMessage());
+        } catch (SQLException sqlException) {
+            plugin.debug("ResultSet error for tardis getting count: " + sqlException.getMessage());
         } finally {
             try {
                 if (rs != null) {
@@ -52,8 +52,8 @@ public class TardisCount {
                 if (statement != null) {
                     statement.close();
                 }
-            } catch (SQLException e) {
-                plugin.debug("Error closing tardis table for counts! " + e.getMessage());
+            } catch (SQLException sqlException) {
+                plugin.debug("Error closing tardis table for counts: " + sqlException.getMessage());
             }
         }
         return 0;

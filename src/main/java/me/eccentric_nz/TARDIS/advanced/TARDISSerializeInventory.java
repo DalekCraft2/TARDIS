@@ -43,8 +43,8 @@ public class TARDISSerializeInventory {
                 // Serialize that array
             }
             return Base64Coder.encodeLines(outputStream.toByteArray());
-        } catch (IOException e) {
-            throw new IllegalStateException("Unable to save item stacks.", e);
+        } catch (IOException ioException) {
+            throw new IllegalStateException("Unable to save item stacks.", ioException);
         }
     }
 
@@ -60,8 +60,8 @@ public class TARDISSerializeInventory {
                 }
             }
             return stack;
-        } catch (ClassNotFoundException e) {
-            throw new IOException("Unable to decode class type.", e);
+        } catch (ClassNotFoundException classNotFoundException) {
+            throw new IOException("Unable to decode class type.", classNotFoundException);
         }
     }
 }

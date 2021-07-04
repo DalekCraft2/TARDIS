@@ -52,8 +52,8 @@ public class ARSRoomCounts {
                     numberOfRoomsPerTARDIS.add(num);
                 }
             }
-        } catch (SQLException e) {
-            plugin.debug("ResultSet error for ars getting room counts! " + e.getMessage());
+        } catch (SQLException sqlException) {
+            plugin.debug("ResultSet error for ars getting room counts: " + sqlException.getMessage());
         } finally {
             try {
                 if (rs != null) {
@@ -62,8 +62,8 @@ public class ARSRoomCounts {
                 if (statement != null) {
                     statement.close();
                 }
-            } catch (SQLException e) {
-                plugin.debug("Error closing ars table getting room counts! " + e.getMessage());
+            } catch (SQLException sqlException) {
+                plugin.debug("Error closing ars table getting room counts: " + sqlException.getMessage());
             }
         }
         return data;

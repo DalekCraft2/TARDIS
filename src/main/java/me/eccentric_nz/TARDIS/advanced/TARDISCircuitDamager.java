@@ -111,8 +111,8 @@ public class TARDISCircuitDamager {
                 HashMap<String, Object> wheret = new HashMap<>();
                 wheret.put("tardis_id", id);
                 plugin.getQueryFactory().doUpdate("storage", set, wheret);
-            } catch (IOException ex) {
-                plugin.debug("Could not get console items: " + ex);
+            } catch (IOException ioException) {
+                plugin.debug("Could not get console items: " + ioException.getMessage());
             }
         }
     }

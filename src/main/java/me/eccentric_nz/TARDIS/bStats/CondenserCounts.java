@@ -50,8 +50,8 @@ public class CondenserCounts {
                     }
                 }
             }
-        } catch (SQLException e) {
-            plugin.debug("ResultSet error for condenser getting block counts! " + e.getMessage());
+        } catch (SQLException sqlException) {
+            plugin.debug("ResultSet error for condenser getting block counts: " + sqlException.getMessage());
         } finally {
             try {
                 if (rs != null) {
@@ -60,8 +60,8 @@ public class CondenserCounts {
                 if (statement != null) {
                     statement.close();
                 }
-            } catch (SQLException e) {
-                plugin.debug("Error closing condenser table getting block counts! " + e.getMessage());
+            } catch (SQLException sqlException) {
+                plugin.debug("Error closing condenser table getting block counts! " + sqlException.getMessage());
             }
         }
         return data;

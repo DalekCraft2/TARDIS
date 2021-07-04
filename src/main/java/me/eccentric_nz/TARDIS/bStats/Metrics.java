@@ -1,5 +1,6 @@
 package me.eccentric_nz.TARDIS.bStats;
 
+import me.eccentric_nz.TARDIS.TARDIS;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -59,7 +60,8 @@ public class Metrics {
                     .copyDefaults(true);
             try {
                 config.save(configFile);
-            } catch (IOException ignored) {
+            } catch (IOException ioException) {
+                ((TARDIS) plugin).debug(ioException.getMessage());
             }
         }
         // Load the data
@@ -118,7 +120,7 @@ public class Metrics {
             return onlinePlayersMethod.getReturnType().equals(Collection.class)
                     ? ((Collection<?>) onlinePlayersMethod.invoke(Bukkit.getServer())).size()
                     : ((Player[]) onlinePlayersMethod.invoke(Bukkit.getServer())).length;
-        } catch (Exception e) {
+        } catch (Exception exception) {
             // Just use the new method if the reflection failed
             return Bukkit.getOnlinePlayers().size();
         }
@@ -271,10 +273,10 @@ public class Metrics {
                         try {
                             // Send the data
                             sendData(data);
-                        } catch (Exception e) {
+                        } catch (Exception exception) {
                             // Something went wrong! :(
                             if (logErrors) {
-                                errorLogger.accept("Could not submit bStats metrics data", e);
+                                errorLogger.accept("Could not submit bStats metrics data.", exception);
                             }
                         }
                     });
@@ -524,9 +526,9 @@ public class Metrics {
                     return null;
                 }
                 builder.appendField("data", data);
-            } catch (Throwable t) {
+            } catch (Throwable throwable) {
                 if (logErrors) {
-                    errorLogger.accept("Failed to get data for custom chart with id " + chartId, t);
+                    errorLogger.accept("Failed to get data for custom chart with id " + chartId, throwable);
                 }
                 return null;
             }

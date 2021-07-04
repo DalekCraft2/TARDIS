@@ -105,8 +105,8 @@ public class TARDISAdminCommands implements CommandExecutor {
                         try {
                             plugin.getServer().getScheduler().runTaskAsynchronously(plugin, new Converter(plugin, sender));
                             return true;
-                        } catch (Exception e) {
-                            TARDISMessage.message(sender, "Database conversion failed! " + e.getMessage());
+                        } catch (Exception exception) {
+                            TARDISMessage.message(sender, "Database conversion failed: " + exception.getMessage());
                             return true;
                         }
                     }

@@ -182,7 +182,7 @@ public class TARDISConsoleCloseListener implements Listener {
                                             Biome biome;
                                             try {
                                                 biome = Biome.valueOf(first);
-                                            } catch (IllegalArgumentException iae) {
+                                            } catch (IllegalArgumentException illegalArgumentException) {
                                                 // may have a pre-1.9 biome disk do old biome lookup...
                                                 if (TardisOldBiomeLookup.OLD_BIOME_LOOKUP.containsKey(first)) {
                                                     biome = TardisOldBiomeLookup.OLD_BIOME_LOOKUP.get(first);
@@ -280,8 +280,8 @@ public class TARDISConsoleCloseListener implements Listener {
                                                     set_tardis.put("chameleon_preset", lore.get(5));
                                                     // set chameleon adaption to OFF
                                                     set_tardis.put("adapti_on", 0);
-                                                } catch (IllegalArgumentException e) {
-                                                    plugin.debug("Invalid PRESET value: " + lore.get(5));
+                                                } catch (IllegalArgumentException illegalArgumentException) {
+                                                    plugin.debug("Invalid PRESET value \"" + lore.get(5) + "\": " + illegalArgumentException.getMessage());
                                                 }
                                                 TARDISMessage.send(p, "LOC_SET", !plugin.getTrackerKeeper().getDestinationVortex().containsKey(id));
                                                 travelType = TravelType.SAVE;

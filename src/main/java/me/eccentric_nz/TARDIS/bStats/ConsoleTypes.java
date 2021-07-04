@@ -45,8 +45,8 @@ public class ConsoleTypes {
                     data.put(rs.getString("size"), rs.getInt("count_of"));
                 }
             }
-        } catch (SQLException e) {
-            plugin.debug("ResultSet error for tardis table getting console types! " + e.getMessage());
+        } catch (SQLException sqlException) {
+            plugin.debug("ResultSet error for tardis table getting console types! " + sqlException.getMessage());
         } finally {
             try {
                 if (rs != null) {
@@ -55,8 +55,8 @@ public class ConsoleTypes {
                 if (statement != null) {
                     statement.close();
                 }
-            } catch (SQLException e) {
-                plugin.debug("Error closing tardis table for console types! " + e.getMessage());
+            } catch (SQLException sqlException) {
+                plugin.debug("Error closing tardis table for console types: " + sqlException.getMessage());
             }
         }
         return data;

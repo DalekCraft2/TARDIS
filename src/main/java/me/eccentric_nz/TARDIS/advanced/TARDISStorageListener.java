@@ -282,8 +282,8 @@ public class TARDISStorageListener extends TARDISMenuListener implements Listene
                         }
                     }
                 }
-            } catch (IOException ex) {
-                plugin.debug("Could not get inventory from database! " + ex);
+            } catch (IOException ioException) {
+                plugin.debug("Could not get inventory from database: " + ioException.getMessage());
             }
             // close inventory
             p.closeInventory();

@@ -87,8 +87,8 @@ public class TARDISArchInventory {
                     ItemStack[] a = TARDISArchSerialization.fromDatabase(rsToInv.getString("armour"));
                     p.getInventory().setContents(i);
                     p.getInventory().setArmorContents(a);
-                } catch (IOException ex) {
-                    System.err.println("Could not restore inventory on Chameleon Arch change, " + ex);
+                } catch (IOException ioException) {
+                    System.err.println("Could not restore inventory on Chameleon Arch change: " + ioException.getMessage());
                 }
             } else {
                 // start with an empty inventory and armour
@@ -111,8 +111,8 @@ public class TARDISArchInventory {
             rsToInv.close();
             statement.close();
             p.updateInventory();
-        } catch (SQLException e) {
-            System.err.println("Could not save inventory on Chameleon Arch change, " + e);
+        } catch (SQLException sqlException) {
+            System.err.println("Could not save inventory on Chameleon Arch change: " + sqlException.getMessage());
         } finally {
             try {
                 if (rsToInv != null) {
@@ -127,8 +127,8 @@ public class TARDISArchInventory {
                 if (statement != null) {
                     statement.close();
                 }
-            } catch (SQLException ex) {
-                System.err.println("Could not close resources: " + ex.getMessage());
+            } catch (SQLException sqlException) {
+                System.err.println("Could not close resources: " + sqlException.getMessage());
             }
         }
     }
@@ -142,14 +142,14 @@ public class TARDISArchInventory {
             ps = connection.prepareStatement(clearQuery);
             ps.setString(1, uuid.toString());
             ps.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println("Could not save inventory on Chameleon Arch change, " + e);
+        } catch (SQLException sqlException) {
+            System.err.println("Could not save inventory on Chameleon Arch change: " + sqlException.getMessage());
         } finally {
             if (ps != null) {
                 try {
                     ps.close();
-                } catch (SQLException e) {
-                    System.err.println("Could not clear inventory on Chameleon Arch death, " + e);
+                } catch (SQLException sqlException) {
+                    System.err.println("Could not clear inventory on Chameleon Arch death: " + sqlException.getMessage());
                 }
             }
         }

@@ -80,8 +80,8 @@ class TARDISAreaDisks {
         // set default top slots
         try {
             stack = TARDISSerializeInventory.itemStacksFromString(Storage.AREA.getEmpty());
-        } catch (IOException ex) {
-            plugin.debug("Could not get make Area Disk Inventory: " + ex);
+        } catch (IOException ioException) {
+            plugin.debug("Could not get make Area Disk Inventory: " + ioException.getMessage());
         }
         // set saved slots
         int i = 27;
@@ -171,8 +171,8 @@ class TARDISAreaDisks {
                 } else {
                     return serilized_areas;
                 }
-            } catch (IOException ex) {
-                plugin.debug("Could not get NEW Area Disk Inventory: " + ex);
+            } catch (IOException ioException) {
+                plugin.debug("Could not get NEW Area Disk Inventory: " + ioException.getMessage());
             }
         }
         return serialized;

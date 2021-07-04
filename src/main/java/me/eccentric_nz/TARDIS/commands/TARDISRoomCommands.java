@@ -88,8 +88,8 @@ public class TARDISRoomCommands implements CommandExecutor {
                                     bw.write("Actual room cost: " + Math.round(cost / 2.0F));
                                     bw.newLine();
                                 }
-                            } catch (IOException e) {
-                                plugin.debug("Could not create and write to " + r + "_block_list.txt! " + e.getMessage());
+                            } catch (IOException ioException) {
+                                plugin.debug("Could not create and write to " + r + "_block_list.txt: " + ioException.getMessage());
                             }
                             TARDISMessage.send(sender, "ROOM_FILE_SAVED", r);
                         });
@@ -180,8 +180,8 @@ public class TARDISRoomCommands implements CommandExecutor {
                     plugin.getRoomsConfig().set("rooms." + name + ".user", true);
                     try {
                         plugin.getRoomsConfig().save(new File(plugin.getDataFolder(), "rooms.yml"));
-                    } catch (IOException io) {
-                        plugin.debug("Could not save rooms.yml, " + io);
+                    } catch (IOException ioException) {
+                        plugin.debug("Could not save rooms.yml: " + ioException.getMessage());
                     }
                     TARDISMessage.send(sender, "ROOM_ADDED");
                     return true;
@@ -209,8 +209,8 @@ public class TARDISRoomCommands implements CommandExecutor {
                         plugin.getRoomsConfig().set("rooms." + name + ".enabled", bool);
                         try {
                             plugin.getRoomsConfig().save(new File(plugin.getDataFolder(), "rooms.yml"));
-                        } catch (IOException io) {
-                            plugin.debug("Could not save rooms.yml, " + io);
+                        } catch (IOException ioException) {
+                            plugin.debug("Could not save rooms.yml: " + ioException.getMessage());
                         }
                         // also add or remove the room from the TARDISCommands.roomArgs List
                         if (bool) {
@@ -234,16 +234,16 @@ public class TARDISRoomCommands implements CommandExecutor {
                             }
                             try {
                                 plugin.getRoomsConfig().save(new File(plugin.getDataFolder(), "rooms.yml"));
-                            } catch (IOException io) {
-                                plugin.debug("Could not save rooms.yml, " + io);
+                            } catch (IOException ioException) {
+                                plugin.debug("Could not save rooms.yml: " + ioException.getMessage());
                             }
                             return true;
-                        } catch (NumberFormatException nfe) {
+                        } catch (NumberFormatException numberFormatException) {
                             // string seed
                             String setMaterial = args[1].toUpperCase(Locale.ENGLISH);
                             try {
                                 Material.valueOf(setMaterial);
-                            } catch (IllegalArgumentException e) {
+                            } catch (IllegalArgumentException illegalArgumentException) {
                                 TARDISMessage.send(sender, "MATERIAL_NOT_VALID");
                                 return false;
                             }
@@ -258,8 +258,8 @@ public class TARDISRoomCommands implements CommandExecutor {
                             TARDISMessage.send(sender, "ROOM_SEED_SET", name, setMaterial);
                             try {
                                 plugin.getRoomsConfig().save(new File(plugin.getDataFolder(), "rooms.yml"));
-                            } catch (IOException io) {
-                                plugin.debug("Could not save rooms.yml, " + io);
+                            } catch (IOException ioException) {
+                                plugin.debug("Could not save rooms.yml: " + ioException.getMessage());
                             }
                             // add the seed block to plugin.getBuildKeeper().getSeeds()
                             Material m = Material.valueOf(setMaterial);

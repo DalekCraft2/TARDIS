@@ -80,8 +80,8 @@ public class TARDII implements TardisAPI {
                     timelords.put(rs.getString("owner"), rs.getInt("tardis_id"));
                 }
             }
-        } catch (SQLException e) {
-            TARDIS.plugin.debug("ResultSet error for tardis table! " + e.getMessage());
+        } catch (SQLException sqlException) {
+            TARDIS.plugin.debug("ResultSet error for tardis table: " + sqlException.getMessage());
         } finally {
             try {
                 if (rs != null) {
@@ -90,8 +90,8 @@ public class TARDII implements TardisAPI {
                 if (statement != null) {
                     statement.close();
                 }
-            } catch (SQLException e) {
-                TARDIS.plugin.debug("Error closing tardis table! " + e.getMessage());
+            } catch (SQLException sqlException) {
+                TARDIS.plugin.debug("Error closing tardis table: " + sqlException.getMessage());
             }
         }
         return timelords;
@@ -555,7 +555,8 @@ public class TARDII implements TardisAPI {
                 return is;
             }
             return null;
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException illegalArgumentException) {
+            TARDIS.plugin.debug(illegalArgumentException.getMessage());
             return null;
         }
     }
@@ -737,8 +738,8 @@ public class TARDII implements TardisAPI {
     public void spawnAbandonedTARDIS(Location location) {
         try {
             spawnAbandonedTARDIS(location, "BUDGET", PRESET.FACTORY, COMPASS.SOUTH);
-        } catch (TARDISException ex) {
-            Bukkit.getLogger().log(Level.SEVERE, null, ex);
+        } catch (TARDISException tardisException) {
+            Bukkit.getLogger().log(Level.SEVERE, null, tardisException);
         }
     }
 
@@ -751,8 +752,8 @@ public class TARDII implements TardisAPI {
         if (rst.resultSet()) {
             try {
                 return setDesktopWallAndFloor(rst.getTardis().getUuid(), wall, floor, artron);
-            } catch (TARDISException ex) {
-                Bukkit.getLogger().log(Level.SEVERE, null, ex);
+            } catch (TARDISException tardisException) {
+                Bukkit.getLogger().log(Level.SEVERE, null, tardisException);
                 return "";
             }
         } else {

@@ -72,8 +72,8 @@ public class TARDISRoomPersister {
             if (count > 0) {
                 plugin.getConsole().sendMessage(plugin.getPluginName() + "Saved " + count + " room building tasks to resume later.");
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
         } finally {
             try {
                 if (ps != null) {

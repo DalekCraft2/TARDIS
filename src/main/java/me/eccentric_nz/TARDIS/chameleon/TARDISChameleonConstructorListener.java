@@ -75,8 +75,8 @@ public class TARDISChameleonConstructorListener extends TARDISMenuListener imple
         plugin.getBlocksConfig().getStringList("lamp_blocks").forEach((s) -> {
             try {
                 lamps.add(Material.valueOf(s));
-            } catch (IllegalArgumentException e) {
-                plugin.debug("Invalid Material in lamp_blocks section.");
+            } catch (IllegalArgumentException illegalArgumentException) {
+                plugin.debug("Invalid Material \"" + s + "\" in lamp_blocks section: " + illegalArgumentException.getMessage());
             }
         });
         ln = lamps.size();

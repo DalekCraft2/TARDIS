@@ -65,14 +65,14 @@ public class TARDISCustomPreset {
                     i++;
                 }
             }
-        } catch (IOException io) {
-            TARDIS.plugin.getConsole().sendMessage(TARDIS.plugin.getPluginName() + "Could not read custom preset file! " + io.getMessage());
+        } catch (IOException ioException) {
+            TARDIS.plugin.getConsole().sendMessage(TARDIS.plugin.getPluginName() + "Could not read custom preset file: " + ioException.getMessage());
         } finally {
             if (bufRdr != null) {
                 try {
                     bufRdr.close();
-                } catch (IOException e) {
-                    TARDIS.plugin.debug("Error closing custom preset reader! " + e.getMessage());
+                } catch (IOException ioException) {
+                    TARDIS.plugin.debug("Error closing custom preset reader: " + ioException.getMessage());
                 }
             }
         }

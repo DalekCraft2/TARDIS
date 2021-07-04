@@ -45,8 +45,8 @@ public class PlayerDifficulty {
                     data.put(rs.getInt("difficulty") == 0 ? "hard" : "easy", rs.getInt("count_of"));
                 }
             }
-        } catch (SQLException e) {
-            plugin.debug("ResultSet error for player_prefs table getting player difficulty! " + e.getMessage());
+        } catch (SQLException sqlException) {
+            plugin.debug("ResultSet error for player_prefs table getting player difficulty: " + sqlException.getMessage());
         } finally {
             try {
                 if (rs != null) {
@@ -55,8 +55,8 @@ public class PlayerDifficulty {
                 if (statement != null) {
                     statement.close();
                 }
-            } catch (SQLException e) {
-                plugin.debug("Error closing player_prefs table for player difficulty! " + e.getMessage());
+            } catch (SQLException sqlException) {
+                plugin.debug("Error closing player_prefs table for player difficulty: " + sqlException.getMessage());
             }
         }
         return data;

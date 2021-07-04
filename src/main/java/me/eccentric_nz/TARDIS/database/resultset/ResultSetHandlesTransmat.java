@@ -59,8 +59,8 @@ public class ResultSetHandlesTransmat {
                     }
                 }
             }
-        } catch (SQLException e) {
-            plugin.debug("ResultSet error for transmats table! " + e.getMessage());
+        } catch (SQLException sqlException) {
+            plugin.debug("ResultSet error for transmats table: " + sqlException.getMessage());
             return false;
         } finally {
             try {
@@ -70,8 +70,8 @@ public class ResultSetHandlesTransmat {
                 if (statement != null) {
                     statement.close();
                 }
-            } catch (SQLException e) {
-                plugin.debug("Error closing transmats table! " + e.getMessage());
+            } catch (SQLException sqlException) {
+                plugin.debug("Error closing transmats table: " + sqlException.getMessage());
             }
         }
         return false;

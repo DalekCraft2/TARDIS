@@ -137,8 +137,8 @@ public class TARDISConsoleListener implements Listener {
                                         }
                                     }
                                     inv.setContents(stack);
-                                } catch (IOException ex) {
-                                    plugin.debug("Could not read console from database!");
+                                } catch (IOException ioException) {
+                                    plugin.debug("Could not read console from database: " + ioException.getMessage());
                                 }
                             }
                         } else {

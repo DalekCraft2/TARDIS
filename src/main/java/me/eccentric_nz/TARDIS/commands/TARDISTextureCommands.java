@@ -103,8 +103,8 @@ public class TARDISTextureCommands implements CommandExecutor {
                             if (pref.equals("out")) {
                                 upd.put("texture_out", args[1]);
                             }
-                        } catch (MalformedURLException e) {
-                            TARDISMessage.send(player, "URL", e.getMessage());
+                        } catch (MalformedURLException malformedURLException) {
+                            TARDISMessage.send(player, "URL", malformedURLException.getMessage());
                             return true;
                         }
                     }

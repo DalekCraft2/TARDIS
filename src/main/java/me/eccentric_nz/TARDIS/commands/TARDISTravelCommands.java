@@ -471,8 +471,8 @@ public class TARDISTravelCommands implements CommandExecutor {
                                                 hasBiomeDisk = true;
                                             }
                                         }
-                                    } catch (IOException ex) {
-                                        plugin.debug("Could not serialize inventory!");
+                                    } catch (IOException ioException) {
+                                        plugin.debug("Could not serialize inventory: " + ioException.getMessage());
                                     }
                                 }
                                 if (!hasBiomeDisk) {
@@ -533,7 +533,7 @@ public class TARDISTravelCommands implements CommandExecutor {
                                 }
                                 Location current = new Location(rsc.getWorld(), rsc.getX(), rsc.getY(), rsc.getZ());
                                 new TARDISBiomeFinder(plugin).run(w, biome, player, id, rsc.getDirection(), current);
-                            } catch (IllegalArgumentException iae) {
+                            } catch (IllegalArgumentException illegalArgumentException) {
                                 TARDISMessage.send(player, "BIOME_NOT_VALID");
                                 return true;
                             }
@@ -1110,8 +1110,8 @@ public class TARDISTravelCommands implements CommandExecutor {
             }
             try {
                 return Integer.parseInt(value);
-            } catch (NumberFormatException nfe) {
-                plugin.debug("Could not convert relative coordinate! " + nfe.getMessage());
+            } catch (NumberFormatException numberFormatException) {
+                plugin.debug("Could not convert relative coordinate! " + numberFormatException.getMessage());
                 return Integer.MAX_VALUE;
             }
         }

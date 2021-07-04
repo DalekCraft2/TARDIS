@@ -80,8 +80,8 @@ public class TARDISDiskCraftListener implements Listener {
                                         try {
                                             String biome = BiomeLookup.valueOf(lookup).getUpper();
                                             disk_lore.add(biome);
-                                        } catch (IllegalArgumentException e) {
-                                            plugin.debug("Could not get biome from craft item! " + e);
+                                        } catch (IllegalArgumentException illegalArgumentException) {
+                                            plugin.debug("Could not get biome from craft item: " + illegalArgumentException.getMessage());
                                         }
                                     } else {
                                         // regular biome
@@ -89,8 +89,8 @@ public class TARDISDiskCraftListener implements Listener {
                                         try {
                                             String biome = BiomeLookup.valueOf(lookup).getRegular();
                                             disk_lore.add(biome);
-                                        } catch (IllegalArgumentException e) {
-                                            plugin.debug("Could not get biome from craft item! " + e);
+                                        } catch (IllegalArgumentException illegalArgumentException) {
+                                            plugin.debug("Could not get biome from craft item: " + illegalArgumentException.getMessage());
                                         }
                                     }
                                     if (disk_lore.size() > 0) {
@@ -117,8 +117,8 @@ public class TARDISDiskCraftListener implements Listener {
                                         disk.setItemMeta(dim);
                                         inv.setItem(0, disk);
                                         player.updateInventory();
-                                    } catch (IllegalArgumentException e) {
-                                        plugin.debug("Could not get biome from craft item! " + e);
+                                    } catch (IllegalArgumentException illegalArgumentException) {
+                                        plugin.debug("Could not get biome from craft item: " + illegalArgumentException.getMessage());
                                     }
                                 } else {
                                     TARDISMessage.send(player, "DISK_BLANK_BIOME");
