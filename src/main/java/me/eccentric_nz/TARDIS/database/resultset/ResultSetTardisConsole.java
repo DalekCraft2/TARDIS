@@ -71,7 +71,7 @@ public class ResultSetTardisConsole {
             rs = statement.executeQuery();
             if (rs.isBeforeFirst()) {
                 rs.next();
-                schematic = Consoles.getBY_NAMES().get(rs.getString("size"));
+                schematic = Consoles.getByNames().get(rs.getString("size"));
                 return true;
             }
             return false;

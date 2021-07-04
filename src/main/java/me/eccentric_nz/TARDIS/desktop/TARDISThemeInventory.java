@@ -63,7 +63,7 @@ public class TARDISThemeInventory {
         ItemStack[] stack = new ItemStack[54];
         int i = 0;
         // get consoles
-        for (Schematic a : Consoles.getBY_NAMES().values()) {
+        for (Schematic a : Consoles.getByNames().values()) {
             Material m = Material.getMaterial(a.getSeed());
             if (!m.equals(Material.COBBLESTONE)) {
                 ItemStack is = new ItemStack(m, 1);

@@ -182,7 +182,7 @@ public class TARDISSonicPainter {
             // check for dye in slot
             PlayerInventory inv = player.getInventory();
             ItemStack dye = inv.getItem(8);
-            if (dye == null || !TARDISMaterials.dyes.contains(dye.getType())) {
+            if (dye == null || !TARDISMaterials.DYES.contains(dye.getType())) {
                 TARDISMessage.send(player, "SONIC_DYE");
                 return;
             }

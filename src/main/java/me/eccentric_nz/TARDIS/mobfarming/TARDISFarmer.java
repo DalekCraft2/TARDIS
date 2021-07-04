@@ -469,9 +469,9 @@ public class TARDISFarmer {
                     }
                 }
                 ItemStack fishBucket = p.getInventory().getItemInOffHand();
-                if (fishBucket != null && TARDISMaterials.fish_buckets.contains(fishBucket.getType())) {
+                if (fishBucket != null && TARDISMaterials.FISH_BUCKETS.contains(fishBucket.getType())) {
                     fish = new TARDISFish();
-                    fish.setType(TARDISMaterials.fishMap.get(fishBucket.getType()));
+                    fish.setType(TARDISMaterials.FISH_MAP.get(fishBucket.getType()));
                     if (fishBucket.getType().equals(Material.TROPICAL_FISH_BUCKET)) {
                         TropicalFishBucketMeta fbim = (TropicalFishBucketMeta) fishBucket.getItemMeta();
                         fish.setColour(fbim.getBodyColor());

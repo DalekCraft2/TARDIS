@@ -544,7 +544,7 @@ public class TARDISTimeTravel {
         do {
             block = block.getRelative(BlockFace.DOWN);
             type = block.getType();
-        } while (TARDISMaterials.submarine_blocks.contains(type));
+        } while (TARDISMaterials.SUBMARINE_BLOCKS.contains(type));
         Location loc = block.getRelative(BlockFace.UP).getLocation();
         for (int n = 0; n < attempts; n++) {
             if (isSafeSubmarine(loc, d)) {

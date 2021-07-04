@@ -50,7 +50,7 @@ public class TARDISBeaconToggler {
         if (rs.resultSet()) {
             Tardis tardis = rs.getTardis();
             Schematic schm = tardis.getSchematic();
-            if (Consoles.getNO_BEACON().contains(schm)) {
+            if (Consoles.getNoBeacon().contains(schm)) {
                 // doesn't have a beacon!
                 return;
             }

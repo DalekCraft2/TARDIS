@@ -61,7 +61,7 @@ class TARDISRecipesLister {
             for (Map.Entry<Schematic, ShapedRecipe> seed : plugin.getObstructionum().getSeedRecipes().entrySet()) {
                 int model;
                 String material;
-                if (TARDISSeedModel.materialMap.containsKey(seed.getKey().getSeedMaterial())) {
+                if (TARDISSeedModel.MATERIAL_MAP.containsKey(seed.getKey().getSeedMaterial())) {
                     model = TARDISSeedModel.modelByMaterial(seed.getKey().getSeedMaterial());
                     if (seed.getKey().getPermission().equals("rotor")) {
                         material = "MUSHROOM_STEM";

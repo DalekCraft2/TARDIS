@@ -159,8 +159,8 @@ public class TARDISAntiBuildListener implements Listener {
         allow_interact.add(Material.SPRUCE_PRESSURE_PLATE);
         allow_interact.add(Material.STONE_BUTTON);
         allow_interact.add(Material.STONE_PRESSURE_PLATE);
-        no_flower_pot.addAll(TARDISMaterials.plants);
-        no_flower_pot.addAll(TARDISMaterials.saplings);
+        no_flower_pot.addAll(TARDISMaterials.PLANTS);
+        no_flower_pot.addAll(TARDISMaterials.SAPLINGS);
     }
 
     @EventHandler(ignoreCancelled = true)

@@ -25,7 +25,7 @@ import java.util.Map;
  */
 public class TardisOldBiomeLookup {
 
-    public final static Map<String, Biome> OLD_BIOME_LOOKUP;
+    public static final Map<String, Biome> OLD_BIOME_LOOKUP;
 
     static {
         //noinspection RedundantTypeArguments (explicit type arguments speedup compilation and analysis time)

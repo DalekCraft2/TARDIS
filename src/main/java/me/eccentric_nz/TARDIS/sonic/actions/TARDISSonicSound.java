@@ -32,15 +32,15 @@ import java.util.UUID;
 
 public class TARDISSonicSound {
 
-    private static final HashMap<UUID, Long> timeout = new HashMap<>();
+    private static final HashMap<UUID, Long> TIMEOUT = new HashMap<>();
 
     public static void playSonicSound(TARDIS plugin, Player player, long now, long cooldown, String sound) {
-        if ((!timeout.containsKey(player.getUniqueId()) || timeout.get(player.getUniqueId()) < now)) {
+        if ((!TIMEOUT.containsKey(player.getUniqueId()) || TIMEOUT.get(player.getUniqueId()) < now)) {
             ItemMeta im = player.getInventory().getItemInMainHand().getItemMeta();
             im.addEnchant(Enchantment.DURABILITY, 1, true);
             im.addItemFlags(ItemFlag.values());
             player.getInventory().getItemInMainHand().setItemMeta(im);
-            timeout.put(player.getUniqueId(), now + cooldown);
+            TIMEOUT.put(player.getUniqueId(), now + cooldown);
             TARDISSounds.playTARDISSound(player.getLocation(), sound);
             plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> {
                 ItemStack is = player.getInventory().getItemInMainHand();

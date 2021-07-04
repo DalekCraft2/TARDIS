@@ -85,7 +85,7 @@ public class TARDISSeedBlockListener implements Listener {
                 event.getBlockPlaced().setBlockData(multipleFacing);
             }
             List<String> lore = im.getLore();
-            Schematic schm = Consoles.getBY_NAMES().get(lore.get(0));
+            Schematic schm = Consoles.getByNames().get(lore.get(0));
             Material wall = Material.valueOf(TARDISStringUtils.getValuesFromWallString(lore.get(1)));
             Material floor = Material.valueOf(TARDISStringUtils.getValuesFromWallString(lore.get(2)));
             TARDISBuildData seed = new TARDISBuildData();
@@ -122,7 +122,7 @@ public class TARDISSeedBlockListener implements Listener {
                 }
                 String console = data.getSchematic().getPermission().toUpperCase(Locale.ENGLISH);
                 int model;
-                if (TARDISSeedModel.consoleMap.containsKey(console)) {
+                if (TARDISSeedModel.CONSOLE_MAP.containsKey(console)) {
                     model = TARDISSeedModel.modelByString(console);
                 } else {
                     model = 45;

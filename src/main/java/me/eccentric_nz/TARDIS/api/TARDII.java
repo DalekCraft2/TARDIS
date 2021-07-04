@@ -61,7 +61,7 @@ import java.util.logging.Level;
  */
 public class TARDII implements TardisAPI {
 
-    private static final WeightedChoice<Environment> weightedChoice = new WeightedChoice<Environment>().add(70, Environment.NORMAL).add(15, Environment.NETHER).add(15, Environment.THE_END);
+    private static final WeightedChoice<Environment> WEIGHTED_CHOICE = new WeightedChoice<Environment>().add(70, Environment.NORMAL).add(15, Environment.NETHER).add(15, Environment.THE_END);
     private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getINSTANCE();
     private final Connection connection = service.getConnection();
 
@@ -168,7 +168,7 @@ public class TARDII implements TardisAPI {
     public Location getRandomLocation(List<String> worlds, Environment environment, Parameters param) {
         if (environment == null) {
             // choose random environment - weighted towards normal!
-            environment = weightedChoice.next();
+            environment = WEIGHTED_CHOICE.next();
             // check if environment is enabled
             if ((environment.equals(Environment.NETHER) && !TARDIS.plugin.getConfig().getBoolean("travel.nether")) || (environment.equals(Environment.THE_END) && !TARDIS.plugin.getConfig().getBoolean("travel.the_end"))) {
                 environment = Environment.NORMAL;
@@ -468,10 +468,10 @@ public class TARDII implements TardisAPI {
 
     @Override
     public ItemStack getTARDISSeedItem(String schematic) {
-        if (Consoles.getBY_NAMES().containsKey(schematic)) {
+        if (Consoles.getByNames().containsKey(schematic)) {
             ItemStack is;
             int model = TARDISSeedModel.modelByString(schematic);
-            if (Consoles.getBY_NAMES().get(schematic).isCustom() || schematic.equalsIgnoreCase("DELTA") || schematic.equalsIgnoreCase("ROTOR") || schematic.equalsIgnoreCase("COPPER") || schematic.equalsIgnoreCase("CAVE") || schematic.equalsIgnoreCase("WEATHERED")) {
+            if (Consoles.getByNames().get(schematic).isCustom() || schematic.equalsIgnoreCase("DELTA") || schematic.equalsIgnoreCase("ROTOR") || schematic.equalsIgnoreCase("COPPER") || schematic.equalsIgnoreCase("CAVE") || schematic.equalsIgnoreCase("WEATHERED")) {
                 is = new ItemStack(Material.MUSHROOM_STEM, 1);
             } else {
                 is = new ItemStack(Material.RED_MUSHROOM_BLOCK, 1);
@@ -721,7 +721,7 @@ public class TARDII implements TardisAPI {
 
     @Override
     public void spawnAbandonedTARDIS(Location location, String type, PRESET preset, COMPASS direction) throws TARDISException {
-        if (!Consoles.getBY_NAMES().containsKey(type.toUpperCase(Locale.ENGLISH))) {
+        if (!Consoles.getByNames().containsKey(type.toUpperCase(Locale.ENGLISH))) {
             throw new TARDISException("Not a valid Console type");
         }
         if (!TARDIS.plugin.getConfig().getBoolean("abandon.enabled")) {
@@ -730,7 +730,7 @@ public class TARDII implements TardisAPI {
         if (!TARDIS.plugin.getConfig().getBoolean("creation.default_world")) {
             throw new TARDISException("TARDIS must be configured to create TARDISes in a default world");
         }
-        Schematic schm = Consoles.getBY_NAMES().get(type.toUpperCase(Locale.ENGLISH));
+        Schematic schm = Consoles.getByNames().get(type.toUpperCase(Locale.ENGLISH));
         new TARDISAbandoned(TARDIS.plugin).spawn(location, schm, preset, direction, null);
     }
 

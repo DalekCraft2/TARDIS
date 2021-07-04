@@ -133,7 +133,7 @@ public class Metrics {
          */
         static final String METRICS_VERSION = "2.2.1";
 
-        private static final ScheduledExecutorService scheduler =
+        private static final ScheduledExecutorService SCHEDULER =
                 Executors.newScheduledThreadPool(1, task -> new Thread(task, "bStats-Metrics"));
 
         private static final String REPORT_URL = "https://bStats.org/api/v2/data/%s";
@@ -229,7 +229,7 @@ public class Metrics {
                     () -> {
                         if (!enabled || !checkServiceEnabledSupplier.get()) {
                             // Submitting data or service is disabled
-                            scheduler.shutdown();
+                            SCHEDULER.shutdown();
                             return;
                         }
                         if (submitTaskConsumer != null) {
@@ -247,8 +247,8 @@ public class Metrics {
             // WARNING: Modifying this code will get your plugin banned on bStats. Just don't do it!
             long initialDelay = (long) (1000 * 60 * (3 + Math.random() * 3));
             long secondDelay = (long) (1000 * 60 * (Math.random() * 30));
-            scheduler.schedule(submitTask, initialDelay, TimeUnit.MILLISECONDS);
-            scheduler.scheduleAtFixedRate(
+            SCHEDULER.schedule(submitTask, initialDelay, TimeUnit.MILLISECONDS);
+            SCHEDULER.scheduleAtFixedRate(
                     submitTask, initialDelay + secondDelay, 1000 * 60 * 30, TimeUnit.MILLISECONDS);
         }
 
@@ -268,7 +268,7 @@ public class Metrics {
             baseJsonBuilder.appendField("serverUUID", serverUuid);
             baseJsonBuilder.appendField("metricsVersion", METRICS_VERSION);
             JsonObjectBuilder.JsonObject data = baseJsonBuilder.build();
-            scheduler.execute(
+            SCHEDULER.execute(
                     () -> {
                         try {
                             // Send the data

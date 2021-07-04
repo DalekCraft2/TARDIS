@@ -74,7 +74,7 @@ public class TARDISShellRoomConstructor {
                 for (int y = fy; y < fy + 4; y++) {
                     Block fb = w.getBlockAt(fx + orderx[c], y, fz + orderz[c]);
                     if (!fb.getType().isAir()) {
-                        if (TARDISMaterials.doors.contains(fb.getType())) {
+                        if (TARDISMaterials.DOORS.contains(fb.getType())) {
                             hasDoor = true;
                         } else {
                             hasBlock = true;
@@ -105,7 +105,7 @@ public class TARDISShellRoomConstructor {
                     }
                     if (y == (fy + 3)) {
                         sb_blue_data.append(addQuotes(data.getAsString()));
-                        if (TARDISMaterials.not_glass.contains(material)) {
+                        if (TARDISMaterials.NOT_GLASS.contains(material)) {
                             sb_stain_data.append(dataStr);
                             sb_glass_data.append(dataStr);
                         } else {
@@ -115,7 +115,7 @@ public class TARDISShellRoomConstructor {
                         }
                     } else {
                         sb_blue_data.append(addQuotes(data.getAsString())).append(",");
-                        if (TARDISMaterials.not_glass.contains(material)) {
+                        if (TARDISMaterials.NOT_GLASS.contains(material)) {
                             sb_stain_data.append(dataStr).append(",");
                             sb_glass_data.append(dataStr).append(",");
                         } else {

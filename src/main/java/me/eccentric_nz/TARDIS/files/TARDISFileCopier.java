@@ -112,7 +112,7 @@ public class TARDISFileCopier {
         // load schematic files - copy the default files if they don't exist
         String basepath = plugin.getDataFolder() + File.separator + "schematics" + File.separator;
         String userbasepath = plugin.getDataFolder() + File.separator + "user_schematics" + File.separator;
-        Consoles.getBY_NAMES().values().forEach((ts) -> {
+        Consoles.getByNames().values().forEach((ts) -> {
             if (!ts.isCustom()) {
                 String str = basepath + ts.getPermission() + ".tschm";
                 copy(str, plugin.getResource(ts.getPermission() + ".tschm"), true);

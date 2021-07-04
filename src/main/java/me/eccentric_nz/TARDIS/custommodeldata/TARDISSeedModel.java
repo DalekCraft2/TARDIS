@@ -22,7 +22,7 @@ import java.util.HashMap;
 
 public class TARDISSeedModel {
 
-    public static final HashMap<Material, Integer> materialMap = new HashMap<>() {
+    public static final HashMap<Material, Integer> MATERIAL_MAP = new HashMap<>() {
         {
             // ars
             put(Material.QUARTZ_BLOCK, 14);
@@ -81,7 +81,7 @@ public class TARDISSeedModel {
         }
     };
 
-    public static final HashMap<String, Integer> consoleMap = new HashMap<>() {
+    public static final HashMap<String, Integer> CONSOLE_MAP = new HashMap<>() {
         {
             put("ARS", 14);
             put("BIGGER", 15);
@@ -115,10 +115,10 @@ public class TARDISSeedModel {
     };
 
     public static int modelByMaterial(Material material) {
-        return materialMap.get(material);
+        return MATERIAL_MAP.get(material);
     }
 
     public static int modelByString(String console) {
-        return consoleMap.get(console);
+        return CONSOLE_MAP.get(console);
     }
 }

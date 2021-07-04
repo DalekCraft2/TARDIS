@@ -543,7 +543,7 @@ public class TARDISThemeRepairRunnable extends TARDISThemeRunnable {
                     postDripstoneBlocks.put(world.getBlockAt(x, y, z), data);
                 } else if (type.equals(Material.GLOW_LICHEN)) {
                     postLichenBlocks.put(world.getBlockAt(x, y, z), data);
-                } else if (TARDISMaterials.infested.contains(type)) {
+                } else if (TARDISMaterials.INFESTED.contains(type)) {
                     // legacy monster egg stone for controls
                     TARDISBlockSetters.setBlock(world, x, y, z, Material.AIR);
                 } else if (type.equals(Material.ICE) && tud.getSchematic().getPermission().equals("cave")) {

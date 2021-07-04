@@ -122,42 +122,42 @@ public enum TARDISHandlesBlock {
     PLAYER_DISK(TARDISHandlesCategory.DISK, "Player Storage Disk", null, 10000001),
     SAVE_DISK(TARDISHandlesCategory.DISK, "Save Storage Disk", null, 10000001);
 
-    public final static HashMap<String, TARDISHandlesBlock> BY_NAME = new HashMap<>();
-    private final static List<TARDISHandlesBlock> commands = new ArrayList<>();
-    private final static List<TARDISHandlesBlock> controls = new ArrayList<>();
-    private final static List<TARDISHandlesBlock> events = new ArrayList<>();
-    private final static List<TARDISHandlesBlock> numbers = new ArrayList<>();
-    private final static List<TARDISHandlesBlock> operators = new ArrayList<>();
-    private final static List<TARDISHandlesBlock> selectors = new ArrayList<>();
-    private final static List<TARDISHandlesBlock> variables = new ArrayList<>();
-    private final static List<TARDISHandlesBlock> buttons = new ArrayList<>();
+    public static final HashMap<String, TARDISHandlesBlock> BY_NAME = new HashMap<>();
+    private static final List<TARDISHandlesBlock> COMMANDS = new ArrayList<>();
+    private static final List<TARDISHandlesBlock> CONTROLS = new ArrayList<>();
+    private static final List<TARDISHandlesBlock> EVENTS = new ArrayList<>();
+    private static final List<TARDISHandlesBlock> NUMBERS = new ArrayList<>();
+    private static final List<TARDISHandlesBlock> OPERATORS = new ArrayList<>();
+    private static final List<TARDISHandlesBlock> SELECTORS = new ArrayList<>();
+    private static final List<TARDISHandlesBlock> VARIABLES = new ArrayList<>();
+    private static final List<TARDISHandlesBlock> BUTTONS = new ArrayList<>();
 
     static {
         for (TARDISHandlesBlock block : values()) {
             switch (block.getCategory()) {
                 case BUTTON:
-                    buttons.add(block);
+                    BUTTONS.add(block);
                     break;
                 case COMMAND:
-                    commands.add(block);
+                    COMMANDS.add(block);
                     break;
                 case CONTROL:
-                    controls.add(block);
+                    CONTROLS.add(block);
                     break;
                 case EVENT:
-                    events.add(block);
+                    EVENTS.add(block);
                     break;
                 case NUMBER:
-                    numbers.add(block);
+                    NUMBERS.add(block);
                     break;
                 case OPERATOR:
-                    operators.add(block);
+                    OPERATORS.add(block);
                     break;
                 case SELECTOR:
-                    selectors.add(block);
+                    SELECTORS.add(block);
                     break;
                 case VARIABLE:
-                    variables.add(block);
+                    VARIABLES.add(block);
                     break;
                 default:
                     break;
@@ -179,35 +179,35 @@ public enum TARDISHandlesBlock {
     }
 
     public static List<TARDISHandlesBlock> getCommands() {
-        return commands;
+        return COMMANDS;
     }
 
     public static List<TARDISHandlesBlock> getControls() {
-        return controls;
+        return CONTROLS;
     }
 
     public static List<TARDISHandlesBlock> getEvents() {
-        return events;
+        return EVENTS;
     }
 
     public static List<TARDISHandlesBlock> getNumbers() {
-        return numbers;
+        return NUMBERS;
     }
 
     public static List<TARDISHandlesBlock> getOperators() {
-        return operators;
+        return OPERATORS;
     }
 
     public static List<TARDISHandlesBlock> getSelectors() {
-        return selectors;
+        return SELECTORS;
     }
 
     public static List<TARDISHandlesBlock> getVariables() {
-        return variables;
+        return VARIABLES;
     }
 
     public static List<TARDISHandlesBlock> getButtons() {
-        return buttons;
+        return BUTTONS;
     }
 
     public TARDISHandlesCategory getCategory() {

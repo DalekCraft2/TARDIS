@@ -66,7 +66,7 @@ public enum TARDISARS implements ARS {
     SLOT("STONE", "Empty slot", 0),
     CONSOLE("", "Console", 0);
 
-    private final static HashMap<String, ARS> EXTENDED_MATERIAL = new HashMap<>();
+    private static final HashMap<String, ARS> EXTENDED_MATERIAL = new HashMap<>();
 
     static {
         for (ARS room : values()) {
@@ -93,7 +93,7 @@ public enum TARDISARS implements ARS {
      * @return ARS if found, or null
      */
     public static ARS ARSFor(String mat) {
-        if (Consoles.getBY_MATERIALS().containsKey(mat)) {
+        if (Consoles.getByMaterials().containsKey(mat)) {
             return CONSOLE;
         } else {
             return EXTENDED_MATERIAL.getOrDefault(mat, SLOT);

@@ -63,7 +63,7 @@ public class TARDISSonicListener implements Listener {
         diamond.add(Material.IRON_BARS);
         diamond.add(Material.SNOW);
         diamond.add(Material.SNOW_BLOCK);
-        diamond.addAll(TARDISMaterials.glass);
+        diamond.addAll(TARDISMaterials.GLASS);
         doors.add(Material.ACACIA_DOOR);
         doors.add(Material.ACACIA_TRAPDOOR);
         doors.add(Material.BIRCH_DOOR);

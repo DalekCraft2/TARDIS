@@ -83,7 +83,7 @@ public class TARDISGiveTabComplete extends TARDISCompleter implements TabComplet
         for (BlueprintTravel travel : BlueprintTravel.values()) {
             BLUEPRINT_SUBS.add("BLUEPRINT_TRAVEL_" + travel.toString());
         }
-        for (String seed : Consoles.getBY_NAMES().keySet()) {
+        for (String seed : Consoles.getByNames().keySet()) {
             if (!seed.equals("SMALL") && !seed.equals("MEDIUM") && !seed.equals("TALL") && !seed.equals("ARCHIVE")) {
                 SEED_SUBS.add(seed);
             }

@@ -46,7 +46,7 @@ class TARDISSetSizeCommand {
         }
         String type = args[2].toUpperCase(Locale.ENGLISH);
         // check size
-        if (!Consoles.getBY_NAMES().containsKey(type)) {
+        if (!Consoles.getByNames().containsKey(type)) {
             TARDISMessage.message(sender, "Not a valid console size! Try using tab completion.");
             return true;
         }

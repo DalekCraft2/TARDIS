@@ -192,7 +192,7 @@ public class TARDISConstants {
     /**
      * A list of particle dust options for use in TARDIS forcefields
      */
-    public static final List<Particle.DustOptions> DUSTOPTIONS = Arrays.asList(new Particle.DustOptions(Color.fromRGB(0, 102, 255), 1), new Particle.DustOptions(Color.fromRGB(0, 153, 255), 1), new Particle.DustOptions(Color.fromRGB(0, 204, 255), 1), new Particle.DustOptions(Color.fromRGB(0, 255, 255), 1), new Particle.DustOptions(Color.fromRGB(0, 255, 204), 1), new Particle.DustOptions(Color.fromRGB(0, 255, 153), 1), new Particle.DustOptions(Color.fromRGB(0, 255, 102), 1), new Particle.DustOptions(Color.fromRGB(0, 255, 153), 1), new Particle.DustOptions(Color.fromRGB(0, 255, 204), 1), new Particle.DustOptions(Color.fromRGB(0, 255, 255), 1), new Particle.DustOptions(Color.fromRGB(0, 204, 255), 1), new Particle.DustOptions(Color.fromRGB(0, 153, 255), 1));
+    public static final List<Particle.DustOptions> DUST_OPTIONS = Arrays.asList(new Particle.DustOptions(Color.fromRGB(0, 102, 255), 1), new Particle.DustOptions(Color.fromRGB(0, 153, 255), 1), new Particle.DustOptions(Color.fromRGB(0, 204, 255), 1), new Particle.DustOptions(Color.fromRGB(0, 255, 255), 1), new Particle.DustOptions(Color.fromRGB(0, 255, 204), 1), new Particle.DustOptions(Color.fromRGB(0, 255, 153), 1), new Particle.DustOptions(Color.fromRGB(0, 255, 102), 1), new Particle.DustOptions(Color.fromRGB(0, 255, 153), 1), new Particle.DustOptions(Color.fromRGB(0, 255, 204), 1), new Particle.DustOptions(Color.fromRGB(0, 255, 255), 1), new Particle.DustOptions(Color.fromRGB(0, 204, 255), 1), new Particle.DustOptions(Color.fromRGB(0, 153, 255), 1));
 
     /**
      * An empty BarFlag array for use with TARDIS boss bars

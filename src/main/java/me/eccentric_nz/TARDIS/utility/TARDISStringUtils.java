@@ -22,7 +22,7 @@ import java.util.Locale;
 
 public class TARDISStringUtils {
 
-    private static final List<String> numbers = Arrays.asList("ZERO", "ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE");
+    private static final List<String> NUMBERS = Arrays.asList("ZERO", "ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE");
 
     public static String capitalise(String s) {
         String[] split = s.split("_");
@@ -58,11 +58,11 @@ public class TARDISStringUtils {
         if (i > 9) {
             return "A big number";
         }
-        return numbers.get(i);
+        return NUMBERS.get(i);
     }
 
     public static String toNumber(String s) {
-        return String.format("%s", numbers.indexOf(s));
+        return String.format("%s", NUMBERS.indexOf(s));
         // "-1" if not found
     }
 

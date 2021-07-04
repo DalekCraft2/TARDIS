@@ -147,7 +147,7 @@ public class TARDISJunkBuilder implements Runnable {
                                     String comparator = TARDISStaticLocationGetters.makeLocationStr(world, x, y, z);
                                     plugin.getQueryFactory().insertSyncControl(bd.getTardisID(), 3, comparator, 0);
                                 }
-                                if (TARDISMaterials.infested.contains(type)) {
+                                if (TARDISMaterials.INFESTED.contains(type)) {
                                     // insert / update control 9
                                     plugin.getQueryFactory().insertSyncControl(bd.getTardisID(), 9, (new Location(world, x, y, z)).toString(), 0);
                                     // remember block

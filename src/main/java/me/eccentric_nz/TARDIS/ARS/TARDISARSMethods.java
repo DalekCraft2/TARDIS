@@ -53,7 +53,7 @@ public class TARDISARSMethods {
     final HashMap<UUID, Integer> selected_slot = new HashMap<>();
     final HashMap<UUID, TARDISARSSaveData> save_map_data = new HashMap<>();
     final HashMap<UUID, TARDISARSMapData> map_data = new HashMap<>();
-    final Set<String> consoleBlocks = Consoles.getBY_MATERIALS().keySet();
+    final Set<String> consoleBlocks = Consoles.getByMaterials().keySet();
     final HashMap<UUID, Integer> ids = new HashMap<>();
     final List<UUID> hasLoadedMap = new ArrayList<>();
     private final String[] levels = new String[]{"Bottom level", "Main level", "Top level"};

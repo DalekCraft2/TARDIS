@@ -97,7 +97,7 @@ public class TARDISMakePresetListener implements Listener {
                         String dataStr = addQuotes(data.getAsString());
                         if (y == (fy + 3)) {
                             sb_blue_data.append(addQuotes(data.getAsString()));
-                            if (TARDISMaterials.not_glass.contains(material)) {
+                            if (TARDISMaterials.NOT_GLASS.contains(material)) {
                                 sb_stain_data.append(dataStr);
                                 sb_glass_data.append(dataStr);
                             } else {
@@ -107,7 +107,7 @@ public class TARDISMakePresetListener implements Listener {
                             }
                         } else {
                             sb_blue_data.append(addQuotes(data.getAsString())).append(",");
-                            if (TARDISMaterials.not_glass.contains(material)) {
+                            if (TARDISMaterials.NOT_GLASS.contains(material)) {
                                 sb_stain_data.append(dataStr).append(",");
                                 sb_glass_data.append(dataStr).append(",");
                             } else {

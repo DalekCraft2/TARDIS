@@ -60,11 +60,11 @@ class TARDISAbandonedCommand {
             return true;
         }
         String schm = args[1].toUpperCase(Locale.ENGLISH);
-        if (!Consoles.getBY_NAMES().containsKey(schm)) {
+        if (!Consoles.getByNames().containsKey(schm)) {
             TARDISMessage.send(sender, "TOO_FEW_ARGS");
             return true;
         }
-        Schematic s = Consoles.getBY_NAMES().get(schm);
+        Schematic s = Consoles.getByNames().get(schm);
         PRESET preset;
         try {
             preset = PRESET.valueOf(args[2].toUpperCase(Locale.ENGLISH));

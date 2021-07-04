@@ -23,7 +23,7 @@ import org.bukkit.*;
  */
 public class TARDISStaticLocationGetters {
 
-    private static final int[] threeByThree = new int[]{-1, 0, 1};
+    private static final int[] THREE_BY_THREE = new int[]{-1, 0, 1};
 
     /**
      * Get a World from a stored string.
@@ -154,8 +154,8 @@ public class TARDISStaticLocationGetters {
 
     public static int getHighestYIn3x3(World world, int x, int z) {
         int y = 0;
-        for (int xx : threeByThree) {
-            for (int zz : threeByThree) {
+        for (int xx : THREE_BY_THREE) {
+            for (int zz : THREE_BY_THREE) {
                 // need to +1 due to Spigot change
                 int tmp = world.getHighestBlockYAt(x + xx, z + zz) + 1;
                 y = Math.max(tmp, y);

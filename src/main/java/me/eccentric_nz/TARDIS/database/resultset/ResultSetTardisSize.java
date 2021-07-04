@@ -82,7 +82,7 @@ public class ResultSetTardisSize {
                         consoleSize = rsa.getArchive().getConsoleSize();
                     }
                 } else {
-                    consoleSize = Consoles.getBY_NAMES().get(rs.getString("size")).getConsoleSize();
+                    consoleSize = Consoles.getByNames().get(rs.getString("size")).getConsoleSize();
                 }
                 return true;
             }

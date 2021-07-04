@@ -122,7 +122,7 @@ public class TARDISGiveCommand implements CommandExecutor {
                 }
                 if (item.equals("seed")) {
                     String seed = args[2].toUpperCase(Locale.ENGLISH);
-                    if (Consoles.getBY_NAMES().containsKey(seed) && !seed.equals("SMALL") && !seed.equals("MEDIUM") && !seed.equals("TALL") && !seed.equals("ARCHIVE")) {
+                    if (Consoles.getByNames().containsKey(seed) && !seed.equals("SMALL") && !seed.equals("MEDIUM") && !seed.equals("TALL") && !seed.equals("ARCHIVE")) {
                         if (args.length > 3 && args[3].equalsIgnoreCase("knowledge")) {
                             Player sp = plugin.getServer().getPlayer(args[0]);
                             if (sp == null) { // player must be online
@@ -400,9 +400,9 @@ public class TARDISGiveCommand implements CommandExecutor {
                 }
             }
             ItemStack is;
-            if (Consoles.getBY_NAMES().containsKey(type)) {
+            if (Consoles.getByNames().containsKey(type)) {
                 int model = TARDISSeedModel.modelByString(type);
-                if (Consoles.getBY_NAMES().get(type).isCustom() || type.equalsIgnoreCase("DELTA") || type.equalsIgnoreCase("ROTOR") || type.equalsIgnoreCase("COPPER") || type.equalsIgnoreCase("CAVE") || type.equalsIgnoreCase("WEATHERED")) {
+                if (Consoles.getByNames().get(type).isCustom() || type.equalsIgnoreCase("DELTA") || type.equalsIgnoreCase("ROTOR") || type.equalsIgnoreCase("COPPER") || type.equalsIgnoreCase("CAVE") || type.equalsIgnoreCase("WEATHERED")) {
                     is = new ItemStack(Material.MUSHROOM_STEM, 1);
                 } else {
                     is = new ItemStack(Material.RED_MUSHROOM_BLOCK, 1);

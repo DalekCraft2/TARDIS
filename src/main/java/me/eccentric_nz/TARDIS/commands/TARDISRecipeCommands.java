@@ -295,7 +295,7 @@ public class TARDISRecipeCommands implements CommandExecutor {
         ItemStack tardis;
         // should be mushroom block
         int model;
-        if (Consoles.getBY_NAMES().get(type.toUpperCase()).isCustom()) {
+        if (Consoles.getByNames().get(type.toUpperCase()).isCustom()) {
             model = 45;
             tardis = new ItemStack(Material.MUSHROOM_STEM, 1);
         } else if (type.equalsIgnoreCase("DELTA")) {
