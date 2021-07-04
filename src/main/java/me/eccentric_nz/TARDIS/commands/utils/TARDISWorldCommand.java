@@ -237,8 +237,6 @@ public class TARDISWorldCommand extends TARDISCompleter implements CommandExecut
         return false;
     }
 
-//    Function<String, Boolean> hasUpperCase = s -> s.chars().filter(c -> Character.isUpperCase(c)).count() > 0;
-
     @Override
     public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         String lastArg = args[args.length - 1];

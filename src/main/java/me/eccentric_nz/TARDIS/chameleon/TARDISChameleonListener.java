@@ -242,7 +242,6 @@ public class TARDISChameleonListener extends TARDISMenuListener implements Liste
                                     close(player);
                             }
                             if (set.size() > 0) {
-                                //set.put("chameleon_demat", preset);
                                 plugin.getQueryFactory().doUpdate("tardis", set, wherec);
                             }
                         }

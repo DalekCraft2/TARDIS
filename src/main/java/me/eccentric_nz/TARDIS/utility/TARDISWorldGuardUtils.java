@@ -143,7 +143,6 @@ public class TARDISWorldGuardUtils {
         dd.addPlayer(p.getName());
         region.setOwners(dd);
         HashMap<Flag<?>, Object> flags = new HashMap<>();
-        //flags.put(Flags.TNT, State.DENY);
         flags.put(Flags.ENDER_BUILD, State.DENY);
         flags.put(Flags.FIRE_SPREAD, State.DENY);
         flags.put(Flags.LAVA_FIRE, State.DENY);

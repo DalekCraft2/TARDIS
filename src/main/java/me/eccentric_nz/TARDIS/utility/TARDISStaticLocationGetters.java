@@ -23,7 +23,6 @@ import org.bukkit.*;
  */
 public class TARDISStaticLocationGetters {
 
-    //    private static final int[] fourByFour = new int[]{-2, -1, 0, 1, 2};
     private static final int[] threeByThree = new int[]{-1, 0, 1};
 
     /**

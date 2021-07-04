@@ -101,7 +101,6 @@ public class TARDISRecordingTask implements Runnable {
                 } else {
                     connection.commit();
                     connection.setAutoCommit(true);
-                    //plugin.debug("Batch insert was committed: " + System.currentTimeMillis());
                 }
             }
         } catch (SQLException e) {

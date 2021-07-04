@@ -116,7 +116,6 @@ public class TARDIS extends JavaPlugin {
     private final TARDISChatGUIJSON jsonKeeper = new TARDISChatGUIJSON();
     private final List<String> cleanUpWorlds = new ArrayList<>();
     private final HashMap<String, String> versions = new HashMap<>();
-    //    public TARDISFurnaceRecipe fornacis;
     private Calendar afterCal;
     private Calendar beforeCal;
     private ConsoleCommandSender console;
