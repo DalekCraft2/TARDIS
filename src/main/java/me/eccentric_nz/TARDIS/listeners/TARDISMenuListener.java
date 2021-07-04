@@ -90,11 +90,11 @@ public class TARDISMenuListener implements Listener {
         map.put(ChatColor.DARK_RED + "Chameleon Template", 54);
         map.put(ChatColor.DARK_RED + "Companions", 54);
         map.put(ChatColor.DARK_RED + "Destination Terminal", 54);
-        map.put(ChatColor.DARK_RED + "Chemical compounds", 27);
-        map.put(ChatColor.DARK_RED + "Element constructor", 27);
-        map.put(ChatColor.DARK_RED + "Material reducer", 27);
-        map.put(ChatColor.DARK_RED + "Product crafting", 27);
-        map.put(ChatColor.DARK_RED + "Lab table", 27);
+        map.put(ChatColor.DARK_RED + "Chemical Compounds", 27);
+        map.put(ChatColor.DARK_RED + "Element Constructor", 27);
+        map.put(ChatColor.DARK_RED + "Material Reducer", 27);
+        map.put(ChatColor.DARK_RED + "Product Crafting", 27);
+        map.put(ChatColor.DARK_RED + "Lab Table", 27);
         map.put(ChatColor.DARK_RED + "Genetic Manipulator", 54);
         map.put(ChatColor.DARK_RED + "Handles Program", 54);
         map.put(ChatColor.DARK_RED + "Player Prefs Menu", 36);
@@ -118,9 +118,9 @@ public class TARDISMenuListener implements Listener {
         map.put(ChatColor.DARK_RED + "TARDIS Wall & Floor Menu", 90);
         map.put(ChatColor.DARK_RED + "TARDIS Wall Menu", 54);
         map.put(ChatColor.DARK_RED + "TARDIS Weather Menu", 9);
-        map.put(ChatColor.DARK_RED + "TARDIS areas", 90);
-        map.put(ChatColor.DARK_RED + "TARDIS saves", 90);
-        map.put(ChatColor.DARK_RED + "TARDIS transmats", 90);
+        map.put(ChatColor.DARK_RED + "TARDIS Areas", 90);
+        map.put(ChatColor.DARK_RED + "TARDIS Saves", 90);
+        map.put(ChatColor.DARK_RED + "TARDIS Transmats", 90);
         map.put(ChatColor.DARK_RED + "Temporal Locator", 27);
         for (Storage s : Storage.values()) {
             map.put(s.getTitle(), 54);
