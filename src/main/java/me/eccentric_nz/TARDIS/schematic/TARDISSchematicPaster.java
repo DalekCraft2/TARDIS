@@ -48,20 +48,20 @@ class TARDISSchematicPaster implements Runnable {
     private final Player player;
     private final HashMap<Block, BlockData> postRedstoneTorches = new HashMap<>();
     private final HashMap<Block, TARDISBannerData> postBanners = new HashMap<>();
-    private int task, l, r, h, w, d, x, y, z;
+    private int task, length, relative, height, width, d, x, y, z;
     private int counter = 0;
     private double div = 1.0d;
     private World world;
-    private JsonObject obj;
-    private JsonArray arr;
+    private JsonObject object;
+    private JsonArray array;
     private boolean running = false;
-    private BossBar bb;
+    private BossBar bossBar;
 
     TARDISSchematicPaster(TARDIS plugin, Player player) {
         this.plugin = plugin;
         this.player = player;
-        l = 0;
-        r = 0;
+        length = 0;
+        relative = 0;
     }
 
     @Override
@@ -75,31 +75,31 @@ class TARDISSchematicPaster implements Runnable {
                 task = -1;
                 return;
             }
-            obj = plugin.getTrackerKeeper().getPastes().get(uuid);
+            object = plugin.getTrackerKeeper().getPastes().get(uuid);
             // get dimensions
-            JsonObject dimensions = obj.get("dimensions").getAsJsonObject();
-            h = dimensions.get("height").getAsInt() - 1;
-            w = dimensions.get("width").getAsInt();
+            JsonObject dimensions = object.get("dimensions").getAsJsonObject();
+            height = dimensions.get("height").getAsInt() - 1;
+            width = dimensions.get("width").getAsInt();
             d = dimensions.get("length").getAsInt() - 1;
-            div = (h + 1.0d) * w * (d + 1.0d);
+            div = (height + 1.0d) * width * (d + 1.0d);
             // get start location
-            JsonObject r = obj.get("relative").getAsJsonObject();
-            int rx = r.get("x").getAsInt();
-            int ry = r.get("y").getAsInt();
-            int rz = r.get("z").getAsInt();
-            x = player.getLocation().getBlockX() - rx;
-            y = player.getLocation().getBlockY() - ry;
-            z = player.getLocation().getBlockZ() - rz;
+            JsonObject relative = object.get("relative").getAsJsonObject();
+            int relativeX = relative.get("x").getAsInt();
+            int relativeY = relative.get("y").getAsInt();
+            int relativeZ = relative.get("z").getAsInt();
+            x = player.getLocation().getBlockX() - relativeX;
+            y = player.getLocation().getBlockY() - relativeY;
+            z = player.getLocation().getBlockZ() - relativeZ;
             world = player.getWorld();
             // get input array
-            arr = obj.get("input").getAsJsonArray();
-            bb = Bukkit.createBossBar("TARDIS Schematic Paste Progress", BarColor.WHITE, BarStyle.SOLID, TARDISConstants.EMPTY_ARRAY);
-            bb.setProgress(0);
-            bb.addPlayer(player);
-            bb.setVisible(true);
+            array = object.get("input").getAsJsonArray();
+            bossBar = Bukkit.createBossBar("TARDIS Schematic Paste Progress", BarColor.WHITE, BarStyle.SOLID, TARDISConstants.EMPTY_ARRAY);
+            bossBar.setProgress(0);
+            bossBar.addPlayer(player);
+            bossBar.setVisible(true);
             running = true;
         }
-        if (l == h && r == w - 1) {
+        if (length == height && relative == width - 1) {
             for (Map.Entry<Block, BlockData> map : postRedstoneTorches.entrySet()) {
                 map.getKey().setBlockData(map.getValue());
                 if (TARDIS.plugin.getBlockLogger().isLogging()) {
@@ -108,68 +108,68 @@ class TARDISSchematicPaster implements Runnable {
             }
             setBanners(postBanners);
             // paintings
-            if (obj.has("paintings")) {
-                JsonArray paintings = (JsonArray) obj.get("paintings");
+            if (object.has("paintings")) {
+                JsonArray paintings = (JsonArray) object.get("paintings");
                 for (int i = 0; i < paintings.size(); i++) {
                     JsonObject painting = paintings.get(i).getAsJsonObject();
-                    JsonObject rel = painting.get("rel_location").getAsJsonObject();
-                    int px = rel.get("x").getAsInt();
-                    int py = rel.get("y").getAsInt();
-                    int pz = rel.get("z").getAsInt();
+                    JsonObject relativeLocation = painting.get("rel_location").getAsJsonObject();
+                    int paintingX = relativeLocation.get("x").getAsInt();
+                    int paintingY = relativeLocation.get("y").getAsInt();
+                    int paintingZ = relativeLocation.get("z").getAsInt();
                     Art art = Art.valueOf(painting.get("art").getAsString());
                     BlockFace facing = BlockFace.valueOf(painting.get("facing").getAsString());
-                    Location pl = TARDISPainting.calculatePosition(art, facing, new Location(world, x + px, y + py, z + pz));
+                    Location paintingLocation = TARDISPainting.calculatePosition(art, facing, new Location(world, x + paintingX, y + paintingY, z + paintingZ));
                     try {
-                        Painting ent = (Painting) world.spawnEntity(pl, EntityType.PAINTING);
-                        ent.teleport(pl);
-                        ent.setFacingDirection(facing, true);
-                        ent.setArt(art, true);
-                    } catch (IllegalArgumentException e) {
+                        Painting paintingEntity = (Painting) world.spawnEntity(paintingLocation, EntityType.PAINTING);
+                        paintingEntity.teleport(paintingLocation);
+                        paintingEntity.setFacingDirection(facing, true);
+                        paintingEntity.setArt(art, true);
+                    } catch (IllegalArgumentException illegalArgumentException) {
                         plugin.debug("Invalid painting location!");
                     }
                 }
             }
             plugin.getServer().getScheduler().cancelTask(task);
             task = -1;
-            bb.setProgress(1);
-            bb.setVisible(false);
-            bb.removeAll();
+            bossBar.setProgress(1);
+            bossBar.setVisible(false);
+            bossBar.removeAll();
         }
         // paste a column
-        JsonArray level = (JsonArray) arr.get(l);
-        JsonArray row = (JsonArray) level.get(r);
+        JsonArray level = (JsonArray) array.get(length);
+        JsonArray row = (JsonArray) level.get(relative);
         for (int c = 0; c <= d; c++) {
             counter++;
-            JsonObject col = row.get(c).getAsJsonObject();
-            BlockData data = plugin.getServer().createBlockData(col.get("data").getAsString());
-            Block block = world.getBlockAt(x + r, y + l, z + c);
+            JsonObject column = row.get(c).getAsJsonObject();
+            BlockData blockData = plugin.getServer().createBlockData(column.get("data").getAsString());
+            Block block = world.getBlockAt(x + relative, y + length, z + c);
             if (!block.getType().isAir() && plugin.getBlockLogger().isLogging()) {
                 plugin.getBlockLogger().logRemoval(block);
             }
-            switch (data.getMaterial()) {
-                case REDSTONE_TORCH -> postRedstoneTorches.put(block, data);
+            switch (blockData.getMaterial()) {
+                case REDSTONE_TORCH -> postRedstoneTorches.put(block, blockData);
                 case BLACK_BANNER, BLACK_WALL_BANNER, BLUE_BANNER, BLUE_WALL_BANNER, BROWN_BANNER, BROWN_WALL_BANNER, CYAN_BANNER, CYAN_WALL_BANNER, GRAY_BANNER, GRAY_WALL_BANNER, GREEN_BANNER, GREEN_WALL_BANNER, LIGHT_BLUE_BANNER, LIGHT_BLUE_WALL_BANNER, LIGHT_GRAY_BANNER, LIGHT_GRAY_WALL_BANNER, LIME_BANNER, LIME_WALL_BANNER, MAGENTA_BANNER, MAGENTA_WALL_BANNER, ORANGE_BANNER, ORANGE_WALL_BANNER, PINK_BANNER, PINK_WALL_BANNER, PURPLE_BANNER, PURPLE_WALL_BANNER, RED_BANNER, RED_WALL_BANNER, WHITE_BANNER, WHITE_WALL_BANNER, YELLOW_BANNER, YELLOW_WALL_BANNER -> {
-                    JsonObject state = col.has("banner") ? col.get("banner").getAsJsonObject() : null;
+                    JsonObject state = column.has("banner") ? column.get("banner").getAsJsonObject() : null;
                     if (state != null) {
-                        TARDISBannerData tbd = new TARDISBannerData(data, state);
-                        postBanners.put(block, tbd);
+                        TARDISBannerData tardisBannerData = new TARDISBannerData(blockData, state);
+                        postBanners.put(block, tardisBannerData);
                     }
                 }
                 default -> {
-                    block.setBlockData(data, true);
+                    block.setBlockData(blockData, true);
                     if (plugin.getBlockLogger().isLogging()) {
                         plugin.getBlockLogger().logPlacement(block);
                     }
                 }
             }
             double progress = counter / div;
-            bb.setProgress(progress);
-            if (c == d && r < w) {
-                r++;
+            bossBar.setProgress(progress);
+            if (c == d && relative < width) {
+                relative++;
             }
-            if (c == d && r == w && l < h) {
-                r = 0;
-                l++;
+            if (c == d && relative == width && length < height) {
+                relative = 0;
+                length++;
             }
         }
     }
