@@ -78,7 +78,7 @@ public class TARDISRandomOverworld extends TARDISRandomLocation {
                 }
             } else {
                 // space for a player / check plugin respect
-                int highest = TARDISStaticLocationGetters.getHighestYin3x3(war.getWorld(), x, z);
+                int highest = TARDISStaticLocationGetters.getHighestYIn3x3(war.getWorld(), x, z);
                 Location chk = new Location(war.getWorld(), x, highest, z);
                 if (plugin.getPluginRespect().getRespect(chk, param)) {
                     return chk;
@@ -91,7 +91,7 @@ public class TARDISRandomOverworld extends TARDISRandomLocation {
     private boolean safeOverworld(World world, int wherex, int wherez, COMPASS d) {
         boolean safe = false;
         int count;
-        int highest = TARDISStaticLocationGetters.getHighestYin3x3(world, wherex, wherez);
+        int highest = TARDISStaticLocationGetters.getHighestYIn3x3(world, wherex, wherez);
         if (highest > 3) {
             Block currentBlock = world.getBlockAt(wherex, highest, wherez);
             if (TARDISConstants.GOOD_MATERIALS.contains(currentBlock.getType())) {

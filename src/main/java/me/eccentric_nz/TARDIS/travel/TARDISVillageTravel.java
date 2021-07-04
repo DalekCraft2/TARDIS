@@ -56,7 +56,7 @@ public class TARDISVillageTravel {
                 case NETHER -> loc = world.locateNearestStructure(location, StructureType.NETHER_FORTRESS, 64, false);
                 case THE_END -> {
                     loc = world.locateNearestStructure(location, StructureType.END_CITY, 64, false);
-                    int highesty = TARDISStaticLocationGetters.getHighestYin3x3(world, rs.getX(), rs.getZ());
+                    int highesty = TARDISStaticLocationGetters.getHighestYIn3x3(world, rs.getX(), rs.getZ());
                     loc.setY(highesty);
                 }
                 default -> // NORMAL

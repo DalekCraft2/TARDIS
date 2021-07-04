@@ -74,7 +74,7 @@ public class TARDISBiomeFinderOld implements Runnable {
                     Biome chkbe = w.getBiome(east, w.getHighestBlockYAt(east, startz), startz);
                     if (chkbe.equals(b)) {
                         TARDISMessage.send(p, "BIOME_E", b.toString());
-                        location = new Location(w, east, TARDISStaticLocationGetters.getHighestYin3x3(w, east, startz), startz);
+                        location = new Location(w, east, TARDISStaticLocationGetters.getHighestYIn3x3(w, east, startz), startz);
                     }
                     plus += 64;
                     if (east >= limite) {
@@ -88,7 +88,7 @@ public class TARDISBiomeFinderOld implements Runnable {
                     Biome chkbs = w.getBiome(startx, w.getHighestBlockYAt(startx, south), south);
                     if (chkbs.equals(b)) {
                         TARDISMessage.send(p, "BIOME_S", b.toString());
-                        location = new Location(w, startx, TARDISStaticLocationGetters.getHighestYin3x3(w, startx, south), south);
+                        location = new Location(w, startx, TARDISStaticLocationGetters.getHighestYIn3x3(w, startx, south), south);
                     }
                     plus += 64;
                     if (south >= limits) {
@@ -102,7 +102,7 @@ public class TARDISBiomeFinderOld implements Runnable {
                     Biome chkbw = w.getBiome(west, w.getHighestBlockYAt(west, startz), startz);
                     if (chkbw.equals(b)) {
                         TARDISMessage.send(p, "BIOME_W", b.toString());
-                        location = new Location(w, west, TARDISStaticLocationGetters.getHighestYin3x3(w, west, startz), startz);
+                        location = new Location(w, west, TARDISStaticLocationGetters.getHighestYIn3x3(w, west, startz), startz);
                     }
                     plus -= 64;
                     if (west <= limitw) {
@@ -116,7 +116,7 @@ public class TARDISBiomeFinderOld implements Runnable {
                     Biome chkbn = w.getBiome(startx, w.getHighestBlockYAt(startx, north), north);
                     if (chkbn.equals(b)) {
                         TARDISMessage.send(p, "BIOME_N", b.toString());
-                        location = new Location(w, startx, TARDISStaticLocationGetters.getHighestYin3x3(w, startx, north), north);
+                        location = new Location(w, startx, TARDISStaticLocationGetters.getHighestYIn3x3(w, startx, north), north);
                     }
                     plus -= 64;
                     if (north <= limitn) {

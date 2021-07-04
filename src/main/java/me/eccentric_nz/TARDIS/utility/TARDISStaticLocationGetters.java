@@ -153,7 +153,7 @@ public class TARDISStaticLocationGetters {
         return cw.getChunkAt(cx, cz);
     }
 
-    public static int getHighestYin3x3(World world, int x, int z) {
+    public static int getHighestYIn3x3(World world, int x, int z) {
         int y = 0;
         for (int xx : threeByThree) {
             for (int zz : threeByThree) {

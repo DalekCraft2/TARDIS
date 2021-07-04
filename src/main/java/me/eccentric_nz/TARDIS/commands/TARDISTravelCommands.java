@@ -988,7 +988,7 @@ public class TARDISTravelCommands implements CommandExecutor {
             while (!chunk.isLoaded()) {
                 chunk.load();
             }
-            y = TARDISStaticLocationGetters.getHighestYin3x3(w, x, z);
+            y = TARDISStaticLocationGetters.getHighestYIn3x3(w, x, z);
         }
         int max = Math.min(plugin.getConfig().getInt("travel.max_distance"), (int) (w.getWorldBorder().getSize() / 2) - 17);
         if (x > max || x < -max || z > max || z < -max) {
@@ -1038,7 +1038,7 @@ public class TARDISTravelCommands implements CommandExecutor {
                             Biome chkb = w.getBiome(east, w.getHighestBlockYAt(east, startz), startz);
                             if (chkb.equals(b)) {
                                 TARDISMessage.send(p, "BIOME_E", b.toString());
-                                return new Location(w, east, TARDISStaticLocationGetters.getHighestYin3x3(w, east, startz), startz);
+                                return new Location(w, east, TARDISStaticLocationGetters.getHighestYIn3x3(w, east, startz), startz);
                             }
                         }
                         break;
@@ -1048,7 +1048,7 @@ public class TARDISTravelCommands implements CommandExecutor {
                             Biome chkb = w.getBiome(startx, w.getHighestBlockYAt(startx, south), south);
                             if (chkb.equals(b)) {
                                 TARDISMessage.send(p, "BIOME_S", b.toString());
-                                return new Location(w, startx, TARDISStaticLocationGetters.getHighestYin3x3(w, startx, south), south);
+                                return new Location(w, startx, TARDISStaticLocationGetters.getHighestYIn3x3(w, startx, south), south);
                             }
                         }
                         break;
@@ -1058,7 +1058,7 @@ public class TARDISTravelCommands implements CommandExecutor {
                             Biome chkb = w.getBiome(west, w.getHighestBlockYAt(west, startz), startz);
                             if (chkb.equals(b)) {
                                 TARDISMessage.send(p, "BIOME_W", b.toString());
-                                return new Location(w, west, TARDISStaticLocationGetters.getHighestYin3x3(w, west, startz), startz);
+                                return new Location(w, west, TARDISStaticLocationGetters.getHighestYIn3x3(w, west, startz), startz);
                             }
                         }
                         break;
@@ -1068,7 +1068,7 @@ public class TARDISTravelCommands implements CommandExecutor {
                             Biome chkb = w.getBiome(startx, w.getHighestBlockYAt(startx, north), north);
                             if (chkb.equals(b)) {
                                 TARDISMessage.send(p, "BIOME_N", b.toString());
-                                return new Location(w, startx, TARDISStaticLocationGetters.getHighestYin3x3(w, startx, north), north);
+                                return new Location(w, startx, TARDISStaticLocationGetters.getHighestYIn3x3(w, startx, north), north);
                             }
                         }
                         break;
