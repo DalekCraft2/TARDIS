@@ -54,7 +54,6 @@ public class TARDISGiveTabComplete extends TARDISCompleter implements TabComplet
         GIVE_SUBS.add("mushroom");
         GIVE_SUBS.add("recipes");
         GIVE_SUBS.add("seed");
-        GIVE_SUBS.add("tachyon");
         for (RecipeItem recipeItem : RecipeItem.values()) {
             if (recipeItem.getCategory() != RecipeCategory.SONIC_UPGRADES && recipeItem.getCategory() != RecipeCategory.UNCRAFTABLE) {
                 GIVE_SUBS.add(recipeItem.toTabCompletionString());
