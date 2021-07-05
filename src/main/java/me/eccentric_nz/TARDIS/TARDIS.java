@@ -181,11 +181,9 @@ public class TARDIS extends JavaPlugin {
         invManager = InventoryManager.NONE;
         versions.put("GriefPrevention", "16.13");
         versions.put("LibsDisguises", "10.0.14");
-        versions.put("MultiWorld", "5.2");
         versions.put("Multiverse-Adventure", "2.5");
         versions.put("Multiverse-Core", "4.0");
         versions.put("Multiverse-Inventories", "3.0");
-        versions.put("MultiInv", "3.3.6");
         versions.put("My_Worlds", "1.16.1");
         versions.put("PerWorldInventory", "2.3.0");
         versions.put("TARDISChunkGenerator", "4.7.3");
