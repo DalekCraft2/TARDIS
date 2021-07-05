@@ -138,9 +138,6 @@ public class TARDISGiveCommand implements CommandExecutor {
                         return true;
                     }
                 }
-                if (item.equals("tachyon")) {
-                    return giveTachyon(sender, args[0], args[2]);
-                }
                 int amount;
                 switch (args[2]) {
                     case "full":
@@ -423,26 +420,6 @@ public class TARDISGiveCommand implements CommandExecutor {
                 player.updateInventory();
                 TARDISMessage.send(player, "GIVE_ITEM", sender.getName(), "a " + type + " seed block");
             }
-        }
-        return true;
-    }
-
-    private boolean giveTachyon(CommandSender sender, String player, String amount) {
-        if (!plugin.getPM().isPluginEnabled("TARDISVortexManipulator")) {
-            TARDISMessage.send(sender, "RECIPE_VORTEX");
-            return true;
-        }
-        if (TARDISStaticUtils.getOfflinePlayer(player) == null) {
-            TARDISMessage.send(sender, "COULD_NOT_FIND_NAME");
-            return true;
-        }
-        // Look up this player's UUID
-        OfflinePlayer offlinePlayer = TARDISStaticUtils.getOfflinePlayer(player);
-        if (offlinePlayer != null) {
-            UUID uuid = offlinePlayer.getUniqueId();
-            plugin.getServer().dispatchCommand(sender, "vmg " + uuid + " " + amount);
-        } else {
-            TARDISMessage.send(sender, "PLAYER_NOT_FOUND");
         }
         return true;
     }
