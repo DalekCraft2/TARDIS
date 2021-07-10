@@ -108,7 +108,7 @@ class TARDISDispersalUpdater {
             }
         }
         if (i > 0) {
-            plugin.getConsole().sendMessage(plugin.getPluginName() + "Updated " + i + " dispersed records");
+            plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Updated " + i + " dispersed records");
         }
     }
 }

@@ -61,7 +61,7 @@ public class TARDISSpigotChecker implements Runnable {
                         // if new build number is same
                         return;
                     }
-                    plugin.getConsole().sendMessage(plugin.getPluginName() + ChatColor.RED + "There is a new Spigot build! " + ChatColor.AQUA + "You should update so TARDIS doesn't bug out :)");
+                    plugin.getConsole().sendMessage(plugin.getMessagePrefix() + ChatColor.RED + "There is a new Spigot build! " + ChatColor.AQUA + "You should update so TARDIS doesn't bug out :)");
                 }
             }
         }

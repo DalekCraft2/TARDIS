@@ -178,7 +178,7 @@ public class ConstructsConverter {
             if (i > 0) {
                 update.executeBatch();
                 connection.commit();
-                plugin.getConsole().sendMessage(plugin.getPluginName() + "Converted " + i + " Chameleon Construct records");
+                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Converted " + i + " Chameleon Construct records");
             }
             plugin.getConfig().set("conversions.constructs", true);
             plugin.saveConfig();

@@ -265,14 +265,14 @@ public class TARDISSQLiteDatabase {
             String queryRaisedDemat = "UPDATE " + prefix + "tardis SET chameleon_demat = 'SWAMP' WHERE chameleon_demat = 'RAISED'";
             statement.executeUpdate(queryRaisedDemat);
         } catch (SQLException e) {
-            plugin.getConsole().sendMessage(plugin.getPluginName() + "SQLite create table error: " + e);
+            plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "SQLite create table error: " + e);
         } finally {
             try {
                 if (statement != null) {
                     statement.close();
                 }
             } catch (SQLException e) {
-                plugin.getConsole().sendMessage(plugin.getPluginName() + "SQLite close statement error: " + e);
+                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "SQLite close statement error: " + e);
             }
         }
     }

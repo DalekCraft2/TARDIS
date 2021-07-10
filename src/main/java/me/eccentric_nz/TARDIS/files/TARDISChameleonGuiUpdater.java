@@ -78,7 +78,7 @@ public class TARDISChameleonGuiUpdater {
             String chameleonPath = plugin.getDataFolder() + File.separator + "language" + File.separator + "chameleon_guis.yml";
             chameleon_config.save(new File(chameleonPath));
             if (i > 0) {
-                plugin.getConsole().sendMessage(plugin.getPluginName() + "Added " + ChatColor.AQUA + i + ChatColor.RESET + " new items to chameleon_guis.yml");
+                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Added " + ChatColor.AQUA + i + ChatColor.RESET + " new items to chameleon_guis.yml");
             }
         } catch (IOException io) {
             plugin.debug("Could not save chameleon_guis.yml, " + io.getMessage());

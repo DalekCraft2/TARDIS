@@ -67,7 +67,7 @@ public class TARDISHadsPersister {
                 count += ps.executeUpdate();
             }
             if (count > 0) {
-                plugin.getConsole().sendMessage(plugin.getPluginName() + "Saved " + count + " dispersed TARDISes.");
+                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Saved " + count + " dispersed TARDISes.");
             }
         } catch (SQLException ex) {
             plugin.debug("Insert error for dispersed table: " + ex.getMessage());
@@ -100,7 +100,7 @@ public class TARDISHadsPersister {
                 }
             }
             if (count > 0) {
-                plugin.getConsole().sendMessage(plugin.getPluginName() + "Loaded " + count + " dispersed Police Boxes.");
+                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Loaded " + count + " dispersed Police Boxes.");
             }
             ps = connection.prepareStatement("DELETE FROM " + prefix + "dispersed");
             ps.executeUpdate();

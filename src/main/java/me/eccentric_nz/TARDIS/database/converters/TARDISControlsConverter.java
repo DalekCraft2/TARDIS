@@ -93,7 +93,7 @@ public class TARDISControlsConverter {
                 if (i > 0) {
                     ps.executeBatch();
                     connection.commit();
-                    plugin.getConsole().sendMessage(plugin.getPluginName() + "Converted " + i + " old TARDIS control records");
+                    plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Converted " + i + " old TARDIS control records");
                 }
                 connection.setAutoCommit(true);
             }

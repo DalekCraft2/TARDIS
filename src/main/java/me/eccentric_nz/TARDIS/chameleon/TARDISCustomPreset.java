@@ -66,7 +66,7 @@ public class TARDISCustomPreset {
                 }
             }
         } catch (IOException ioException) {
-            TARDIS.plugin.getConsole().sendMessage(TARDIS.plugin.getPluginName() + "Could not read custom preset file: " + ioException.getMessage());
+            TARDIS.plugin.getConsole().sendMessage(TARDIS.plugin.getMessagePrefix() + "Could not read custom preset file: " + ioException.getMessage());
         } finally {
             if (bufRdr != null) {
                 try {

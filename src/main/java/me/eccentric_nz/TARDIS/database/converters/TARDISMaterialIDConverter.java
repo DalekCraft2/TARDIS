@@ -792,7 +792,7 @@ public class TARDISMaterialIDConverter {
                 if (i > 0) {
                     ps.executeBatch();
                     connection.commit();
-                    plugin.getConsole().sendMessage(plugin.getPluginName() + "Converted " + i + " condenser IDs to material names");
+                    plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Converted " + i + " condenser IDs to material names");
                 }
             }
             plugin.getConfig().set("conversions.condenser_materials", true);
@@ -894,7 +894,7 @@ public class TARDISMaterialIDConverter {
                 if (i > 0) {
                     ps.executeBatch();
                     connection.commit();
-                    plugin.getConsole().sendMessage(plugin.getPluginName() + "Converted " + i + " player_prefs IDs to material names");
+                    plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Converted " + i + " player_prefs IDs to material names");
                 }
             }
             plugin.getConfig().set("conversions.player_prefs_materials", true);
@@ -968,7 +968,7 @@ public class TARDISMaterialIDConverter {
                     if (i > 0) {
                         ps.executeBatch();
                         connection.commit();
-                        plugin.getConsole().sendMessage(plugin.getPluginName() + "Converted " + i + " blocks IDs to material names");
+                        plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Converted " + i + " blocks IDs to material names");
                     }
                 }
             }

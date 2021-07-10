@@ -38,7 +38,7 @@ class TARDISVersionCommand {
     }
 
     boolean displayVersion(CommandSender sender) {
-        String pluginName = plugin.getPluginName();
+        String pluginName = plugin.getMessagePrefix();
         List<String> hooks = plugin.getDescription().getSoftDepend();
         String tardisversion = plugin.getDescription().getVersion();
         String chunkversion = plugin.getPM().getPlugin("TARDISChunkGenerator").getDescription().getVersion();

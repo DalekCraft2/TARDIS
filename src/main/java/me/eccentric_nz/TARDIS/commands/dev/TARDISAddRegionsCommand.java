@@ -55,11 +55,11 @@ class TARDISAddRegionsCommand {
 
     boolean doCheck(CommandSender sender) {
         if (!plugin.isWorldGuardOnServer()) {
-            sender.sendMessage(plugin.getPluginName() + "WorldGuard is not enabled on this server!");
+            sender.sendMessage(plugin.getMessagePrefix() + "WorldGuard is not enabled on this server!");
             return true;
         }
         if (!plugin.getConfig().getBoolean("creation.default_world")) {
-            sender.sendMessage(plugin.getPluginName() + "This command only works if TARDISes are created in a default world!");
+            sender.sendMessage(plugin.getMessagePrefix() + "This command only works if TARDISes are created in a default world!");
             return true;
         }
         // get default world name

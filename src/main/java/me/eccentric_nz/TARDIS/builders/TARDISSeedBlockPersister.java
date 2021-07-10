@@ -61,7 +61,7 @@ public class TARDISSeedBlockPersister {
                 count += ps.executeUpdate();
             }
             if (count > 0) {
-                plugin.getConsole().sendMessage(plugin.getPluginName() + "Saved " + count + " placed seed blocks.");
+                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Saved " + count + " placed seed blocks.");
             }
         } catch (SQLException sqlException) {
             plugin.debug("Insert error for seeds table: " + sqlException.getMessage());
@@ -101,7 +101,7 @@ public class TARDISSeedBlockPersister {
                 }
             }
             if (count > 0) {
-                plugin.getConsole().sendMessage(plugin.getPluginName() + "Loaded " + count + " placed seed blocks.");
+                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Loaded " + count + " placed seed blocks.");
             }
             // clear the portals table so we don't get any duplicates when saving them
             ps = connection.prepareStatement("DELETE FROM " + prefix + "seeds");

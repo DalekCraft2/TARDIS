@@ -271,7 +271,7 @@ public class TARDISRoomsUpdater {
         try {
             rooms_config.save(new File(plugin.getDataFolder(), "rooms.yml"));
             if (i > 0) {
-                plugin.getConsole().sendMessage(plugin.getPluginName() + "Added " + ChatColor.AQUA + i + ChatColor.RESET + " new items to rooms.yml");
+                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Added " + ChatColor.AQUA + i + ChatColor.RESET + " new items to rooms.yml");
             }
         } catch (IOException io) {
             plugin.debug("Could not save rooms.yml, " + io.getMessage());

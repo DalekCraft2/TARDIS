@@ -91,7 +91,7 @@ public class TARDISFileCopier {
             if (result) {
                 schematicDir.setWritable(true);
                 schematicDir.setExecutable(true);
-                plugin.getConsole().sendMessage(plugin.getPluginName() + "Created schematics directory.");
+                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Created schematics directory.");
             }
         }
         File userDir = new File(plugin.getDataFolder() + File.separator + "user_schematics");
@@ -100,7 +100,7 @@ public class TARDISFileCopier {
             if (useResult) {
                 userDir.setWritable(true);
                 userDir.setExecutable(true);
-                plugin.getConsole().sendMessage(plugin.getPluginName() + "Created user_schematics directory.");
+                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Created user_schematics directory.");
             }
         }
         // DELUXE, ELEVENTH, TWELFTH, ARS & REDSTONE schematics designed by Lord_Rahl and killeratnight at mcnovus.net

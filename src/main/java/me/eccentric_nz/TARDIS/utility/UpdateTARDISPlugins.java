@@ -32,10 +32,10 @@ public class UpdateTARDISPlugins {
 
     public boolean fetchFromJenkins(CommandSender sender) {
         if (updateInProgress.get()) {
-            sender.sendMessage(plugin.getPluginName() + ChatColor.RED + "An update is already in progress!");
+            sender.sendMessage(plugin.getMessagePrefix() + ChatColor.RED + "An update is already in progress!");
             return true;
         }
-        sender.sendMessage(plugin.getPluginName() + ChatColor.AQUA + "Downloading TARDIS & TARDISChunkGenerator ...");
+        sender.sendMessage(plugin.getMessagePrefix() + ChatColor.AQUA + "Downloading TARDIS & TARDISChunkGenerator ...");
         new BukkitRunnable() {
             @Override
             public void run() {
@@ -63,7 +63,7 @@ public class UpdateTARDISPlugins {
                     new BukkitRunnable() {
                         @Override
                         public void run() {
-                            sender.sendMessage(plugin.getPluginName() + ChatColor.AQUA + "Update success! Restart the server to finish the update.");
+                            sender.sendMessage(plugin.getMessagePrefix() + ChatColor.AQUA + "Update success! Restart the server to finish the update.");
                         }
                     }.runTask(plugin);
                 } catch (Exception ex) {
@@ -71,7 +71,7 @@ public class UpdateTARDISPlugins {
                     new BukkitRunnable() {
                         @Override
                         public void run() {
-                            sender.sendMessage(plugin.getPluginName() + ChatColor.RED + "Update failed, " + ex.getMessage());
+                            sender.sendMessage(plugin.getMessagePrefix() + ChatColor.RED + "Update failed, " + ex.getMessage());
                         }
                     }.runTask(plugin);
                 } finally {

@@ -328,7 +328,7 @@ public class TARDISGiveCommand implements CommandExecutor {
             HashMap<String, Object> wheret = new HashMap<>();
             wheret.put("tardis_id", id);
             plugin.getQueryFactory().doUpdate("tardis", set, wheret);
-            sender.sendMessage(plugin.getPluginName() + player + "'s Artron Energy Level was set to " + set_level);
+            sender.sendMessage(plugin.getMessagePrefix() + player + "'s Artron Energy Level was set to " + set_level);
         }
         return true;
     }

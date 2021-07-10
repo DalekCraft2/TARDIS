@@ -56,7 +56,7 @@ public class TARDISForceFieldPersister {
                 }
                 ps.executeBatch();
                 connection.setAutoCommit(true);
-                plugin.getConsole().sendMessage(plugin.getPluginName() + "Saved " + count + " TARDIS force fields.");
+                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Saved " + count + " TARDIS force fields.");
             } catch (SQLException e) {
                 plugin.debug("Insert error for force field query: " + e.getMessage());
             } finally {
@@ -83,7 +83,7 @@ public class TARDISForceFieldPersister {
                     plugin.getTrackerKeeper().getActiveForceFields().put(uuid, location);
                     count++;
                 }
-                plugin.getConsole().sendMessage(plugin.getPluginName() + "Loaded " + count + " TARDIS force fields.");
+                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Loaded " + count + " TARDIS force fields.");
             }
             // clear the table
             ps = connection.prepareStatement("DELETE FROM " + prefix + "forcefield");

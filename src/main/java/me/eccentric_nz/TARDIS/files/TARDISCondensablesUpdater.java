@@ -363,7 +363,7 @@ public class TARDISCondensablesUpdater {
             try {
                 String condensablesPath = plugin.getDataFolder() + File.separator + "condensables.yml";
                 plugin.getCondensablesConfig().save(new File(condensablesPath));
-                plugin.getConsole().sendMessage(plugin.getPluginName() + "Updated condensables.yml");
+                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Updated condensables.yml");
             } catch (IOException io) {
                 plugin.debug("Could not save condensables.yml, " + io.getMessage());
             }

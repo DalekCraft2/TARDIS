@@ -62,7 +62,7 @@ public class TARDISTimeRotorLoader {
                 }
             }
             if (count > 0) {
-                plugin.getConsole().sendMessage(plugin.getPluginName() + "Loaded " + count + " portals.");
+                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Loaded " + count + " portals.");
             }
         } catch (SQLException ex) {
             plugin.debug("ResultSet error for time rotor loading: " + ex.getMessage());

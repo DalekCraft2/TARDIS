@@ -205,7 +205,7 @@ public class TARDISLazarusGUIListener extends TARDISMenuListener implements List
                         } else {
                             TARDISLazarusDisguise.runImmortalityGate(player);
                         }
-                        plugin.getServer().broadcastMessage(plugin.getPluginName() + "The Master (aka " + player.getName() + ") has cloned his genetic template to all players. Behold the Master Race!");
+                        plugin.getServer().broadcastMessage(plugin.getMessagePrefix() + "The Master (aka " + player.getName() + ") has cloned his genetic template to all players. Behold the Master Race!");
                         plugin.getPM().callEvent(new TARDISGeneticManipulatorDisguiseEvent(player, player.getName()));
                         // schedule a delayed task to remove the disguise
                         plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> {
@@ -216,7 +216,7 @@ public class TARDISLazarusGUIListener extends TARDISMenuListener implements List
                                     TARDISLazarusDisguise.removeDisguise(p);
                                 }
                             });
-                            plugin.getServer().broadcastMessage(plugin.getPluginName() + "Lord Rassilon has reset the Master Race back to human form.");
+                            plugin.getServer().broadcastMessage(plugin.getMessagePrefix() + "Lord Rassilon has reset the Master Race back to human form.");
                             plugin.getTrackerKeeper().setImmortalityGate("");
                             plugin.getPM().callEvent(new TARDISGeneticManipulatorUndisguiseEvent(player));
                         }, 3600L);

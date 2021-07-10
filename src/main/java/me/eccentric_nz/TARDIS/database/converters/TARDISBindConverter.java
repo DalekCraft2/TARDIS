@@ -81,7 +81,7 @@ public class TARDISBindConverter {
                 if (i > 0) {
                     ps.executeBatch();
                     connection.commit();
-                    plugin.getConsole().sendMessage(plugin.getPluginName() + "Converted " + i + " old bind records");
+                    plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Converted " + i + " old bind records");
                 }
             }
         } catch (SQLException e) {

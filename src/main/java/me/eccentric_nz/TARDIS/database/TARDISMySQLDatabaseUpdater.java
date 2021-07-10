@@ -328,7 +328,7 @@ class TARDISMySQLDatabaseUpdater {
             plugin.debug("MySQL database add fields error: " + e.getMessage() + " " + e.getErrorCode());
         }
         if (i > 0) {
-            plugin.getConsole().sendMessage(TARDIS.plugin.getPluginName() + "Added " + ChatColor.AQUA + i + ChatColor.RESET + " fields to the MySQL database!");
+            plugin.getConsole().sendMessage(TARDIS.plugin.getMessagePrefix() + "Added " + ChatColor.AQUA + i + ChatColor.RESET + " fields to the MySQL database!");
         }
     }
 }

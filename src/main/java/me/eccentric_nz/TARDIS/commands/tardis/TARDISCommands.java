@@ -71,7 +71,7 @@ public class TARDISCommands implements CommandExecutor {
             try {
                 tc = TardisCommand.valueOf(args[0].toLowerCase(Locale.ENGLISH));
             } catch (IllegalArgumentException e) {
-                sender.sendMessage(plugin.getPluginName() + "That command wasn't recognised type " + ChatColor.GREEN + "/tardis help" + ChatColor.RESET + " to see the commands");
+                sender.sendMessage(plugin.getMessagePrefix() + "That command wasn't recognised type " + ChatColor.GREEN + "/tardis help" + ChatColor.RESET + " to see the commands");
                 return false;
             }
             if (args[0].equalsIgnoreCase("version")) {

@@ -60,7 +60,7 @@ public class TARDISPruner {
             try {
                 try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, false))) {
                     if (rs.isBeforeFirst()) {
-                        sender.sendMessage(plugin.getPluginName() + "Prune List:");
+                        sender.sendMessage(plugin.getMessagePrefix() + "Prune List:");
                     } else {
                         TARDISMessage.send(sender, "PRUNE_NONE");
                     }

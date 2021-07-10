@@ -209,7 +209,7 @@ public class TARDISShapedRecipe {
                 }
             });
         } catch (IllegalArgumentException e) {
-            plugin.getConsole().sendMessage(plugin.getPluginName() + ChatColor.RED + s + " recipe failed! " + ChatColor.RESET + "Check the recipe config file!");
+            plugin.getConsole().sendMessage(plugin.getMessagePrefix() + ChatColor.RED + s + " recipe failed! " + ChatColor.RESET + "Check the recipe config file!");
         }
         if (s.contains("Bow Tie")) {
             r.setGroup("Bow Ties");

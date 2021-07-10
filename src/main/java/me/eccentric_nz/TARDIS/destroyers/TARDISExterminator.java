@@ -120,7 +120,7 @@ public class TARDISExterminator {
                 return true;
             }
         } catch (Exception e) {
-            plugin.getConsole().sendMessage(plugin.getPluginName() + "TARDIS exterminate by id error: " + e);
+            plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "TARDIS exterminate by id error: " + e);
             return false;
         }
         return true;

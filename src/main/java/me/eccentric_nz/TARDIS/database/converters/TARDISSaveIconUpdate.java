@@ -65,7 +65,7 @@ public class TARDISSaveIconUpdate {
             if (i > 0) {
                 ps.executeBatch();
                 connection.commit();
-                plugin.getConsole().sendMessage(plugin.getPluginName() + "Added " + i + " saved destination icons");
+                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Added " + i + " saved destination icons");
             }
         } catch (SQLException e) {
             plugin.debug("Update error for lowercase world name update! " + e.getMessage());

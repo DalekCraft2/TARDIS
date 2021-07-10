@@ -70,7 +70,7 @@ public class TARDISRoomPersister {
                 count += ps.executeUpdate();
             }
             if (count > 0) {
-                plugin.getConsole().sendMessage(plugin.getPluginName() + "Saved " + count + " room building tasks to resume later.");
+                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Saved " + count + " room building tasks to resume later.");
             }
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();

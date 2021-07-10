@@ -79,7 +79,7 @@ public class TARDISSiegePersister {
                 }
             }
             if (count > 0) {
-                plugin.getConsole().sendMessage(plugin.getPluginName() + "Loaded " + count + " TARDISes in Siege Mode.");
+                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Loaded " + count + " TARDISes in Siege Mode.");
             }
         } catch (SQLException ex) {
             plugin.debug("ResultSet error for tardis table: " + ex.getMessage());
@@ -131,7 +131,7 @@ public class TARDISSiegePersister {
                 i += ps.executeUpdate();
             }
             if (i > 0) {
-                plugin.getConsole().sendMessage(plugin.getPluginName() + "Saved " + i + " Siege Cubes");
+                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Saved " + i + " Siege Cubes");
             }
         } catch (SQLException ex) {
             plugin.debug("Insert error for siege table: " + ex.getMessage());

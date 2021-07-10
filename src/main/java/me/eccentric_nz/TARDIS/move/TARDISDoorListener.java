@@ -120,7 +120,7 @@ public class TARDISDoorListener {
                 tcg.addExtra(tcl);
                 player.spigot().sendMessage(tcg);
             } else {
-                player.sendMessage(plugin.getPluginName() + plugin.getGeneralKeeper().getQuotes().get(i));
+                player.sendMessage(plugin.getMessagePrefix() + plugin.getGeneralKeeper().getQuotes().get(i));
             }
         }
         if (exit) {

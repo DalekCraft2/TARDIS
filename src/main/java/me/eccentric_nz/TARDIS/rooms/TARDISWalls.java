@@ -37,7 +37,7 @@ public class TARDISWalls {
             try {
                 BLOCKS.add(Material.valueOf(m));
             } catch (IllegalArgumentException e) {
-                TARDIS.plugin.getConsole().sendMessage(TARDIS.plugin.getPluginName() + "Invalid material '" + m + "' in tardis_blocks list! " + e.getMessage());
+                TARDIS.plugin.getConsole().sendMessage(TARDIS.plugin.getMessagePrefix() + "Invalid material '" + m + "' in tardis_blocks list! " + e.getMessage());
             }
         }
     }

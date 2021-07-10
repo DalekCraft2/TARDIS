@@ -50,7 +50,7 @@ public class TARDISGiveLister {
     }
 
     public void list() {
-        TARDISMessage.message(sender, plugin.getPluginName() + "You can 'give' the following items:");
+        TARDISMessage.message(sender, plugin.getMessagePrefix() + "You can 'give' the following items:");
         TARDISMessage.message(sender, ChatColor.GRAY + "Hover over command argument to see a description");
         TARDISMessage.message(sender, ChatColor.GRAY + "Click to suggest a command");
         TARDISMessage.message(sender, "");

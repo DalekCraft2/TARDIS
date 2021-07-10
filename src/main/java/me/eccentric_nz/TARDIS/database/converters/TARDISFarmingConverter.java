@@ -98,7 +98,7 @@ public class TARDISFarmingConverter {
                 if (i > 0) {
                     ps.executeBatch();
                     connection.commit();
-                    plugin.getConsole().sendMessage(plugin.getPluginName() + "Converted " + i + " farming records");
+                    plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Converted " + i + " farming records");
                 }
             }
         } catch (SQLException e) {

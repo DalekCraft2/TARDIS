@@ -66,10 +66,10 @@ public class TARDISPortalPersister {
                 }
             }
             if (count > 0) {
-                plugin.getConsole().sendMessage(plugin.getPluginName() + "Saved " + count + " portals.");
+                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Saved " + count + " portals.");
             }
             if (counta > 0) {
-                plugin.getConsole().sendMessage(plugin.getPluginName() + "Saved " + counta + " abandoned portals.");
+                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Saved " + counta + " abandoned portals.");
             }
             // save the players
             ps = connection.prepareStatement("INSERT INTO " + prefix + "movers (uuid) VALUES (?)");
@@ -121,10 +121,10 @@ public class TARDISPortalPersister {
                 }
             }
             if (count > 0) {
-                plugin.getConsole().sendMessage(plugin.getPluginName() + "Loaded " + count + " portals.");
+                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Loaded " + count + " portals.");
             }
             if (counta > 0) {
-                plugin.getConsole().sendMessage(plugin.getPluginName() + "Loaded " + counta + " abandoned portals.");
+                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Loaded " + counta + " abandoned portals.");
             }
             // clear the portals table so we don't get any duplicates when saving them
             ps = connection.prepareStatement("DELETE FROM " + prefix + "portals");

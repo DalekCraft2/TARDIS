@@ -39,7 +39,7 @@ class TARDISTagCommand {
 
     boolean getStats(Player player) {
         ResultSetTag rs = new ResultSetTag(plugin);
-        player.sendMessage(plugin.getPluginName() + "Here are the stats:");
+        player.sendMessage(plugin.getMessagePrefix() + "Here are the stats:");
         String who = (!plugin.getTagConfig().getString("it").equals("")) ? plugin.getTagConfig().getString("it") : "No one";
         player.sendMessage(who + " is currently the " + ChatColor.RED + "'OOD'");
         player.sendMessage("-----------");

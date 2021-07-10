@@ -57,7 +57,7 @@ public class TARDISWallSignConverter {
                     if (i > 0) {
                         ps.executeBatch();
                         connection.commit();
-                        plugin.getConsole().sendMessage(plugin.getPluginName() + "Converted " + i + " legacy wall signs to oak wall signs");
+                        plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Converted " + i + " legacy wall signs to oak wall signs");
                     }
                 }
             }

@@ -203,23 +203,23 @@ public class TARDISChecker {
         String dataPacksRoot = container.getAbsolutePath() + File.separator + s_world + File.separator + "datapacks" + File.separator + "tardis" + File.separator + "data" + File.separator + "tardis" + File.separator + "advancements";
         File tardisDir = new File(dataPacksRoot);
         if (!tardisDir.exists()) {
-            plugin.getConsole().sendMessage(plugin.getPluginName() + plugin.getLanguage().getString("ADVANCEMENT_DIRECTORIES"));
+            plugin.getConsole().sendMessage(plugin.getMessagePrefix() + plugin.getLanguage().getString("ADVANCEMENT_DIRECTORIES"));
             tardisDir.mkdirs();
         }
         for (Advancement advancement : Advancement.values()) {
             String json = advancement.getConfigName() + ".json";
             File jfile = new File(dataPacksRoot, json);
             if (!jfile.exists()) {
-                plugin.getConsole().sendMessage(plugin.getPluginName() + ChatColor.RED + String.format(plugin.getLanguage().getString("ADVANCEMENT_NOT_FOUND"), json));
-                plugin.getConsole().sendMessage(plugin.getPluginName() + String.format(plugin.getLanguage().getString("ADVANCEMENT_COPYING"), json));
+                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + ChatColor.RED + String.format(plugin.getLanguage().getString("ADVANCEMENT_NOT_FOUND"), json));
+                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + String.format(plugin.getLanguage().getString("ADVANCEMENT_COPYING"), json));
                 copy(json, jfile);
             }
         }
         String dataPacksMeta = container.getAbsolutePath() + File.separator + s_world + File.separator + "datapacks" + File.separator + "tardis";
         File mcmeta = new File(dataPacksMeta, "pack.mcmeta");
         if (!mcmeta.exists()) {
-            plugin.getConsole().sendMessage(plugin.getPluginName() + ChatColor.RED + String.format(plugin.getLanguage().getString("ADVANCEMENT_NOT_FOUND"), "pack.mcmeta"));
-            plugin.getConsole().sendMessage(plugin.getPluginName() + String.format(plugin.getLanguage().getString("ADVANCEMENT_COPYING"), "pack.mcmeta"));
+            plugin.getConsole().sendMessage(plugin.getMessagePrefix() + ChatColor.RED + String.format(plugin.getLanguage().getString("ADVANCEMENT_NOT_FOUND"), "pack.mcmeta"));
+            plugin.getConsole().sendMessage(plugin.getMessagePrefix() + String.format(plugin.getLanguage().getString("ADVANCEMENT_COPYING"), "pack.mcmeta"));
             copy("pack.mcmeta", mcmeta);
         }
     }

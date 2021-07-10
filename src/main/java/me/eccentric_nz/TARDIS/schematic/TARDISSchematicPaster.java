@@ -70,7 +70,7 @@ class TARDISSchematicPaster implements Runnable {
         if (!running) {
             UUID uuid = player.getUniqueId();
             if (!plugin.getTrackerKeeper().getPastes().containsKey(uuid)) {
-                player.sendMessage(plugin.getPluginName() + "No schematic loaded! " + ChatColor.GREEN + "/ts load [name]");
+                player.sendMessage(plugin.getMessagePrefix() + "No schematic loaded! " + ChatColor.GREEN + "/ts load [name]");
                 plugin.getServer().getScheduler().cancelTask(task);
                 task = -1;
                 return;

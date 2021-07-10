@@ -54,23 +54,23 @@ public class Converter implements Runnable {
     @Override
     public void run() {
         if (plugin.getConfig().getString("storage.database").equals("sqlite")) {
-            TARDISMessage.message(sender, plugin.getPluginName() + "You need to set the database provider to 'mysql' in the config!");
+            TARDISMessage.message(sender, plugin.getMessagePrefix() + "You need to set the database provider to 'mysql' in the config!");
             return;
         }
-        TARDISMessage.message(sender, plugin.getPluginName() + "Starting conversion process, please wait. This may cause the server to become unresponsive!");
+        TARDISMessage.message(sender, plugin.getMessagePrefix() + "Starting conversion process, please wait. This may cause the server to become unresponsive!");
         try {
             Statement readStatement = sqliteConnection.createStatement();
             Statement writeStatement = connection.createStatement();
             connection.setAutoCommit(false);
             int i = 0;
             for (Table table : Table.values()) {
-                TARDISMessage.message(sender, plugin.getPluginName() + "Reading and writing " + table.toString() + " table");
+                TARDISMessage.message(sender, plugin.getMessagePrefix() + "Reading and writing " + table.toString() + " table");
                 String count = "SELECT COUNT(*) AS count FROM " + table.toString();
                 ResultSet rsc = readStatement.executeQuery(count);
                 if (rsc.isBeforeFirst()) {
                     rsc.next();
                     int c = rsc.getInt("count");
-                    TARDISMessage.message(sender, plugin.getPluginName() + "Found " + c + " " + table.toString() + " records");
+                    TARDISMessage.message(sender, plugin.getMessagePrefix() + "Found " + c + " " + table.toString() + " records");
                     String query = "SELECT * FROM " + table.toString();
                     ResultSet rs = readStatement.executeQuery(query);
                     if (rs.isBeforeFirst()) {
@@ -79,7 +79,7 @@ public class Converter implements Runnable {
                         try {
                             sb.append(String.format(SQL.INSERTS.get(i), prefix));
                         } catch (MissingFormatArgumentException e) {
-                            TARDISMessage.message(sender, plugin.getPluginName() + "INSERT " + table.toString());
+                            TARDISMessage.message(sender, plugin.getMessagePrefix() + "INSERT " + table.toString());
                         }
                         while (rs.next()) {
                             boolean section = (b % 100 == 0);
@@ -288,7 +288,7 @@ public class Converter implements Runnable {
                                         break;
                                 }
                             } catch (MissingFormatArgumentException e) {
-                                TARDISMessage.message(sender, plugin.getPluginName() + "VALUES " + table.toString());
+                                TARDISMessage.message(sender, plugin.getMessagePrefix() + "VALUES " + table.toString());
                             }
                             if (section) {
                                 // only one statement per add to batch operation
@@ -298,7 +298,7 @@ public class Converter implements Runnable {
                                 try {
                                     sb.append(String.format(SQL.INSERTS.get(i), prefix));
                                 } catch (MissingFormatArgumentException e) {
-                                    TARDISMessage.message(sender, plugin.getPluginName() + "INSERTS " + table.toString());
+                                    TARDISMessage.message(sender, plugin.getMessagePrefix() + "INSERTS " + table.toString());
                                 }
                             }
                         }
@@ -311,18 +311,18 @@ public class Converter implements Runnable {
             writeStatement.executeBatch();
             connection.setAutoCommit(true);
         } catch (SQLException ex) {
-            TARDISMessage.message(sender, plugin.getPluginName() + "***** SQL ERROR: " + ex.getMessage());
+            TARDISMessage.message(sender, plugin.getMessagePrefix() + "***** SQL ERROR: " + ex.getMessage());
             return;
         } finally {
             if (sqliteConnection != null) {
                 try {
                     sqliteConnection.close();
                 } catch (SQLException ex) {
-                    TARDISMessage.message(sender, plugin.getPluginName() + "***** SQL ERROR: " + ex.getMessage());
+                    TARDISMessage.message(sender, plugin.getMessagePrefix() + "***** SQL ERROR: " + ex.getMessage());
                 }
             }
         }
-        TARDISMessage.message(sender, plugin.getPluginName() + "***** Your SQLite database has been converted to MySQL!");
+        TARDISMessage.message(sender, plugin.getMessagePrefix() + "***** Your SQLite database has been converted to MySQL!");
     }
 
     private Connection getSQLiteConnection() throws Exception {

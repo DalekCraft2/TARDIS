@@ -136,7 +136,7 @@ public class TARDIS extends JavaPlugin {
     private FileConfiguration handlesConfig;
     private HashMap<String, Integer> condensables;
     private BukkitTask standbyTask;
-    private String pluginName;
+    private String messagePrefix;
     private String resourcePack;
     private TARDISChameleonPreset presets;
     private TARDISPerceptionFilter filter;
@@ -295,7 +295,7 @@ public class TARDIS extends JavaPlugin {
     @Override
     public void onEnable() {
         pm = getServer().getPluginManager();
-        pluginName = ChatColor.GOLD + "[" + getDescription().getName() + "]" + ChatColor.RESET + " ";
+        messagePrefix = ChatColor.GOLD + "[" + getDescription().getName() + "]" + ChatColor.RESET + " ";
         plugin = this;
         oldBlockKey = new NamespacedKey(this, "customBlock");
         customBlockKey = new NamespacedKey(this, "custom_block");
@@ -309,14 +309,14 @@ public class TARDIS extends JavaPlugin {
         // check server version
         if (serverVersion.compareTo(minversion) >= 0) {
             if (!PaperLib.isPaper() && !PaperLib.isSpigot()) {
-                console.sendMessage(pluginName + ChatColor.RED + "TARDIS no longer supports servers running CraftBukkit. Please use Spigot or Paper instead!)");
+                console.sendMessage(messagePrefix + ChatColor.RED + "TARDIS no longer supports servers running CraftBukkit. Please use Spigot or Paper instead!)");
                 hasVersion = false;
                 pm.disablePlugin(this);
                 return;
             }
             // TARDISChunkGenerator needs to be enabled
             if (!loadHelper()) {
-                console.sendMessage(pluginName + ChatColor.RED + "This plugin requires TARDISChunkGenerator to function, disabling...");
+                console.sendMessage(messagePrefix + ChatColor.RED + "This plugin requires TARDISChunkGenerator to function, disabling...");
                 hasVersion = false;
                 pm.disablePlugin(this);
                 return;
@@ -324,7 +324,7 @@ public class TARDIS extends JavaPlugin {
             hasVersion = true;
             for (Map.Entry<String, String> plg : versions.entrySet()) {
                 if (!checkPluginVersion(plg.getKey(), plg.getValue())) {
-                    console.sendMessage(pluginName + ChatColor.RED + "This plugin requires " + plg.getKey() + " to be v" + plg.getValue() + " or higher, disabling...");
+                    console.sendMessage(messagePrefix + ChatColor.RED + "This plugin requires " + plg.getKey() + " to be v" + plg.getValue() + " or higher, disabling...");
                     hasVersion = false;
                     pm.disablePlugin(this);
                     return;
@@ -508,7 +508,7 @@ public class TARDIS extends JavaPlugin {
             getServer().getScheduler().scheduleSyncRepeatingTask(this, new TARDISControlRunnable(this), 200, 200);
             getServer().getScheduler().scheduleSyncDelayedTask(this, () -> {
                 if (!TARDISAchievementFactory.checkAdvancement("tardis")) {
-                    getConsole().sendMessage(getPluginName() + getLanguage().getString("ADVANCEMENT_RELOAD"));
+                    getConsole().sendMessage(getMessagePrefix() + getLanguage().getString("ADVANCEMENT_RELOAD"));
                     getServer().reloadData();
                 }
             }, 199);
@@ -539,7 +539,7 @@ public class TARDIS extends JavaPlugin {
             // start bStats metrics
             new TARDISStats(this).startMetrics();
         } else {
-            console.sendMessage(pluginName + ChatColor.RED + "This plugin requires CraftBukkit/Spigot " + minversion.get() + " or higher, disabling...");
+            console.sendMessage(messagePrefix + ChatColor.RED + "This plugin requires CraftBukkit/Spigot " + minversion.get() + " or higher, disabling...");
             pm.disablePlugin(this);
         }
     }
@@ -570,7 +570,7 @@ public class TARDIS extends JavaPlugin {
                 mysql.createTables();
             }
         } catch (Exception exception) {
-            console.sendMessage(pluginName + "Connection and Tables Error: " + exception.getMessage());
+            console.sendMessage(messagePrefix + "Connection and Tables Error: " + exception.getMessage());
         }
     }
 
@@ -581,7 +581,7 @@ public class TARDIS extends JavaPlugin {
         try {
             service.connection.close();
         } catch (SQLException sqlException) {
-            console.sendMessage(pluginName + "Could not close database connection: " + sqlException.getMessage());
+            console.sendMessage(messagePrefix + "Could not close database connection: " + sqlException.getMessage());
         }
     }
 
@@ -596,7 +596,7 @@ public class TARDIS extends JavaPlugin {
             if (result) {
                 langDir.setWritable(true);
                 langDir.setExecutable(true);
-                console.sendMessage(pluginName + "Created language directory.");
+                console.sendMessage(messagePrefix + "Created language directory.");
             }
         }
         // always copy English default
@@ -612,7 +612,7 @@ public class TARDIS extends JavaPlugin {
             lang = "en";
         }
         // load the language
-        console.sendMessage(pluginName + "Loading language: " + Language.valueOf(lang).getLang());
+        console.sendMessage(messagePrefix + "Loading language: " + Language.valueOf(lang).getLang());
         language = YamlConfiguration.loadConfiguration(file);
         // update the language configuration
         new TARDISLanguageUpdater(this).update();
@@ -699,7 +699,7 @@ public class TARDIS extends JavaPlugin {
             if (result) {
                 bookDir.setWritable(true);
                 bookDir.setExecutable(true);
-                console.sendMessage(pluginName + "Created books directory.");
+                console.sendMessage(messagePrefix + "Created books directory.");
             }
         }
         Set<String> booknames = achievementConfig.getKeys(false);
@@ -855,7 +855,7 @@ public class TARDIS extends JavaPlugin {
             // copy default permissions file if not present
             tardisCopier.copy("permissions.txt");
             if (getConfig().getBoolean("creation.create_worlds")) {
-                console.sendMessage(pluginName + "World specific permissions plugin detected please edit plugins/TARDIS/permissions.txt");
+                console.sendMessage(messagePrefix + "World specific permissions plugin detected please edit plugins/TARDIS/permissions.txt");
             }
         }
     }
@@ -880,7 +880,7 @@ public class TARDIS extends JavaPlugin {
                     quotes.add("");
                 }
             } catch (IOException ioException) {
-                console.sendMessage(pluginName + "Could not read quotes file: " + ioException.getMessage());
+                console.sendMessage(messagePrefix + "Could not read quotes file: " + ioException.getMessage());
             } finally {
                 if (bufRdr != null) {
                     try {
@@ -931,23 +931,23 @@ public class TARDIS extends JavaPlugin {
             if (getConfig().getBoolean("abandon.enabled")) {
                 getConfig().set("abandon.enabled", false);
                 saveConfig();
-                console.sendMessage(pluginName + ChatColor.RED + "Abandoned TARDISes were disabled as create_worlds is true!");
+                console.sendMessage(messagePrefix + ChatColor.RED + "Abandoned TARDISes were disabled as create_worlds is true!");
             }
             if (getConfig().getBoolean("creation.default_world")) {
                 getConfig().set("creation.default_world", false);
                 saveConfig();
-                console.sendMessage(pluginName + ChatColor.RED + "default_world was disabled as create_worlds is true!");
+                console.sendMessage(messagePrefix + ChatColor.RED + "default_world was disabled as create_worlds is true!");
             }
             if (pm.getPlugin("TARDISChunkGenerator") == null) {
                 getConfig().set("creation.create_worlds", false);
                 saveConfig();
-                console.sendMessage(pluginName + ChatColor.RED + "Create Worlds was disabled as it requires TARDISChunkGenerator!");
+                console.sendMessage(messagePrefix + ChatColor.RED + "Create Worlds was disabled as it requires TARDISChunkGenerator!");
             }
         }
         if (getConfig().getBoolean("creation.create_worlds_with_perms") && getConfig().getBoolean("abandon.enabled")) {
             getConfig().set("abandon.enabled", false);
             saveConfig();
-            console.sendMessage(pluginName + ChatColor.RED + "Abandoned TARDISes were disabled as create_worlds_with_perms is true!");
+            console.sendMessage(messagePrefix + ChatColor.RED + "Abandoned TARDISes were disabled as create_worlds_with_perms is true!");
         }
     }
 
@@ -1036,7 +1036,7 @@ public class TARDIS extends JavaPlugin {
         }
         String defWorld = getConfig().getString("creation.default_world_name");
         if (getServer().getWorld(defWorld) == null) {
-            console.sendMessage(pluginName + "Default world specified, but it doesn't exist! Trying to create it now...");
+            console.sendMessage(messagePrefix + "Default world specified, but it doesn't exist! Trying to create it now...");
             new TARDISSpace(this).createDefaultWorld(defWorld);
         }
     }
@@ -1070,7 +1070,7 @@ public class TARDIS extends JavaPlugin {
      */
     public void debug(Object o) {
         if (getConfig().getBoolean("debug")) {
-            console.sendMessage(pluginName + "Debug: " + o);
+            console.sendMessage(messagePrefix + "Debug: " + o);
         }
     }
 
@@ -1403,8 +1403,8 @@ public class TARDIS extends JavaPlugin {
      *
      * @return the formatted TARDIS plugin name
      */
-    public String getPluginName() {
-        return pluginName;
+    public String getMessagePrefix() {
+        return messagePrefix;
     }
 
     /**

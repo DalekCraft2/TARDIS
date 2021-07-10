@@ -70,7 +70,7 @@ public class TARDISVortexPersister {
                 count += ps.executeUpdate();
             }
             if (count > 0) {
-                plugin.getConsole().sendMessage(plugin.getPluginName() + "Saved " + count + " TARDISes floating around in the time vortex.");
+                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Saved " + count + " TARDISes floating around in the time vortex.");
             }
         } catch (SQLException ex) {
             plugin.debug("Insert error for vortex table: " + ex.getMessage());
@@ -178,10 +178,10 @@ public class TARDISVortexPersister {
                 }
             }
             if (count > 0) {
-                plugin.getConsole().sendMessage(plugin.getPluginName() + "Loaded " + count + " TARDISes floating in the time vortex.");
+                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Loaded " + count + " TARDISes floating in the time vortex.");
             }
             if (land > 0) {
-                plugin.getConsole().sendMessage(plugin.getPluginName() + "Landed " + land + " TARDISes that never got to materialise.");
+                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Landed " + land + " TARDISes that never got to materialise.");
             }
             ps = connection.prepareStatement("DELETE FROM " + prefix + "vortex");
             ps.executeUpdate();

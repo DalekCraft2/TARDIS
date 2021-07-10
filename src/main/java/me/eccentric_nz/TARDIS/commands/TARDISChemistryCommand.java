@@ -59,7 +59,7 @@ public class TARDISChemistryCommand implements CommandExecutor {
                 player = (Player) sender;
             }
             if (player == null) {
-                sender.sendMessage(plugin.getPluginName() + "Command can only be used by a player!");
+                sender.sendMessage(plugin.getMessagePrefix() + "Command can only be used by a player!");
                 return true;
             }
             if (args.length < 2) {

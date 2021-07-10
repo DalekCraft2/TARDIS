@@ -75,7 +75,7 @@ public class TARDISArchPersister {
                 }
                 count += ps.executeUpdate();
             }
-            plugin.getConsole().sendMessage(plugin.getPluginName() + "Saved " + count + " 'arched' players.");
+            plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Saved " + count + " 'arched' players.");
         } catch (SQLException sqlException) {
             plugin.debug("Insert error for arched table: " + sqlException.getMessage());
         } finally {
@@ -118,7 +118,7 @@ public class TARDISArchPersister {
                 ps.setLong(3, time);
             }
             count += ps.executeUpdate();
-            plugin.getConsole().sendMessage(plugin.getPluginName() + "Saved " + count + " 'arched' player.");
+            plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Saved " + count + " 'arched' player.");
         } catch (SQLException sqlException) {
             plugin.debug("Insert error for arched table: " + sqlException.getMessage());
         } finally {

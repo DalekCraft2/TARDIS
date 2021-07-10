@@ -93,7 +93,7 @@ public class ARSConverter {
             if (i > 0) {
                 update.executeBatch();
                 connection.commit();
-                plugin.getConsole().sendMessage(plugin.getPluginName() + "Converted " + i + " ARS records");
+                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Converted " + i + " ARS records");
             }
             plugin.getConfig().set("conversions.ars_materials", true);
             plugin.saveConfig();
