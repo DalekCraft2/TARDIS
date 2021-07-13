@@ -42,17 +42,17 @@
     </ciManagement>
     <repositories>
         <repository>
-            <!-- Spigot -->
+            <name>Spigot</name>
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
         <repository>
-            <!-- Paper -->
-            <id>paper-repo</id>
+            <name>Paper</name>
+            <id>papermc</id>
             <url>https://papermc.io/repo/repository/maven-public/</url>
         </repository>
         <repository>
-            <!-- Floodgate -->
+            <name>Floodgate</name>
             <id>opencollab-snapshot-repo</id>
             <url>https://repo.opencollab.dev/maven-snapshots/</url>
             <releases>
@@ -63,47 +63,47 @@
             </snapshots>
         </repository>
         <repository>
-            <!-- TARDIS -->
-            <id>tardis-repo</id>
+            <name>TARDIS</name>
+            <id>Bromley Massive</id>
             <url>http://tardisjenkins.duckdns.org:8080/plugin/repository/everything/</url>
         </repository>
         <repository>
-            <!-- PlaceholderAPI -->
-            <id>placeholderapi-repo</id>
+            <name>PlaceholderAPI</name>
+            <id>placeholderapi</id>
             <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
         </repository>
         <repository>
-            <!-- WorldEdit, WorldGuard -->
+            <name>WorldEdit, WorldGuard</name>
             <id>sk89q-repo</id>
             <url>https://maven.enginehub.org/repo/</url>
         </repository>
         <repository>
-            <!-- Various -->
+            <name>Jitpack</name>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
         <repository>
-            <!-- Multiverse -->
+            <name>Multiverse</name>
             <id>multiverse-repo</id>
             <url>https://repo.onarandombox.com/content/repositories/multiverse-snapshots/</url>
         </repository>
         <repository>
-            <!-- BlockLocker -->
+            <name>BlockLocker</name>
             <id>codemc-repo</id>
             <url>https://repo.codemc.org/repository/maven-public/</url>
         </repository>
         <repository>
-            <!-- LWCX (Lightweight Chests Extended), FactionsUUID -->
+            <name>LWCX (Lightweight Chests Extended), FactionsUUID</name>
             <id>ender-zone-repo</id>
             <url>https://ci.ender.zone/plugin/repository/everything/</url>
         </repository>
         <repository>
-            <!-- ProtocolLib -->
+            <name>ProtocolLib</name>
             <id>dmulloy2-repo</id>
             <url>https://repo.dmulloy2.net/repository/public/</url>
         </repository>
         <repository>
-            <!-- LibsDisguises -->
+            <name>LibsDisguises</name>
             <id>md_5-public</id>
             <url>https://repo.md-5.net/content/repositories/public/</url>
         </repository>
@@ -118,24 +118,24 @@
             <url>https://repo.essentialsx.net/snapshots/</url>
         </repository>
         <repository>
-            <!-- RedProtect -->
+            <name>RedProtect</name>
             <id>redprotect-repo</id>
             <url>https://raw.githubusercontent.com/FabioZumbi12/RedProtect/mvn-repo/</url>
         </repository>
         <repository>
-            <!-- CoreProtect -->
+            <name>CoreProtect</name>
             <id>coreprotect-repo</id>
             <url>https://maven.playpro.com</url>
         </repository>
         <repository>
-            <!-- Dynmap -->
+            <name>Dynmap</name>
             <id>dynmap-repo</id>
             <url>https://repo.mikeprimm.com/</url>
         </repository>
     </repositories>
     <pluginRepositories>
         <pluginRepository>
-            <!-- Apache Snapshots -->
+            <name>Apache Snapshots</name>
             <id>apache.snapshots</id>
             <url>https://repository.apache.org/snapshots/</url>
         </pluginRepository>
