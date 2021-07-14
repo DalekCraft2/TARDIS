@@ -48,7 +48,7 @@
         </repository>
         <repository>
             <name>Paper</name>
-            <id>papermc</id>
+            <id>paper-repo</id>
             <url>https://papermc.io/repo/repository/maven-public/</url>
         </repository>
         <repository>
@@ -64,17 +64,17 @@
         </repository>
         <repository>
             <name>TARDIS</name>
-            <id>Bromley Massive</id>
+            <id>tardis-repo</id>
             <url>http://tardisjenkins.duckdns.org:8080/plugin/repository/everything/</url>
         </repository>
         <repository>
             <name>PlaceholderAPI</name>
-            <id>placeholderapi</id>
+            <id>placeholderapi-repo</id>
             <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
         </repository>
         <repository>
             <name>WorldEdit, WorldGuard</name>
-            <id>sk89q-repo</id>
+            <id>enginehub-repo</id>
             <url>https://maven.enginehub.org/repo/</url>
         </repository>
         <repository>
