@@ -108,12 +108,12 @@
             <url>https://repo.md-5.net/content/repositories/public/</url>
         </repository>
         <repository>
-            <!-- EssentialsX releases -->
+            <name>EssentialsX releases</name>
             <id>essentialsx-repo</id>
             <url>https://repo.essentialsx.net/releases/</url>
         </repository>
         <repository>
-            <!-- EssentialsX snapshots -->
+            <name>EssentialsX snapshots</name>
             <id>essentialsx-snapshot-repo</id>
             <url>https://repo.essentialsx.net/snapshots/</url>
         </repository>
@@ -136,7 +136,7 @@
     <pluginRepositories>
         <pluginRepository>
             <name>Apache Snapshots</name>
-            <id>apache.snapshots</id>
+            <id>apache-snapshots</id>
             <url>https://repository.apache.org/snapshots/</url>
         </pluginRepository>
     </pluginRepositories>
@@ -159,9 +159,9 @@
                     <include>*</include>
                 </includes>
             </resource>
-        </resources>
-        <finalName>${project.artifactId}-${project.version}</finalName>
-        <defaultGoal>clean package install</defaultGoal>
+                </resources>
+        <finalName>${project.name}-${project.version}</finalName>
+        <defaultGoal>clean package</defaultGoal>
         <plugins>
             <!-- Compile -->
             <plugin>
@@ -226,6 +226,28 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>3.3.0-SNAPSHOT</version>
+                <configuration>
+                    <artifactSet>
+                        <includes>
+                            <!-- PaperLib -->
+                            <include>io.papermc:paperlib</include>
+                        </includes>
+                    </artifactSet>
+                    <relocations>
+                        <relocation>
+                            <pattern>io.papermc.lib</pattern>
+                            <shadedPattern>me.eccentric_nz.TARDIS.lib.paperlib</shadedPattern>
+                        </relocation>
+                    </relocations>
+                    <filters>
+                        <filter>
+                            <artifact>*:*</artifact>
+                            <excludes>
+                                <exclude>META-INF/*</exclude>
+                            </excludes>
+                        </filter>
+                    </filters>
+                </configuration>
                 <executions>
                     <execution>
                         <id>shade-libs</id>
@@ -233,34 +255,11 @@
                         <goals>
                             <goal>shade</goal>
                         </goals>
-                        <configuration>
-                            <createDependencyReducedPom>false</createDependencyReducedPom>
-                            <artifactSet>
-                                <includes>
-                                    <!-- PaperLib -->
-                                    <include>io.papermc:paperlib</include>
-                                </includes>
-                            </artifactSet>
-                            <relocations>
-                                <relocation>
-                                    <pattern>io.papermc.lib</pattern>
-                                    <shadedPattern>me.eccentric_nz.TARDIS.lib.paperlib</shadedPattern>
-                                </relocation>
-                            </relocations>
-                            <filters>
-                                <filter>
-                                    <artifact>*:*</artifact>
-                                    <excludes>
-                                        <exclude>META-INF/*</exclude>
-                                    </excludes>
-                                </filter>
-                            </filters>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
             <plugin>
-                <!-- Manifest generation for database conversion tool -->
+                <!-- Generate manifest for database conversion tool -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.2.0</version>
