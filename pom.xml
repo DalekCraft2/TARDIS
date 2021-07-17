@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>me.eccentric_nz.TARDIS</groupId>
     <artifactId>TARDIS</artifactId>
-    <version>4.7.3-SNAPSHOT</version>
+    <version>4.7.5-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>TARDIS</name>
     <description>
@@ -311,6 +311,12 @@
             <artifactId>paperlib</artifactId>
             <version>1.0.6-SNAPSHOT</version>
             <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <!-- Floodgate -->
@@ -318,6 +324,12 @@
             <artifactId>api</artifactId>
             <version>2.0-SNAPSHOT</version>
             <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- Soft Dependencies -->
@@ -431,7 +443,7 @@
             <!-- LibsDisguises -->
             <groupId>LibsDisguises</groupId>
             <artifactId>LibsDisguises</artifactId>
-            <version>10.0.25-SNAPSHOT</version>
+            <version>10.0.26-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -445,7 +457,7 @@
             <!-- PlaceholderAPI -->
             <groupId>me.clip</groupId>
             <artifactId>placeholderapi</artifactId>
-            <version>2.10.9</version>
+            <version>2.10.10</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -474,7 +486,7 @@
             <!-- CoreProtect -->
             <groupId>net.coreprotect</groupId>
             <artifactId>coreprotect</artifactId>
-            <version>19.5</version>
+            <version>20.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

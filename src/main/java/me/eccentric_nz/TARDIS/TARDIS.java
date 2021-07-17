@@ -180,16 +180,16 @@ public class TARDIS extends JavaPlugin {
         worldGuardOnServer = false;
         invManager = InventoryManager.NONE;
         versions.put("GriefPrevention", "16.13");
-        versions.put("LibsDisguises", "10.0.14");
+        versions.put("LibsDisguises", "10.0.26");
         versions.put("Multiverse-Adventure", "2.5");
         versions.put("Multiverse-Core", "4.0");
         versions.put("Multiverse-Inventories", "3.0");
         versions.put("My_Worlds", "1.16.1");
         versions.put("PerWorldInventory", "2.3.0");
-        versions.put("TARDISChunkGenerator", "4.7.3");
+        versions.put("TARDISChunkGenerator", "4.7.5");
         versions.put("Towny", "0.95");
         versions.put("WorldBorder", "1.9.0");
-        versions.put("WorldGuard", "7.0.0");
+        versions.put("WorldGuard", "7.0.5");
     }
 
     private Version getServerVersion(String s) {
@@ -305,7 +305,7 @@ public class TARDIS extends JavaPlugin {
         persistentDataTypeUUID = new TARDISUUIDDataType();
         console = getServer().getConsoleSender();
         Version serverVersion = getServerVersion(getServer().getVersion());
-        Version minversion = new Version("1.17");
+        Version minversion = new Version("1.17.1");
         // check server version
         if (serverVersion.compareTo(minversion) >= 0) {
             if (!PaperLib.isPaper() && !PaperLib.isSpigot()) {
@@ -418,7 +418,7 @@ public class TARDIS extends JavaPlugin {
             loadPluginRespect();
             startZeroHealing();
             startSiegeTicks();
-            if (pm.isPluginEnabled("dynmap") && getConfig().getBoolean("preferences.enable_dynmap")) {
+            if (pm.isPluginEnabled("dynmap") && getConfig().getBoolean("dynmap.enabled")) {
                 tardisDynmap = new TARDISDynmap(this);
                 tardisDynmap.enable();
                 debug("Creating markers for Dynmap.");
@@ -1034,7 +1034,7 @@ public class TARDIS extends JavaPlugin {
         if (!getConfig().getBoolean("creation.default_world")) {
             return;
         }
-        String defWorld = getConfig().getString("creation.default_world_name");
+        String defWorld = getConfig().getString("creation.default_world_name", "TARDIS_TimeVortex");
         if (getServer().getWorld(defWorld) == null) {
             console.sendMessage(messagePrefix + "Default world specified, but it doesn't exist! Trying to create it now...");
             new TARDISSpace(this).createDefaultWorld(defWorld);

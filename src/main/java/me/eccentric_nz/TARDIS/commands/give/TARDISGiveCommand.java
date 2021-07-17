@@ -227,12 +227,19 @@ public class TARDISGiveCommand implements CommandExecutor {
         }
         String item_to_give = items.get(item);
         ItemStack result;
+        if (item.equals("vortex-manipulator") && !plugin.getPM().isPluginEnabled("TARDISVortexManipulator")) {
+            TARDISMessage.send(sender, "RECIPE_VORTEX");
+            return true;
+        }
         if (item.equals("save-storage-disk") || item.equals("preset-storage-disk") || item.equals("biome-storage-disk") || item.equals("player-storage-disk") || item.equals("bowl-of-custard") || item.equals("jelly-baby") || item.equals("schematic-wand")) {
             ShapelessRecipe recipe = plugin.getIncomposita().getShapelessRecipes().get(item_to_give);
             result = recipe.getResult();
         } else {
             ShapedRecipe recipe = plugin.getFigura().getShapedRecipes().get(item_to_give);
             result = recipe.getResult();
+        }
+        if (item.equals("vortex-manipulator")) {
+            TARDISMessage.send(sender, "GIVE_VORTEX", player.getName());
         }
         if (item.equals("invisible")) {
             // set the second line of lore

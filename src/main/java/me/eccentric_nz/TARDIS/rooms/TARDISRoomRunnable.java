@@ -64,6 +64,7 @@ public class TARDISRoomRunnable implements Runnable {
     private final Material wall_type, floor_type;
     private final String room;
     private final Player player;
+    private final UUID uuid;
     private final List<Chunk> chunkList = new ArrayList<>();
     private final List<Block> iceblocks = new ArrayList<>();
     private final List<Block> lampblocks = new ArrayList<>();
@@ -95,9 +96,10 @@ public class TARDISRoomRunnable implements Runnable {
     private JsonArray arr;
     private Location aqua_spawn;
 
-    public TARDISRoomRunnable(TARDIS plugin, TARDISRoomData roomData, Player player) {
+    public TARDISRoomRunnable(TARDIS plugin, TARDISRoomData roomData, UUID uuid) {
         this.plugin = plugin;
-        this.player = player;
+        this.uuid = uuid;
+        player = plugin.getServer().getPlayer(uuid);
         l = roomData.getLocation();
         s = roomData.getSchematic();
         wall_type = roomData.getMiddleType();
@@ -235,7 +237,7 @@ public class TARDISRoomRunnable implements Runnable {
                     trd.setPostBlocks(new ArrayList<>());
                     plugin.getTrackerKeeper().getRoomTasks().put(task, trd);
                 }
-                plugin.getBuildKeeper().getRoomProgress().put(player.getUniqueId(), 0);
+                plugin.getBuildKeeper().getRoomProgress().put(uuid, 0);
                 running = true;
                 String grammar = (TARDISConstants.VOWELS.contains(room.substring(0, 1))) ? "an " + room : "a " + room;
                 if (room.equals("GRAVITY") || room.equals("ANTIGRAVITY")) {
@@ -480,12 +482,17 @@ public class TARDISRoomRunnable implements Runnable {
                 if (player != null) {
                     TARDISMessage.send(player, "ROOM_FINISHED", rname);
                 }
-                plugin.getBuildKeeper().getRoomProgress().remove(player.getUniqueId());
+                plugin.getBuildKeeper().getRoomProgress().remove(uuid);
             } else {
                 TARDISRoomData rd = plugin.getTrackerKeeper().getRoomTasks().get(task);
                 // place one block
                 JsonObject v = arr.get(level).getAsJsonArray().get(row).getAsJsonArray().get(col).getAsJsonObject();
-                BlockData data = plugin.getServer().createBlockData(v.get("data").getAsString());
+                String jData = v.get("data").getAsString();
+                // check for pre-1.17 levelled cauldrons
+                if (jData.contains("minecraft:cauldron[level=")) {
+                    jData = jData.replace("cauldron[level=0]", "cauldron").replace("cauldron[level=3]", "water_cauldron[level=3]");
+                }
+                BlockData data = plugin.getServer().createBlockData(jData);
                 Material type = data.getMaterial();
                 // determine 'use_clay' material
                 UseClay use_clay;
@@ -965,9 +972,11 @@ public class TARDISRoomRunnable implements Runnable {
                     startz = resetz;
                     starty += 1;
                     int percent = TARDISNumberParsers.roundUp(level * 100, h);
-                    if (percent > 0 && player != null) {
-                        plugin.getBuildKeeper().getRoomProgress().put(player.getUniqueId(), percent);
-                        TARDISMessage.send(player, "ROOM_PERCENT", room, String.format("%d", percent));
+                    if (percent > 0) {
+                        plugin.getBuildKeeper().getRoomProgress().put(uuid, percent);
+                        if (player != null) {
+                            TARDISMessage.send(player, "ROOM_PERCENT", room, String.format("%d", percent));
+                        }
                     }
                     level++;
                 }
