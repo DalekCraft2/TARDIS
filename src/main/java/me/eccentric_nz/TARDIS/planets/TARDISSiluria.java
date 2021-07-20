@@ -48,7 +48,7 @@ public class TARDISSiluria {
             }
             return null;
         } else {
-            return plugin.getServer().getWorld(s_world + "_tardis_siluriao");
+            return plugin.getServer().getWorld(s_world + "_tardis_siluria");
         }
     }
 }
