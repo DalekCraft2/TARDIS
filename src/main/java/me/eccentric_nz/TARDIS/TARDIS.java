@@ -600,7 +600,7 @@ public class TARDIS extends JavaPlugin {
             }
         }
         // always copy English default
-        TARDISFileCopier.copy(getDataFolder() + File.separator + "language" + File.separator + "en.yml", getResource("en.yml"), true);
+        TARDISFileCopier.copy(getDataFolder() + File.separator + "language" + File.separator + "en.yml", getResource("/language/en.yml"), true);
         // get configured language
         String lang = getConfig().getString("preferences.language");
         // check file exists
@@ -627,7 +627,7 @@ public class TARDIS extends JavaPlugin {
         file = new File(getDataFolder() + File.separator + "language" + File.separator + "signs.yml");
         if (!file.exists()) {
             // copy sign file
-            TARDISFileCopier.copy(getDataFolder() + File.separator + "language" + File.separator + "signs.yml", getResource("signs.yml"), true);
+            TARDISFileCopier.copy(getDataFolder() + File.separator + "language" + File.separator + "signs.yml", getResource("/language/signs.yml"), true);
             file = new File(getDataFolder() + File.separator + "language" + File.separator + "signs.yml");
         }
         // load the language
@@ -644,7 +644,7 @@ public class TARDIS extends JavaPlugin {
         file = new File(getDataFolder() + File.separator + "language" + File.separator + "chameleon_guis.yml");
         if (!file.exists()) {
             // copy sign file
-            TARDISFileCopier.copy(getDataFolder() + File.separator + "language" + File.separator + "chameleon_guis.yml", getResource("chameleon_guis.yml"), true);
+            TARDISFileCopier.copy(getDataFolder() + File.separator + "language" + File.separator + "chameleon_guis.yml", getResource("/language/chameleon_guis.yml"), true);
             file = new File(getDataFolder() + File.separator + "language" + File.separator + "chameleon_guis.yml");
         }
         // load the language
@@ -703,7 +703,7 @@ public class TARDIS extends JavaPlugin {
             }
         }
         Set<String> booknames = achievementConfig.getKeys(false);
-        booknames.forEach((b) -> TARDISFileCopier.copy(getDataFolder() + File.separator + "books" + File.separator + b + ".txt", getResource(b + ".txt"), false));
+        booknames.forEach((b) -> TARDISFileCopier.copy(getDataFolder() + File.separator + "books" + File.separator + b + ".txt", getResource("/books/" + ".txt"), false));
     }
 
     /**
