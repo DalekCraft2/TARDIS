@@ -3,10 +3,12 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>me.eccentric_nz.TARDIS</groupId>
     <artifactId>TARDIS</artifactId>
     <version>4.7.5-SNAPSHOT</version>
     <packaging>jar</packaging>
+
     <name>TARDIS</name>
     <description>
         A plugin for all Doctor Who fans - create and use a TARDIS! Teleport to random destinations - it's bigger on the
@@ -14,13 +16,6 @@
     </description>
     <url>https://github.com/eccentricdevotion/TARDIS</url>
     <inceptionYear>2012</inceptionYear>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>16</maven.compiler.source>
-        <maven.compiler.target>16</maven.compiler.target>
-        <spigot.version>1.17.1</spigot.version>
-        <spigot.javadocs>https://hub.spigotmc.org/javadocs/spigot/</spigot.javadocs>
-    </properties>
     <licenses>
         <license>
             <name>GNU General Public License v3.0</name>
@@ -28,119 +23,522 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
-    <issueManagement>
-        <system>GitHub Issues</system>
-        <url>https://github.com/eccentricdevotion/TARDIS/issues</url>
-    </issueManagement>
+
     <scm>
         <connection>scm:git:ssh://github.com/eccentricdevotion/TARDIS</connection>
         <developerConnection>scm:git:ssh://github.com/eccentricdevotion/TARDIS</developerConnection>
     </scm>
+    <issueManagement>
+        <system>GitHub Issues</system>
+        <url>https://github.com/eccentricdevotion/TARDIS/issues</url>
+    </issueManagement>
     <ciManagement>
         <system>Jenkins</system>
         <url>http://tardisjenkins.duckdns.org:8080</url>
     </ciManagement>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>16</maven.compiler.source>
+        <maven.compiler.target>16</maven.compiler.target>
+        <spigot.version>1.17.1</spigot.version>
+    </properties>
+
+    <dependencies>
+        <!-- Hard dependencies -->
+        <dependency>
+            <!-- Spigot-API -->
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>${spigot.version}-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <!-- TARDISChunkGenerator -->
+            <groupId>me.eccentric_nz.tardischunkgenerator</groupId>
+            <artifactId>TARDISChunkGenerator</artifactId>
+            <version>4.7.5-SNAPSHOT</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- Shaded dependencies -->
+        <dependency>
+            <!-- Swing Layout Extensions -->
+            <groupId>org.swinglabs</groupId>
+            <artifactId>swing-layout</artifactId>
+            <version>1.0.3</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <!-- JetBrains Java Annotations -->
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>21.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <!-- PaperLib -->
+            <groupId>io.papermc</groupId>
+            <artifactId>paperlib</artifactId>
+            <version>1.0.6</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Soft dependencies -->
+        <dependency>
+            <!-- TARDISWeepingAngels -->
+            <groupId>me.eccentric_nz.tardisweepingangels</groupId>
+            <artifactId>TARDISWeepingAngels</artifactId>
+            <version>3.4.0-SNAPSHOT</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <!-- Floodgate -->
+            <groupId>org.geysermc.floodgate</groupId>
+            <artifactId>api</artifactId>
+            <version>2.0-SNAPSHOT</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <!-- WorldEdit -->
+            <groupId>com.sk89q.worldedit</groupId>
+            <artifactId>worldedit-bukkit</artifactId>
+            <version>7.3.0-SNAPSHOT</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.sk89q.worldedit.worldedit-libs</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.antlr</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.google.code.findbugs</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.bstats</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.mozilla</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>de.schlichtherle</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>it.unimi.dsi</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.papermc</groupId>
+                    <artifactId>paperlib</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.yaml</groupId>
+                    <artifactId>snakeyaml</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.google.code.gson</groupId>
+                    <artifactId>gson</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <!-- WorldGuard -->
+            <groupId>com.sk89q.worldguard</groupId>
+            <artifactId>worldguard-bukkit</artifactId>
+            <version>7.0.6-SNAPSHOT</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.sk89q.worldguard.worldguard-libs</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.sk89q</groupId>
+                    <artifactId>commandbook</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.flywaydb</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>it.unimi.dsi</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.sk89q.worldedit</groupId>
+                    <artifactId>worldedit-bukkit</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.yaml</groupId>
+                    <artifactId>snakeyaml</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.spigotmc</groupId>
+                    <artifactId>spigot-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <!-- TownyAdvanced -->
+            <groupId>com.github.TownyAdvanced</groupId>
+            <artifactId>Towny</artifactId>
+            <version>0.97.0.10</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <!-- WorldBorder 1.15+ -->
+            <groupId>com.github.PryPurity</groupId>
+            <artifactId>WorldBorder</artifactId>
+            <version>2.1.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <!-- Multiverse-Core -->
+            <groupId>com.onarandombox.multiversecore</groupId>
+            <artifactId>Multiverse-Core</artifactId>
+            <version>4.3.1-SNAPSHOT</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <!-- Multiverse-Inventories -->
+            <groupId>com.onarandombox.multiverseinventories</groupId>
+            <artifactId>Multiverse-Inventories</artifactId>
+            <version>4.2.3-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <!-- Multiverse-Adventure -->
+            <groupId>com.onarandombox.multiverseadventure</groupId>
+            <artifactId>Multiverse-Adventure</artifactId>
+            <version>2.5.0-SNAPSHOT</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <!-- PerWorldInventory -->
+            <groupId>com.github.EbonJaeger</groupId>
+            <artifactId>perworldinventory-kt</artifactId>
+            <version>v2.3.2</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <!-- FactionsUUID -->
+            <groupId>com.massivecraft</groupId>
+            <artifactId>Factions</artifactId>
+            <version>1.6.9.5-U0.5.25</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <!-- LockettePro (brunyman) -->
+            <groupId>me.crafter.mc</groupId>
+            <artifactId>lockettepro</artifactId>
+            <version>2.10.10</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/LockettePro-2.10.10.jar</systemPath>
+        </dependency>
+        <dependency>
+            <!-- GriefPrevention -->
+            <groupId>com.github.TechFortress</groupId>
+            <artifactId>GriefPrevention</artifactId>
+            <version>16.17.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <!-- BlockLocker -->
+            <groupId>nl.rutgerkok</groupId>
+            <artifactId>blocklocker</artifactId>
+            <version>1.10.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <!-- LWCX (Lightweight Chests Extended) -->
+            <groupId>com.griefcraft.lwc</groupId>
+            <artifactId>LWCX</artifactId>
+            <version>2.2.7</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <!-- ProtocolLib -->
+            <groupId>com.comphenix.protocol</groupId>
+            <artifactId>ProtocolLib</artifactId>
+            <version>4.6.0</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <!-- LibsDisguises -->
+            <groupId>LibsDisguises</groupId>
+            <artifactId>LibsDisguises</artifactId>
+            <version>10.0.26-SNAPSHOT</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <!-- EssentialsX -->
+            <groupId>net.essentialsx</groupId>
+            <artifactId>EssentialsX</artifactId>
+            <version>2.19.0-SNAPSHOT</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <!-- PlaceholderAPI -->
+            <groupId>me.clip</groupId>
+            <artifactId>placeholderapi</artifactId>
+            <version>2.10.10</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <!-- RedProtect-Core -->
+            <groupId>br.net.fabiozumbi12.RedProtect</groupId>
+            <artifactId>RedProtect-Core</artifactId>
+            <version>7.7.3</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <!-- RedProtect-Spigot -->
+            <groupId>br.net.fabiozumbi12.RedProtect</groupId>
+            <artifactId>RedProtect-Spigot</artifactId>
+            <version>7.7.3</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <!-- CoreProtect -->
+            <groupId>net.coreprotect</groupId>
+            <artifactId>coreprotect</artifactId>
+            <version>20.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <!-- Dynmap-API -->
+            <groupId>us.dynmap</groupId>
+            <artifactId>dynmap-api</artifactId>
+            <version>3.2-SNAPSHOT</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+
     <repositories>
         <repository>
-            <name>Spigot</name>
-            <id>spigot-repo</id>
+            <!-- Spigot-API, Spigot -->
+            <name>SpigotMC</name>
+            <id>spigotmc-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
         <repository>
-            <name>Paper</name>
-            <id>paper-repo</id>
+            <!-- PaperLib -->
+            <name>PaperMC</name>
+            <id>papermc-repo</id>
             <url>https://papermc.io/repo/repository/maven-public/</url>
         </repository>
         <repository>
-            <name>Floodgate</name>
-            <id>opencollab-snapshot-repo</id>
+            <!-- Floodgate -->
+            <name>OpenCollab</name>
+            <id>opencollab-snapshots</id>
             <url>https://repo.opencollab.dev/maven-snapshots/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
         </repository>
         <repository>
+            <!-- TARDISChunkGenerator, TARDISWeepingAngels -->
             <name>TARDIS</name>
             <id>tardis-repo</id>
             <url>http://tardisjenkins.duckdns.org:8080/plugin/repository/everything/</url>
         </repository>
         <repository>
+            <!-- PlaceholderAPI -->
             <name>PlaceholderAPI</name>
             <id>placeholderapi-repo</id>
             <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
         </repository>
         <repository>
-            <name>WorldEdit, WorldGuard</name>
+            <!-- WorldEdit, WorldGuard -->
+            <name>EngineHub</name>
             <id>enginehub-repo</id>
             <url>https://maven.enginehub.org/repo/</url>
         </repository>
         <repository>
+            <!-- TownyAdvanced, WorldBorder 1.15+, PerWorldInventory, GriefPrevention -->
             <name>Jitpack</name>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
         <repository>
-            <name>Multiverse</name>
-            <id>multiverse-repo</id>
+            <!-- Multiverse -->
+            <name>OnARandomBox</name>
+            <id>onarandombox-repo</id>
             <url>https://repo.onarandombox.com/content/repositories/multiverse-snapshots/</url>
         </repository>
         <repository>
-            <name>BlockLocker</name>
+            <!-- BlockLocker -->
+            <name>CodeMC</name>
             <id>codemc-repo</id>
             <url>https://repo.codemc.org/repository/maven-public/</url>
         </repository>
         <repository>
-            <name>LWCX (Lightweight Chests Extended), FactionsUUID</name>
+            <!-- LWCX (Lightweight Chests Extended), FactionsUUID -->
+            <name>Ender Zone</name>
             <id>ender-zone-repo</id>
             <url>https://ci.ender.zone/plugin/repository/everything/</url>
         </repository>
         <repository>
-            <name>ProtocolLib</name>
+            <!-- ProtocolLib -->
+            <name>DMulloy2</name>
             <id>dmulloy2-repo</id>
             <url>https://repo.dmulloy2.net/repository/public/</url>
         </repository>
         <repository>
-            <name>LibsDisguises</name>
+            <!-- LibsDisguises -->
+            <name>md_5 public</name>
             <id>md_5-public</id>
             <url>https://repo.md-5.net/content/repositories/public/</url>
         </repository>
         <repository>
+            <!-- EssentialsX releases -->
             <name>EssentialsX releases</name>
-            <id>essentialsx-repo</id>
+            <id>essentialsx-releases</id>
             <url>https://repo.essentialsx.net/releases/</url>
         </repository>
         <repository>
+            <!-- EssentialsX snapshots -->
             <name>EssentialsX snapshots</name>
-            <id>essentialsx-snapshot-repo</id>
+            <id>essentialsx-snapshots</id>
             <url>https://repo.essentialsx.net/snapshots/</url>
         </repository>
         <repository>
+            <!-- RedProtect-Core, RedProtect-Spigot -->
             <name>RedProtect</name>
             <id>redprotect-repo</id>
             <url>https://raw.githubusercontent.com/FabioZumbi12/RedProtect/mvn-repo/</url>
         </repository>
         <repository>
-            <name>CoreProtect</name>
-            <id>coreprotect-repo</id>
+            <!-- CoreProtect -->
+            <name>PlayPro</name>
+            <id>playpro-repo</id>
             <url>https://maven.playpro.com</url>
         </repository>
         <repository>
-            <name>Dynmap</name>
-            <id>dynmap-repo</id>
+            <!-- Dynmap -->
+            <name>MikePrimm</name>
+            <id>mikeprimm-repo</id>
             <url>https://repo.mikeprimm.com/</url>
         </repository>
     </repositories>
     <pluginRepositories>
         <pluginRepository>
+            <!-- Apache Maven Javadoc Plugin, Apache Maven Shade Plugin -->
             <name>Apache Snapshots</name>
             <id>apache-snapshots</id>
             <url>https://repository.apache.org/snapshots/</url>
         </pluginRepository>
     </pluginRepositories>
+
     <build>
+        <finalName>${project.name}-${project.version}</finalName>
+        <defaultGoal>clean package</defaultGoal>
         <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
         <resources>
             <resource>
@@ -160,8 +558,6 @@
                 </includes>
             </resource>
         </resources>
-        <finalName>${project.name}-${project.version}</finalName>
-        <defaultGoal>clean package</defaultGoal>
         <plugins>
             <!-- Compile -->
             <plugin>
@@ -171,7 +567,6 @@
                 <configuration>
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
-                    <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
             <plugin>
@@ -204,7 +599,7 @@
                 <configuration>
                     <links> <!-- References to external Javadocs -->
                         <!-- Spigot-API -->
-                        <link>${spigot.javadocs}</link>
+                        <link>https://hub.spigotmc.org/javadocs/spigot/</link>
                         <!-- Jetbrains Java Annotations -->
                         <link>https://javadoc.io/doc/org.jetbrains/annotations/latest/</link>
                         <!-- WorldEdit -->
@@ -221,7 +616,7 @@
                 </configuration>
             </plugin>
             <plugin>
-                <!-- Shade libraries -->
+                <!-- Shade dependencies -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>3.3.0-SNAPSHOT</version>
@@ -231,30 +626,46 @@
                         <goals>
                             <goal>shade</goal>
                         </goals>
+                        <configuration>
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
+                            <artifactSet>
+                                <includes>
+                                    <!-- Swing Layout Extensions -->
+                                    <include>org.swinglabs:swing-layout</include>
+                                    <!-- JetBrains Java Annotations -->
+                                    <include>org.jetbrains:annotations</include>
+                                    <!-- PaperLib -->
+                                    <include>io.papermc:paperlib</include>
+                                </includes>
+                            </artifactSet>
+                            <relocations>
+                                <relocation>
+                                    <!-- Swing Layout Extensions -->
+                                    <pattern>org.jdesktop.layout</pattern>
+                                    <shadedPattern>me.eccentric_nz.TARDIS.lib.org.jdesktop.layout</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <!-- JetBrains Java Annotations -->
+                                    <pattern>org.jetbrains.annotations</pattern>
+                                    <shadedPattern>me.eccentric_nz.TARDIS.lib.org.jetbrains.annotations</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <!-- PaperLib -->
+                                    <pattern>io.papermc.lib</pattern>
+                                    <shadedPattern>me.eccentric_nz.TARDIS.lib.io.papermc.lib</shadedPattern>
+                                </relocation>
+                            </relocations>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                        </configuration>
                     </execution>
                 </executions>
-                <configuration>
-                    <artifactSet>
-                        <includes>
-                            <!-- PaperLib -->
-                            <include>io.papermc:paperlib</include>
-                        </includes>
-                    </artifactSet>
-                    <relocations>
-                        <relocation>
-                            <pattern>io.papermc.lib</pattern>
-                            <shadedPattern>me.eccentric_nz.TARDIS.lib.paperlib</shadedPattern>
-                        </relocation>
-                    </relocations>
-                    <filters>
-                        <filter>
-                            <artifact>*:*</artifact>
-                            <excludes>
-                                <exclude>META-INF/*</exclude>
-                            </excludes>
-                        </filter>
-                    </filters>
-                </configuration>
             </plugin>
             <plugin>
                 <!-- Generate manifest for database conversion tool -->
@@ -273,228 +684,4 @@
             </plugin>
         </plugins>
     </build>
-    <dependencies>
-        <!-- Hard Dependencies -->
-        <dependency>
-            <!-- Spigot-API -->
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>${spigot.version}-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <!-- TARDISChunkGenerator -->
-            <groupId>me.eccentric_nz.tardischunkgenerator</groupId>
-            <artifactId>TARDISChunkGenerator</artifactId>
-            <version>4.7.5-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- Shaded Dependencies -->
-        <dependency>
-            <!-- Swing Layout Extensions -->
-            <groupId>org.swinglabs</groupId>
-            <artifactId>swing-layout</artifactId>
-            <version>1.0.3</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <!-- JetBrains Java Annotations -->
-            <groupId>org.jetbrains</groupId>
-            <artifactId>annotations</artifactId>
-            <version>21.0.1</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <!-- PaperLib -->
-            <groupId>io.papermc</groupId>
-            <artifactId>paperlib</artifactId>
-            <version>1.0.6-SNAPSHOT</version>
-            <scope>compile</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>*</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <!-- Floodgate -->
-            <groupId>org.geysermc.floodgate</groupId>
-            <artifactId>api</artifactId>
-            <version>2.0-SNAPSHOT</version>
-            <scope>compile</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>*</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <!-- Soft Dependencies -->
-        <dependency>
-            <!-- TARDISWeepingAngels -->
-            <groupId>me.eccentric_nz.tardisweepingangels</groupId>
-            <artifactId>TARDISWeepingAngels</artifactId>
-            <version>3.4.0-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <!-- WorldEdit -->
-            <groupId>com.sk89q.worldedit</groupId>
-            <artifactId>worldedit-bukkit</artifactId>
-            <version>7.3.0-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <!-- WorldGuard -->
-            <groupId>com.sk89q.worldguard</groupId>
-            <artifactId>worldguard-bukkit</artifactId>
-            <version>7.0.6-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <!-- TownyAdvanced -->
-            <groupId>com.github.TownyAdvanced</groupId>
-            <artifactId>Towny</artifactId>
-            <version>0.97.0.10</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <!-- WorldBorder 1.15+ -->
-            <groupId>com.github.PryPurity</groupId>
-            <artifactId>WorldBorder</artifactId>
-            <version>2.1.2</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <!-- Multiverse-Core -->
-            <groupId>com.onarandombox.multiversecore</groupId>
-            <artifactId>Multiverse-Core</artifactId>
-            <version>4.3.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <!-- Multiverse-Inventories -->
-            <groupId>com.onarandombox.multiverseinventories</groupId>
-            <artifactId>Multiverse-Inventories</artifactId>
-            <version>4.2.3-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <!-- Multiverse-Adventure -->
-            <groupId>com.onarandombox.multiverseadventure</groupId>
-            <artifactId>Multiverse-Adventure</artifactId>
-            <version>2.5.0-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <!-- PerWorldInventory -->
-            <groupId>com.github.EbonJaeger</groupId>
-            <artifactId>perworldinventory-kt</artifactId>
-            <version>v2.3.2</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <!-- FactionsUUID -->
-            <groupId>com.massivecraft</groupId>
-            <artifactId>Factions</artifactId>
-            <version>1.6.9.5-U0.5.25</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <!-- LockettePro (brunyman) -->
-            <groupId>me.crafter.mc</groupId>
-            <artifactId>lockettepro</artifactId>
-            <version>2.10.10</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/LockettePro-2.10.10.jar</systemPath>
-        </dependency>
-        <dependency>
-            <!-- GriefPrevention -->
-            <groupId>com.github.TechFortress</groupId>
-            <artifactId>GriefPrevention</artifactId>
-            <version>16.17.1</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <!-- BlockLocker -->
-            <groupId>nl.rutgerkok</groupId>
-            <artifactId>blocklocker</artifactId>
-            <version>1.10</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <!-- LWCX (Lightweight Chests Extended) -->
-            <groupId>com.griefcraft.lwc</groupId>
-            <artifactId>LWCX</artifactId>
-            <version>2.2.7</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <!-- ProtocolLib (to support LibsDisguises) -->
-            <groupId>com.comphenix.protocol</groupId>
-            <artifactId>ProtocolLib</artifactId>
-            <version>4.7.0-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <!-- LibsDisguises -->
-            <groupId>LibsDisguises</groupId>
-            <artifactId>LibsDisguises</artifactId>
-            <version>10.0.26-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <!-- EssentialsX -->
-            <groupId>net.essentialsx</groupId>
-            <artifactId>EssentialsX</artifactId>
-            <version>2.19.0-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <!-- PlaceholderAPI -->
-            <groupId>me.clip</groupId>
-            <artifactId>placeholderapi</artifactId>
-            <version>2.10.10</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <!-- RedProtect-Core -->
-            <groupId>br.net.fabiozumbi12.RedProtect</groupId>
-            <artifactId>RedProtect-Core</artifactId>
-            <version>7.7.3</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <!-- RedProtect-Spigot -->
-            <groupId>br.net.fabiozumbi12.RedProtect</groupId>
-            <artifactId>RedProtect-Spigot</artifactId>
-            <version>7.7.3</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <!-- RedProtect Javadocs -->
-            <groupId>br.net.fabiozumbi12.RedProtect</groupId>
-            <artifactId>RedProtect-Spigot</artifactId>
-            <version>7.7.3</version>
-            <scope>provided</scope>
-            <classifier>javadoc</classifier>
-        </dependency>
-        <dependency>
-            <!-- CoreProtect -->
-            <groupId>net.coreprotect</groupId>
-            <artifactId>coreprotect</artifactId>
-            <version>20.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <!-- Dynmap-API -->
-            <groupId>us.dynmap</groupId>
-            <artifactId>dynmap-api</artifactId>
-            <version>3.2-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
 </project>
