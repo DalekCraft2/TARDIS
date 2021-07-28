@@ -19,7 +19,7 @@ package me.eccentric_nz.TARDIS.mobfarming;
 import me.eccentric_nz.TARDIS.TARDIS;
 import me.eccentric_nz.TARDIS.enumeration.COMPASS;
 import me.eccentric_nz.TARDIS.planets.TARDISAngelsAPI;
-import me.eccentric_nz.tardisweepingangels.TardisWeepingAngelsApi;
+import me.eccentric_nz.tardisweepingangels.TARDISWeepingAngelsAPI;
 import me.eccentric_nz.tardisweepingangels.utils.Monster;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -51,7 +51,7 @@ public class TARDISFollowerSpawner {
                 default -> pl.add(-1, 0, 1);
             }
         }
-        TardisWeepingAngelsApi twa = TARDISAngelsAPI.getAPI(TARDIS.plugin);
+        TARDISWeepingAngelsAPI twa = TARDISAngelsAPI.getAPI(TARDIS.plugin);
         for (TARDISFollower follower : followers) {
             plugin.setTardisSpawn(true);
             ArmorStand stand = (ArmorStand) w.spawnEntity(pl, EntityType.ARMOR_STAND);

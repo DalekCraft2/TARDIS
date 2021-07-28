@@ -18,7 +18,7 @@ package me.eccentric_nz.TARDIS.mobfarming;
 
 import me.eccentric_nz.TARDIS.TARDIS;
 import me.eccentric_nz.TARDIS.planets.TARDISAngelsAPI;
-import me.eccentric_nz.tardisweepingangels.TardisWeepingAngelsApi;
+import me.eccentric_nz.tardisweepingangels.TARDISWeepingAngelsAPI;
 import me.eccentric_nz.tardisweepingangels.utils.FollowerChecker;
 import me.eccentric_nz.tardisweepingangels.utils.Monster;
 import org.bukkit.entity.Entity;
@@ -37,7 +37,7 @@ public class TARDISFollower {
     }
 
     private void checkEntity(Entity entity, UUID player) {
-        TardisWeepingAngelsApi twa = TARDISAngelsAPI.getAPI(TARDIS.plugin);
+        TARDISWeepingAngelsAPI twa = TARDISAngelsAPI.getAPI(TARDIS.plugin);
         FollowerChecker followerChecker = twa.isClaimedMonster(entity, player);
         if (!followerChecker.getMonster().equals(Monster.WEEPING_ANGEL)) {
             valid = true;

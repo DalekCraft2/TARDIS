@@ -18,7 +18,7 @@ package me.eccentric_nz.TARDIS.planets;
 
 import me.eccentric_nz.TARDIS.TARDIS;
 import me.eccentric_nz.TARDIS.TARDISConstants;
-import me.eccentric_nz.tardisweepingangels.TardisWeepingAngelsApi;
+import me.eccentric_nz.tardisweepingangels.TARDISWeepingAngelsAPI;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
@@ -36,7 +36,7 @@ import org.bukkit.inventory.ItemStack;
 public class TARDISSkaroSpawnListener implements Listener {
 
     private final TARDIS plugin;
-    private final TardisWeepingAngelsApi tardisWeepingAngelsApi;
+    private final TARDISWeepingAngelsAPI tardisWeepingAngelsApi;
 
     public TARDISSkaroSpawnListener(TARDIS plugin) {
         this.plugin = plugin;
