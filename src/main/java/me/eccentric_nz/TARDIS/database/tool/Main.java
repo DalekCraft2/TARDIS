@@ -84,7 +84,7 @@ public class Main {
                 bw.newLine();
                 bw.write(SQL.COMMENT);
                 bw.newLine();
-                bw.write(SQL.STRUCTURE + table.toString());
+                bw.write(SQL.STRUCTURE + table);
                 bw.newLine();
                 bw.write(SQL.COMMENT);
                 bw.newLine();
@@ -92,23 +92,23 @@ public class Main {
                 try {
                     bw.write(String.format(SQL.CREATES.get(i), prefix));
                 } catch (MissingFormatArgumentException e) {
-                    console.println("CREATES " + table.toString());
+                    console.println("CREATES " + table);
                 }
                 bw.newLine();
                 bw.newLine();
-                String count = "SELECT COUNT(*) AS count FROM " + table.toString();
+                String count = "SELECT COUNT(*) AS count FROM " + table;
                 ResultSet rsc = statement.executeQuery(count);
                 if (rsc.isBeforeFirst()) {
                     rsc.next();
                     int c = rsc.getInt("count");
-                    console.println("Found " + c + " " + table.toString() + " records");
-                    String query = "SELECT * FROM " + table.toString();
+                    console.println("Found " + c + " " + table + " records");
+                    String query = "SELECT * FROM " + table;
                     ResultSet rs = statement.executeQuery(query);
                     if (rs.isBeforeFirst()) {
                         int b = 1;
                         bw.write(SQL.COMMENT);
                         bw.newLine();
-                        bw.write(SQL.DUMP + table.toString());
+                        bw.write(SQL.DUMP + table);
                         bw.newLine();
                         bw.write(SQL.COMMENT);
                         bw.newLine();
@@ -116,7 +116,7 @@ public class Main {
                         try {
                             bw.write(String.format(SQL.INSERTS.get(i), prefix));
                         } catch (MissingFormatArgumentException e) {
-                            console.println("INSERT " + table.toString());
+                            console.println("INSERT " + table);
                         }
                         bw.newLine();
                         while (rs.next()) {
@@ -326,14 +326,14 @@ public class Main {
                                         break;
                                 }
                             } catch (MissingFormatArgumentException e) {
-                                console.println("VALUES " + table.toString());
+                                console.println("VALUES " + table);
                             }
                             bw.newLine();
                             if (section) {
                                 try {
                                     bw.write(String.format(SQL.INSERTS.get(i), prefix));
                                 } catch (MissingFormatArgumentException e) {
-                                    console.println("INSERTS " + table.toString());
+                                    console.println("INSERTS " + table);
                                 }
                                 bw.newLine();
                             }
