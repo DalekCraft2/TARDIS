@@ -303,6 +303,7 @@ public class TARDIS extends JavaPlugin {
         blueprintKey = new NamespacedKey(this, "blueprint");
         sonicUuidKey = new NamespacedKey(this, "sonic_uuid");
         persistentDataTypeUUID = new TARDISUUIDDataType();
+        console = getServer().getConsoleSender();
         Version serverVersion = getServerVersion(getServer().getVersion());
         Version minversion = new Version("1.17.1");
         // check server version

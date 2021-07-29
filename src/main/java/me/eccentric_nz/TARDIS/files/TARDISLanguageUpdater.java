@@ -96,6 +96,7 @@ public class TARDISLanguageUpdater {
                     }
                 }
                 Collections.sort(lineList);
+                // TODO Make this into a logger output
                 try (FileWriter fileWriter = new FileWriter(lang_path); PrintWriter out = new PrintWriter(fileWriter, false)) {
                     lineList.forEach(out::println);
                     out.flush();
