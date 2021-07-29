@@ -59,12 +59,6 @@
             <artifactId>TARDISChunkGenerator</artifactId>
             <version>4.7.5-SNAPSHOT</version>
             <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>*</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <!-- Shaded dependencies -->
@@ -74,6 +68,7 @@
             <artifactId>swing-layout</artifactId>
             <version>1.0.3</version>
             <scope>compile</scope>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <!-- JetBrains Java Annotations -->
@@ -81,6 +76,7 @@
             <artifactId>annotations</artifactId>
             <version>21.0.1</version>
             <scope>compile</scope>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <!-- PaperLib -->
@@ -88,6 +84,7 @@
             <artifactId>paperlib</artifactId>
             <version>1.0.6</version>
             <scope>compile</scope>
+            <optional>true</optional>
         </dependency>
 
         <!-- Soft dependencies -->
@@ -97,12 +94,6 @@
             <artifactId>TARDISWeepingAngels</artifactId>
             <version>3.4.1-SNAPSHOT</version>
             <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>*</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <!-- Floodgate -->
@@ -405,7 +396,7 @@
             <!-- CoreProtect -->
             <groupId>net.coreprotect</groupId>
             <artifactId>coreprotect</artifactId>
-            <version>20.0</version>
+            <version>20.1</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -554,7 +545,7 @@
                 <directory>${project.basedir}/src/main/resources</directory>
                 <filtering>false</filtering>
                 <includes>
-                    <include>*</include>
+                    <include>**/*</include>
                 </includes>
             </resource>
         </resources>
