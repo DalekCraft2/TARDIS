@@ -40,7 +40,7 @@ import java.util.UUID;
 class TARDISAddRegionsCommand {
 
     private final TARDIS plugin;
-    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getINSTANCE();
+    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getInstance();
     private final Connection connection = service.getConnection();
     private final String prefix;
     private WorldGuardPlugin wg;

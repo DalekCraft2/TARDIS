@@ -29,7 +29,7 @@ import java.util.HashMap;
 class TARDISSQLCondenserUpdate implements Runnable {
 
     private final TARDIS plugin;
-    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getINSTANCE();
+    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getInstance();
     private final Connection connection = service.getConnection();
     private final int amount;
     private final HashMap<String, Object> where;

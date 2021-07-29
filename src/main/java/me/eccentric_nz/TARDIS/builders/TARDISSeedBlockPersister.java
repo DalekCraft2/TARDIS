@@ -29,6 +29,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
+import java.util.logging.Level;
 
 /**
  * @author eccentric_nz
@@ -36,7 +37,7 @@ import java.util.Map;
 public class TARDISSeedBlockPersister {
 
     private final TARDIS plugin;
-    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getINSTANCE();
+    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getInstance();
     private final Connection connection = service.getConnection();
     private final String prefix;
     private PreparedStatement ps = null;
@@ -61,7 +62,7 @@ public class TARDISSeedBlockPersister {
                 count += ps.executeUpdate();
             }
             if (count > 0) {
-                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Saved " + count + " placed seed blocks.");
+                plugin.getLogger().log(Level.INFO, "Saved " + count + " placed seed blocks.");
             }
         } catch (SQLException sqlException) {
             plugin.debug("Insert error for seeds table: " + sqlException.getMessage());
@@ -101,7 +102,7 @@ public class TARDISSeedBlockPersister {
                 }
             }
             if (count > 0) {
-                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Loaded " + count + " placed seed blocks.");
+                plugin.getLogger().log(Level.INFO, "Loaded " + count + " placed seed blocks.");
             }
             // clear the portals table so we don't get any duplicates when saving them
             ps = connection.prepareStatement("DELETE FROM " + prefix + "seeds");

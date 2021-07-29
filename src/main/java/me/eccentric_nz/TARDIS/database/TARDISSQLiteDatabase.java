@@ -22,6 +22,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
 
 /**
  * SQLite database creator and updater.
@@ -33,7 +34,7 @@ import java.sql.Statement;
  */
 public class TARDISSQLiteDatabase {
 
-    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getINSTANCE();
+    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getInstance();
     private final Connection connection = service.getConnection();
     private final TARDIS plugin;
     private final String prefix;
@@ -265,14 +266,14 @@ public class TARDISSQLiteDatabase {
             String queryRaisedDemat = "UPDATE " + prefix + "tardis SET chameleon_demat = 'SWAMP' WHERE chameleon_demat = 'RAISED'";
             statement.executeUpdate(queryRaisedDemat);
         } catch (SQLException e) {
-            plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "SQLite create table error: " + e);
+            plugin.getLogger().log(Level.SEVERE, "SQLite create table error: " + e.getMessage());
         } finally {
             try {
                 if (statement != null) {
                     statement.close();
                 }
             } catch (SQLException e) {
-                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "SQLite close statement error: " + e);
+                plugin.getLogger().log(Level.SEVERE, "SQLite close statement error: " + e.getMessage());
             }
         }
     }

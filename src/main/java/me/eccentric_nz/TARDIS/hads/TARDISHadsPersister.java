@@ -29,6 +29,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
 import java.util.UUID;
+import java.util.logging.Level;
 
 /**
  * @author eccentric_nz
@@ -36,7 +37,7 @@ import java.util.UUID;
 public class TARDISHadsPersister {
 
     private final TARDIS plugin;
-    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getINSTANCE();
+    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getInstance();
     private final Connection connection = service.getConnection();
     private final String prefix;
     private PreparedStatement ps = null;
@@ -67,7 +68,7 @@ public class TARDISHadsPersister {
                 count += ps.executeUpdate();
             }
             if (count > 0) {
-                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Saved " + count + " dispersed TARDISes.");
+                plugin.getLogger().log(Level.INFO, "Saved " + count + " dispersed TARDISes.");
             }
         } catch (SQLException ex) {
             plugin.debug("Insert error for dispersed table: " + ex.getMessage());
@@ -100,7 +101,7 @@ public class TARDISHadsPersister {
                 }
             }
             if (count > 0) {
-                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Loaded " + count + " dispersed Police Boxes.");
+                plugin.getLogger().log(Level.INFO, "Loaded " + count + " dispersed Police Boxes.");
             }
             ps = connection.prepareStatement("DELETE FROM " + prefix + "dispersed");
             ps.executeUpdate();

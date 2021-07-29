@@ -21,13 +21,14 @@ import me.eccentric_nz.TARDIS.TARDIS;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
 
 /**
  * @author eccentric_nz
  */
 public class TARDISWorldRemover {
 
-    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getINSTANCE();
+    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getInstance();
     private final Connection connection = service.getConnection();
     private final TARDIS plugin;
     private final String prefix;
@@ -46,13 +47,13 @@ public class TARDISWorldRemover {
             String blocksQuery = "DELETE FROM " + prefix + "blocks WHERE location LIKE 'Location{world=CraftWorld{name=" + w + "}%'";
             int numBlocks = statement.executeUpdate(blocksQuery);
             if (numBlocks > 0) {
-                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Removed " + numBlocks + " block record for non-existent world ->" + w);
+                plugin.getLogger().log(Level.INFO, "Removed " + numBlocks + " block record for non-existent world ->" + w);
             }
             // portals
             String portalsQuery = "DELETE FROM " + prefix + "portals WHERE portal LIKE 'Location{world=CraftWorld{name=" + w + "}%' OR teleport LIKE 'Location{world=CraftWorld{name=" + w + "}%'";
             int numPortals = statement.executeUpdate(portalsQuery);
             if (numPortals > 0) {
-                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Removed " + numPortals + " portal record for non-existent world ->" + w);
+                plugin.getLogger().log(Level.INFO, "Removed " + numPortals + " portal record for non-existent world ->" + w);
             }
         } catch (SQLException e) {
             plugin.debug("ResultSet error for blocks/portals table! " + e.getMessage());

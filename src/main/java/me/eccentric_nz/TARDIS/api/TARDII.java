@@ -62,7 +62,7 @@ import java.util.logging.Level;
 public class TARDII implements TardisAPI {
 
     private static final WeightedChoice<Environment> WEIGHTED_CHOICE = new WeightedChoice<Environment>().add(70, Environment.NORMAL).add(15, Environment.NETHER).add(15, Environment.THE_END);
-    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getINSTANCE();
+    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getInstance();
     private final Connection connection = service.getConnection();
 
     @Override
@@ -740,7 +740,7 @@ public class TARDII implements TardisAPI {
         try {
             spawnAbandonedTARDIS(location, "BUDGET", PRESET.FACTORY, COMPASS.SOUTH);
         } catch (TARDISException tardisException) {
-            Bukkit.getLogger().log(Level.SEVERE, null, tardisException);
+            TARDIS.plugin.getLogger().log(Level.SEVERE, null, tardisException);
         }
     }
 
@@ -754,7 +754,7 @@ public class TARDII implements TardisAPI {
             try {
                 return setDesktopWallAndFloor(rst.getTardis().getUuid(), wall, floor, artron);
             } catch (TARDISException tardisException) {
-                Bukkit.getLogger().log(Level.SEVERE, null, tardisException);
+                TARDIS.plugin.getLogger().log(Level.SEVERE, null, tardisException);
                 return "";
             }
         } else {

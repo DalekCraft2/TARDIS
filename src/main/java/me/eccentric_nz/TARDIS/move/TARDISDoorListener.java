@@ -29,7 +29,6 @@ import me.eccentric_nz.TARDIS.travel.TARDISDoorLocation;
 import me.eccentric_nz.TARDIS.utility.TARDISItemRenamer;
 import me.eccentric_nz.TARDIS.utility.TARDISSounds;
 import me.eccentric_nz.TARDIS.utility.TARDISStaticLocationGetters;
-import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -75,6 +74,56 @@ public class TARDISDoorListener {
     }
 
     /**
+     * Get door location data for teleport entry and exit of the TARDIS.
+     *
+     * @param doortype a reference to the door_type field in the doors table
+     * @param id       the unique TARDIS identifier i the database
+     * @return an instance of the TARDISDoorLocation data class
+     */
+    public static TARDISDoorLocation getDoor(int doortype, int id) {
+        TARDISDoorLocation tdl = new TARDISDoorLocation();
+        // get door location
+        HashMap<String, Object> wherei = new HashMap<>();
+        wherei.put("door_type", doortype);
+        wherei.put("tardis_id", id);
+        ResultSetDoors rsd = new ResultSetDoors(TARDIS.plugin, wherei, false);
+        if (rsd.resultSet()) {
+            COMPASS d = rsd.getDoor_direction();
+            tdl.setD(d);
+            String doorLocStr = rsd.getDoor_location();
+            World cw = TARDISStaticLocationGetters.getWorld(doorLocStr);
+            tdl.setW(cw);
+            Location tmp_loc = TARDISStaticLocationGetters.getLocationFromDB(doorLocStr);
+            int getx = tmp_loc.getBlockX();
+            int getz = tmp_loc.getBlockZ();
+            switch (d) {
+                case NORTH -> {
+                    // z -ve
+                    tmp_loc.setX(getx + 0.5);
+                    tmp_loc.setZ(getz - 0.5);
+                }
+                case EAST -> {
+                    // x +ve
+                    tmp_loc.setX(getx + 1.5);
+                    tmp_loc.setZ(getz + 0.5);
+                }
+                case SOUTH -> {
+                    // z +ve
+                    tmp_loc.setX(getx + 0.5);
+                    tmp_loc.setZ(getz + 1.5);
+                }
+                case WEST -> {
+                    // x -ve
+                    tmp_loc.setX(getx - 0.5);
+                    tmp_loc.setZ(getz + 0.5);
+                }
+            }
+            tdl.setL(tmp_loc);
+        }
+        return tdl;
+    }
+
+    /**
      * A method to teleport the player into and out of the TARDIS.
      *
      * @param player   the player to teleport
@@ -112,8 +161,7 @@ public class TARDISDoorListener {
         }
         if (quotes) {
             if (TARDISConstants.RANDOM.nextInt(100) < 3) {
-                TextComponent tcg = new TextComponent("[TARDIS] ");
-                tcg.setColor(ChatColor.GOLD);
+                TextComponent tcg = new TextComponent(plugin.getMessagePrefix());
                 TextComponent tcl = new TextComponent("Look at these eyebrows. These are attack eyebrows! They could take off bottle caps!");
                 tcl.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("Click me!")));
                 tcl.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/tardis egg"));
@@ -308,56 +356,6 @@ public class TARDISDoorListener {
             case WEST -> adjustYaw[2][d2.ordinal()];
             default -> adjustYaw[3][d2.ordinal()];
         };
-    }
-
-    /**
-     * Get door location data for teleport entry and exit of the TARDIS.
-     *
-     * @param doortype a reference to the door_type field in the doors table
-     * @param id       the unique TARDIS identifier i the database
-     * @return an instance of the TARDISDoorLocation data class
-     */
-    public static TARDISDoorLocation getDoor(int doortype, int id) {
-        TARDISDoorLocation tdl = new TARDISDoorLocation();
-        // get door location
-        HashMap<String, Object> wherei = new HashMap<>();
-        wherei.put("door_type", doortype);
-        wherei.put("tardis_id", id);
-        ResultSetDoors rsd = new ResultSetDoors(TARDIS.plugin, wherei, false);
-        if (rsd.resultSet()) {
-            COMPASS d = rsd.getDoor_direction();
-            tdl.setD(d);
-            String doorLocStr = rsd.getDoor_location();
-            World cw = TARDISStaticLocationGetters.getWorld(doorLocStr);
-            tdl.setW(cw);
-            Location tmp_loc = TARDISStaticLocationGetters.getLocationFromDB(doorLocStr);
-            int getx = tmp_loc.getBlockX();
-            int getz = tmp_loc.getBlockZ();
-            switch (d) {
-                case NORTH -> {
-                    // z -ve
-                    tmp_loc.setX(getx + 0.5);
-                    tmp_loc.setZ(getz - 0.5);
-                }
-                case EAST -> {
-                    // x +ve
-                    tmp_loc.setX(getx + 1.5);
-                    tmp_loc.setZ(getz + 0.5);
-                }
-                case SOUTH -> {
-                    // z +ve
-                    tmp_loc.setX(getx + 0.5);
-                    tmp_loc.setZ(getz + 1.5);
-                }
-                case WEST -> {
-                    // x -ve
-                    tmp_loc.setX(getx - 0.5);
-                    tmp_loc.setZ(getz + 0.5);
-                }
-            }
-            tdl.setL(tmp_loc);
-        }
-        return tdl;
     }
 
     /**

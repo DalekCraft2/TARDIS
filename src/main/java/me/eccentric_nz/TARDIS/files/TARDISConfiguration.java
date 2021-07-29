@@ -25,6 +25,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
 
 /**
  * The Alpha Centauran Table Tennis Club is a club established by the Alpha Centaurans for the play of table tennis. The
@@ -299,7 +300,7 @@ public class TARDISConfiguration {
             i++;
         }
         if (i > 0) {
-            plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Added " + ChatColor.AQUA + i + ChatColor.RESET + " new items to config");
+            plugin.getLogger().log(Level.INFO, "Added " + ChatColor.AQUA + i + ChatColor.RESET + " new items to config");
         }
         // worlds
         new TARDISWorlds(plugin).doWorlds();

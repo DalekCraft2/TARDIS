@@ -113,7 +113,7 @@ public class TARDISBlockLoader {
      * Loads players antibuild preferences. Needed so that the preference is persisted between restarts.
      */
     public void loadAntiBuild() {
-        TARDISDatabaseConnection service = TARDISDatabaseConnection.getINSTANCE();
+        TARDISDatabaseConnection service = TARDISDatabaseConnection.getInstance();
         Connection connection = service.getConnection();
         Statement statement = null;
         ResultSet rs = null;

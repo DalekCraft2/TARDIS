@@ -22,10 +22,11 @@ import me.eccentric_nz.TARDIS.database.TARDISDatabaseConnection;
 import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
 
 public class TARDISFarmingConverter {
 
-    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getINSTANCE();
+    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getInstance();
     private final Connection connection = service.getConnection();
     private final TARDIS plugin;
     private final String prefix;
@@ -98,7 +99,7 @@ public class TARDISFarmingConverter {
                 if (i > 0) {
                     ps.executeBatch();
                     connection.commit();
-                    plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Converted " + i + " farming records");
+                    plugin.getLogger().log(Level.INFO, "Converted " + i + " farming records");
                 }
             }
         } catch (SQLException e) {

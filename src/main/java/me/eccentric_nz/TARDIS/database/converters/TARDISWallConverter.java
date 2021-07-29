@@ -29,13 +29,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 public class TARDISWallConverter {
 
     private final String[] find = new String[]{"east=false", "east=true", "north=false", "north=true", "south=false", "south=true", "west=false", "west=true"};
     private final String[] repl = new String[]{"east=none", "east=low", "north=none", "north=low", "south=none", "south=low", "west=none", "west=low"};
     private final List<String> walls = new ArrayList<>();
-    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getINSTANCE();
+    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getInstance();
     private final Connection connection = service.getConnection();
     private final TARDIS plugin;
     private final String prefix;
@@ -122,7 +123,7 @@ public class TARDISWallConverter {
             if (i > 0) {
                 ps.executeBatch();
                 connection.commit();
-                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Converted " + i + " archive wall block data records");
+                plugin.getLogger().log(Level.INFO, "Converted " + i + " archive wall block data records");
             }
             plugin.getConfig().set("conversions.archive_wall_data", true);
             plugin.saveConfig();

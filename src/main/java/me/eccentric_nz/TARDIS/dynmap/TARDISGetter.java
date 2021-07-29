@@ -20,7 +20,7 @@ class TARDISGetter {
 
     private final TARDIS plugin;
     private final String prefix;
-    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getINSTANCE();
+    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getInstance();
     private final Connection connection = service.getConnection();
 
     TARDISGetter(TARDIS plugin) {

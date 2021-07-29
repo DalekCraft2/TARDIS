@@ -23,6 +23,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
+import java.util.logging.Level;
 
 /**
  * @author eccentric_nz
@@ -30,7 +31,7 @@ import java.util.UUID;
 public class TARDISTimeRotorLoader {
 
     private final TARDIS plugin;
-    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getINSTANCE();
+    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getInstance();
     private final Connection connection = service.getConnection();
     private final String prefix;
     private PreparedStatement ps = null;
@@ -62,7 +63,7 @@ public class TARDISTimeRotorLoader {
                 }
             }
             if (count > 0) {
-                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Loaded " + count + " portals.");
+                plugin.getLogger().log(Level.INFO, "Loaded " + count + " portals.");
             }
         } catch (SQLException ex) {
             plugin.debug("ResultSet error for time rotor loading: " + ex.getMessage());

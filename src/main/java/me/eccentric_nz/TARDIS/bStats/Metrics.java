@@ -77,8 +77,8 @@ public class Metrics {
                 this::appendServiceData,
                 submitDataTask -> Bukkit.getScheduler().runTask(plugin, submitDataTask),
                 plugin::isEnabled,
-                (message, error) -> this.plugin.getLogger().log(Level.WARNING, message, error),
-                (message) -> this.plugin.getLogger().log(Level.INFO, message),
+                (message, error) -> plugin.getLogger().log(Level.WARNING, message, error.getMessage()),
+                (message) -> plugin.getLogger().log(Level.INFO, message),
                 logErrors,
                 logSentData,
                 logResponseStatusText);

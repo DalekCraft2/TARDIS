@@ -26,6 +26,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
+import java.util.logging.Level;
 
 /**
  * @author eccentric_nz
@@ -33,7 +34,7 @@ import java.util.*;
 public class TARDISSiegePersister {
 
     private final TARDIS plugin;
-    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getINSTANCE();
+    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getInstance();
     private final Connection connection = service.getConnection();
     private final String prefix;
     private PreparedStatement ps = null;
@@ -79,7 +80,7 @@ public class TARDISSiegePersister {
                 }
             }
             if (count > 0) {
-                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Loaded " + count + " TARDISes in Siege Mode.");
+                plugin.getLogger().log(Level.INFO, "Loaded " + count + " TARDISes in Siege Mode.");
             }
         } catch (SQLException ex) {
             plugin.debug("ResultSet error for tardis table: " + ex.getMessage());
@@ -131,7 +132,7 @@ public class TARDISSiegePersister {
                 i += ps.executeUpdate();
             }
             if (i > 0) {
-                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Saved " + i + " Siege Cubes");
+                plugin.getLogger().log(Level.INFO, "Saved " + i + " Siege Cubes");
             }
         } catch (SQLException ex) {
             plugin.debug("Insert error for siege table: " + ex.getMessage());

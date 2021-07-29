@@ -47,7 +47,7 @@ public class TARDISRecordingTask implements Runnable {
         try {
             int perBatch = 100;
             if (!TARDISRecordingQueue.getQUEUE().isEmpty()) {
-                TARDISDatabaseConnection service = TARDISDatabaseConnection.getINSTANCE();
+                TARDISDatabaseConnection service = TARDISDatabaseConnection.getInstance();
                 connection = service.getConnection();
                 // Handle dead connections
                 if (connection == null || connection.isClosed()) {

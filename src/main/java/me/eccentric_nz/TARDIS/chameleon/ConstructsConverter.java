@@ -33,13 +33,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ConstructsConverter {
 
     private final TARDIS plugin;
-    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getINSTANCE();
+    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getInstance();
     private final Connection connection = service.getConnection();
     private final String prefix;
 
@@ -178,7 +179,7 @@ public class ConstructsConverter {
             if (i > 0) {
                 update.executeBatch();
                 connection.commit();
-                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Converted " + i + " Chameleon Construct records");
+                plugin.getLogger().log(Level.INFO, "Converted " + i + " Chameleon Construct records");
             }
             plugin.getConfig().set("conversions.constructs", true);
             plugin.saveConfig();

@@ -30,7 +30,7 @@ import java.util.UUID;
 
 public class ResultSetPaperBag {
 
-    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getINSTANCE();
+    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getInstance();
     private final Connection connection = service.getConnection();
     private final TARDIS plugin;
     private final UUID uuid;

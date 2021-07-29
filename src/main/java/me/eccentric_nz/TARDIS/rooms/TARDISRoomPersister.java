@@ -35,11 +35,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.logging.Level;
 
 public class TARDISRoomPersister {
 
     private final TARDIS plugin;
-    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getINSTANCE();
+    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getInstance();
     private final Connection connection = service.getConnection();
     private final String prefix;
     private PreparedStatement ps = null;
@@ -69,7 +70,7 @@ public class TARDISRoomPersister {
                 count += ps.executeUpdate();
             }
             if (count > 0) {
-                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Saved " + count + " room building tasks to resume later.");
+                plugin.getLogger().log(Level.INFO, "Saved " + count + " room building tasks to resume later.");
             }
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();

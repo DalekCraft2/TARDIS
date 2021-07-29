@@ -26,6 +26,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
 import java.util.UUID;
+import java.util.logging.Level;
 
 /**
  * @author eccentric_nz
@@ -33,7 +34,7 @@ import java.util.UUID;
 public class TARDISArchPersister {
 
     private final TARDIS plugin;
-    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getINSTANCE();
+    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getInstance();
     private final Connection connection = service.getConnection();
     private final String prefix;
     private PreparedStatement ps = null;
@@ -75,7 +76,7 @@ public class TARDISArchPersister {
                 }
                 count += ps.executeUpdate();
             }
-            plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Saved " + count + " 'arched' players.");
+            plugin.getLogger().log(Level.INFO, "Saved " + count + " 'arched' players.");
         } catch (SQLException sqlException) {
             plugin.debug("Insert error for arched table: " + sqlException.getMessage());
         } finally {
@@ -118,7 +119,7 @@ public class TARDISArchPersister {
                 ps.setLong(3, time);
             }
             count += ps.executeUpdate();
-            plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Saved " + count + " 'arched' player.");
+            plugin.getLogger().log(Level.INFO, "Saved " + count + " 'arched' player.");
         } catch (SQLException sqlException) {
             plugin.debug("Insert error for arched table: " + sqlException.getMessage());
         } finally {

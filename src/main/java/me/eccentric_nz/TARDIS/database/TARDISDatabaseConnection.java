@@ -36,7 +36,7 @@ public class TARDISDatabaseConnection {
     public Connection connection = null;
     private boolean isMySQL;
 
-    public static synchronized TARDISDatabaseConnection getINSTANCE() {
+    public static synchronized TARDISDatabaseConnection getInstance() {
         return INSTANCE;
     }
 

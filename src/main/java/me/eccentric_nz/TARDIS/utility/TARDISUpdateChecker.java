@@ -28,6 +28,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.logging.Level;
 
 public class TARDISUpdateChecker implements Runnable {
 
@@ -67,8 +68,8 @@ public class TARDISUpdateChecker implements Runnable {
         plugin.setBuildNumber(buildNumber);
         plugin.setUpdateNumber(newBuildNumber);
         if (sender == null) {
-            plugin.getConsole().sendMessage(plugin.getMessagePrefix() + String.format(TARDISMessage.JENKINS_UPDATE_READY, buildNumber, newBuildNumber));
-            plugin.getConsole().sendMessage(plugin.getMessagePrefix() + TARDISMessage.UPDATE_COMMAND);
+            plugin.getLogger().log(Level.WARNING, String.format(TARDISMessage.JENKINS_UPDATE_READY, buildNumber, newBuildNumber));
+            plugin.getLogger().log(Level.WARNING, TARDISMessage.UPDATE_COMMAND);
         } else {
             if (buildNumber == newBuildNumber) {
                 sender.sendMessage(plugin.getMessagePrefix() + "You are running the latest version!");

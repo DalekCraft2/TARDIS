@@ -22,6 +22,7 @@ import me.eccentric_nz.TARDIS.database.tool.SQL;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
 
 /**
  * MySQL database creator and updater.
@@ -33,7 +34,7 @@ import java.sql.Statement;
  */
 public class TARDISMySQLDatabase {
 
-    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getINSTANCE();
+    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getInstance();
     private final Connection connection = service.getConnection();
     private final TARDIS plugin;
     private Statement statement = null;
@@ -60,14 +61,14 @@ public class TARDISMySQLDatabase {
             TARDISMySQLDatabaseUpdater dbu = new TARDISMySQLDatabaseUpdater(plugin, statement);
             dbu.updateTables();
         } catch (SQLException e) {
-            plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "MySQL create table error: " + e);
+            plugin.getLogger().log(Level.SEVERE, "MySQL create table error: " + e.getMessage());
         } finally {
             try {
                 if (statement != null) {
                     statement.close();
                 }
             } catch (SQLException e) {
-                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "MySQL close statement error: " + e);
+                plugin.getLogger().log(Level.SEVERE, "MySQL close statement error: " + e.getMessage());
             }
         }
     }

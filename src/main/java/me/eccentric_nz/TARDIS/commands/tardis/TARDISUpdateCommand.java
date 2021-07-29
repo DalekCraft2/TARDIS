@@ -42,6 +42,7 @@ import org.bukkit.entity.Player;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.UUID;
+import java.util.logging.Level;
 
 /**
  * @author eccentric_nz
@@ -64,13 +65,13 @@ class TARDISUpdateCommand {
             }
             if (args[1].equalsIgnoreCase("list")) {
                 for (Updateable u : Updateable.values()) {
-                    System.out.println(u.getName() + " valid blocks:");
+                    plugin.getLogger().log(Level.INFO, u.getName() + " valid blocks:");
                     for (Material m : u.getMaterialChoice().getChoices()) {
                         String s = m.toString();
                         if (s.equals("SPAWNER")) {
-                            System.out.println("   ANY BLOCK");
+                            plugin.getLogger().log(Level.INFO, "   ANY BLOCK");
                         } else {
-                            System.out.println("   " + s);
+                            plugin.getLogger().log(Level.INFO, "   " + s);
                         }
                     }
                 }

@@ -57,22 +57,22 @@ public class TARDISFileCopier {
                         out.write(buf, 0, len);
                     }
                 } catch (IOException io) {
-                    System.err.println("[TARDIS] Copier: Could not save the file (" + file + ").");
+                    TARDIS.plugin.getLogger().log(java.util.logging.Level.SEVERE, "Copier: Could not save the file (" + file + ").");
                 } finally {
                     try {
                         out.close();
                     } catch (IOException e) {
-                        System.err.println("[TARDIS] Copier: Could not close the output stream.");
+                        TARDIS.plugin.getLogger().log(java.util.logging.Level.SEVERE, "Copier: Could not close the output stream.");
                     }
                 }
             } catch (FileNotFoundException e) {
-                System.err.println("[TARDIS] Copier: File not found: " + filepath);
+                TARDIS.plugin.getLogger().log(java.util.logging.Level.SEVERE, "Copier: File not found: " + filepath);
             } finally {
                 if (in != null) {
                     try {
                         in.close();
                     } catch (IOException e) {
-                        System.err.println("[TARDIS] Copier: Could not close the input stream.");
+                        TARDIS.plugin.getLogger().log(java.util.logging.Level.SEVERE, "Copier: Could not close the input stream.");
                     }
                 }
             }
@@ -91,7 +91,7 @@ public class TARDISFileCopier {
             if (result) {
                 schematicDir.setWritable(true);
                 schematicDir.setExecutable(true);
-                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Created schematics directory.");
+                plugin.getLogger().log(java.util.logging.Level.INFO, "Created schematics directory.");
             }
         }
         File userDir = new File(plugin.getDataFolder() + File.separator + "user_schematics");
@@ -100,7 +100,7 @@ public class TARDISFileCopier {
             if (useResult) {
                 userDir.setWritable(true);
                 userDir.setExecutable(true);
-                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Created user_schematics directory.");
+                plugin.getLogger().log(java.util.logging.Level.INFO, "Created user_schematics directory.");
             }
         }
         // DELUXE, ELEVENTH, TWELFTH, ARS & REDSTONE schematics designed by Lord_Rahl and killeratnight at mcnovus.net
@@ -115,36 +115,36 @@ public class TARDISFileCopier {
         Consoles.getByNames().values().forEach((ts) -> {
             if (!ts.isCustom()) {
                 String str = basepath + ts.getPermission() + ".tschm";
-                copy(str, plugin.getResource("/schematics/" + ts.getPermission() + ".tschm"), true);
+                copy(str, plugin.getResource("schematics/" + ts.getPermission() + ".tschm"), true);
             }
         });
         // copy default room files as well
         for (TARDISARS ta : TARDISARS.values()) {
             if (ta.getOffset() != 0) {
                 String str = basepath + ta.toString().toLowerCase(Locale.ENGLISH) + ".tschm";
-                copy(str, plugin.getResource("/schematics/" + ta.toString().toLowerCase(Locale.ENGLISH) + ".tschm"), true);
+                copy(str, plugin.getResource("schematics/" + ta.toString().toLowerCase(Locale.ENGLISH) + ".tschm"), true);
             }
         }
         String zeronstr = basepath + "zero.tschm";
-        copy(zeronstr, plugin.getResource("/schematics/zero.tschm"), true);
+        copy(zeronstr, plugin.getResource("schematics/zero.tschm"), true);
         String junknstr = basepath + "junk.tschm";
-        copy(junknstr, plugin.getResource("/schematics/junk.tschm"), true);
+        copy(junknstr, plugin.getResource("schematics/junk.tschm"), true);
         String tmpnstr = userbasepath + "template.tschm";
-        copy(tmpnstr, plugin.getResource("/user_schematics/template.tschm"), true);
+        copy(tmpnstr, plugin.getResource("user_schematics/template.tschm"), true);
         String gallifreynstr = basepath + "gallifrey.tschm";
-        copy(gallifreynstr, plugin.getResource("/schematics/gallifrey.tschm"), true);
+        copy(gallifreynstr, plugin.getResource("schematics/gallifrey.tschm"), true);
         String skaronstr = basepath + "dalek_large.tschm";
-        copy(skaronstr, plugin.getResource("/schematics/dalek_large.tschm"), true);
+        copy(skaronstr, plugin.getResource("schematics/dalek_large.tschm"), true);
         String daleknstr = basepath + "dalek_small.tschm";
-        copy(daleknstr, plugin.getResource("/schematics/dalek_small.tschm"), true);
+        copy(daleknstr, plugin.getResource("schematics/dalek_small.tschm"), true);
         String sillnstr = basepath + "siluria_large.tschm";
-        copy(sillnstr, plugin.getResource("/schematics/siluria_large.tschm"), true);
+        copy(sillnstr, plugin.getResource("schematics/siluria_large.tschm"), true);
         String silcnstr = basepath + "siluria_cross.tschm";
-        copy(silcnstr, plugin.getResource("/schematics/siluria_cross.tschm"), true);
+        copy(silcnstr, plugin.getResource("schematics/siluria_cross.tschm"), true);
         String silnsnstr = basepath + "siluria_north_south.tschm";
-        copy(silnsnstr, plugin.getResource("/schematics/siluria_north_south.tschm"), true);
+        copy(silnsnstr, plugin.getResource("schematics/siluria_north_south.tschm"), true);
         String silewnstr = basepath + "siluria_east_west.tschm";
-        copy(silewnstr, plugin.getResource("/schematics/siluria_east_west.tschm"), true);
+        copy(silewnstr, plugin.getResource("schematics/siluria_east_west.tschm"), true);
     }
 
     /**

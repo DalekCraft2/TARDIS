@@ -29,7 +29,7 @@ import java.sql.Statement;
 class TARDISSQLInsertControl implements Runnable {
 
     private final TARDIS plugin;
-    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getINSTANCE();
+    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getInstance();
     private final Connection connection = service.getConnection();
     private final int id;
     private final int type;

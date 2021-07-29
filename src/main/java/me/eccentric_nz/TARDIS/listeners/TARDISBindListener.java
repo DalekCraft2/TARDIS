@@ -145,6 +145,7 @@ public class TARDISBindListener implements Listener {
                                 String name = rsb.getName();
                                 switch (type) {
                                     case 1: // command
+                                        // TODO Check whether this is redundant, because the console logs commands already
                                         if (name.equals("rebuild")) {
                                             player.performCommand("tardis rebuild");
                                             plugin.getConsole().sendMessage(player.getName() + " issued server command: /tardis rebuild");

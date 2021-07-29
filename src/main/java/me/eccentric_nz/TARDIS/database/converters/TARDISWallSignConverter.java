@@ -23,10 +23,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
 
 public class TARDISWallSignConverter {
 
-    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getINSTANCE();
+    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getInstance();
     private final Connection connection = service.getConnection();
     private final TARDIS plugin;
     private final String prefix;
@@ -57,7 +58,7 @@ public class TARDISWallSignConverter {
                     if (i > 0) {
                         ps.executeBatch();
                         connection.commit();
-                        plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Converted " + i + " legacy wall signs to oak wall signs");
+                        plugin.getLogger().log(Level.INFO, "Converted " + i + " legacy wall signs to oak wall signs");
                     }
                 }
             }

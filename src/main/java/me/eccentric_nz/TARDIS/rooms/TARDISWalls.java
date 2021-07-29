@@ -21,6 +21,7 @@ import org.bukkit.Material;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 /**
  * A TARDIS isn't just a vehicle for travelling in space and time. As a TARDIS has no real constraints on the amount of
@@ -37,7 +38,7 @@ public class TARDISWalls {
             try {
                 BLOCKS.add(Material.valueOf(m));
             } catch (IllegalArgumentException e) {
-                TARDIS.plugin.getConsole().sendMessage(TARDIS.plugin.getMessagePrefix() + "Invalid material '" + m + "' in tardis_blocks list! " + e.getMessage());
+                TARDIS.plugin.getLogger().log(Level.SEVERE, "Invalid material '" + m + "' in tardis_blocks list! " + e.getMessage());
             }
         }
     }

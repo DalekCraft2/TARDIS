@@ -22,6 +22,8 @@ import net.coreprotect.CoreProtectAPI;
 import org.bukkit.block.Block;
 import org.bukkit.plugin.PluginManager;
 
+import java.util.logging.Level;
+
 public class TARDISBlockLogger {
 
     private final TARDIS plugin;
@@ -53,7 +55,7 @@ public class TARDISBlockLogger {
             if (CoreProtect.APIVersion() < 6) {
                 return;
             }
-            plugin.getServer().getConsoleSender().sendMessage(plugin.getMessagePrefix() + "Connecting to CoreProtect");
+            plugin.getLogger().log(Level.INFO, "Connecting to CoreProtect");
             coreProtectAPI = CoreProtect;
             logging = true;
         }

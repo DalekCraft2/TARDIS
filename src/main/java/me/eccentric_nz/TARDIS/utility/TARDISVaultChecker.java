@@ -28,6 +28,7 @@ import java.sql.Statement;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
 
 /**
  * @author eccentric_nz
@@ -35,7 +36,7 @@ import java.util.List;
 public class TARDISVaultChecker implements Runnable {
 
     private final TARDIS plugin;
-    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getINSTANCE();
+    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getInstance();
     private final Connection connection = service.getConnection();
     private final List<Material> chests = Arrays.asList(Material.CHEST, Material.TRAPPED_CHEST);
     private final String prefix;
@@ -68,7 +69,7 @@ public class TARDISVaultChecker implements Runnable {
                 }
             }
             if (i > 0) {
-                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Removed " + i + " unused vault room drop chests!");
+                plugin.getLogger().log(Level.INFO, "Removed " + i + " unused vault room drop chests!");
             }
         } catch (SQLException e) {
             plugin.debug("ResultSet error for vaults table! " + e.getMessage());

@@ -28,6 +28,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
 
 /**
  * @author eccentric_nz
@@ -35,7 +36,7 @@ import java.sql.SQLException;
 public class ARSConverter {
 
     private final TARDIS plugin;
-    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getINSTANCE();
+    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getInstance();
     private final Connection connection = service.getConnection();
     private final String prefix;
 
@@ -93,7 +94,7 @@ public class ARSConverter {
             if (i > 0) {
                 update.executeBatch();
                 connection.commit();
-                plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Converted " + i + " ARS records");
+                plugin.getLogger().log(Level.INFO, "Converted " + i + " ARS records");
             }
             plugin.getConfig().set("conversions.ars_materials", true);
             plugin.saveConfig();

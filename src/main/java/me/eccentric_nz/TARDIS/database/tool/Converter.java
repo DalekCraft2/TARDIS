@@ -31,7 +31,7 @@ import java.util.MissingFormatArgumentException;
 public class Converter implements Runnable {
 
     private final TARDIS plugin;
-    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getINSTANCE();
+    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getInstance();
     private final Connection connection = service.getConnection();
     private final Connection sqliteConnection;
     private final String prefix;

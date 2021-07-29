@@ -19,6 +19,7 @@ package me.eccentric_nz.TARDIS.database;
 import me.eccentric_nz.TARDIS.TARDIS;
 
 import java.sql.*;
+import java.util.logging.Level;
 
 /**
  * Cyber-conversion into Cybermen involves the replacement of body parts (including limbs, organs, and vital systems)
@@ -30,7 +31,7 @@ import java.sql.*;
 class TARDISDispersalUpdater {
 
     private final TARDIS plugin;
-    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getINSTANCE();
+    private final TARDISDatabaseConnection service = TARDISDatabaseConnection.getInstance();
     private final Connection connection = service.getConnection();
     private final String prefix;
 
@@ -108,7 +109,7 @@ class TARDISDispersalUpdater {
             }
         }
         if (i > 0) {
-            plugin.getConsole().sendMessage(plugin.getMessagePrefix() + "Updated " + i + " dispersed records");
+            plugin.getLogger().log(Level.INFO, "Updated " + i + " dispersed records");
         }
     }
 }
