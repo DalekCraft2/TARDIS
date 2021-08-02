@@ -287,7 +287,7 @@ public class TARDISSonicGeneratorMenuListener extends TARDISMenuListener impleme
         ItemStack is = view.getItem(45);
         ItemMeta im = is.getItemMeta();
         List<String> lore = im.getLore();
-        lore.set(0, "" + cost);
+        lore.set(0, ChatColor.GRAY + "" + cost);
         im.setLore(lore);
         is.setItemMeta(im);
     }

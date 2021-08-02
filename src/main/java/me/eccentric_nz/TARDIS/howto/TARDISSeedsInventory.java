@@ -20,6 +20,7 @@ import me.eccentric_nz.TARDIS.TARDIS;
 import me.eccentric_nz.TARDIS.blueprints.TARDISPermission;
 import me.eccentric_nz.TARDIS.enumeration.Consoles;
 import me.eccentric_nz.TARDIS.enumeration.Schematic;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -62,9 +63,9 @@ public class TARDISSeedsInventory {
                 Material m = Material.getMaterial(a.getSeed());
                 ItemStack is = new ItemStack(m, 1);
                 ItemMeta im = is.getItemMeta();
-                im.setDisplayName(a.getDescription());
+                im.setDisplayName(ChatColor.RESET + a.getDescription());
                 List<String> lore = new ArrayList<>();
-                lore.add("Click to see recipe...");
+                lore.add(ChatColor.GRAY + "Click to see recipe...");
                 im.setLore(lore);
                 im.setCustomModelData((m.equals(Material.NETHER_WART_BLOCK)) ? 2 : 1);
                 is.setItemMeta(im);
@@ -75,7 +76,7 @@ public class TARDISSeedsInventory {
         // close
         ItemStack close = new ItemStack(Material.BOWL, 1);
         ItemMeta close_im = close.getItemMeta();
-        close_im.setDisplayName(plugin.getLanguage().getString("BUTTON_CLOSE"));
+        close_im.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_CLOSE"));
         close_im.setCustomModelData(1);
         close.setItemMeta(close_im);
         stack[26] = close;

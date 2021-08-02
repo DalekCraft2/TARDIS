@@ -20,6 +20,7 @@ import me.eccentric_nz.TARDIS.TARDIS;
 import me.eccentric_nz.TARDIS.custommodeldata.GUITransmat;
 import me.eccentric_nz.TARDIS.database.data.Transmat;
 import me.eccentric_nz.TARDIS.database.resultset.ResultSetTransmatList;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -57,12 +58,12 @@ public class TARDISTransmatInventory {
                 ItemStack is = new ItemStack(Material.MAP, 1);
                 ItemMeta im = is.getItemMeta();
                 im.setCustomModelData(4);
-                im.setDisplayName(t.getName());
+                im.setDisplayName(ChatColor.RESET + t.getName());
                 List<String> lore = new ArrayList<>();
-                lore.add(String.format("X: %.2f", t.getX()));
-                lore.add(String.format("Y: %.2f", t.getY()));
-                lore.add(String.format("Z: %.2f", t.getZ()));
-                lore.add(String.format("Yaw: %.2f", t.getYaw()));
+                lore.add(ChatColor.GRAY + String.format("X: %.2f", t.getX()));
+                lore.add(ChatColor.GRAY + String.format("Y: %.2f", t.getY()));
+                lore.add(ChatColor.GRAY + String.format("Z: %.2f", t.getZ()));
+                lore.add(ChatColor.GRAY + String.format("Yaw: %.2f", t.getYaw()));
                 im.setLore(lore);
                 is.setItemMeta(im);
                 stack[i] = is;
@@ -75,22 +76,27 @@ public class TARDISTransmatInventory {
             // info
             ItemStack info = new ItemStack(GUITransmat.INFO.getMaterial(), 1);
             ItemMeta meta = info.getItemMeta();
-            meta.setDisplayName(plugin.getChameleonGuis().getString("INFO"));
+            meta.setDisplayName(ChatColor.RESET + plugin.getChameleonGuis().getString("INFO"));
             meta.setCustomModelData(GUITransmat.INFO.getCustomModelData());
+            List<String> infoLore = plugin.getChameleonGuis().getStringList("INFO_TRANSMAT");
+            for (int j = 0; j < infoLore.size(); j++) {
+                infoLore.set(j, ChatColor.GRAY + infoLore.get(j));
+            }
+            meta.setLore(infoLore);
             meta.setLore(plugin.getChameleonGuis().getStringList("INFO_TRANSMAT"));
             info.setItemMeta(meta);
             stack[17] = info;
             // teleport
             ItemStack tele = new ItemStack(GUITransmat.TRANSMAT.getMaterial(), 1);
             ItemMeta port = tele.getItemMeta();
-            port.setDisplayName(plugin.getLanguage().getString("BUTTON_TRANSMAT"));
+            port.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_TRANSMAT"));
             port.setCustomModelData(GUITransmat.TRANSMAT.getCustomModelData());
             tele.setItemMeta(port);
             stack[17] = tele;
             // delete
             ItemStack delete = new ItemStack(GUITransmat.DELETE.getMaterial(), 1);
             ItemMeta dim = delete.getItemMeta();
-            dim.setDisplayName(plugin.getLanguage().getString("BUTTON_DELETE"));
+            dim.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_DELETE"));
             dim.setCustomModelData(GUITransmat.DELETE.getCustomModelData());
             delete.setItemMeta(dim);
             stack[35] = delete;
@@ -98,7 +104,7 @@ public class TARDISTransmatInventory {
         // close
         ItemStack close = new ItemStack(GUITransmat.CLOSE.getMaterial(), 1);
         ItemMeta close_im = close.getItemMeta();
-        close_im.setDisplayName(plugin.getLanguage().getString("BUTTON_CLOSE"));
+        close_im.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_CLOSE"));
         close_im.setCustomModelData(GUITransmat.CLOSE.getCustomModelData());
         close.setItemMeta(close_im);
         stack[53] = close;

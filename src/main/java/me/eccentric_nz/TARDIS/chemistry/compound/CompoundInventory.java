@@ -40,22 +40,22 @@ public class CompoundInventory {
         // info
         ItemStack info = new ItemStack(Material.BOWL, 1);
         ItemMeta info_im = info.getItemMeta();
-        info_im.setDisplayName("Info");
-        info_im.setLore(Arrays.asList("Combine elements to create", "chemical compounds.", "To see a compound formula", "use the " + ChatColor.GREEN + ChatColor.ITALIC + "/tardischemistry formula" + ChatColor.DARK_PURPLE + ChatColor.ITALIC + " command.", "Place items in the bottom", "row from left to right."));
+        info_im.setDisplayName(ChatColor.RESET + "Info");
+        info_im.setLore(Arrays.asList(ChatColor.GRAY + "Combine elements to create", ChatColor.GRAY + "chemical compounds.", ChatColor.GRAY + "To see a compound formula", ChatColor.GRAY + "use the " + ChatColor.GREEN + "/tardischemistry formula" + ChatColor.GRAY + " command.", ChatColor.GRAY + "Place items in the bottom", ChatColor.GRAY + "row from left to right."));
         info_im.setCustomModelData(GUIChemistry.INFO.getCustomModelData());
         info.setItemMeta(info_im);
         stack[8] = info;
         // check formula
         ItemStack check = new ItemStack(Material.BOWL, 1);
         ItemMeta check_im = check.getItemMeta();
-        check_im.setDisplayName("Check formula");
+        check_im.setDisplayName(ChatColor.RESET + "Check formula");
         check_im.setCustomModelData(GUIChemistry.CHECK.getCustomModelData());
         check.setItemMeta(check_im);
         stack[17] = check;
         // close
         ItemStack close = new ItemStack(Material.BOWL, 1);
         ItemMeta close_im = close.getItemMeta();
-        close_im.setDisplayName(plugin.getLanguage().getString("BUTTON_CLOSE"));
+        close_im.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_CLOSE"));
         close_im.setCustomModelData(GUIChemistry.CLOSE.getCustomModelData());
         close.setItemMeta(close_im);
         stack[26] = close;

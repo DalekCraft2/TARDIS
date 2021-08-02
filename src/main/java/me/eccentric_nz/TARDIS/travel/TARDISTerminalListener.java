@@ -186,7 +186,7 @@ public class TARDISTerminalListener implements Listener {
                                 // set lore
                                 ItemStack is = view.getItem(49);
                                 ItemMeta im = is.getItemMeta();
-                                List<String> lore = Collections.singletonList("No valid destination has been set!");
+                                List<String> lore = Collections.singletonList(ChatColor.GRAY + "No valid destination has been set!");
                                 im.setLore(lore);
                                 is.setItemMeta(im);
                             }
@@ -232,7 +232,7 @@ public class TARDISTerminalListener implements Listener {
                 String sub = (rsp.isSubmarineOn()) ? "true" : "false";
                 ItemStack is = inv.getItem(44);
                 ItemMeta im = is.getItemMeta();
-                im.setLore(Collections.singletonList(sub));
+                im.setLore(Collections.singletonList(ChatColor.GRAY + sub));
                 is.setItemMeta(im);
             }
         }
@@ -294,8 +294,11 @@ public class TARDISTerminalListener implements Listener {
             default -> new ItemStack(Material.PURPLE_WOOL, 1);
         };
         ItemMeta im = is.getItemMeta();
-        im.setDisplayName(row);
-        List<String> lore = getLoreValue(max, new_slot, signed, uuid);
+        im.setDisplayName(ChatColor.RESET + row);
+        List<String> lore = new ArrayList<>(getLoreValue(max, new_slot, signed, uuid));
+        for (int i = 0; i < lore.size(); i++) {
+            lore.set(i, ChatColor.GRAY + lore.get(i));
+        }
         im.setLore(lore);
         is.setItemMeta(im);
         view.setItem(new_slot, is);
@@ -317,26 +320,26 @@ public class TARDISTerminalListener implements Listener {
                 switch (slot) {
                     case 38:
                         // get a normal world
-                        lore = Collections.singletonList(getWorld("NORMAL", current, p));
+                        lore = Collections.singletonList(ChatColor.GRAY + getWorld("NORMAL", current, p));
                         break;
                     case 40:
                         // get a nether world
                         if (plugin.getConfig().getBoolean("travel.nether") || !plugin.getConfig().getBoolean("travel.terminal.redefine")) {
-                            lore = Collections.singletonList(getWorld("NETHER", current, p));
+                            lore = Collections.singletonList(ChatColor.GRAY + getWorld("NETHER", current, p));
                         } else {
-                            lore = Collections.singletonList(getWorld(plugin.getConfig().getString("travel.terminal.nether"), current, p));
+                            lore = Collections.singletonList(ChatColor.GRAY + getWorld(plugin.getConfig().getString("travel.terminal.nether"), current, p));
                         }
                         break;
                     case 42:
                         // get an end world
                         if (plugin.getConfig().getBoolean("travel.the_end") || !plugin.getConfig().getBoolean("travel.terminal.redefine")) {
-                            lore = Collections.singletonList(getWorld("THE_END", current, p));
+                            lore = Collections.singletonList(ChatColor.GRAY + getWorld("THE_END", current, p));
                         } else {
-                            lore = Collections.singletonList(getWorld(plugin.getConfig().getString("travel.terminal.the_end"), current, p));
+                            lore = Collections.singletonList(ChatColor.GRAY + getWorld(plugin.getConfig().getString("travel.terminal.the_end"), current, p));
                         }
                         break;
                     default:
-                        lore = Collections.singletonList(current);
+                        lore = Collections.singletonList(ChatColor.GRAY + current);
                         break;
                 }
             }
@@ -351,7 +354,7 @@ public class TARDISTerminalListener implements Listener {
             String bool = (rsp.isSubmarineOn()) ? "false" : "true";
             ItemStack is = view.getItem(44);
             ItemMeta im = is.getItemMeta();
-            im.setLore(Collections.singletonList(bool));
+            im.setLore(Collections.singletonList(ChatColor.GRAY + bool));
             is.setItemMeta(im);
             int tf = (rsp.isSubmarineOn()) ? 0 : 1;
             HashMap<String, Object> set = new HashMap<>();
@@ -446,31 +449,31 @@ public class TARDISTerminalListener implements Listener {
                                     String save = world + ":" + slotx + ":" + endy + ":" + slotz;
                                     if (plugin.getPluginRespect().getRespect(new Location(w, slotx, endy, slotz), new Parameters(p, Flag.getNoMessageFlags()))) {
                                         terminalDestination.put(uuid, save);
-                                        lore.add(save);
-                                        lore.add("is a valid destination!");
+                                        lore.add(ChatColor.GRAY + save);
+                                        lore.add(ChatColor.GRAY + "is a valid destination!");
                                     } else {
-                                        lore.add(save);
-                                        lore.add("is a protected location.");
-                                        lore.add("Try again!");
+                                        lore.add(ChatColor.GRAY + save);
+                                        lore.add(ChatColor.GRAY + "is a protected location.");
+                                        lore.add(ChatColor.GRAY + "Try again!");
                                     }
                                 } else {
-                                    lore.add(loc_str);
-                                    lore.add("is not safe!");
+                                    lore.add(ChatColor.GRAY + loc_str);
+                                    lore.add(ChatColor.GRAY + "is not safe!");
                                 }
                             } else {
-                                lore.add(loc_str);
-                                lore.add("is not safe!");
+                                lore.add(ChatColor.GRAY + loc_str);
+                                lore.add(ChatColor.GRAY + "is not safe!");
                             }
                             break;
                         case NETHER:
                             if (tt.safeNether(w, slotx, slotz, d, p)) {
                                 String save = world + ":" + slotx + ":" + plugin.getUtils().getHighestNetherBlock(w, slotx, slotz) + ":" + slotz;
                                 terminalDestination.put(uuid, save);
-                                lore.add(save);
-                                lore.add("is a valid destination!");
+                                lore.add(ChatColor.GRAY + save);
+                                lore.add(ChatColor.GRAY + "is a valid destination!");
                             } else {
-                                lore.add(loc_str);
-                                lore.add("is not safe!");
+                                lore.add(ChatColor.GRAY + loc_str);
+                                lore.add(ChatColor.GRAY + "is not safe!");
                             }
                             break;
                         default:
@@ -501,16 +504,16 @@ public class TARDISTerminalListener implements Listener {
                                 String save = world + ":" + slotx + ":" + starty + ":" + slotz;
                                 if (plugin.getPluginRespect().getRespect(new Location(w, slotx, starty, slotz), new Parameters(p, Flag.getNoMessageFlags()))) {
                                     terminalDestination.put(uuid, save);
-                                    lore.add(save);
-                                    lore.add("is a valid destination!");
+                                    lore.add(ChatColor.GRAY + save);
+                                    lore.add(ChatColor.GRAY + "is a valid destination!");
                                 } else {
-                                    lore.add(save);
-                                    lore.add("is a protected location.");
-                                    lore.add("Try again!");
+                                    lore.add(ChatColor.GRAY + save);
+                                    lore.add(ChatColor.GRAY + "is a protected location.");
+                                    lore.add(ChatColor.GRAY + "Try again!");
                                 }
                             } else {
-                                lore.add(loc_str);
-                                lore.add("is not safe!");
+                                lore.add(ChatColor.GRAY + loc_str);
+                                lore.add(ChatColor.GRAY + "is not safe!");
                             }
                             break;
                     }
@@ -518,7 +521,7 @@ public class TARDISTerminalListener implements Listener {
             }
         }
         if (!found) {
-            lore.add("You need to select a world!");
+            lore.add(ChatColor.GRAY + "You need to select a world!");
         }
         ItemStack is = view.getItem(46);
         ItemMeta im = is.getItemMeta();

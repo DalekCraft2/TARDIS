@@ -24,6 +24,7 @@ import me.eccentric_nz.TARDIS.database.resultset.ResultSetTardis;
 import me.eccentric_nz.TARDIS.enumeration.FlightMode;
 import me.eccentric_nz.TARDIS.enumeration.HADS;
 import me.eccentric_nz.TARDIS.enumeration.PRESET;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.inventory.ItemStack;
@@ -118,7 +119,7 @@ public class TARDISPrefsMenuInventory {
             if (pref.getMaterial() == Material.REPEATER) {
                 ItemStack is = new ItemStack(pref.getMaterial(), 1);
                 ItemMeta im = is.getItemMeta();
-                im.setDisplayName(pref.getName());
+                im.setDisplayName(ChatColor.RESET + pref.getName());
                 int cmd = pref.getCustomModelData();
                 boolean v;
                 if (pref == GUIPlayerPreferences.JUNK_TARDIS) {
@@ -128,9 +129,9 @@ public class TARDISPrefsMenuInventory {
                 }
                 im.setCustomModelData(v ? cmd : cmd + 100);
                 if (pref == GUIPlayerPreferences.HADS_TYPE) {
-                    im.setLore(Collections.singletonList(v ? "DISPERSAL" : "DISPLACEMENT"));
+                    im.setLore(Collections.singletonList(v ? ChatColor.GRAY + "DISPERSAL" : ChatColor.GRAY + "DISPLACEMENT"));
                 } else {
-                    im.setLore(Collections.singletonList(v ? plugin.getLanguage().getString("SET_ON") : plugin.getLanguage().getString("SET_OFF")));
+                    im.setLore(Collections.singletonList(v ? ChatColor.GRAY + plugin.getLanguage().getString("SET_ON") : ChatColor.GRAY + plugin.getLanguage().getString("SET_OFF")));
                 }
                 is.setItemMeta(im);
                 stack[pref.getSlot()] = is;
@@ -142,40 +143,40 @@ public class TARDISPrefsMenuInventory {
         // flight mode
         ItemStack fli = new ItemStack(Material.ELYTRA, 1);
         ItemMeta ght_im = fli.getItemMeta();
-        ght_im.setDisplayName("Flight Mode");
+        ght_im.setDisplayName(ChatColor.RESET + "Flight Mode");
         String mode_value = FlightMode.getByMode().get(rsp.getFlightMode()).toString();
-        ght_im.setLore(Collections.singletonList(mode_value));
+        ght_im.setLore(Collections.singletonList(ChatColor.GRAY + mode_value));
         ght_im.setCustomModelData(GUIPlayerPreferences.FLIGHT_MODE.getCustomModelData());
         fli.setItemMeta(ght_im);
         stack[GUIPlayerPreferences.FLIGHT_MODE.getSlot()] = fli;
         // interior hum sound
         ItemStack hum = new ItemStack(Material.BOWL, 1);
         ItemMeta hum_im = hum.getItemMeta();
-        hum_im.setDisplayName("Interior Hum Sound");
+        hum_im.setDisplayName(ChatColor.RESET + "Interior Hum Sound");
         String hum_value = (rsp.getHum().isEmpty()) ? "random" : rsp.getHum();
-        hum_im.setLore(Collections.singletonList(hum_value));
+        hum_im.setLore(Collections.singletonList(ChatColor.GRAY + hum_value));
         hum_im.setCustomModelData(GUIPlayerPreferences.INTERIOR_HUM_SOUND.getCustomModelData());
         hum.setItemMeta(hum_im);
         stack[GUIPlayerPreferences.INTERIOR_HUM_SOUND.getSlot()] = hum;
         // handbrake
         ItemStack hand = new ItemStack(Material.LEVER, 1);
         ItemMeta brake = hand.getItemMeta();
-        brake.setDisplayName("Handbrake");
-        brake.setLore(Collections.singletonList((tardis != null && tardis.isHandbrake_on()) ? plugin.getLanguage().getString("SET_ON") : plugin.getLanguage().getString("SET_OFF")));
+        brake.setDisplayName(ChatColor.RESET + "Handbrake");
+        brake.setLore(Collections.singletonList((tardis != null && tardis.isHandbrake_on()) ? ChatColor.GRAY + plugin.getLanguage().getString("SET_ON") : ChatColor.GRAY + plugin.getLanguage().getString("SET_OFF")));
         brake.setCustomModelData(GUIPlayerPreferences.HANDBRAKE.getCustomModelData());
         hand.setItemMeta(brake);
         stack[GUIPlayerPreferences.HANDBRAKE.getSlot()] = hand;
         // map
         ItemStack tt = new ItemStack(Material.MAP, 1);
         ItemMeta map = tt.getItemMeta();
-        map.setDisplayName("TARDIS Map");
+        map.setDisplayName(ChatColor.RESET + "TARDIS Map");
         map.setCustomModelData(GUIPlayerPreferences.TARDIS_MAP.getCustomModelData());
         tt.setItemMeta(map);
         stack[GUIPlayerPreferences.TARDIS_MAP.getSlot()] = tt;
         // map
         ItemStack sonic = new ItemStack(Material.BOWL, 1);
         ItemMeta config = sonic.getItemMeta();
-        config.setDisplayName("Sonic Configurator");
+        config.setDisplayName(ChatColor.RESET + "Sonic Configurator");
         config.setCustomModelData(GUIPlayerPreferences.SONIC_CONFIGURATOR.getCustomModelData());
         sonic.setItemMeta(config);
         stack[GUIPlayerPreferences.SONIC_CONFIGURATOR.getSlot()] = sonic;
@@ -183,7 +184,7 @@ public class TARDISPrefsMenuInventory {
             // admin
             ItemStack ad = new ItemStack(Material.NETHER_STAR, 1);
             ItemMeta min = ad.getItemMeta();
-            min.setDisplayName("Admin Config Menu");
+            min.setDisplayName(ChatColor.RESET + "Admin Config Menu");
             min.setCustomModelData(GUIPlayerPreferences.ADMIN_MENU.getCustomModelData());
             ad.setItemMeta(min);
             stack[GUIPlayerPreferences.ADMIN_MENU.getSlot()] = ad;

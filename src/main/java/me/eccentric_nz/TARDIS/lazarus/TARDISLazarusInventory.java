@@ -103,11 +103,7 @@ class TARDISLazarusInventory {
         for (Material m : disguises) {
             ItemStack egg = new ItemStack(m, 1);
             ItemMeta me = egg.getItemMeta();
-            switch (m) {
-                case MOOSHROOM_SPAWN_EGG -> me.setDisplayName("MUSHROOM_COW");
-                case ZOMBIFIED_PIGLIN_SPAWN_EGG -> me.setDisplayName("PIG_ZOMBIE");
-                default -> me.setDisplayName(m.toString().replace("_SPAWN_EGG", ""));
-            }
+            me.setDisplayName(ChatColor.RESET + m.toString().replace("_SPAWN_EGG", ""));
             egg.setItemMeta(me);
             eggs[i] = egg;
             i++;
@@ -115,31 +111,31 @@ class TARDISLazarusInventory {
         // add options
         ItemStack the = new ItemStack(Material.COMPARATOR, 1);
         ItemMeta master = the.getItemMeta();
-        master.setDisplayName(plugin.getLanguage().getString("BUTTON_MASTER"));
-        master.setLore(Collections.singletonList(plugin.getLanguage().getString("SET_OFF")));
+        master.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_MASTER"));
+        master.setLore(Collections.singletonList(ChatColor.GRAY + plugin.getLanguage().getString("SET_OFF")));
         master.setCustomModelData(GUIGeneticManipulator.BUTTON_MASTER.getCustomModelData());
         the.setItemMeta(master);
         eggs[45] = the;
         ItemStack adult = new ItemStack(Material.HOPPER, 1);
         ItemMeta baby = adult.getItemMeta();
-        baby.setDisplayName(plugin.getLanguage().getString("BUTTON_AGE"));
-        baby.setLore(Collections.singletonList("ADULT"));
+        baby.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_AGE"));
+        baby.setLore(Collections.singletonList(ChatColor.GRAY + "ADULT"));
         baby.setCustomModelData(GUIGeneticManipulator.BUTTON_AGE.getCustomModelData());
         adult.setItemMeta(baby);
         eggs[47] = adult;
         ItemStack typ = new ItemStack(Material.CYAN_DYE, 1);
         ItemMeta col = typ.getItemMeta();
-        col.setDisplayName(plugin.getLanguage().getString("BUTTON_TYPE"));
-        col.setLore(Collections.singletonList("WHITE"));
+        col.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_TYPE"));
+        col.setLore(Collections.singletonList(ChatColor.GRAY + "WHITE"));
         col.setCustomModelData(GUIGeneticManipulator.BUTTON_TYPE.getCustomModelData());
         typ.setItemMeta(col);
         eggs[48] = typ;
         ItemStack tamed = new ItemStack(Material.LEAD, 1);
         ItemMeta tf = tamed.getItemMeta();
-        tf.setDisplayName(plugin.getLanguage().getString("BUTTON_OPTS"));
+        tf.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_OPTS"));
         List<String> opts = new ArrayList<>();
         for (String o : plugin.getLanguage().getString("BUTTON_OPTS_LIST").split("/")) {
-            opts.add(ChatColor.ITALIC + o + ChatColor.RESET);
+            opts.add(ChatColor.GRAY + o);
         }
         opts.add(ChatColor.RED + "FALSE");
         tf.setLore(opts);
@@ -149,20 +145,20 @@ class TARDISLazarusInventory {
         // add buttons
         ItemStack rem = new ItemStack(Material.APPLE, 1);
         ItemMeta ove = rem.getItemMeta();
-        ove.setDisplayName(plugin.getLanguage().getString("BUTTON_RESTORE"));
+        ove.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_RESTORE"));
         ove.setCustomModelData(GUIGeneticManipulator.BUTTON_RESTORE.getCustomModelData());
         rem.setItemMeta(ove);
         eggs[51] = rem;
         // set
         ItemStack s = new ItemStack(Material.WRITABLE_BOOK, 1);
         ItemMeta sim = s.getItemMeta();
-        sim.setDisplayName(plugin.getLanguage().getString("BUTTON_DNA"));
+        sim.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_DNA"));
         sim.setCustomModelData(GUIGeneticManipulator.BUTTON_DNA.getCustomModelData());
         s.setItemMeta(sim);
         eggs[52] = s;
         ItemStack can = new ItemStack(Material.BOWL, 1);
         ItemMeta cel = can.getItemMeta();
-        cel.setDisplayName(plugin.getLanguage().getString("BUTTON_CANCEL"));
+        cel.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_CANCEL"));
         cel.setCustomModelData(GUIGeneticManipulator.BUTTON_CANCEL.getCustomModelData());
         can.setItemMeta(cel);
         eggs[53] = can;

@@ -19,6 +19,7 @@ package me.eccentric_nz.TARDIS.desktop;
 import me.eccentric_nz.TARDIS.TARDIS;
 import me.eccentric_nz.TARDIS.custommodeldata.GUIWallFloor;
 import me.eccentric_nz.TARDIS.rooms.TARDISWalls;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -66,35 +67,35 @@ class TARDISWallsInventory {
         // scroll up
         ItemStack scroll_up = new ItemStack(Material.ARROW, 1);
         ItemMeta uim = scroll_up.getItemMeta();
-        uim.setDisplayName(plugin.getLanguage().getString("BUTTON_SCROLL_U"));
+        uim.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_SCROLL_U"));
         uim.setCustomModelData(GUIWallFloor.BUTTON_SCROLL_U.getCustomModelData());
         scroll_up.setItemMeta(uim);
         stack[8] = scroll_up;
         // scroll down
         ItemStack scroll_down = new ItemStack(Material.ARROW, 1);
         ItemMeta dim = scroll_down.getItemMeta();
-        dim.setDisplayName(plugin.getLanguage().getString("BUTTON_SCROLL_D"));
+        dim.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_SCROLL_D"));
         dim.setCustomModelData(GUIWallFloor.BUTTON_SCROLL_D.getCustomModelData());
         scroll_down.setItemMeta(dim);
         stack[17] = scroll_down;
         // default wall
         ItemStack wall = new ItemStack(Material.BOWL, 1);
         ItemMeta wim = wall.getItemMeta();
-        wim.setDisplayName("Default Wall Block");
+        wim.setDisplayName(ChatColor.RESET + "Default Wall Block");
         wim.setCustomModelData(GUIWallFloor.WALL.getCustomModelData());
         wall.setItemMeta(wim);
         stack[26] = wall;
         // default floor
         ItemStack floor = new ItemStack(Material.BOWL, 1);
         ItemMeta fim = floor.getItemMeta();
-        fim.setDisplayName("Default Floor Block");
+        fim.setDisplayName(ChatColor.RESET + "Default Floor Block");
         fim.setCustomModelData(GUIWallFloor.FLOOR.getCustomModelData());
         floor.setItemMeta(fim);
         stack[35] = floor;
         // close
         ItemStack close = new ItemStack(Material.BOWL, 1);
         ItemMeta close_im = close.getItemMeta();
-        close_im.setDisplayName("Abort upgrade");
+        close_im.setDisplayName(ChatColor.RESET + "Abort upgrade");
         close_im.setCustomModelData(GUIWallFloor.BUTTON_ABORT.getCustomModelData());
         close.setItemMeta(close_im);
         stack[53] = close;

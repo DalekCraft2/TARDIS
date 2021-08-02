@@ -18,6 +18,7 @@ package me.eccentric_nz.TARDIS.sonic;
 
 import me.eccentric_nz.TARDIS.TARDIS;
 import me.eccentric_nz.TARDIS.custommodeldata.GUISonicPreferences;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -56,7 +57,7 @@ public class TARDISSonicMenuInventory {
                 ItemStack is = new ItemStack(sonic.getMaterial(), 1);
                 ItemMeta im = is.getItemMeta();
                 im.setDisplayName(sonic.getChatColor() + "Sonic Screwdriver");
-                im.setLore(Collections.singletonList(sonic.getName()));
+                im.setLore(Collections.singletonList(ChatColor.GRAY + sonic.getName()));
                 im.setCustomModelData(sonic.getCustomModelData());
                 is.setItemMeta(im);
                 stack[sonic.getSlot()] = is;
@@ -66,8 +67,8 @@ public class TARDISSonicMenuInventory {
         // info
         ItemStack info = new ItemStack(Material.BOOK, 1);
         ItemMeta info_im = info.getItemMeta();
-        info_im.setDisplayName("Instructions");
-        List<String> lore = Arrays.asList("Put your Sonic Screwdriver", "in the bottom left most slot", "and then click on the", "Sonic of your choice.");
+        info_im.setDisplayName(ChatColor.RESET + "Instructions");
+        List<String> lore = Arrays.asList(ChatColor.GRAY + "Put your Sonic Screwdriver", ChatColor.GRAY + "in the bottom left most slot", ChatColor.GRAY + "and then click on the", ChatColor.GRAY + "Sonic of your choice.");
         info_im.setLore(lore);
         info_im.setCustomModelData(GUISonicPreferences.INSTRUCTIONS.getCustomModelData());
         info.setItemMeta(info_im);
@@ -75,7 +76,7 @@ public class TARDISSonicMenuInventory {
         // close
         ItemStack close = new ItemStack(Material.BOWL, 1);
         ItemMeta close_im = close.getItemMeta();
-        close_im.setDisplayName(plugin.getLanguage().getString("BUTTON_CLOSE"));
+        close_im.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_CLOSE"));
         close_im.setCustomModelData(GUISonicPreferences.CLOSE.getCustomModelData());
         close.setItemMeta(close_im);
         stack[26] = close;

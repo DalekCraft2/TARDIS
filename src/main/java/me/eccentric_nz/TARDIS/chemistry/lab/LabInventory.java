@@ -40,22 +40,22 @@ public class LabInventory {
         // info
         ItemStack info = new ItemStack(Material.BOWL, 1);
         ItemMeta info_im = info.getItemMeta();
-        info_im.setDisplayName("Info");
-        info_im.setLore(Arrays.asList("Combine elements and compounds", "to create bleach, ice bombs", "heat blocks and fertiliser.", "To see a lab table formula", "use the " + ChatColor.GREEN + ChatColor.ITALIC + "/tardischemistry formula" + ChatColor.DARK_PURPLE + ChatColor.ITALIC + " command.", "Place items in the bottom", "row from left to right."));
+        info_im.setDisplayName(ChatColor.RESET + "Info");
+        info_im.setLore(Arrays.asList(ChatColor.GRAY + "Combine elements and compounds", ChatColor.GRAY + "to create bleach, ice bombs", ChatColor.GRAY + "heat blocks and fertiliser.", ChatColor.GRAY + "To see a lab table formula", ChatColor.GRAY + "use the " + ChatColor.GREEN + "/tardischemistry formula" + ChatColor.GRAY + " command.", ChatColor.GRAY + "Place items in the bottom", ChatColor.GRAY + "row from left to right."));
         info_im.setCustomModelData(GUIChemistry.INFO.getCustomModelData());
         info.setItemMeta(info_im);
         stack[8] = info;
         // check recipe
         ItemStack check = new ItemStack(Material.BOWL, 1);
         ItemMeta check_im = check.getItemMeta();
-        check_im.setDisplayName("Check product");
+        check_im.setDisplayName(ChatColor.RESET + "Check product");
         check_im.setCustomModelData(GUIChemistry.CHECK.getCustomModelData());
         check.setItemMeta(check_im);
         stack[17] = check;
         // close
         ItemStack close = new ItemStack(Material.BOWL, 1);
         ItemMeta close_im = close.getItemMeta();
-        close_im.setDisplayName(plugin.getLanguage().getString("BUTTON_CLOSE"));
+        close_im.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_CLOSE"));
         close_im.setCustomModelData(GUIChemistry.CLOSE.getCustomModelData());
         close.setItemMeta(close_im);
         stack[26] = close;

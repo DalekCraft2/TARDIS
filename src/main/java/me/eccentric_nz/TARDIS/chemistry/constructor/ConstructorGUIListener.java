@@ -137,7 +137,7 @@ public class ConstructorGUIListener extends TARDISMenuListener implements Listen
         int hundredInt = (amount / 100) % 10;
         ItemStack ones = view.getItem(3 + offset);
         ItemMeta oneMeta = ones.getItemMeta();
-        oneMeta.setDisplayName("" + oneInt);
+        oneMeta.setDisplayName(ChatColor.RESET + "" + oneInt);
         oneMeta.setCustomModelData(26 + oneInt);
         ones.setItemMeta(oneMeta);
         ItemStack tens = view.getItem(2 + offset);
@@ -146,7 +146,7 @@ public class ConstructorGUIListener extends TARDISMenuListener implements Listen
                 tens = new ItemStack(Material.PAPER, 1);
             }
             ItemMeta tenMeta = tens.getItemMeta();
-            tenMeta.setDisplayName("" + tenInt);
+            tenMeta.setDisplayName(ChatColor.RESET + "" + tenInt);
             tenMeta.setCustomModelData(26 + tenInt);
             tens.setItemMeta(tenMeta);
             view.setItem(2 + offset, tens);
@@ -159,7 +159,7 @@ public class ConstructorGUIListener extends TARDISMenuListener implements Listen
                 hundreds = new ItemStack(Material.PAPER, 1);
             }
             ItemMeta hundredMeta = hundreds.getItemMeta();
-            hundredMeta.setDisplayName("" + hundredInt);
+            hundredMeta.setDisplayName(ChatColor.RESET + "" + hundredInt);
             hundredMeta.setCustomModelData(26 + hundredInt);
             hundreds.setItemMeta(hundredMeta);
             view.setItem(1 + offset, hundreds);

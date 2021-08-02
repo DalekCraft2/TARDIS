@@ -19,6 +19,7 @@ package me.eccentric_nz.TARDIS.chameleon;
 import me.eccentric_nz.TARDIS.TARDIS;
 import me.eccentric_nz.TARDIS.blueprints.TARDISPermission;
 import me.eccentric_nz.TARDIS.custommodeldata.GUIChameleonPoliceBoxes;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -62,7 +63,7 @@ class TARDISPoliceBoxInventory {
                 String dye = underscored.toUpperCase() + "_DYE";
                 ItemStack is = new ItemStack(Material.valueOf(dye), 1);
                 ItemMeta im = is.getItemMeta();
-                im.setDisplayName(s + " Police Box");
+                im.setDisplayName(ChatColor.RESET + s + " Police Box");
                 im.setCustomModelData(1001);
                 is.setItemMeta(im);
                 boxes[i] = is;
@@ -72,28 +73,28 @@ class TARDISPoliceBoxInventory {
         // weeping angel
         ItemStack is = new ItemStack(Material.GRAY_STAINED_GLASS_PANE, 1);
         ItemMeta im = is.getItemMeta();
-        im.setDisplayName("Weeping Angel");
+        im.setDisplayName(ChatColor.RESET + "Weeping Angel");
         im.setCustomModelData(1001);
         is.setItemMeta(im);
         boxes[i] = is;
         // page one
         ItemStack page = new ItemStack(Material.ARROW, 1);
         ItemMeta one = page.getItemMeta();
-        one.setDisplayName(plugin.getLanguage().getString("BUTTON_PAGE_1"));
+        one.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_PAGE_1"));
         one.setCustomModelData(GUIChameleonPoliceBoxes.GO_TO_PAGE_1.getCustomModelData());
         page.setItemMeta(one);
         boxes[24] = page;
         // back
         ItemStack back = new ItemStack(Material.BOWL, 1);
         ItemMeta but = back.getItemMeta();
-        but.setDisplayName("Back");
+        but.setDisplayName(ChatColor.RESET + "Back");
         but.setCustomModelData(GUIChameleonPoliceBoxes.BACK.getCustomModelData());
         back.setItemMeta(but);
         boxes[25] = back;
         // Cancel / close
         ItemStack close = new ItemStack(Material.BOWL, 1);
         ItemMeta can = close.getItemMeta();
-        can.setDisplayName(plugin.getLanguage().getString("BUTTON_CLOSE"));
+        can.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_CLOSE"));
         can.setCustomModelData(GUIChameleonPoliceBoxes.CLOSE.getCustomModelData());
         close.setItemMeta(can);
         boxes[26] = close;

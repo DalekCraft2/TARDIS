@@ -25,6 +25,7 @@ import me.eccentric_nz.TARDIS.enumeration.PRESET;
 import me.eccentric_nz.TARDIS.messaging.TARDISMessage;
 import me.eccentric_nz.TARDIS.utility.TARDISBlockSetters;
 import me.eccentric_nz.TARDIS.utility.TARDISSounds;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.World;
@@ -130,7 +131,7 @@ public class TARDISMaterialisePoliceBox implements Runnable {
                 im.setCustomModelData(cmd);
                 if (bd.shouldAddSign()) {
                     String pb = (preset.equals(PRESET.WEEPING_ANGEL)) ? "Weeping Angel" : "Police Box";
-                    im.setDisplayName(bd.getPlayer().getName() + "'s " + pb);
+                    im.setDisplayName(ChatColor.RESET + bd.getPlayer().getName() + "'s " + pb);
                 }
                 is.setItemMeta(im);
                 frame.setItem(is, false);

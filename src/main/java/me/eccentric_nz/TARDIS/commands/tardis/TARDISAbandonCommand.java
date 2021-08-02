@@ -30,10 +30,7 @@ import me.eccentric_nz.TARDIS.enumeration.COMPASS;
 import me.eccentric_nz.TARDIS.enumeration.PRESET;
 import me.eccentric_nz.TARDIS.messaging.TARDISMessage;
 import me.eccentric_nz.TARDIS.move.TARDISDoorCloser;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Tag;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 import org.bukkit.command.CommandSender;
@@ -271,7 +268,7 @@ public class TARDISAbandonCommand {
                                 ItemStack is = new ItemStack(dye, 1);
                                 ItemMeta im = is.getItemMeta();
                                 im.setCustomModelData(1001);
-                                im.setDisplayName("");
+                                im.setDisplayName(ChatColor.RESET + "");
                                 is.setItemMeta(im);
                                 frame.setItem(is, false);
                             }

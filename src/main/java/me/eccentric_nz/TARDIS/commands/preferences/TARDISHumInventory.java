@@ -19,6 +19,7 @@ package me.eccentric_nz.TARDIS.commands.preferences;
 import me.eccentric_nz.TARDIS.TARDIS;
 import me.eccentric_nz.TARDIS.custommodeldata.GUIInteriorSounds;
 import me.eccentric_nz.TARDIS.enumeration.Hum;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -54,7 +55,7 @@ class TARDISHumInventory {
         for (Hum hum : Hum.values()) {
             ItemStack is = new ItemStack(Material.BOWL, 1);
             ItemMeta im = is.getItemMeta();
-            im.setDisplayName(hum.toString());
+            im.setDisplayName(ChatColor.RESET + hum.toString());
             im.setCustomModelData(GUIInteriorSounds.valueOf(hum.toString()).getCustomModelData());
             is.setItemMeta(im);
             options.add(is);
@@ -71,15 +72,15 @@ class TARDISHumInventory {
         // play / save
         ItemStack play = new ItemStack(Material.BOWL, 1);
         ItemMeta save = play.getItemMeta();
-        save.setDisplayName("Action");
-        save.setLore(Collections.singletonList("PLAY"));
+        save.setDisplayName(ChatColor.RESET + "Action");
+        save.setLore(Collections.singletonList(ChatColor.GRAY + "PLAY"));
         save.setCustomModelData(GUIInteriorSounds.ACTION.getCustomModelData());
         play.setItemMeta(save);
         stack[15] = play;
         // close
         ItemStack close = new ItemStack(Material.BOWL, 1);
         ItemMeta c_im = close.getItemMeta();
-        c_im.setDisplayName(plugin.getLanguage().getString("BUTTON_CLOSE"));
+        c_im.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_CLOSE"));
         c_im.setCustomModelData(GUIInteriorSounds.CLOSE.getCustomModelData());
         close.setItemMeta(c_im);
         stack[17] = close;

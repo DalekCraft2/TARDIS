@@ -134,7 +134,7 @@ public class TARDISARSListener extends TARDISARSMethods implements Listener {
                             setMap(md.getY(), md.getE(), md.getS(), playerUUID, view);
                             setLore(view, slot, null);
                         } else {
-                            setLore(view, slot, plugin.getLanguage().getString("ARS_LOAD"));
+                            setLore(view, slot, ChatColor.GRAY + plugin.getLanguage().getString("ARS_LOAD"));
                         }
                         break;
                     case 30:
@@ -142,19 +142,19 @@ public class TARDISARSListener extends TARDISARSMethods implements Listener {
                         if (selected_slot.containsKey(playerUUID)) {
                             // check whether original loaded slot was a room - as it will need to be jettisoned, not reset
                             if (checkSavedGrid(playerUUID, selected_slot.get(playerUUID), 0)) {
-                                setLore(view, slot, plugin.getLanguage().getString("ARS_RESET_SLOT"));
+                                setLore(view, slot, ChatColor.GRAY + plugin.getLanguage().getString("ARS_RESET_SLOT"));
                                 break;
                             } else {
                                 ItemStack stone = new ItemStack(Material.STONE, 1);
                                 ItemMeta s1 = stone.getItemMeta();
-                                s1.setDisplayName("Empty slot");
+                                s1.setDisplayName(ChatColor.RESET + "Empty slot");
                                 s1.setCustomModelData(1);
                                 stone.setItemMeta(s1);
                                 setSlot(view, selected_slot.get(playerUUID), stone, playerUUID, true);
                                 setLore(view, slot, null);
                             }
                         } else {
-                            setLore(view, slot, plugin.getLanguage().getString("ARS_NO_SLOT"));
+                            setLore(view, slot, ChatColor.GRAY + plugin.getLanguage().getString("ARS_NO_SLOT"));
                         }
                         break;
                     case 36:
@@ -198,13 +198,13 @@ public class TARDISARSListener extends TARDISARSMethods implements Listener {
                             // need to check for gravity wells, and jettison both layers...
                             ItemStack tnt = new ItemStack(Material.TNT, 1);
                             ItemMeta j = tnt.getItemMeta();
-                            j.setDisplayName("Jettison");
+                            j.setDisplayName(ChatColor.RESET + "Jettison");
                             j.setCustomModelData(1);
                             tnt.setItemMeta(j);
                             setSlot(view, selected_slot.get(playerUUID), tnt, playerUUID, true);
                             setLore(view, slot, null);
                         } else {
-                            setLore(view, slot, plugin.getLanguage().getString("ARS_NO_SLOT"));
+                            setLore(view, slot, ChatColor.GRAY + plugin.getLanguage().getString("ARS_NO_SLOT"));
                         }
                         break;
                     case 45:
@@ -220,25 +220,25 @@ public class TARDISARSListener extends TARDISARSMethods implements Listener {
                         if (selected_slot.containsKey(playerUUID)) {
                             // check whether original loaded slot was a room - as it will need to be jettisoned, not reset
                             if (checkSavedGrid(playerUUID, selected_slot.get(playerUUID), 0)) {
-                                setLore(view, slot, "Jettison existing room first!");
+                                setLore(view, slot, ChatColor.GRAY + "Jettison existing room first!");
                                 break;
                             } else {
                                 ItemStack ris = view.getItem(slot);
-                                String displayName = ris.getItemMeta().getDisplayName();
+                                String displayName = ChatColor.stripColor(ris.getItemMeta().getDisplayName());
                                 String room = TARDISARS.ARSFor(ris.getType().toString()).getConfigPath();
                                 if (!TARDISPermission.hasPermission(player, "tardis.room." + room.toLowerCase(Locale.ENGLISH))) {
-                                    setLore(view, slot, plugin.getLanguage().getString("NO_PERM_ROOM_TYPE"));
+                                    setLore(view, slot, ChatColor.GRAY + plugin.getLanguage().getString("NO_PERM_ROOM_TYPE"));
                                     break;
                                 }
                                 if (room.equals("GRAVITY") || room.equals("ANTIGRAVITY")) {
                                     int updown = (room.equals("GRAVITY")) ? -1 : 1;
                                     if (checkSavedGrid(playerUUID, selected_slot.get(playerUUID), updown)) {
-                                        setLore(view, slot, plugin.getLanguage().getString("ARS_GRAVITY"));
+                                        setLore(view, slot, ChatColor.GRAY + plugin.getLanguage().getString("ARS_GRAVITY"));
                                         break;
                                     }
                                 }
                                 if (room.equals("RENDERER") && hasRenderer(playerUUID)) {
-                                    setLore(view, slot, plugin.getLanguage().getString("ARS_HAS_RENDERER"));
+                                    setLore(view, slot, ChatColor.GRAY + plugin.getLanguage().getString("ARS_HAS_RENDERER"));
                                     break;
                                 }
                                 // setSlot(Inventory inv, int slot, ItemStack is, String player, boolean update)
@@ -246,7 +246,7 @@ public class TARDISARSListener extends TARDISARSMethods implements Listener {
                                 setSlot(view, slot, ris.getType(), displayName, playerUUID, false);
                             }
                         } else {
-                            setLore(view, slot, plugin.getLanguage().getString("ARS_NO_SLOT"));
+                            setLore(view, slot, ChatColor.GRAY + plugin.getLanguage().getString("ARS_NO_SLOT"));
                         }
                         break;
                     default:

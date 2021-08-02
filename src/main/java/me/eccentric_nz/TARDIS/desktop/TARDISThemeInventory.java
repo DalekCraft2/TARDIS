@@ -68,17 +68,17 @@ public class TARDISThemeInventory {
             if (!m.equals(Material.COBBLESTONE)) {
                 ItemStack is = new ItemStack(m, 1);
                 ItemMeta im = is.getItemMeta();
-                im.setDisplayName(a.getDescription());
+                im.setDisplayName(ChatColor.RESET + a.getDescription());
                 int cost = plugin.getArtronConfig().getInt("upgrades." + a.getPermission());
                 if (current_console.equals(a.getPermission())) {
                     cost = Math.round((plugin.getArtronConfig().getInt("just_wall_floor") / 100F) * cost);
                 }
                 List<String> lore = new ArrayList<>();
-                lore.add("Cost: " + cost);
+                lore.add(ChatColor.GRAY + "Cost: " + cost);
                 if (!TARDISPermission.hasPermission(player, "tardis." + a.getPermission())) {
                     lore.add(ChatColor.RED + plugin.getLanguage().getString("NO_PERM_CONSOLE"));
                 } else if (level < cost && !current_console.equals(a.getPermission())) {
-                    lore.add(plugin.getLanguage().getString("UPGRADE_ABORT_ENERGY"));
+                    lore.add(ChatColor.GRAY + plugin.getLanguage().getString("UPGRADE_ABORT_ENERGY"));
                 }
                 if (current_console.equals(a.getPermission())) {
                     lore.add(ChatColor.GREEN + plugin.getLanguage().getString("CURRENT_CONSOLE"));
@@ -97,7 +97,7 @@ public class TARDISThemeInventory {
         if (TARDISPermission.hasPermission(player, "tardis.archive")) {
             ItemStack arc = new ItemStack(Material.BOWL, 1);
             ItemMeta hive_im = arc.getItemMeta();
-            hive_im.setDisplayName("Archive Consoles");
+            hive_im.setDisplayName(ChatColor.RESET + "Archive Consoles");
             hive_im.setCustomModelData(GUIUpgrade.ARCHIVE_CONSOLES.getCustomModelData());
             arc.setItemMeta(hive_im);
             stack[46] = arc;
@@ -107,7 +107,7 @@ public class TARDISThemeInventory {
             if (TARDISPermission.hasPermission(player, "tardis.repair")) {
                 ItemStack rep = new ItemStack(Material.BOWL, 1);
                 ItemMeta air_im = rep.getItemMeta();
-                air_im.setDisplayName("Repair Console");
+                air_im.setDisplayName(ChatColor.RESET + "Repair Console");
                 air_im.setCustomModelData(GUIUpgrade.REPAIR_CONSOLE.getCustomModelData());
                 rep.setItemMeta(air_im);
                 stack[47] = rep;
@@ -116,7 +116,7 @@ public class TARDISThemeInventory {
             if (TARDISPermission.hasPermission(player, "tardis.repair")) {
                 ItemStack cle = new ItemStack(Material.BOWL, 1);
                 ItemMeta an_im = cle.getItemMeta();
-                an_im.setDisplayName("Clean");
+                an_im.setDisplayName(ChatColor.RESET + "Clean");
                 an_im.setCustomModelData(GUIUpgrade.CLEAN.getCustomModelData());
                 cle.setItemMeta(an_im);
                 stack[48] = cle;
@@ -125,7 +125,7 @@ public class TARDISThemeInventory {
         // close
         ItemStack close = new ItemStack(Material.BOWL, 1);
         ItemMeta close_im = close.getItemMeta();
-        close_im.setDisplayName(plugin.getLanguage().getString("BUTTON_CLOSE"));
+        close_im.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_CLOSE"));
         close_im.setCustomModelData(GUIUpgrade.CLOSE.getCustomModelData());
         close.setItemMeta(close_im);
         stack[53] = close;

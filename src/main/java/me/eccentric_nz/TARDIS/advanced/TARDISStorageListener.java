@@ -252,6 +252,13 @@ public class TARDISStorageListener extends TARDISMenuListener implements Listene
                 } else {
                     stack = TARDISSerializeInventory.itemStacksFromString(s.getEmpty());
                 }
+                for (int i = 0; i < 27; i++) {
+                    if (stack[i] != null) {
+                        ItemMeta itemMeta = stack[i].getItemMeta();
+                        itemMeta.setDisplayName(ChatColor.RESET + itemMeta.getDisplayName());
+                        stack[i].setItemMeta(itemMeta);
+                    }
+                }
                 for (ItemStack is : stack) {
                     if (is != null && is.hasItemMeta()) {
                         ItemMeta im = is.getItemMeta();
@@ -274,7 +281,7 @@ public class TARDISStorageListener extends TARDISMenuListener implements Listene
                                     im.setCustomModelData(87);
                                     is.setType(Material.BOWL);
                                     is.setItemMeta(im);
-                                } else if (is.getType().equals(Material.GLOWSTONE_DUST) && !im.hasCustomModelData() && im.getDisplayName().equals("Circuits")) {
+                                } else if (is.getType().equals(Material.GLOWSTONE_DUST) && !im.hasCustomModelData() && ChatColor.stripColor(im.getDisplayName()).equals("Circuits")) {
                                     im.setCustomModelData(10001985);
                                 }
                                 is.setItemMeta(im);

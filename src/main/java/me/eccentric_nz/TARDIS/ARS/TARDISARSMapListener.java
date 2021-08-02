@@ -110,7 +110,7 @@ public class TARDISARSMapListener extends TARDISARSMethods implements Listener {
                             setMap(md.getY(), md.getE(), md.getS(), playerUUID, view);
                             setLore(view, slot, null);
                         } else {
-                            setLore(view, slot, plugin.getLanguage().getString("ARS_LOAD"));
+                            setLore(view, slot, ChatColor.GRAY + plugin.getLanguage().getString("ARS_LOAD"));
                         }
                         break;
                     case 46:
@@ -119,7 +119,7 @@ public class TARDISARSMapListener extends TARDISARSMethods implements Listener {
                             if (!selectedLocation.containsKey(playerUUID)) {
                                 TARDISMessage.send(player, "TRANSMAT_SELECT");
                             } else if (selectedLocation.get(playerUUID).equals("TERRACOTTA")) {
-                                setLore(view, slot, plugin.getLanguage().getString("TRANSMAT_RENDER"));
+                                setLore(view, slot, ChatColor.GRAY + plugin.getLanguage().getString("TRANSMAT_RENDER"));
                             } else {
                                 Location tp_loc = getRoomLocation(player);
                                 if (tp_loc != null) {
@@ -132,7 +132,7 @@ public class TARDISARSMapListener extends TARDISARSMethods implements Listener {
                                 }
                             }
                         } else {
-                            setLore(view, slot, plugin.getLanguage().getString("ARS_LOAD"));
+                            setLore(view, slot, ChatColor.GRAY + plugin.getLanguage().getString("ARS_LOAD"));
                         }
                         break;
                     default:
@@ -140,13 +140,13 @@ public class TARDISARSMapListener extends TARDISARSMethods implements Listener {
                             ItemStack is = view.getItem(slot);
                             if (is != null) {
                                 ItemMeta im = is.getItemMeta();
-                                String dn = im.getDisplayName();
+                                String dn = ChatColor.stripColor(im.getDisplayName());
                                 if (!dn.equals("Empty slot")) {
                                     selectedLocation.put(playerUUID, is.getType().toString());
                                 }
                             }
                         } else {
-                            setLore(view, slot, plugin.getLanguage().getString("ARS_LOAD"));
+                            setLore(view, slot, ChatColor.GRAY + plugin.getLanguage().getString("ARS_LOAD"));
                         }
                         break;
                 }
@@ -181,7 +181,7 @@ public class TARDISARSMapListener extends TARDISARSMethods implements Listener {
                 int row = (int) (4 + (Math.floor((pz - tz) / 16.0d)));
                 if (col < 0 || col > 8 || row < 0 || row > 8) {
                     // outside ARS grid
-                    setLore(view, 47, plugin.getLanguage().getString("ARS_MAP_OUTSIDE"));
+                    setLore(view, 47, ChatColor.GRAY + plugin.getLanguage().getString("ARS_MAP_OUTSIDE"));
                     return;
                 }
                 int east = getOffset(col);
@@ -208,12 +208,12 @@ public class TARDISARSMapListener extends TARDISARSMethods implements Listener {
                 ItemStack is = view.getItem(slot);
                 is.setType(Material.ARROW);
                 ItemMeta im = is.getItemMeta();
-                im.setLore(Collections.singletonList(plugin.getLanguage().getString("ARS_MAP_HERE")));
+                im.setLore(Collections.singletonList(ChatColor.GRAY + plugin.getLanguage().getString("ARS_MAP_HERE")));
                 im.setCustomModelData(6);
                 is.setItemMeta(im);
             }
         } else {
-            setLore(view, 47, plugin.getLanguage().getString("ARS_LOAD"));
+            setLore(view, 47, ChatColor.GRAY + plugin.getLanguage().getString("ARS_LOAD"));
         }
     }
 

@@ -315,7 +315,7 @@ public class TARDISControlListener implements Listener {
                                                                 im.setCustomModelData(87);
                                                                 is.setType(Material.BOWL);
                                                                 is.setItemMeta(im);
-                                                            } else if (is.getType().equals(Material.GLOWSTONE_DUST) && !im.hasCustomModelData() && im.getDisplayName().equals("Circuits")) {
+                                                            } else if (is.getType().equals(Material.GLOWSTONE_DUST) && !im.hasCustomModelData() && ChatColor.stripColor(im.getDisplayName()).equals("Circuits")) {
                                                                 im.setCustomModelData(10001985);
                                                             }
                                                             is.setItemMeta(im);

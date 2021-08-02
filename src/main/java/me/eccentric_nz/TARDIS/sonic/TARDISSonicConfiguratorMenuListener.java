@@ -117,49 +117,49 @@ public class TARDISSonicConfiguratorMenuListener extends TARDISMenuListener impl
             ItemStack bio = view.getItem(9);
             bio.setType(configuredSonic.getBio().getMaterial());
             ItemMeta bim = bio.getItemMeta();
-            bim.setDisplayName(configuredSonic.getBio().getName());
+            bim.setDisplayName(ChatColor.RESET + configuredSonic.getBio().getName());
             bim.setCustomModelData(configuredSonic.getBio().getCustomModelData());
             bio.setItemMeta(bim);
             ItemStack dia = view.getItem(10);
             dia.setType(configuredSonic.getDiamond().getMaterial());
             ItemMeta dim = dia.getItemMeta();
-            dim.setDisplayName(configuredSonic.getDiamond().getName());
+            dim.setDisplayName(ChatColor.RESET + configuredSonic.getDiamond().getName());
             dim.setCustomModelData(configuredSonic.getDiamond().getCustomModelData());
             dia.setItemMeta(dim);
             ItemStack eme = view.getItem(11);
             eme.setType(configuredSonic.getEmerald().getMaterial());
             ItemMeta eim = eme.getItemMeta();
-            eim.setDisplayName(configuredSonic.getEmerald().getName());
+            eim.setDisplayName(ChatColor.RESET + configuredSonic.getEmerald().getName());
             eim.setCustomModelData(configuredSonic.getEmerald().getCustomModelData());
             eme.setItemMeta(eim);
             ItemStack red = view.getItem(12);
             red.setType(configuredSonic.getRedstone().getMaterial());
             ItemMeta rim = red.getItemMeta();
-            rim.setDisplayName(configuredSonic.getRedstone().getName());
+            rim.setDisplayName(ChatColor.RESET + configuredSonic.getRedstone().getName());
             rim.setCustomModelData(configuredSonic.getRedstone().getCustomModelData());
             red.setItemMeta(rim);
             ItemStack pai = view.getItem(13);
             pai.setType(configuredSonic.getPainter().getMaterial());
             ItemMeta pim = pai.getItemMeta();
-            pim.setDisplayName(configuredSonic.getPainter().getName());
+            pim.setDisplayName(ChatColor.RESET + configuredSonic.getPainter().getName());
             pim.setCustomModelData(configuredSonic.getPainter().getCustomModelData());
             pai.setItemMeta(pim);
             ItemStack ign = view.getItem(14);
             ign.setType(configuredSonic.getIgnite().getMaterial());
             ItemMeta iim = ign.getItemMeta();
-            iim.setDisplayName(configuredSonic.getIgnite().getName());
+            iim.setDisplayName(ChatColor.RESET + configuredSonic.getIgnite().getName());
             iim.setCustomModelData(configuredSonic.getIgnite().getCustomModelData());
             ign.setItemMeta(iim);
             ItemStack arr = view.getItem(15);
             arr.setType(configuredSonic.getArrow().getMaterial());
             ItemMeta aim = arr.getItemMeta();
-            aim.setDisplayName(configuredSonic.getArrow().getName());
+            aim.setDisplayName(ChatColor.RESET + configuredSonic.getArrow().getName());
             aim.setCustomModelData(configuredSonic.getArrow().getCustomModelData());
             arr.setItemMeta(aim);
             ItemStack kno = view.getItem(16);
             kno.setType(configuredSonic.getKnockback().getMaterial());
             ItemMeta kim = kno.getItemMeta();
-            kim.setDisplayName(configuredSonic.getKnockback().getName());
+            kim.setDisplayName(ChatColor.RESET + configuredSonic.getKnockback().getName());
             kim.setCustomModelData(configuredSonic.getKnockback().getCustomModelData());
             kno.setItemMeta(kim);
         }
@@ -171,12 +171,12 @@ public class TARDISSonicConfiguratorMenuListener extends TARDISMenuListener impl
         switch (cmd) {
             case LIME_WOOL:
                 // disable
-                im.setDisplayName("Disabled");
+                im.setDisplayName(ChatColor.RESET + "Disabled");
                 option.setType(Material.RED_WOOL);
                 break;
             case RED_WOOL:
                 // enable
-                im.setDisplayName("Enabled");
+                im.setDisplayName(ChatColor.RESET + "Enabled");
                 option.setType(Material.LIME_WOOL);
                 break;
             default:

@@ -22,6 +22,7 @@ import me.eccentric_nz.TARDIS.enumeration.PRESET;
 import me.eccentric_nz.TARDIS.move.TARDISDoorListener;
 import me.eccentric_nz.TARDIS.travel.TARDISDoorLocation;
 import me.eccentric_nz.TARDIS.utility.TARDISBlockSetters;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -98,7 +99,7 @@ public class TARDISInstantPoliceBox {
         im.setCustomModelData(1001);
         if (bd.shouldAddSign()) {
             String pb = (preset.equals(PRESET.WEEPING_ANGEL)) ? "Weeping Angel" : "Police Box";
-            im.setDisplayName(bd.getPlayer().getName() + "'s " + pb);
+            im.setDisplayName(ChatColor.RESET + bd.getPlayer().getName() + "'s " + pb);
         }
         is.setItemMeta(im);
         frame.setItem(is, false);

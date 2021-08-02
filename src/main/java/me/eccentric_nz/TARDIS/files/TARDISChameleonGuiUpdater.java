@@ -38,14 +38,14 @@ public class TARDISChameleonGuiUpdater {
     private final HashMap<String, String> chameleonOptions = new HashMap<>();
     private final HashMap<String, List<String>> chameleonListOptions = new HashMap<>();
 
-    public TARDISChameleonGuiUpdater(TARDIS plugin, FileConfiguration chameleoon_config) {
+    public TARDISChameleonGuiUpdater(TARDIS plugin, FileConfiguration chameleon_config) {
         this.plugin = plugin;
-        chameleon_config = chameleoon_config;
+        this.chameleon_config = chameleon_config;
         chameleonListOptions.put("ADAPT_LORE", Arrays.asList("The Chameleon Circuit", "will choose a preset", "that blends in with", "the environment.", "Use BIOME or BLOCK mode."));
         chameleonListOptions.put("APPLY_LORE", Arrays.asList("Rebuild the TARDIS", "exterior with the", "current settings."));
         chameleonListOptions.put("CONSTRUCT_LORE", Arrays.asList("Build your own", "Chameleon preset."));
         chameleonListOptions.put("DISABLED_LORE", Arrays.asList("Disable the Chameleon", "Circuit and revert", "to the FACTORY preset."));
-        chameleonListOptions.put("INVISIBLE_LORE", Arrays.asList("Engages the TARDIS", "Invisiblity Circuit."));
+        chameleonListOptions.put("INVISIBLE_LORE", Arrays.asList("Engages the TARDIS", "Invisibility Circuit."));
         chameleonListOptions.put("SHORT_LORE", Arrays.asList("Make the Chameleon", "Circuit malfunction and", "always choose the", "same appearance."));
         chameleonListOptions.put("INFO_TRANSMAT", Arrays.asList("Click on a transmat", "location, then choose", "an action button."));
         chameleonOptions.put("ADAPT", "Adaptive");

@@ -18,6 +18,7 @@ package me.eccentric_nz.TARDIS.commands.config;
 
 import me.eccentric_nz.TARDIS.TARDIS;
 import me.eccentric_nz.TARDIS.custommodeldata.GUIConfiguration;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -53,13 +54,13 @@ public class TARDISConfigMenuInventory {
             if ((value.equalsIgnoreCase("true") || value.equalsIgnoreCase("false")) && !c.startsWith("abandon") && !c.startsWith("circuits") && !c.startsWith("conversions") && !c.startsWith("creation") && !c.startsWith("debug") && !c.startsWith("desktop") && !c.startsWith("junk") && !c.startsWith("siege") && !c.startsWith("travel") && !c.startsWith("worlds") && !c.startsWith("storage") && !c.startsWith("blueprints")) {
                 ItemStack is = new ItemStack(Material.REPEATER, 1);
                 ItemMeta im = is.getItemMeta();
-                im.setDisplayName(c);
+                im.setDisplayName(ChatColor.RESET + c);
                 int cmd = GUIConfiguration.valueOf(c.split("\\.")[0].toUpperCase()).getCustomModelData();
                 if (value.equals("false")) {
                     cmd += 100; // xx -> 1xx
                 }
                 im.setCustomModelData(cmd);
-                im.setLore(Collections.singletonList(value));
+                im.setLore(Collections.singletonList(ChatColor.GRAY + value));
                 is.setItemMeta(im);
                 options.add(is);
             }
@@ -75,14 +76,14 @@ public class TARDISConfigMenuInventory {
         // next page
         ItemStack next = new ItemStack(Material.BOWL, 1);
         ItemMeta page = next.getItemMeta();
-        page.setDisplayName("Next page");
+        page.setDisplayName(ChatColor.RESET + "Next page");
         page.setCustomModelData(GUIConfiguration.NEXT.getCustomModelData());
         next.setItemMeta(page);
         stack[52] = next;
         // player prefs
         ItemStack play = new ItemStack(Material.NETHER_STAR, 1);
         ItemMeta prefs = play.getItemMeta();
-        prefs.setDisplayName("Player Preferences");
+        prefs.setDisplayName(ChatColor.RESET + "Player Preferences");
         prefs.setCustomModelData(GUIConfiguration.PREFS.getCustomModelData());
         play.setItemMeta(prefs);
         stack[53] = play;

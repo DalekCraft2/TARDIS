@@ -67,18 +67,18 @@ public class ResultSetArchiveButtons {
                 while (rs.next()) {
                     ItemStack is = new ItemStack(terracotta[i], 1);
                     ItemMeta im = is.getItemMeta();
-                    im.setDisplayName(rs.getString("name"));
+                    im.setDisplayName(ChatColor.RESET + rs.getString("name"));
                     List<String> lore = new ArrayList<>();
                     if (!rs.getString("description").isEmpty()) {
                         Pattern p = Pattern.compile("\\G\\s*(.{1,25})(?=\\s|$)", Pattern.DOTALL);
                         Matcher m = p.matcher(rs.getString("description"));
                         while (m.find()) {
-                            lore.add(m.group(1));
+                            lore.add(ChatColor.GRAY + m.group(1));
                         }
                     }
                     // add cost
                     int cost = plugin.getArtronConfig().getInt("upgrades.archive." + rs.getString("console_size").toLowerCase(Locale.ENGLISH));
-                    lore.add("Cost: " + cost);
+                    lore.add(ChatColor.GRAY + "Cost: " + cost);
                     // add current
                     if (rs.getInt("use") == 1) {
                         lore.add(ChatColor.GREEN + plugin.getLanguage().getString("CURRENT_CONSOLE"));

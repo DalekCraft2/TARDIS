@@ -103,7 +103,7 @@ public class TARDISCompanionAddGUIListener extends TARDISMenuListener implements
                                 addCompanion(id, comps, u);
                                 if (plugin.isWorldGuardOnServer() && plugin.getConfig().getBoolean("preferences.use_worldguard")) {
                                     String[] data = tardis.getChunk().split(":");
-                                    addToRegion(data[0], tardis.getOwner(), m.getDisplayName());
+                                    addToRegion(data[0], tardis.getOwner(), ChatColor.stripColor(m.getDisplayName()));
                                     // set entry and exit flags to deny
                                     plugin.getWorldGuardUtils().setEntryExitFlags(data[0], player.getName(), false);
                                 }

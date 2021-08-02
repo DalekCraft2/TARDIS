@@ -125,7 +125,7 @@ public class TARDISHumListener extends TARDISMenuListener implements Listener {
     private void setPlay(InventoryView view, String str) {
         ItemStack play = view.getItem(15);
         ItemMeta save = play.getItemMeta();
-        save.setLore(Collections.singletonList(str));
+        save.setLore(Collections.singletonList(ChatColor.GRAY + str));
         play.setItemMeta(save);
     }
 

@@ -16,6 +16,7 @@
  */
 package me.eccentric_nz.TARDIS.flight;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -44,7 +45,7 @@ class TARDISRegulatorSlot {
     TARDISRegulatorSlot() {
         box = new ItemStack(Material.BLUE_WOOL, 1);
         ItemMeta ler = box.getItemMeta();
-        ler.setDisplayName("Regulator");
+        ler.setDisplayName(ChatColor.RESET + "Regulator");
         box.setItemMeta(ler);
         vortex = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
     }

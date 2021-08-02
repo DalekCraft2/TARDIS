@@ -23,6 +23,7 @@ import me.eccentric_nz.TARDIS.custommodeldata.GUISaves;
 import me.eccentric_nz.TARDIS.database.resultset.ResultSetDestinations;
 import me.eccentric_nz.TARDIS.database.resultset.ResultSetTardisID;
 import me.eccentric_nz.TARDIS.utility.TARDISNumberParsers;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -92,16 +93,16 @@ public class TARDISSaveSignPageTwo {
                         }
                         ItemStack is = new ItemStack(material, 1);
                         ItemMeta im = is.getItemMeta();
-                        im.setDisplayName(map.get("dest_name"));
+                        im.setDisplayName(ChatColor.RESET + map.get("dest_name"));
                         List<String> lore = new ArrayList<>();
-                        lore.add(map.get("world"));
-                        lore.add(map.get("x"));
-                        lore.add(map.get("y"));
-                        lore.add(map.get("z"));
-                        lore.add(map.get("direction"));
-                        lore.add((map.get("submarine").equals("1")) ? "true" : "false");
+                        lore.add(ChatColor.GRAY + map.get("world"));
+                        lore.add(ChatColor.GRAY + map.get("x"));
+                        lore.add(ChatColor.GRAY + map.get("y"));
+                        lore.add(ChatColor.GRAY + map.get("z"));
+                        lore.add(ChatColor.GRAY + map.get("direction"));
+                        lore.add(ChatColor.GRAY + ((map.get("submarine").equals("1")) ? "true" : "false"));
                         if (!map.get("preset").isEmpty()) {
-                            lore.add(map.get("preset"));
+                            lore.add(ChatColor.GRAY + map.get("preset"));
                         }
                         im.setLore(lore);
                         is.setItemMeta(im);
@@ -117,13 +118,13 @@ public class TARDISSaveSignPageTwo {
             // add button to allow rearranging saves
             ItemStack tool = new ItemStack(Material.ARROW, 1);
             ItemMeta rearrange = tool.getItemMeta();
-            rearrange.setDisplayName("Rearrange saves");
+            rearrange.setDisplayName(ChatColor.RESET + "Rearrange saves");
             rearrange.setCustomModelData(GUISaves.REARRANGE_SAVES.getCustomModelData());
             tool.setItemMeta(rearrange);
             // add button to allow deleting saves
             ItemStack bucket = new ItemStack(Material.BUCKET, 1);
             ItemMeta delete = bucket.getItemMeta();
-            delete.setDisplayName("Delete save");
+            delete.setDisplayName(ChatColor.RESET + "Delete save");
             delete.setCustomModelData(GUISaves.DELETE_SAVE.getCustomModelData());
             bucket.setItemMeta(delete);
             ItemStack own;
@@ -134,7 +135,7 @@ public class TARDISSaveSignPageTwo {
                 if (rstid.getTardis_id() != id) {
                     own = new ItemStack(GUISaves.LOAD_MY_SAVES.getMaterial(), 1);
                     ItemMeta saves = own.getItemMeta();
-                    saves.setDisplayName(GUISaves.LOAD_MY_SAVES.getName());
+                    saves.setDisplayName(ChatColor.RESET + GUISaves.LOAD_MY_SAVES.getName());
                     saves.setCustomModelData(GUISaves.LOAD_MY_SAVES.getCustomModelData());
                     own.setItemMeta(saves);
                 } else {
@@ -143,7 +144,7 @@ public class TARDISSaveSignPageTwo {
                     if (tid != id) {
                         own = new ItemStack(GUISaves.LOAD_SAVES_FROM_THIS_TARDIS.getMaterial(), 1);
                         ItemMeta saves = own.getItemMeta();
-                        saves.setDisplayName(GUISaves.LOAD_SAVES_FROM_THIS_TARDIS.getName());
+                        saves.setDisplayName(ChatColor.RESET + GUISaves.LOAD_SAVES_FROM_THIS_TARDIS.getName());
                         saves.setCustomModelData(GUISaves.LOAD_SAVES_FROM_THIS_TARDIS.getCustomModelData());
                         own.setItemMeta(saves);
                     }
@@ -152,13 +153,13 @@ public class TARDISSaveSignPageTwo {
             // add button to go to back to previous page
             ItemStack prev = new ItemStack(GUISaves.GO_TO_PAGE_1.getMaterial(), 1);
             ItemMeta page = prev.getItemMeta();
-            page.setDisplayName(GUISaves.GO_TO_PAGE_1.getName());
+            page.setDisplayName(ChatColor.RESET + GUISaves.GO_TO_PAGE_1.getName());
             page.setCustomModelData(GUISaves.GO_TO_PAGE_1.getCustomModelData());
             prev.setItemMeta(page);
             // add button to load TARDIS areas
             ItemStack map = new ItemStack(Material.MAP, 1);
             ItemMeta switchto = map.getItemMeta();
-            switchto.setDisplayName("Load TARDIS areas");
+            switchto.setDisplayName(ChatColor.RESET + "Load TARDIS areas");
             switchto.setCustomModelData(GUISaves.LOAD_TARDIS_AREAS.getCustomModelData());
             map.setItemMeta(switchto);
             for (int m = 45; m < 54; m++) {

@@ -19,9 +19,13 @@ package me.eccentric_nz.TARDIS.handles;
 import me.eccentric_nz.TARDIS.TARDIS;
 import me.eccentric_nz.TARDIS.database.data.Program;
 import me.eccentric_nz.TARDIS.database.resultset.ResultSetProgram;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author eccentric_nz
@@ -62,7 +66,7 @@ public class TARDISHandlesProgramInventory {
         for (TARDISHandlesBlock b : TARDISHandlesBlock.getButtons()) {
             ItemStack is = new ItemStack(Material.BOWL, 1);
             ItemMeta im = is.getItemMeta();
-            im.setDisplayName(b.getDisplayName());
+            im.setDisplayName(ChatColor.RESET + b.getDisplayName());
             im.setCustomModelData(b.getCustomModelData());
             is.setItemMeta(im);
             stack[i] = is;
@@ -76,9 +80,13 @@ public class TARDISHandlesProgramInventory {
         for (TARDISHandlesBlock b : TARDISHandlesBlock.getControls()) {
             ItemStack is = new ItemStack(Material.PAPER, 1);
             ItemMeta im = is.getItemMeta();
-            im.setDisplayName(b.getDisplayName());
+            im.setDisplayName(ChatColor.RESET + b.getDisplayName());
             if (b.getLore() != null) {
-                im.setLore(b.getLore());
+                List<String> blockLore = new ArrayList<>(b.getLore());
+                for (int j = 0; j < blockLore.size(); j++) {
+                    blockLore.set(j, ChatColor.GRAY + blockLore.get(j));
+                }
+                im.setLore(blockLore);
             }
             im.setCustomModelData(b.getCustomModelData());
             is.setItemMeta(im);

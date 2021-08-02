@@ -17,10 +17,12 @@
 package me.eccentric_nz.TARDIS.sonic;
 
 import me.eccentric_nz.TARDIS.custommodeldata.GUISonicConfigurator;
+import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class TARDISSonicConfiguratorInventory {
 
@@ -42,9 +44,13 @@ public class TARDISSonicConfiguratorInventory {
             if (gui.getSlot() != -1) {
                 ItemStack is = new ItemStack(gui.getMaterial(), 1);
                 ItemMeta im = is.getItemMeta();
-                im.setDisplayName(gui.getName());
+                im.setDisplayName(ChatColor.RESET + gui.getName());
                 if (!gui.getLore().isEmpty()) {
-                    im.setLore(Arrays.asList(gui.getLore().split("~")));
+                    List<String> lore = Arrays.asList(gui.getLore().split("~"));
+                    for (int i = 0; i < lore.size(); i++) {
+                        lore.set(i, ChatColor.GRAY + lore.get(i));
+                    }
+                    im.setLore(lore);
                 }
                 im.setCustomModelData(gui.getCustomModelData());
                 is.setItemMeta(im);
@@ -53,13 +59,13 @@ public class TARDISSonicConfiguratorInventory {
         }
         ItemStack place = new ItemStack(GUISonicConfigurator.PLACE_SONIC.getMaterial(), 1);
         ItemMeta pim = place.getItemMeta();
-        pim.setDisplayName(GUISonicConfigurator.PLACE_SONIC.getName());
+        pim.setDisplayName(ChatColor.RESET + GUISonicConfigurator.PLACE_SONIC.getName());
         pim.setCustomModelData(GUISonicConfigurator.PLACE_SONIC.getCustomModelData());
         place.setItemMeta(pim);
         stack[9] = place;
         ItemStack wool = new ItemStack(GUISonicConfigurator.WAITING.getMaterial(), 1);
         ItemMeta wim = wool.getItemMeta();
-        wim.setDisplayName(" ");
+        wim.setDisplayName(ChatColor.RESET + "");
         wim.setCustomModelData(GUISonicConfigurator.WAITING.getCustomModelData());
         wool.setItemMeta(wim);
         for (int i = 10; i < 17; i++) {

@@ -88,7 +88,7 @@ public class TARDISArchiveMenuListener extends TARDISMenuListener implements Lis
                         t = ConsoleSize.values()[s].toString();
                         b = ConsoleSize.values()[s].getBlocks();
                         if (t != null) {
-                            ims.setLore(Arrays.asList(t, b, ChatColor.AQUA + "Click to change"));
+                            ims.setLore(Arrays.asList(ChatColor.GRAY + t, ChatColor.GRAY + b, ChatColor.AQUA + "Click to change"));
                             iss.setItemMeta(ims);
                         }
                     }
@@ -104,10 +104,10 @@ public class TARDISArchiveMenuListener extends TARDISMenuListener implements Lis
                             UUID uuid = p.getUniqueId();
                             TARDISUpgradeData tud = plugin.getTrackerKeeper().getUpgrades().get(uuid);
                             ItemMeta im = template.getItemMeta();
-                            String size = im.getDisplayName().toLowerCase(Locale.ENGLISH);
+                            String size = ChatColor.stripColor(im.getDisplayName()).toLowerCase(Locale.ENGLISH);
                             int upgrade = plugin.getArtronConfig().getInt("upgrades.template." + size);
                             if (tud.getLevel() >= upgrade) {
-                                new ArchiveUpdate(plugin, uuid.toString(), im.getDisplayName()).setInUse();
+                                new ArchiveUpdate(plugin, uuid.toString(), ChatColor.stripColor(im.getDisplayName())).setInUse();
                                 tud.setSchematic(Consoles.schematicFor(size));
                                 tud.setWall("ORANGE_WOOL");
                                 tud.setFloor("LIGHT_GRAY_WOOL");
@@ -144,7 +144,7 @@ public class TARDISArchiveMenuListener extends TARDISMenuListener implements Lis
                                 }
                             }
                             if (tud.getLevel() >= upgrade) {
-                                new ArchiveUpdate(plugin, uuid.toString(), im.getDisplayName()).setInUse();
+                                new ArchiveUpdate(plugin, uuid.toString(), ChatColor.stripColor(im.getDisplayName())).setInUse();
                                 tud.setSchematic(schm);
                                 tud.setWall("ORANGE_WOOL");
                                 tud.setFloor("LIGHT_GRAY_WOOL");

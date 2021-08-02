@@ -22,6 +22,7 @@ import me.eccentric_nz.TARDIS.chemistry.lab.LabBuilder;
 import me.eccentric_nz.TARDIS.chemistry.product.Product;
 import me.eccentric_nz.TARDIS.chemistry.product.ProductBuilder;
 import me.eccentric_nz.TARDIS.custommodeldata.GUIChemistry;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -66,21 +67,21 @@ public class ProductsCreativeInventory {
         // elements
         ItemStack elements = new ItemStack(GUIChemistry.ELEMENTS.getMaterial(), 1);
         ItemMeta eim = elements.getItemMeta();
-        eim.setDisplayName("Elements");
+        eim.setDisplayName(ChatColor.RESET + "Elements");
         eim.setCustomModelData(GUIChemistry.ELEMENTS.getCustomModelData());
         elements.setItemMeta(eim);
         stack[35] = elements;
         // compounds
         ItemStack compounds = new ItemStack(GUIChemistry.COMPOUNDS.getMaterial(), 1);
         ItemMeta cim = compounds.getItemMeta();
-        cim.setDisplayName("Compounds");
+        cim.setDisplayName(ChatColor.RESET + "Compounds");
         cim.setCustomModelData(GUIChemistry.COMPOUNDS.getCustomModelData());
         compounds.setItemMeta(cim);
         stack[44] = compounds;
         // close
         ItemStack close = new ItemStack(Material.BOWL, 1);
         ItemMeta close_im = close.getItemMeta();
-        close_im.setDisplayName(plugin.getLanguage().getString("BUTTON_CLOSE"));
+        close_im.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_CLOSE"));
         close_im.setCustomModelData(GUIChemistry.CLOSE.getCustomModelData());
         close.setItemMeta(close_im);
         stack[53] = close;

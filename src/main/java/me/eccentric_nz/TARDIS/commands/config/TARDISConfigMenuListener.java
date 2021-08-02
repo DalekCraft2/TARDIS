@@ -94,7 +94,7 @@ public class TARDISConfigMenuListener implements Listener {
                     }
                     plugin.getConfig().set(option, !bool);
                     String lore = (bool) ? "false" : "true";
-                    setLore(view, slot, lore);
+                    setLore(view, slot, ChatColor.GRAY + lore);
                     plugin.saveConfig();
                 }
             }

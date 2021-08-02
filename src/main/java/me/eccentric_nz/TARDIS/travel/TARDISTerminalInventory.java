@@ -17,6 +17,7 @@
 package me.eccentric_nz.TARDIS.travel;
 
 import me.eccentric_nz.TARDIS.TARDIS;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -50,61 +51,61 @@ public class TARDISTerminalInventory {
         // 10
         ItemStack ten = new ItemStack(Material.WHITE_WOOL, 1);
         ItemMeta im10 = ten.getItemMeta();
-        im10.setDisplayName(plugin.getLanguage().getString("BUTTON_STEP") + ": " + (10 * step));
+        im10.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_STEP") + ": " + (10 * step));
         ten.setItemMeta(im10);
         // 25
         ItemStack twentyfive = new ItemStack(Material.LIGHT_GRAY_WOOL, 1);
         ItemMeta im25 = twentyfive.getItemMeta();
-        im25.setDisplayName(plugin.getLanguage().getString("BUTTON_STEP") + ": " + (25 * step));
+        im25.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_STEP") + ": " + (25 * step));
         twentyfive.setItemMeta(im25);
         // 50
         ItemStack fifty = new ItemStack(Material.GRAY_WOOL, 1);
         ItemMeta im50 = fifty.getItemMeta();
-        im50.setDisplayName(plugin.getLanguage().getString("BUTTON_STEP") + ": " + (50 * step));
+        im50.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_STEP") + ": " + (50 * step));
         fifty.setItemMeta(im50);
         // 100
         ItemStack onehundred = new ItemStack(Material.BLACK_WOOL, 1);
         ItemMeta im100 = onehundred.getItemMeta();
-        im100.setDisplayName(plugin.getLanguage().getString("BUTTON_STEP") + ": " + (100 * step));
+        im100.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_STEP") + ": " + (100 * step));
         onehundred.setItemMeta(im100);
         // -ve
         ItemStack neg = new ItemStack(Material.RED_WOOL, 1);
         ItemMeta nim = neg.getItemMeta();
-        nim.setDisplayName(plugin.getLanguage().getString("BUTTON_NEG"));
+        nim.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_NEG"));
         neg.setItemMeta(nim);
         // +ve
         ItemStack pos = new ItemStack(Material.LIME_WOOL, 1);
         ItemMeta pim = pos.getItemMeta();
-        pim.setDisplayName(plugin.getLanguage().getString("BUTTON_POS"));
+        pim.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_POS"));
         pos.setItemMeta(pim);
         // x
         ItemStack x = new ItemStack(Material.LIGHT_BLUE_WOOL, 1);
         ItemMeta xim = x.getItemMeta();
-        xim.setDisplayName("X");
-        xim.setLore(Collections.singletonList("0"));
+        xim.setDisplayName(ChatColor.RESET + "X");
+        xim.setLore(Collections.singletonList(ChatColor.GRAY + "0"));
         x.setItemMeta(xim);
         // z
         ItemStack z = new ItemStack(Material.YELLOW_WOOL, 1);
         ItemMeta zim = z.getItemMeta();
-        zim.setDisplayName("Z");
-        zim.setLore(Collections.singletonList("0"));
+        zim.setDisplayName(ChatColor.RESET + "Z");
+        zim.setLore(Collections.singletonList(ChatColor.GRAY + "0"));
         z.setItemMeta(zim);
         // multiplier
         ItemStack m = new ItemStack(Material.PURPLE_WOOL, 1);
         ItemMeta mim = m.getItemMeta();
-        mim.setDisplayName(plugin.getLanguage().getString("BUTTON_MULTI"));
-        mim.setLore(Collections.singletonList("x1"));
+        mim.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_MULTI"));
+        mim.setLore(Collections.singletonList(ChatColor.GRAY + "x1"));
         m.setItemMeta(mim);
         // environments
         // current
         ItemStack u = new ItemStack(Material.OAK_LEAVES, 1);
         ItemMeta uim = u.getItemMeta();
-        uim.setDisplayName(plugin.getLanguage().getString("BUTTON_CURRENT"));
+        uim.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_CURRENT"));
         u.setItemMeta(uim);
         // normal
         ItemStack w = new ItemStack(Material.DIRT, 1);
         ItemMeta wim = w.getItemMeta();
-        wim.setDisplayName(plugin.getLanguage().getString("BUTTON_NORM"));
+        wim.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_NORM"));
         w.setItemMeta(wim);
         // nether
         ItemStack r;
@@ -117,7 +118,7 @@ public class TARDISTerminalInventory {
             ndn = plugin.getConfig().getString("travel.terminal.nether");
         }
         ItemMeta rim = r.getItemMeta();
-        rim.setDisplayName(ndn);
+        rim.setDisplayName(ChatColor.RESET + ndn);
         r.setItemMeta(rim);
         // the end
         ItemStack e;
@@ -130,27 +131,27 @@ public class TARDISTerminalInventory {
             edn = plugin.getConfig().getString("travel.terminal.the_end");
         }
         ItemMeta eim = e.getItemMeta();
-        eim.setDisplayName(edn);
+        eim.setDisplayName(ChatColor.RESET + edn);
         e.setItemMeta(eim);
         // submarine
         ItemStack sub = new ItemStack(Material.WATER_BUCKET, 1);
         ItemMeta subim = sub.getItemMeta();
-        subim.setDisplayName(plugin.getLanguage().getString("BUTTON_SUB"));
+        subim.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_SUB"));
         sub.setItemMeta(subim);
         // test
         ItemStack t = new ItemStack(Material.PISTON, 1);
         ItemMeta tim = t.getItemMeta();
-        tim.setDisplayName(plugin.getLanguage().getString("BUTTON_CHECK"));
+        tim.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_CHECK"));
         t.setItemMeta(tim);
         // set
         ItemStack s = new ItemStack(Material.BOOKSHELF, 1);
         ItemMeta sim = s.getItemMeta();
-        sim.setDisplayName(plugin.getLanguage().getString("BUTTON_DEST"));
+        sim.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_DEST"));
         s.setItemMeta(sim);
         // cancel
         ItemStack c = new ItemStack(Material.TNT, 1);
         ItemMeta cim = c.getItemMeta();
-        cim.setDisplayName(plugin.getLanguage().getString("BUTTON_CANCEL"));
+        cim.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_CANCEL"));
         c.setItemMeta(cim);
 
         return new ItemStack[]{

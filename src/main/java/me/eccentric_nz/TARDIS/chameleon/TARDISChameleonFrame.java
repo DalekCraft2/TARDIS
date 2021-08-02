@@ -19,6 +19,7 @@ package me.eccentric_nz.TARDIS.chameleon;
 import me.eccentric_nz.TARDIS.TARDIS;
 import me.eccentric_nz.TARDIS.enumeration.PRESET;
 import me.eccentric_nz.TARDIS.utility.TARDISStaticLocationGetters;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.ItemFrame;
@@ -42,7 +43,7 @@ class TARDISChameleonFrame {
                     if (compareLocations(e.getLocation(), location)) {
                         ItemStack is = new ItemStack(preset.getGuiDisplay());
                         ItemMeta im = is.getItemMeta();
-                        im.setDisplayName(preset.toString());
+                        im.setDisplayName(ChatColor.RESET + preset.toString());
                         is.setItemMeta(im);
                         frame.setItem(is, true);
                         break;

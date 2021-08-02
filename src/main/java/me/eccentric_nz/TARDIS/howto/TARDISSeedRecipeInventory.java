@@ -17,6 +17,7 @@
 package me.eccentric_nz.TARDIS.howto;
 
 import me.eccentric_nz.TARDIS.TARDIS;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -57,14 +58,14 @@ class TARDISSeedRecipeInventory {
         // interior wall
         ItemStack in_wall = new ItemStack(Material.ORANGE_WOOL, 1);
         ItemMeta in_meta = in_wall.getItemMeta();
-        in_meta.setDisplayName("Interior walls");
-        in_meta.setLore(Arrays.asList("Any valid Wall/Floor block", "Click to see blocks..."));
+        in_meta.setDisplayName(ChatColor.RESET + "Interior walls");
+        in_meta.setLore(Arrays.asList(ChatColor.GRAY + "Any valid Wall/Floor block", ChatColor.GRAY + "Click to see blocks..."));
         in_wall.setItemMeta(in_meta);
         // interior floor
         ItemStack in_floor = new ItemStack(Material.LIGHT_GRAY_WOOL, 1);
         ItemMeta fl_meta = in_floor.getItemMeta();
-        fl_meta.setDisplayName("Interior floors");
-        fl_meta.setLore(Arrays.asList("Any valid Wall/Floor block", "Click to see blocks..."));
+        fl_meta.setDisplayName(ChatColor.RESET + "Interior floors");
+        fl_meta.setLore(Arrays.asList(ChatColor.GRAY + "Any valid Wall/Floor block", ChatColor.GRAY + "Click to see blocks..."));
         in_floor.setItemMeta(fl_meta);
         // tardis type
         ItemStack tardis = new ItemStack(block, 1);
@@ -76,14 +77,14 @@ class TARDISSeedRecipeInventory {
         // close
         ItemStack close = new ItemStack(Material.BOWL, 1);
         ItemMeta close_im = close.getItemMeta();
-        close_im.setDisplayName(plugin.getLanguage().getString("BUTTON_CLOSE"));
+        close_im.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_CLOSE"));
         close_im.setCustomModelData(1);
         close.setItemMeta(close_im);
         stack[26] = close;
         // back
         ItemStack back = new ItemStack(Material.BOWL, 1);
         ItemMeta back_im = back.getItemMeta();
-        back_im.setDisplayName("Back");
+        back_im.setDisplayName(ChatColor.RESET + "Back");
         back_im.setCustomModelData(8);
         back.setItemMeta(back_im);
         stack[8] = back;

@@ -26,6 +26,7 @@ import me.eccentric_nz.TARDIS.database.resultset.ResultSetTardisID;
 import me.eccentric_nz.TARDIS.enumeration.WorldManager;
 import me.eccentric_nz.TARDIS.planets.TARDISAliasResolver;
 import me.eccentric_nz.TARDIS.utility.TARDISNumberParsers;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -69,18 +70,18 @@ public class TARDISSaveSignInventory {
         wherehl.put("tardis_id", id);
         ResultSetHomeLocation rsh = new ResultSetHomeLocation(plugin, wherehl);
         if (rsh.resultSet()) {
-            him.setDisplayName("Home");
-            hlore.add(rsh.getWorld().getName());
-            hlore.add("" + rsh.getX());
-            hlore.add("" + rsh.getY());
-            hlore.add("" + rsh.getZ());
-            hlore.add(rsh.getDirection().toString());
-            hlore.add((rsh.isSubmarine()) ? "true" : "false");
+            him.setDisplayName(ChatColor.RESET + "Home");
+            hlore.add(ChatColor.GRAY + rsh.getWorld().getName());
+            hlore.add(ChatColor.GRAY + "" + rsh.getX());
+            hlore.add(ChatColor.GRAY + "" + rsh.getY());
+            hlore.add(ChatColor.GRAY + "" + rsh.getZ());
+            hlore.add(ChatColor.GRAY + rsh.getDirection().toString());
+            hlore.add(ChatColor.GRAY + ((rsh.isSubmarine()) ? "true" : "false"));
             if (!rsh.getPreset().isEmpty()) {
-                hlore.add(rsh.getPreset());
+                hlore.add(ChatColor.GRAY + rsh.getPreset());
             }
         } else {
-            hlore.add("Not found!");
+            hlore.add(ChatColor.GRAY + "Not found!");
         }
         him.setLore(hlore);
         his.setItemMeta(him);
@@ -122,7 +123,7 @@ public class TARDISSaveSignInventory {
                         }
                         ItemStack is = new ItemStack(material, 1);
                         ItemMeta im = is.getItemMeta();
-                        im.setDisplayName(map.get("dest_name"));
+                        im.setDisplayName(ChatColor.RESET + map.get("dest_name"));
                         List<String> lore = new ArrayList<>();
                         String world = (plugin.getWorldManager().equals(WorldManager.MULTIVERSE)) ? plugin.getMVHelper().getAlias(map.get("world")) : TARDISAliasResolver.getWorldAlias(map.get("world"));
                         lore.add(world);
@@ -149,13 +150,13 @@ public class TARDISSaveSignInventory {
         // add button to allow rearranging saves
         ItemStack tool = new ItemStack(Material.ARROW, 1);
         ItemMeta rearrange = tool.getItemMeta();
-        rearrange.setDisplayName("Rearrange saves");
+        rearrange.setDisplayName(ChatColor.RESET + "Rearrange saves");
         rearrange.setCustomModelData(GUISaves.REARRANGE_SAVES.getCustomModelData());
         tool.setItemMeta(rearrange);
         // add button to allow deleting saves
         ItemStack bucket = new ItemStack(Material.BUCKET, 1);
         ItemMeta delete = bucket.getItemMeta();
-        delete.setDisplayName("Delete save");
+        delete.setDisplayName(ChatColor.RESET + "Delete save");
         delete.setCustomModelData(GUISaves.DELETE_SAVE.getCustomModelData());
         bucket.setItemMeta(delete);
         ItemStack next = null;
@@ -163,7 +164,7 @@ public class TARDISSaveSignInventory {
             // add button to go to next page
             next = new ItemStack(GUISaves.GO_TO_PAGE_2.getMaterial(), 1);
             ItemMeta page = next.getItemMeta();
-            page.setDisplayName(GUISaves.GO_TO_PAGE_2.getName());
+            page.setDisplayName(ChatColor.RESET + GUISaves.GO_TO_PAGE_2.getName());
             page.setCustomModelData(GUISaves.GO_TO_PAGE_2.getCustomModelData());
             next.setItemMeta(page);
         }
@@ -175,7 +176,7 @@ public class TARDISSaveSignInventory {
             if (rstid.getTardis_id() != id) {
                 own = new ItemStack(GUISaves.LOAD_MY_SAVES.getMaterial(), 1);
                 ItemMeta saves = own.getItemMeta();
-                saves.setDisplayName(GUISaves.LOAD_MY_SAVES.getName());
+                saves.setDisplayName(ChatColor.RESET + GUISaves.LOAD_MY_SAVES.getName());
                 saves.setCustomModelData(GUISaves.LOAD_MY_SAVES.getCustomModelData());
                 own.setItemMeta(saves);
             } else {
@@ -184,7 +185,7 @@ public class TARDISSaveSignInventory {
                 if (tid != id) {
                     own = new ItemStack(GUISaves.LOAD_SAVES_FROM_THIS_TARDIS.getMaterial(), 1);
                     ItemMeta saves = own.getItemMeta();
-                    saves.setDisplayName(GUISaves.LOAD_SAVES_FROM_THIS_TARDIS.getName());
+                    saves.setDisplayName(ChatColor.RESET + GUISaves.LOAD_SAVES_FROM_THIS_TARDIS.getName());
                     saves.setCustomModelData(GUISaves.LOAD_SAVES_FROM_THIS_TARDIS.getCustomModelData());
                     own.setItemMeta(saves);
                 }
@@ -193,7 +194,7 @@ public class TARDISSaveSignInventory {
         // add button to load TARDIS areas
         ItemStack map = new ItemStack(Material.MAP, 1);
         ItemMeta switchto = map.getItemMeta();
-        switchto.setDisplayName("Load TARDIS areas");
+        switchto.setDisplayName(ChatColor.RESET + "Load TARDIS areas");
         switchto.setCustomModelData(GUISaves.LOAD_TARDIS_AREAS.getCustomModelData());
         map.setItemMeta(switchto);
         for (int m = 45; m < 54; m++) {

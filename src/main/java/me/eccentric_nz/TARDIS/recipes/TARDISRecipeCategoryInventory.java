@@ -18,6 +18,7 @@ package me.eccentric_nz.TARDIS.recipes;
 
 import me.eccentric_nz.TARDIS.custommodeldata.GUIChemistry;
 import me.eccentric_nz.TARDIS.enumeration.RecipeCategory;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -38,8 +39,8 @@ public class TARDISRecipeCategoryInventory {
         // info
         ItemStack info = new ItemStack(Material.BOWL, 1);
         ItemMeta info_im = info.getItemMeta();
-        info_im.setDisplayName("Info");
-        info_im.setLore(Arrays.asList("Click a button below", "to see the items", "in that recipe category"));
+        info_im.setDisplayName(ChatColor.RESET + "Info");
+        info_im.setLore(Arrays.asList(ChatColor.GRAY + "Click a button below", ChatColor.GRAY + "to see the items", ChatColor.GRAY + "in that recipe category"));
         info_im.setCustomModelData(GUIChemistry.INFO.getCustomModelData());
         info.setItemMeta(info_im);
         stack[4] = info;
@@ -47,7 +48,7 @@ public class TARDISRecipeCategoryInventory {
             if (!category.equals(RecipeCategory.UNUSED) && category != RecipeCategory.UNCRAFTABLE) {
                 ItemStack cat = new ItemStack(category.getMaterial(), 1);
                 ItemMeta egory = cat.getItemMeta();
-                egory.setDisplayName(category.getName());
+                egory.setDisplayName(ChatColor.RESET + category.getName());
                 egory.setCustomModelData(category.getCustomModelData());
                 egory.addItemFlags(ItemFlag.values());
                 cat.setItemMeta(egory);

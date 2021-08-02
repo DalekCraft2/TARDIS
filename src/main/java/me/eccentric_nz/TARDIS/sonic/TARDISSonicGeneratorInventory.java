@@ -71,8 +71,8 @@ class TARDISSonicGeneratorInventory {
         // info 1/3
         ItemStack info = new ItemStack(Material.BOOK, 1);
         ItemMeta info_im = info.getItemMeta();
-        info_im.setDisplayName("Instructions (1/3)");
-        List<String> lore = Arrays.asList("Select your Sonic Screwdriver", "type from the top two rows.", "Click on the upgrades you", "want to add to the sonic.");
+        info_im.setDisplayName(ChatColor.RESET + "Instructions (1/3)");
+        List<String> lore = Arrays.asList(ChatColor.GRAY + "Select your Sonic Screwdriver", ChatColor.GRAY + "type from the top two rows.", ChatColor.GRAY + "Click on the upgrades you", ChatColor.GRAY + "want to add to the sonic.");
         info_im.setLore(lore);
         info_im.setCustomModelData(GUISonicGenerator.INSTRUCTIONS_1_OF_3.getCustomModelData());
         info.setItemMeta(info_im);
@@ -80,8 +80,8 @@ class TARDISSonicGeneratorInventory {
         // info 2/3
         ItemStack info1 = new ItemStack(Material.BOOK, 1);
         ItemMeta info1_im = info.getItemMeta();
-        info1_im.setDisplayName("Instructions (2/3)");
-        List<String> lore1 = Arrays.asList("You can reset the upgrades", "by clicking the 'Standard' button.", "The Artron cost for the", "sonic is shown bottom left.");
+        info1_im.setDisplayName(ChatColor.RESET + "Instructions (2/3)");
+        List<String> lore1 = Arrays.asList(ChatColor.GRAY + "You can reset the upgrades", ChatColor.GRAY + "by clicking the 'Standard' button.", ChatColor.GRAY + "The Artron cost for the", ChatColor.GRAY + "sonic is shown bottom left.");
         info1_im.setLore(lore1);
         info1_im.setCustomModelData(GUISonicGenerator.INSTRUCTIONS_2_OF_3.getCustomModelData());
         info1.setItemMeta(info1_im);
@@ -89,8 +89,8 @@ class TARDISSonicGeneratorInventory {
         // info 3/3
         ItemStack info2 = new ItemStack(Material.BOOK, 1);
         ItemMeta info2_im = info.getItemMeta();
-        info2_im.setDisplayName("Instructions (3/3)");
-        List<String> lore2 = Arrays.asList("The final sonic result", "is shown in the middle", "of the bottom row.");
+        info2_im.setDisplayName(ChatColor.RESET + "Instructions (3/3)");
+        List<String> lore2 = Arrays.asList(ChatColor.GRAY + "The final sonic result", ChatColor.GRAY + "is shown in the middle", ChatColor.GRAY + "of the bottom row.");
         info2_im.setLore(lore2);
         info2_im.setCustomModelData(GUISonicGenerator.INSTRUCTIONS_3_OF_3.getCustomModelData());
         info2.setItemMeta(info2_im);
@@ -98,7 +98,7 @@ class TARDISSonicGeneratorInventory {
         // standard sonic
         ItemStack sta = new ItemStack(Material.BOWL, 1);
         ItemMeta dard = sta.getItemMeta();
-        dard.setDisplayName("Standard Sonic");
+        dard.setDisplayName(ChatColor.RESET + "Standard Sonic");
         dard.setCustomModelData(GUISonicGenerator.STANDARD_SONIC.getCustomModelData());
         sta.setItemMeta(dard);
         stack[27] = sta;
@@ -106,7 +106,7 @@ class TARDISSonicGeneratorInventory {
         if (TARDISPermission.hasPermission(player, "tardis.sonic.knockback")) {
             ItemStack knock = new ItemStack(Material.BOWL, 1);
             ItemMeta back = knock.getItemMeta();
-            back.setDisplayName("Knockback Upgrade");
+            back.setDisplayName(ChatColor.RESET + "Knockback Upgrade");
             back.setCustomModelData(GUISonicGenerator.KNOCKBACK_UPGRADE.getCustomModelData());
             knock.setItemMeta(back);
             stack[28] = knock;
@@ -115,7 +115,7 @@ class TARDISSonicGeneratorInventory {
         if (TARDISPermission.hasPermission(player, "tardis.sonic.bio")) {
             ItemStack bio = new ItemStack(Material.BOWL, 1);
             ItemMeta scan = bio.getItemMeta();
-            scan.setDisplayName("Bio-scanner Upgrade");
+            scan.setDisplayName(ChatColor.RESET + "Bio-scanner Upgrade");
             scan.setCustomModelData(GUISonicGenerator.BIO_SCANNER_UPGRADE.getCustomModelData());
             bio.setItemMeta(scan);
             stack[29] = bio;
@@ -124,7 +124,7 @@ class TARDISSonicGeneratorInventory {
         if (TARDISPermission.hasPermission(player, "tardis.sonic.diamond")) {
             ItemStack dis = new ItemStack(Material.BOWL, 1);
             ItemMeta rupt = dis.getItemMeta();
-            rupt.setDisplayName("Diamond Upgrade");
+            rupt.setDisplayName(ChatColor.RESET + "Diamond Upgrade");
             rupt.setCustomModelData(GUISonicGenerator.DIAMOND_UPGRADE.getCustomModelData());
             dis.setItemMeta(rupt);
             stack[30] = dis;
@@ -133,7 +133,7 @@ class TARDISSonicGeneratorInventory {
         if (TARDISPermission.hasPermission(player, "tardis.sonic.emerald")) {
             ItemStack eme = new ItemStack(Material.BOWL, 1);
             ItemMeta rald = eme.getItemMeta();
-            rald.setDisplayName("Emerald Upgrade");
+            rald.setDisplayName(ChatColor.RESET + "Emerald Upgrade");
             rald.setCustomModelData(GUISonicGenerator.EMERALD_UPGRADE.getCustomModelData());
             eme.setItemMeta(rald);
             stack[31] = eme;
@@ -142,7 +142,7 @@ class TARDISSonicGeneratorInventory {
         if (TARDISPermission.hasPermission(player, "tardis.sonic.redstone")) {
             ItemStack red = new ItemStack(Material.BOWL, 1);
             ItemMeta stone = red.getItemMeta();
-            stone.setDisplayName("Redstone Upgrade");
+            stone.setDisplayName(ChatColor.RESET + "Redstone Upgrade");
             stone.setCustomModelData(GUISonicGenerator.REDSTONE_UPGRADE.getCustomModelData());
             red.setItemMeta(stone);
             stack[32] = red;
@@ -151,7 +151,7 @@ class TARDISSonicGeneratorInventory {
         if (TARDISPermission.hasPermission(player, "tardis.sonic.paint")) {
             ItemStack pai = new ItemStack(Material.BOWL, 1);
             ItemMeta nter = pai.getItemMeta();
-            nter.setDisplayName("Painter Upgrade");
+            nter.setDisplayName(ChatColor.RESET + "Painter Upgrade");
             nter.setCustomModelData(GUISonicGenerator.PAINTER_UPGRADE.getCustomModelData());
             pai.setItemMeta(nter);
             stack[33] = pai;
@@ -160,7 +160,7 @@ class TARDISSonicGeneratorInventory {
         if (TARDISPermission.hasPermission(player, "tardis.sonic.ignite")) {
             ItemStack ign = new ItemStack(Material.BOWL, 1);
             ItemMeta ite = ign.getItemMeta();
-            ite.setDisplayName("Ignite Upgrade");
+            ite.setDisplayName(ChatColor.RESET + "Ignite Upgrade");
             ite.setCustomModelData(GUISonicGenerator.IGNITE_UPGRADE.getCustomModelData());
             ign.setItemMeta(ite);
             stack[34] = ign;
@@ -169,7 +169,7 @@ class TARDISSonicGeneratorInventory {
         if (TARDISPermission.hasPermission(player, "tardis.sonic.arrow")) {
             ItemStack arr = new ItemStack(Material.BOWL, 1);
             ItemMeta ow = arr.getItemMeta();
-            ow.setDisplayName("Pickup Arrows Upgrade");
+            ow.setDisplayName(ChatColor.RESET + "Pickup Arrows Upgrade");
             ow.setCustomModelData(GUISonicGenerator.PICKUP_ARROWS_UPGRADE.getCustomModelData());
             arr.setItemMeta(ow);
             stack[35] = arr;
@@ -177,24 +177,24 @@ class TARDISSonicGeneratorInventory {
         // close
         ItemStack close = new ItemStack(Material.BOWL, 1);
         ItemMeta close_im = close.getItemMeta();
-        close_im.setDisplayName(plugin.getLanguage().getString("BUTTON_CLOSE"));
-        close_im.setLore(Arrays.asList("Close the menu without", "saving or generating."));
+        close_im.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_CLOSE"));
+        close_im.setLore(Arrays.asList(ChatColor.GRAY + "Close the menu without", ChatColor.GRAY + "saving or generating."));
         close_im.setCustomModelData(GUISonicGenerator.CLOSE.getCustomModelData());
         close.setItemMeta(close_im);
         stack[53] = close;
         // save
         ItemStack save = new ItemStack(Material.BOWL, 1);
         ItemMeta save_im = save.getItemMeta();
-        save_im.setDisplayName("Save settings");
-        save_im.setLore(Arrays.asList("Click to save the current sonic.", "No item will be generated!"));
+        save_im.setDisplayName(ChatColor.RESET + "Save settings");
+        save_im.setLore(Arrays.asList(ChatColor.GRAY + "Click to save the current sonic.", ChatColor.GRAY + "No item will be generated!"));
         save_im.setCustomModelData(GUISonicGenerator.SAVE_SETTINGS.getCustomModelData());
         save.setItemMeta(save_im);
         stack[43] = save;
         // generate
         ItemStack generate = new ItemStack(Material.BOWL, 1);
         ItemMeta gen_im = generate.getItemMeta();
-        gen_im.setDisplayName("Generate Sonic Screwdriver");
-        gen_im.setLore(Arrays.asList("Click to generate a sonic", "with the current settings."));
+        gen_im.setDisplayName(ChatColor.RESET + "Generate Sonic Screwdriver");
+        gen_im.setLore(Arrays.asList(ChatColor.GRAY + "Click to generate a sonic", ChatColor.GRAY + "with the current settings."));
         gen_im.setCustomModelData(GUISonicGenerator.GENERATE_SONIC_SCREWDRIVER.getCustomModelData());
         generate.setItemMeta(gen_im);
         stack[44] = generate;
@@ -242,8 +242,8 @@ class TARDISSonicGeneratorInventory {
         // cost
         ItemStack cost = new ItemStack(Material.BOWL, 1);
         ItemMeta cost_im = cost.getItemMeta();
-        cost_im.setDisplayName("Artron cost");
-        cost_im.setLore(Collections.singletonList("" + artron));
+        cost_im.setDisplayName(ChatColor.RESET + "Artron cost");
+        cost_im.setLore(Collections.singletonList(ChatColor.GRAY + "" + artron));
         cost_im.setCustomModelData(GUISonicGenerator.ARTRON_COST.getCustomModelData());
         cost.setItemMeta(cost_im);
         stack[45] = cost;

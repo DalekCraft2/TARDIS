@@ -21,6 +21,7 @@ import me.eccentric_nz.TARDIS.custommodeldata.GUIChameleonPresets;
 import me.eccentric_nz.TARDIS.custommodeldata.GUIChemistry;
 import me.eccentric_nz.TARDIS.enumeration.RecipeCategory;
 import me.eccentric_nz.TARDIS.enumeration.RecipeItem;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -56,22 +57,22 @@ public class TARDISRecipeInventory {
         // back
         ItemStack back = new ItemStack(Material.BOWL, 1);
         ItemMeta but = back.getItemMeta();
-        but.setDisplayName("Back");
+        but.setDisplayName(ChatColor.RESET + "Back");
         but.setCustomModelData(GUIChameleonPresets.BACK.getCustomModelData());
         back.setItemMeta(but);
         stack[0] = back;
         // info
         ItemStack info = new ItemStack(Material.BOWL, 1);
         ItemMeta info_im = info.getItemMeta();
-        info_im.setDisplayName("Info");
-        info_im.setLore(Arrays.asList("Click a button below", "to see the recipe", "for that item"));
+        info_im.setDisplayName(ChatColor.RESET + "Info");
+        info_im.setLore(Arrays.asList(ChatColor.GRAY + "Click a button below", ChatColor.GRAY + "to see the recipe", ChatColor.GRAY + "for that item"));
         info_im.setCustomModelData(GUIChemistry.INFO.getCustomModelData());
         info.setItemMeta(info_im);
         stack[4] = info;
         // close
         ItemStack close = new ItemStack(Material.BOWL, 1);
         ItemMeta close_im = close.getItemMeta();
-        close_im.setDisplayName(plugin.getLanguage().getString("BUTTON_CLOSE"));
+        close_im.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_CLOSE"));
         close_im.setCustomModelData(GUIChemistry.CLOSE.getCustomModelData());
         close.setItemMeta(close_im);
         stack[8] = close;
@@ -91,7 +92,7 @@ public class TARDISRecipeInventory {
                     }
                     ItemMeta im = result.getItemMeta();
                     im.setDisplayName(str);
-                    im.setLore(Collections.singletonList("/trecipe " + arg));
+                    im.setLore(Collections.singletonList(ChatColor.GRAY + "/trecipe " + arg));
                     im.setCustomModelData(item.getCustomModelData());
                     im.addItemFlags(ItemFlag.values());
                     result.setItemMeta(im);

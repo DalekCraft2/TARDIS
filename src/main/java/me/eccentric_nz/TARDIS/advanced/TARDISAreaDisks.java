@@ -106,10 +106,10 @@ class TARDISAreaDisks {
         ResultSetDiskStorage rs = new ResultSetDiskStorage(plugin, where);
         if (rs.resultSet()) {
             List<String> player_has = new ArrayList<>();
-            String serilized_areas = rs.getAreas();
+            String serialized_areas = rs.getAreas();
             try {
                 // check storage inventory
-                ItemStack[] areas = TARDISSerializeInventory.itemStacksFromString(serilized_areas);
+                ItemStack[] areas = TARDISSerializeInventory.itemStacksFromString(serialized_areas);
                 for (ItemStack a : areas) {
                     if (a != null && a.getType().equals(Material.MUSIC_DISC_BLOCKS) && a.hasItemMeta()) {
                         ItemMeta ima = a.getItemMeta();
@@ -169,7 +169,7 @@ class TARDISAreaDisks {
                 if (count > 0) {
                     return TARDISSerializeInventory.itemStacksToString(inv.getContents());
                 } else {
-                    return serilized_areas;
+                    return serialized_areas;
                 }
             } catch (IOException ioException) {
                 plugin.debug("Could not get NEW Area Disk Inventory: " + ioException.getMessage());

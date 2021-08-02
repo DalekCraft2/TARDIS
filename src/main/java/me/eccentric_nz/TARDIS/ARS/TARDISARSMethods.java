@@ -30,6 +30,7 @@ import me.eccentric_nz.TARDIS.enumeration.Difficulty;
 import me.eccentric_nz.TARDIS.enumeration.DiskCircuit;
 import me.eccentric_nz.TARDIS.messaging.TARDISMessage;
 import me.eccentric_nz.TARDIS.rooms.RoomRequiredLister;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.InventoryView;
@@ -157,10 +158,10 @@ public class TARDISARSMethods {
     void setSlot(InventoryView view, int slot, Material material, String room, UUID playerUUID, boolean update) {
         ItemStack is = new ItemStack(material, 1);
         ItemMeta im = is.getItemMeta();
-        im.setDisplayName(room);
+        im.setDisplayName(ChatColor.RESET + room);
         if (!room.equals("Empty slot")) {
             String config_path = TARDISARS.ARSFor(material.toString()).getConfigPath();
-            List<String> lore = Collections.singletonList("Cost: " + plugin.getRoomsConfig().getInt("rooms." + config_path + ".cost"));
+            List<String> lore = Collections.singletonList(ChatColor.GRAY + "Cost: " + plugin.getRoomsConfig().getInt("rooms." + config_path + ".cost"));
             im.setLore(lore);
         } else {
             im.setLore(null);
@@ -283,7 +284,7 @@ public class TARDISARSMethods {
             }
             ItemStack is = new ItemStack(material, 1);
             ItemMeta im = is.getItemMeta();
-            im.setDisplayName(levels[i - 27]);
+            im.setDisplayName(ChatColor.RESET + levels[i - 27]);
             im.setCustomModelData(i - 26);
             is.setItemMeta(im);
             setSlot(view, i, is, playerUUID, false);
@@ -377,10 +378,10 @@ public class TARDISARSMethods {
      */
     void loadMap(InventoryView view, UUID playerUUID) {
         if (view.getItem(10).getItemMeta().hasLore()) {
-            setLore(view, 10, plugin.getLanguage().getString("ARS_MAP_ERROR"));
+            setLore(view, 10, ChatColor.GRAY + plugin.getLanguage().getString("ARS_MAP_ERROR"));
             return;
         }
-        setLore(view, 10, "Loading...");
+        setLore(view, 10, ChatColor.GRAY + "Loading...");
         HashMap<String, Object> where = new HashMap<>();
         where.put("tardis_id", ids.get(playerUUID));
         ResultSetARS rs = new ResultSetARS(plugin, where);
@@ -401,7 +402,7 @@ public class TARDISARSMethods {
             setMap(rs.getLayer(), rs.getEast(), rs.getSouth(), playerUUID, view);
             saveAll(playerUUID);
             hasLoadedMap.add(playerUUID);
-            setLore(view, 10, plugin.getLanguage().getString("ARS_MAP_LOADED"));
+            setLore(view, 10, ChatColor.GRAY + plugin.getLanguage().getString("ARS_MAP_LOADED"));
             switchLevel(view, (27 + rs.getLayer()), playerUUID);
         }
     }
@@ -460,7 +461,7 @@ public class TARDISARSMethods {
             md.setS(us);
             map_data.put(playerUUID, md);
         } else {
-            setLore(view, slot, plugin.getLanguage().getString("ARS_LOAD"));
+            setLore(view, slot, ChatColor.GRAY + plugin.getLanguage().getString("ARS_LOAD"));
         }
     }
 

@@ -103,7 +103,7 @@ public class TARDISLazarusGUIListener extends TARDISMenuListener implements List
                     // remember selection
                     String display = im.getDisplayName();
                     if (twaMonsters.contains(display) && !plugin.checkTWA()) {
-                        im.setLore(Collections.singletonList("Genetic modification not available!"));
+                        im.setLore(Collections.singletonList(ChatColor.GRAY + "Genetic modification not available!"));
                         is.setItemMeta(im);
                     } else {
                         if (display.equals("HEROBRINE")) {
@@ -123,14 +123,14 @@ public class TARDISLazarusGUIListener extends TARDISMenuListener implements List
                     if (plugin.getTrackerKeeper().getImmortalityGate().equals("")) {
                         boolean isOff = im.getLore().get(0).equals(plugin.getLanguage().getString("SET_OFF"));
                         String onoff = isOff ? plugin.getLanguage().getString("SET_ON") : plugin.getLanguage().getString("SET_OFF");
-                        im.setLore(Collections.singletonList(onoff));
+                        im.setLore(Collections.singletonList(ChatColor.GRAY + onoff));
                         int cmd = isOff ? 2 : 3;
                         im.setCustomModelData(cmd);
                     } else {
-                        im.setLore(Arrays.asList("The Master Race is already", " set to " + plugin.getTrackerKeeper().getImmortalityGate() + "!", "Try again later."));
+                        im.setLore(Arrays.asList(ChatColor.GRAY + "The Master Race is already", ChatColor.GRAY + "set to " + plugin.getTrackerKeeper().getImmortalityGate() + "!", ChatColor.GRAY + "Try again later."));
                     }
                 } else {
-                    im.setLore(Arrays.asList("You do not have permission", "to be The Master!"));
+                    im.setLore(Arrays.asList(ChatColor.GRAY + "You do not have permission", ChatColor.GRAY + "to be The Master!"));
                 }
                 is.setItemMeta(im);
             }
@@ -138,7 +138,7 @@ public class TARDISLazarusGUIListener extends TARDISMenuListener implements List
                 ItemStack is = view.getItem(slot);
                 ItemMeta im = is.getItemMeta();
                 String onoff = (im.getLore().get(0).equals("ADULT")) ? "BABY" : "ADULT";
-                im.setLore(Collections.singletonList(onoff));
+                im.setLore(Collections.singletonList(ChatColor.GRAY + onoff));
                 is.setItemMeta(im);
             }
             if (slot == 48) { // type / colour
@@ -152,7 +152,7 @@ public class TARDISLazarusGUIListener extends TARDISMenuListener implements List
                 List<String> lore = im.getLore();
                 int pos = lore.size() - 1;
                 String truefalse = (ChatColor.stripColor(lore.get(pos)).equals("FALSE")) ? ChatColor.GREEN + "TRUE" : ChatColor.RED + "FALSE";
-                lore.set(pos, truefalse);
+                lore.set(pos, ChatColor.GRAY + truefalse);
                 im.setLore(lore);
                 is.setItemMeta(im);
             }
@@ -491,7 +491,7 @@ public class TARDISLazarusGUIListener extends TARDISMenuListener implements List
                 t = Axolotl.Variant.values()[o].toString();
                 axolotls.put(uuid, o);
                 break;
-            case "SNOWMAN":
+            case "SNOW_GOLEM":
                 boolean derp;
                 if (snowmen.containsKey(uuid)) {
                     derp = !snowmen.get(uuid);
@@ -627,7 +627,7 @@ public class TARDISLazarusGUIListener extends TARDISMenuListener implements List
         if (t != null) {
             ItemStack is = i.getItem(48);
             ItemMeta im = is.getItemMeta();
-            im.setLore(Collections.singletonList(t));
+            im.setLore(Collections.singletonList(ChatColor.GRAY + t));
             is.setItemMeta(im);
         }
     }

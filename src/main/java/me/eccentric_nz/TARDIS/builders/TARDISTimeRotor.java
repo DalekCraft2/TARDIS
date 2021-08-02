@@ -19,6 +19,7 @@ package me.eccentric_nz.TARDIS.builders;
 import me.eccentric_nz.TARDIS.TARDIS;
 import me.eccentric_nz.TARDIS.TARDISConstants;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
@@ -70,7 +71,7 @@ public class TARDISTimeRotor {
         Material material = (animated) ? Material.LIGHT_BLUE_DYE : Material.LIGHT_GRAY_DYE;
         ItemStack is = new ItemStack(material, 1);
         ItemMeta im = is.getItemMeta();
-        im.setDisplayName("Time Rotor");
+        im.setDisplayName(ChatColor.RESET + "Time Rotor");
         im.setCustomModelData(which);
         is.setItemMeta(im);
         itemFrame.setItem(is, false);

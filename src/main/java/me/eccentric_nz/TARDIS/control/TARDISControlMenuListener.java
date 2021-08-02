@@ -414,7 +414,7 @@ public class TARDISControlMenuListener extends TARDISMenuListener implements Lis
                                     // update the lore
                                     ItemStack d = view.getItem(40);
                                     ItemMeta im = d.getItemMeta();
-                                    im.setLore(Collections.singletonList(direction));
+                                    im.setLore(Collections.singletonList(ChatColor.GRAY + direction));
                                     d.setItemMeta(im);
                                     break;
                                 case 47:

@@ -20,6 +20,7 @@ import me.eccentric_nz.TARDIS.TARDIS;
 import me.eccentric_nz.TARDIS.blueprints.TARDISPermission;
 import me.eccentric_nz.TARDIS.custommodeldata.GUIChameleonPresets;
 import me.eccentric_nz.TARDIS.enumeration.PRESET;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -57,7 +58,7 @@ class TARDISPresetInventory {
                 if (TARDISPermission.hasPermission(player, "tardis.preset." + preset.toString().toLowerCase())) {
                     ItemStack is = new ItemStack(preset.getGuiDisplay(), 1);
                     ItemMeta im = is.getItemMeta();
-                    im.setDisplayName(preset.getDisplayName());
+                    im.setDisplayName(ChatColor.RESET + preset.getDisplayName());
                     is.setItemMeta(im);
                     stacks[preset.getSlot()] = is;
                 }
@@ -66,21 +67,21 @@ class TARDISPresetInventory {
         // back
         ItemStack back = new ItemStack(Material.BOWL, 1);
         ItemMeta but = back.getItemMeta();
-        but.setDisplayName("Back");
+        but.setDisplayName(ChatColor.RESET + "Back");
         but.setCustomModelData(GUIChameleonPresets.BACK.getCustomModelData());
         back.setItemMeta(but);
         stacks[51] = back;
         // page two
         ItemStack page = new ItemStack(Material.ARROW, 1);
         ItemMeta two = page.getItemMeta();
-        two.setDisplayName(plugin.getLanguage().getString("BUTTON_PAGE_2"));
+        two.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_PAGE_2"));
         two.setCustomModelData(GUIChameleonPresets.GO_TO_PAGE_2.getCustomModelData());
         page.setItemMeta(two);
         stacks[52] = page;
         // Cancel / close
         ItemStack close = new ItemStack(Material.BOWL, 1);
         ItemMeta can = close.getItemMeta();
-        can.setDisplayName(plugin.getLanguage().getString("BUTTON_CLOSE"));
+        can.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString("BUTTON_CLOSE"));
         can.setCustomModelData(GUIChameleonPresets.CLOSE.getCustomModelData());
         close.setItemMeta(can);
         stacks[53] = close;

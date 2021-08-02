@@ -22,6 +22,7 @@ import me.eccentric_nz.TARDIS.blueprints.TARDISPermission;
 import me.eccentric_nz.TARDIS.custommodeldata.GUIArea;
 import me.eccentric_nz.TARDIS.database.data.Area;
 import me.eccentric_nz.TARDIS.database.resultset.ResultSetAreas;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -65,9 +66,9 @@ public class TARDISAreasInventory {
                 if (TARDISPermission.hasPermission(p, "tardis.area." + name) || TARDISPermission.hasPermission(p, "tardis.area.*")) {
                     ItemStack is = new ItemStack(TARDISConstants.GUI_IDS.get(i), 1);
                     ItemMeta im = is.getItemMeta();
-                    im.setDisplayName(name);
+                    im.setDisplayName(ChatColor.RESET + name);
                     List<String> lore = new ArrayList<>();
-                    lore.add(a.getWorld());
+                    lore.add(ChatColor.GRAY + a.getWorld());
                     im.setLore(lore);
                     is.setItemMeta(im);
                     areas.add(is);
@@ -87,7 +88,7 @@ public class TARDISAreasInventory {
         // add button to load TARDIS areas
         ItemStack map = new ItemStack(Material.MAP, 1);
         ItemMeta switchto = map.getItemMeta();
-        switchto.setDisplayName("Load TARDIS saves");
+        switchto.setDisplayName(ChatColor.RESET + "Load TARDIS saves");
         switchto.setCustomModelData(GUIArea.LOAD_TARDIS_SAVES.getCustomModelData());
         map.setItemMeta(switchto);
         for (int m = 45; m < 54; m++) {

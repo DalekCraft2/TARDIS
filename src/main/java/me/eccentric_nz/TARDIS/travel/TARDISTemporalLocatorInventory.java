@@ -18,11 +18,13 @@ package me.eccentric_nz.TARDIS.travel;
 
 import me.eccentric_nz.TARDIS.TARDIS;
 import me.eccentric_nz.TARDIS.custommodeldata.GUITemporalLocator;
+import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Time travel is, as the name suggests, the (usually controlled) process of travelling through time, even in a
@@ -52,14 +54,18 @@ public class TARDISTemporalLocatorInventory {
             ItemStack is = new ItemStack(clock.getMaterial(), 1);
             ItemMeta im = is.getItemMeta();
             if (clock.ordinal() < 4) {
-                im.setDisplayName(plugin.getLanguage().getString(clock.toString()));
+                im.setDisplayName(ChatColor.RESET + plugin.getLanguage().getString(clock.toString()));
             } else {
-                im.setDisplayName(clock.getName());
+                im.setDisplayName(ChatColor.RESET + clock.getName());
             }
             if (clock.getLore().contains("~")) {
-                im.setLore(Arrays.asList(clock.getLore().split("~")));
+                List<String> lore = Arrays.asList(clock.getLore().split("~"));
+                for (int i = 0; i < lore.size(); i++) {
+                    lore.set(i, ChatColor.GRAY + lore.get(i));
+                }
+                im.setLore(lore);
             } else {
-                im.setLore(Collections.singletonList(clock.getLore()));
+                im.setLore(Collections.singletonList(ChatColor.GRAY + clock.getLore()));
             }
             im.setCustomModelData(clock.getCustomModelData());
             is.setItemMeta(im);
