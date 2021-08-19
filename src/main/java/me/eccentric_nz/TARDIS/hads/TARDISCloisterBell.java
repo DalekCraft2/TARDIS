@@ -28,7 +28,7 @@ import java.util.HashMap;
 
 /**
  * The Cloister Bell is a signal to the crew that a catastrophe that could threaten even a TARDIS is occurring or will
- * soon occur. In short it is a call to "battle-stations." Cloister Bells can be found on all TARDISes since the Type
+ * soon occur. In short, it is a call to "battle-stations." Cloister Bells can be found on all TARDISes since the Type
  * 22.
  * <p>
  * The bell will ring for events ranging from the phasing of the TARDIS engines, to the detection of a vortex

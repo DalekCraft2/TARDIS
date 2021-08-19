@@ -150,7 +150,7 @@ public class TARDISSaveSignPageTwo {
                     }
                 }
             }
-            // add button to go to back to previous page
+            // add button to go back to previous page
             ItemStack prev = new ItemStack(GUISaves.GO_TO_PAGE_1.getMaterial(), 1);
             ItemMeta page = prev.getItemMeta();
             page.setDisplayName(ChatColor.RESET + GUISaves.GO_TO_PAGE_1.getName());

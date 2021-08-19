@@ -78,7 +78,7 @@ public class TARDISBeaconToggler {
     }
 
     private void updateBeacon(Schematic schm, UUID uuid) {
-        // determine beacon location and update the tardis table so we don't have to do this again
+        // determine beacon location and update the tardis table, so we don't have to do this again
         TARDISUpgradeData tud = new TARDISUpgradeData();
         tud.setSchematic(schm);
         tud.setPrevious(schm);

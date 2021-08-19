@@ -48,7 +48,7 @@ class TARDISARSRemoveCommand {
             return true;
         }
         int id = rs.getTardis_id();
-        // get the sign location so we can reset the sign text
+        // get the sign location, so we can reset the sign text
         HashMap<String, Object> wheres = new HashMap<>();
         wheres.put("tardis_id", id);
         wheres.put("type", 10);

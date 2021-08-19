@@ -40,7 +40,7 @@ import java.util.HashMap;
 /**
  * A police box is a telephone kiosk that can be used by members of the public wishing to get help from the police.
  * Early in the First Doctor's travels, the TARDIS assumed the exterior shape of a police box during a five-month
- * stopover in 1963 London. Due a malfunction in its chameleon circuit, the TARDIS became locked into that shape.
+ * stopover in 1963 London. Due to a malfunction in its chameleon circuit, the TARDIS became locked into that shape.
  *
  * @author eccentric_nz
  */
@@ -179,7 +179,7 @@ public class TARDISDeinstantPreset {
                 }
             }
         }
-        // check protected blocks if has block id and data stored then put the block back!
+        // check protected blocks if it has block id and data stored then put the block back!
         HashMap<String, Object> tid = new HashMap<>();
         tid.put("tardis_id", id);
         tid.put("police_box", 1);

@@ -142,7 +142,7 @@ public class TARDISPoliceBoxDoorListener extends TARDISDoorListener implements L
                                                     // enter TARDIS!
                                                     cw.getChunkAt(tardis_loc).load();
                                                     tardis_loc.setPitch(player.getLocation().getPitch());
-                                                    // get inner door direction so we can adjust yaw if necessary
+                                                    // get inner door direction, so we can adjust yaw if necessary
                                                     float yaw = player.getLocation().getYaw();
                                                     if (!innerD.equals(pd)) {
                                                         yaw += adjustYaw(pd, innerD);
@@ -167,7 +167,7 @@ public class TARDISPoliceBoxDoorListener extends TARDISDoorListener implements L
                                                         plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> new TARDISPowerButton(plugin, id, player, tardis.getPreset(), false, tardis.isHidden(), tardis.isLights_on(), player.getLocation(), tardis.getArtron_level(), tardis.getSchematic().hasLanterns()).clickButton(), 20L);
                                                     }
                                                     // put player into travellers table
-                                                    // remove them first as they may have exited incorrectly and we only want them listed once
+                                                    // remove them first as they may have exited incorrectly, and we only want them listed once
                                                     removeTraveller(playerUUID);
                                                     HashMap<String, Object> set = new HashMap<>();
                                                     set.put("tardis_id", id);

@@ -451,7 +451,7 @@ public class TARDISThemeRepairRunnable extends TARDISThemeRunnable {
                 if (type.equals(Material.CAKE)) {
                     /*
                      * This block will be converted to a lever by setBlock(),
-                     * but remember it so we can use it as the handbrake!
+                     * but remember it, so we can use it as the handbrake!
                      */
                     String handbrakeloc = TARDISStaticLocationGetters.makeLocationStr(world, x, y, z);
                     plugin.getQueryFactory().insertSyncControl(id, 0, handbrakeloc, 0);

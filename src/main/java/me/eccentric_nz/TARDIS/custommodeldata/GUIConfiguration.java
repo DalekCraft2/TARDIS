@@ -21,8 +21,6 @@ import org.bukkit.Material;
 
 public enum GUIConfiguration {
 
-    // TODO Create an enum for the Dynmap option.
-
     // Admin Menu
     ALLOW(1, 0, Material.REPEATER),
     ARCH(2, 22, Material.REPEATER),
@@ -40,6 +38,7 @@ public enum GUIConfiguration {
     JUNK(13, 0, Material.REPEATER),
     SIEGE(14, 0, Material.REPEATER),
     TRAVEL(15, 0, Material.REPEATER),
+    DYNMAP(51, 0, Material.REPEATER), // TODO Create an texture for the Dynmap option.
     NEXT(86, 0, Material.BOWL),
     PREV(87, 0, Material.BOWL),
     PREFS(2, 0, Material.NETHER_STAR);

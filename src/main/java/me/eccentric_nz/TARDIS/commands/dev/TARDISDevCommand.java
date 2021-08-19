@@ -58,74 +58,70 @@ public class TARDISDevCommand implements CommandExecutor {
     }
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
-        // If the player typed /tardisdev then do the following...
-        if (cmd.getName().equalsIgnoreCase("tardisdev")) {
-            if (sender instanceof ConsoleCommandSender || sender.hasPermission("tardis.admin")) {
-                if (args.length == 0) {
-                    new TARDISCommandHelper(plugin).getCommand("tardisadmin", sender);
-                    return true;
-                }
-                String first = args[0].toLowerCase(Locale.ENGLISH);
-                if (!firstsStr.contains(first)) {
-                    TARDISMessage.send(sender, "ARG_NOT_VALID");
-                    return false;
-                }
-                if (args.length == 1) {
-                    if (first.equals("add_regions")) {
-                        return new TARDISAddRegionsCommand(plugin).doCheck(sender);
-                    }
-                    if (first.equals("stats")) {
-                        ARSRoomCounts arsRoomCounts = new ARSRoomCounts(plugin);
-                        for (Map.Entry<String, Integer> entry : arsRoomCounts.getRoomCounts().entrySet()) {
-                            plugin.debug(entry.getKey() + ": " + entry.getValue());
-                        }
-                        plugin.debug(arsRoomCounts.getMedian());
-                        return true;
-                    }
-                }
-                if (first.equals("advancements")) {
-                    TARDISAchievementFactory.checkAdvancement(args[1]);
-                    return true;
-                }
-                if (first.equals("list")) {
-                    return new TARDISDevListCommand(plugin).listStuff(sender, args);
-                }
-                if (args.length < 2) {
-                    TARDISMessage.send(sender, "TOO_FEW_ARGS");
-                    return false;
-                }
-                if (first.equals("set_biome")) {
-                    if (sender instanceof Player p) {
-                        if (args[1].equalsIgnoreCase("by_walking")) {
-                            UUID uuid = p.getUniqueId();
-                            if (plugin.getTrackerKeeper().getBiomeSetters().contains(uuid)) {
-                                plugin.getTrackerKeeper().getBiomeSetters().remove(p.getUniqueId());
-                                TARDISMessage.message(p, "by_walking OFF");
-                            } else {
-                                plugin.getTrackerKeeper().getBiomeSetters().add(p.getUniqueId());
-                                TARDISMessage.message(p, "by_walking ON");
-                            }
-                        } else {
-                            Chunk chunk = p.getLocation().getChunk();
-                            plugin.getTardisHelper().setCustomBiome(args[1], chunk);
-                        }
-                        return true;
-                    }
-                }
-                if (first.equals("tree")) {
-                    if (sender instanceof Player player) {
-                        Block l = player.getTargetBlock(plugin.getGeneralKeeper().getTransparent(), 16).getRelative(BlockFace.UP).getLocation().getBlock();
-                        int which = TARDISNumberParsers.parseInt(args[1]);
-                        FractalFence.grow(l, which);
-                    }
-                }
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
+        if (sender instanceof ConsoleCommandSender || sender.hasPermission("tardis.admin")) {
+            if (args.length == 0) {
+                new TARDISCommandHelper(plugin).getCommand("tardisadmin", sender);
                 return true;
-            } else {
-                TARDISMessage.send(sender, "CMD_ADMIN");
+            }
+            String first = args[0].toLowerCase(Locale.ENGLISH);
+            if (!firstsStr.contains(first)) {
+                TARDISMessage.send(sender, "ARG_NOT_VALID");
                 return false;
             }
+            if (args.length == 1) {
+                if (first.equals("add_regions")) {
+                    return new TARDISAddRegionsCommand(plugin).doCheck(sender);
+                }
+                if (first.equals("stats")) {
+                    ARSRoomCounts arsRoomCounts = new ARSRoomCounts(plugin);
+                    for (Map.Entry<String, Integer> entry : arsRoomCounts.getRoomCounts().entrySet()) {
+                        plugin.debug(entry.getKey() + ": " + entry.getValue());
+                    }
+                    plugin.debug(arsRoomCounts.getMedian());
+                    return true;
+                }
+            }
+            if (first.equals("advancements")) {
+                TARDISAchievementFactory.checkAdvancement(args[1]);
+                return true;
+            }
+            if (first.equals("list")) {
+                return new TARDISDevListCommand(plugin).listStuff(sender, args);
+            }
+            if (args.length < 2) {
+                TARDISMessage.send(sender, "TOO_FEW_ARGS");
+                return false;
+            }
+            if (first.equals("set_biome")) {
+                if (sender instanceof Player p) {
+                    if (args[1].equalsIgnoreCase("by_walking")) {
+                        UUID uuid = p.getUniqueId();
+                        if (plugin.getTrackerKeeper().getBiomeSetters().contains(uuid)) {
+                            plugin.getTrackerKeeper().getBiomeSetters().remove(p.getUniqueId());
+                            TARDISMessage.message(p, "by_walking OFF");
+                        } else {
+                            plugin.getTrackerKeeper().getBiomeSetters().add(p.getUniqueId());
+                            TARDISMessage.message(p, "by_walking ON");
+                        }
+                    } else {
+                        Chunk chunk = p.getLocation().getChunk();
+                        plugin.getTardisHelper().setCustomBiome(args[1], chunk);
+                    }
+                    return true;
+                }
+            }
+            if (first.equals("tree")) {
+                if (sender instanceof Player player) {
+                    Block l = player.getTargetBlock(plugin.getGeneralKeeper().getTransparent(), 16).getRelative(BlockFace.UP).getLocation().getBlock();
+                    int which = TARDISNumberParsers.parseInt(args[1]);
+                    FractalFence.grow(l, which);
+                }
+            }
+            return true;
+        } else {
+            TARDISMessage.send(sender, "CMD_ADMIN");
+            return false;
         }
-        return false;
     }
 }

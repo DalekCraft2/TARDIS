@@ -180,7 +180,7 @@ public class TARDISSonicGeneratorMenuListener extends TARDISMenuListener impleme
                             // get the current sonic's upgrades
                             lore = sonic_im.getLore();
                         } else {
-                            // otherwise this is the first upgrade
+                            // otherwise, this is the first upgrade
                             lore = new ArrayList<>();
                             lore.add("Upgrades:");
                         }

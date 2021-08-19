@@ -69,9 +69,9 @@ public class TARDISRemoteCommands extends TARDISCompleter implements CommandExec
     }
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         // If the player/console typed /tardisremote then do the following...
-        if (cmd.getName().equalsIgnoreCase("tardisremote") && TARDISPermission.hasPermission(sender, "tardis.remote")) {
+        if (command.getName().equalsIgnoreCase("tardisremote") && TARDISPermission.hasPermission(sender, "tardis.remote")) {
             if (args.length < 2) {
                 new TARDISCommandHelper(plugin).getCommand("tardisremote", sender);
                 return true;

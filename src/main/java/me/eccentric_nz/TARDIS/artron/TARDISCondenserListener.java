@@ -183,8 +183,8 @@ public class TARDISCondenserListener implements Listener {
                         }
                         // don't condense enchanted items so players don't accidentally condense their
                         // gear ignores curse enchantments
-                        // note: i would really love to use Enchantment#isCursed() here for forwards
-                        // compatibility but it's deprecated with no good alternative
+                        // note: I would really love to use Enchantment#isCursed() here for forwards
+                        // compatibility, but it's deprecated with no good alternative
                         if (plugin.getConfig().getBoolean("preferences.no_enchanted_condense")) {
                             if (!is.getEnchantments().keySet().stream().allMatch(ench -> ench.equals(Enchantment.BINDING_CURSE) || ench.equals(Enchantment.VANISHING_CURSE))) {
                                 savedEnchantedItems++;

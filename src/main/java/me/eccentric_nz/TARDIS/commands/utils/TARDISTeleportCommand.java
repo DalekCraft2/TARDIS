@@ -53,53 +53,50 @@ public class TARDISTeleportCommand extends TARDISCompleter implements CommandExe
     }
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
-        if (cmd.getName().equalsIgnoreCase("tardisteleport")) {
-            Player player = null;
-            if (sender instanceof Player) {
-                player = (Player) sender;
-            }
-            if (args.length == 2) {
-                // get player from argument
-                player = plugin.getServer().getPlayer(args[1]);
-                if (player == null || !player.isOnline()) {
-                    TARDISMessage.send(sender, "COULD_NOT_FIND_NAME");
-                    return true;
-                }
-            }
-            if (player == null) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
+        Player player = null;
+        if (sender instanceof Player) {
+            player = (Player) sender;
+        }
+        if (args.length == 2) {
+            // get player from argument
+            player = plugin.getServer().getPlayer(args[1]);
+            if (player == null || !player.isOnline()) {
+                TARDISMessage.send(sender, "COULD_NOT_FIND_NAME");
                 return true;
             }
-            if (args.length < 1) {
-                TARDISMessage.send(player, "ARG_TP");
-                return false;
-            }
-            World world = TARDISAliasResolver.getWorldFromAlias(args[0]);
-            if (world != null) {
-                Location spawn;
-                if (args.length == 4 && args[3].equals("not_for_players")) {
-                    int x = TARDISNumberParsers.parseInt(args[1]);
-                    int z = TARDISNumberParsers.parseInt(args[2]);
-                    spawn = new Location(world, x, 64, z);
-                } else {
-                    spawn = world.getSpawnLocation();
-                }
-                while (!world.getChunkAt(spawn).isLoaded()) {
-                    world.getChunkAt(spawn).load();
-                }
-                int highest = (world.getEnvironment() == Environment.NETHER) ? spawn.getBlockY() - 1 : world.getHighestBlockYAt(spawn);
-                float yaw = player.getLocation().getYaw();
-                float pitch = player.getLocation().getPitch();
-                spawn.setYaw(yaw);
-                spawn.setPitch(pitch);
-                spawn.setY(highest + 1);
-                player.teleport(spawn);
-            } else {
-                TARDISMessage.send(player, "WORLD_NOT_FOUND");
-            }
+        }
+        if (player == null) {
             return true;
         }
-        return false;
+        if (args.length < 1) {
+            TARDISMessage.send(player, "ARG_TP");
+            return false;
+        }
+        World world = TARDISAliasResolver.getWorldFromAlias(args[0]);
+        if (world != null) {
+            Location spawn;
+            if (args.length == 4 && args[3].equals("not_for_players")) {
+                int x = TARDISNumberParsers.parseInt(args[1]);
+                int z = TARDISNumberParsers.parseInt(args[2]);
+                spawn = new Location(world, x, 64, z);
+            } else {
+                spawn = world.getSpawnLocation();
+            }
+            while (!world.getChunkAt(spawn).isLoaded()) {
+                world.getChunkAt(spawn).load();
+            }
+            int highest = (world.getEnvironment() == Environment.NETHER) ? spawn.getBlockY() - 1 : world.getHighestBlockYAt(spawn);
+            float yaw = player.getLocation().getYaw();
+            float pitch = player.getLocation().getPitch();
+            spawn.setYaw(yaw);
+            spawn.setPitch(pitch);
+            spawn.setY(highest + 1);
+            player.teleport(spawn);
+        } else {
+            TARDISMessage.send(player, "WORLD_NOT_FOUND");
+        }
+        return true;
     }
 
     @Override

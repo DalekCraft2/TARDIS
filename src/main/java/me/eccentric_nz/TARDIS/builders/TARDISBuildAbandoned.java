@@ -365,7 +365,7 @@ class TARDISBuildAbandoned implements Runnable {
             if (type.equals(Material.CAKE) && !schm.getPermission().equals("junk")) {
                 /*
                  * This block will be converted to a lever by
-                 * setBlock(), but remember it so we can use it as the
+                 * setBlock(), but remember it, so we can use it as the
                  * handbrake!
                  */
                 String handbrakeloc = TARDISStaticLocationGetters.makeLocationStr(world, x, y, z);

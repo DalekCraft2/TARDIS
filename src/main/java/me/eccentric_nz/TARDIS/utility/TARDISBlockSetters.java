@@ -236,7 +236,7 @@ public class TARDISBlockSetters {
         Block b = w.getBlockAt(x, y, z);
         BlockData blockData = b.getBlockData();
         if (ids.contains(blockData.getMaterial().toString())) {
-            // remember replaced block location and BlockData so we can restore it later
+            // remember replaced block location and BlockData, so we can restore it later
             String l = b.getLocation().toString();
             HashMap<String, Object> set = new HashMap<>();
             set.put("tardis_id", id);

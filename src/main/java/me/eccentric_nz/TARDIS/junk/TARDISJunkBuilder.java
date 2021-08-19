@@ -121,8 +121,7 @@ public class TARDISJunkBuilder implements Runnable {
                                 if (type.equals(Material.CAKE)) {
                                     /*
                                      * This block will be converted to a lever
-                                     * by setBlockAndRemember(), but remember it
-                                     * so we can use it as the handbrake!
+                                     * by setBlockAndRemember(), but remember it, so we can use it as the handbrake!
                                      */
                                     String handbrakeloc = TARDISStaticLocationGetters.makeLocationStr(world, x, y, z);
                                     plugin.getQueryFactory().insertSyncControl(bd.getTardisID(), 0, handbrakeloc, 0);

@@ -35,7 +35,7 @@ public class TARDISRecipeCategoryInventory {
     }
 
     private ItemStack[] getItemStack() {
-        ItemStack[] stack = new ItemStack[27];
+        ItemStack[] stack = new ItemStack[54];
         // info
         ItemStack info = new ItemStack(Material.BOWL, 1);
         ItemMeta info_im = info.getItemMeta();

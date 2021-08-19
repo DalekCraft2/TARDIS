@@ -50,7 +50,7 @@ import java.util.*;
 /**
  * A police box is a telephone kiosk that can be used by members of the public wishing to get help from the police.
  * Early in the First Doctor's travels, the TARDIS assumed the exterior shape of a police box during a five-month
- * stopover in 1963 London. Due a malfunction in its chameleon circuit, the TARDIS became locked into that shape.
+ * stopover in 1963 London. Due to a malfunction in its chameleon circuit, the TARDIS became locked into that shape.
  *
  * @author eccentric_nz
  */
@@ -493,7 +493,7 @@ public class TARDISInstantPreset {
                     if (trav != null) {
                         String message = (bd.isMalfunction()) ? "MALFUNCTION" : "HANDBRAKE_LEFT_CLICK";
                         TARDISMessage.send(trav, message);
-                        // TARDIS has travelled so add players to list so they can receive Artron on exit
+                        // TARDIS has travelled so add players to list, so they can receive Artron on exit
                         plugin.getTrackerKeeper().getHasTravelled().add(s);
                     }
                 }), 30L);

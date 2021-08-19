@@ -262,7 +262,7 @@ public class TARDISPrefsMenuListener extends TARDISMenuListener implements Liste
                     int b = (bool) ? 0 : 1;
                     switch (ChatColor.stripColor(im.getDisplayName())) {
                         case "Junk TARDIS": {
-                            // must be outside of the TARDIS
+                            // must be outside the TARDIS
                             HashMap<String, Object> wheret = new HashMap<>();
                             wheret.put("uuid", uuid);
                             ResultSetTravellers rst = new ResultSetTravellers(plugin, wheret, false);

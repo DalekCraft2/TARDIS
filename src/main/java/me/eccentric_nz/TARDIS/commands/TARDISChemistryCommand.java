@@ -52,63 +52,60 @@ public class TARDISChemistryCommand implements CommandExecutor {
     }
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
-        if (cmd.getName().equalsIgnoreCase("tardischemistry")) {
-            Player player = null;
-            if (sender instanceof Player) {
-                player = (Player) sender;
-            }
-            if (player == null) {
-                sender.sendMessage(plugin.getMessagePrefix() + "Command can only be used by a player!");
-                return true;
-            }
-            if (args.length < 2) {
-                TARDISMessage.send(player, "TOO_FEW_ARGS");
-                return true;
-            }
-            if (args[0].equalsIgnoreCase("formula") && TARDISPermission.hasPermission(player, "tardis.formula.show")) {
-                return new FormulaCommand(plugin).show(player, args);
-            } else if (args[0].equalsIgnoreCase("gui")) {
-                if (!TARDISPermission.hasPermission(player, "tardis.chemistry.command")) {
-                    TARDISMessage.send(player, "CHEMISTRY_CMD_PERM");
-                    return true;
-                }
-                switch (args[1].toLowerCase()) {
-                    case "creative":
-                        if (args.length < 3) {
-                            TARDISMessage.send(player, "TOO_FEW_ARGS");
-                            return true;
-                        }
-                        return new CreativeCommand(plugin).open(player, args);
-                    case "construct":
-                        return new ConstructCommand(plugin).build(player);
-                    case "compound":
-                        return new CompoundCommand(plugin).create(player);
-                    case "reduce":
-                        return new ReduceCommand(plugin).use(player);
-                    case "product":
-                        return new ProductCommand(plugin).craft(player);
-                    case "lab":
-                        return new LabCommand(plugin).combine(player);
-                    default:
-                        return true;
-                }
-            } else if (args[0].equalsIgnoreCase("recipe")) {
-                if (!TARDISPermission.hasPermission(sender, "tardis.help")) {
-                    TARDISMessage.send(sender, "NO_PERMS");
-                    return true;
-                }
-                String which = args[1].toLowerCase();
-                if (!GUIS.contains(which)) {
-                    TARDISMessage.message(player, "");
-                    return false;
-                }
-                showBlockRecipe(player, which);
-                return true;
-            }
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
+        Player player = null;
+        if (sender instanceof Player) {
+            player = (Player) sender;
+        }
+        if (player == null) {
+            sender.sendMessage(plugin.getMessagePrefix() + "Command can only be used by a player!");
             return true;
         }
-        return false;
+        if (args.length < 2) {
+            TARDISMessage.send(player, "TOO_FEW_ARGS");
+            return false;
+        }
+        if (args[0].equalsIgnoreCase("formula") && TARDISPermission.hasPermission(player, "tardis.formula.show")) {
+            return new FormulaCommand(plugin).show(player, args);
+        } else if (args[0].equalsIgnoreCase("gui")) {
+            if (!TARDISPermission.hasPermission(player, "tardis.chemistry.command")) {
+                TARDISMessage.send(player, "CHEMISTRY_CMD_PERM");
+                return true;
+            }
+            switch (args[1].toLowerCase()) {
+                case "creative":
+                    if (args.length < 3) {
+                        TARDISMessage.send(player, "TOO_FEW_ARGS");
+                        return true;
+                    }
+                    return new CreativeCommand(plugin).open(player, args);
+                case "construct":
+                    return new ConstructCommand(plugin).build(player);
+                case "compound":
+                    return new CompoundCommand(plugin).create(player);
+                case "reduce":
+                    return new ReduceCommand(plugin).use(player);
+                case "product":
+                    return new ProductCommand(plugin).craft(player);
+                case "lab":
+                    return new LabCommand(plugin).combine(player);
+                default:
+                    return true;
+            }
+        } else if (args[0].equalsIgnoreCase("recipe")) {
+            if (!TARDISPermission.hasPermission(sender, "tardis.help")) {
+                TARDISMessage.send(sender, "NO_PERMS");
+                return true;
+            }
+            String which = args[1].toLowerCase();
+            if (!GUIS.contains(which)) {
+                TARDISMessage.message(player, "");
+                return false;
+            }
+            showBlockRecipe(player, which);
+            return true;
+        }
+        return true;
     }
 
     private void showBlockRecipe(Player player, String which) {
@@ -121,7 +118,7 @@ public class TARDISChemistryCommand implements CommandExecutor {
             case "reduce" -> Material.GOLD_NUGGET;
             case "product" -> Material.IRON_NUGGET;
             default -> // lab
-                Material.COAL;
+                    Material.COAL;
         };
         Inventory inv = plugin.getServer().createInventory(player, 27, ChatColor.DARK_RED + "Chemistry " + which + " recipe");
         ItemStack ingredient = new ItemStack(surround, 1);

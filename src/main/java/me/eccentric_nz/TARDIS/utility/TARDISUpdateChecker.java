@@ -71,6 +71,7 @@ public class TARDISUpdateChecker implements Runnable {
             plugin.getLogger().log(Level.WARNING, String.format(TARDISMessage.JENKINS_UPDATE_READY, buildNumber, newBuildNumber));
             plugin.getLogger().log(Level.WARNING, TARDISMessage.UPDATE_COMMAND);
         } else {
+            // TODO This is always "false"; figure out why
             if (buildNumber == newBuildNumber) {
                 sender.sendMessage(plugin.getMessagePrefix() + "You are running the latest version!");
             } else {

@@ -53,7 +53,7 @@ public class TARDISRecipeInventory {
     }
 
     private ItemStack[] getItemStack() {
-        ItemStack[] stack = new ItemStack[27];
+        ItemStack[] stack = new ItemStack[54];
         // back
         ItemStack back = new ItemStack(Material.BOWL, 1);
         ItemMeta but = back.getItemMeta();

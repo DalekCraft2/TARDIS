@@ -84,121 +84,117 @@ public class TARDISAdminCommands implements CommandExecutor {
     }
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
-        // If the player typed /tardisadmin then do the following...
-        if (cmd.getName().equalsIgnoreCase("tardisadmin")) {
-            if (sender instanceof ConsoleCommandSender || sender.hasPermission("tardis.admin")) {
-                if (args.length == 0) {
-                    new TARDISCommandHelper(plugin).getCommand("tardisadmin", sender);
-                    return true;
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
+        if (sender instanceof ConsoleCommandSender || sender.hasPermission("tardis.admin")) {
+            if (args.length == 0) {
+                new TARDISCommandHelper(plugin).getCommand("tardisadmin", sender);
+                return true;
+            }
+            String first = args[0].toLowerCase(Locale.ENGLISH);
+            if (!firstsStr.contains(first)) {
+                TARDISMessage.send(sender, "ARG_NOT_VALID");
+                return false;
+            }
+            if (args.length == 1) {
+                if (first.equals("condenser")) {
+                    return new TARDISCondenserCommand(plugin).set(sender);
                 }
-                String first = args[0].toLowerCase(Locale.ENGLISH);
-                if (!firstsStr.contains(first)) {
-                    TARDISMessage.send(sender, "ARG_NOT_VALID");
-                    return false;
-                }
-                if (args.length == 1) {
-                    if (first.equals("condenser")) {
-                        return new TARDISCondenserCommand(plugin).set(sender);
-                    }
-                    if (first.equals("convert_database")) {
-                        try {
-                            plugin.getServer().getScheduler().runTaskAsynchronously(plugin, new Converter(plugin, sender));
-                            return true;
-                        } catch (Exception exception) {
-                            TARDISMessage.message(sender, "Database conversion failed: " + exception.getMessage());
-                            return true;
-                        }
-                    }
-                    if (first.equals("update_plugins")) {
-                        if (!sender.isOp()) {
-                            TARDISMessage.message(sender, "You must be a server operator to run this command!");
-                            return true;
-                        }
-                        return new UpdateTARDISPlugins(plugin).fetchFromJenkins(sender);
-                    }
-                    if (first.equals("maze")) {
-                        if (sender instanceof Player p) {
-                            Location l = p.getTargetBlock(plugin.getGeneralKeeper().getTransparent(), 16).getRelative(BlockFace.UP).getLocation();
-                            TARDISMazeGenerator generator = new TARDISMazeGenerator();
-                            generator.makeMaze();
-                            TARDISMazeBuilder builder = new TARDISMazeBuilder(generator.getMaze(), l);
-                            builder.build(false);
-                        }
+                if (first.equals("convert_database")) {
+                    try {
+                        plugin.getServer().getScheduler().runTaskAsynchronously(plugin, new Converter(plugin, sender));
+                        return true;
+                    } catch (Exception exception) {
+                        TARDISMessage.message(sender, "Database conversion failed: " + exception.getMessage());
                         return true;
                     }
                 }
-                if (first.equals("list")) {
-                    return new TARDISListCommand(plugin).listStuff(sender, args);
-                }
-                if (first.equals("purge_portals")) {
-                    return new TARDISPortalCommand(plugin).clearAll(sender);
-                }
-                if (first.equals("undisguise")) {
-                    return new TARDISDisguiseCommand(plugin).disguise(sender, args);
-                }
-                if (args.length < 2) {
-                    TARDISMessage.send(sender, "TOO_FEW_ARGS");
-                    return false;
-                }
-                if (first.equals("arch")) {
-                    if (args.length > 2) {
-                        return new TARDISArchCommand(plugin).force(sender, args);
-                    } else {
-                        return new TARDISArchCommand(plugin).whois(sender, args);
+                if (first.equals("update_plugins")) {
+                    if (!sender.isOp()) {
+                        TARDISMessage.message(sender, "You must be a server operator to run this command!");
+                        return true;
                     }
+                    return new UpdateTARDISPlugins(plugin).fetchFromJenkins(sender);
                 }
-                if (first.equals("assemble")) {
-                    return new TARDISDispersedCommand(plugin).assemble(sender, args[1]);
+                if (first.equals("maze")) {
+                    if (sender instanceof Player p) {
+                        Location l = p.getTargetBlock(plugin.getGeneralKeeper().getTransparent(), 16).getRelative(BlockFace.UP).getLocation();
+                        TARDISMazeGenerator generator = new TARDISMazeGenerator();
+                        generator.makeMaze();
+                        TARDISMazeBuilder builder = new TARDISMazeBuilder(generator.getMaze(), l);
+                        builder.build(false);
+                    }
+                    return true;
                 }
-                if (first.equals("set_size")) {
-                    return new TARDISSetSizeCommand(plugin).overwrite(sender, args);
-                }
-                if (first.equals("spawn_abandoned")) {
-                    return new TARDISAbandonedCommand(plugin).spawn(sender, args);
-                }
-                if (first.equals("make_preset")) {
-                    return new TARDISMakePresetCommand(plugin).scanBlocks(sender, args);
-                }
-                if (first.equals("playercount")) {
-                    return new TARDISPlayerCountCommand(plugin).countPlayers(sender, args);
-                }
-                if (first.equals("prune")) {
-                    return new TARDISPruneCommand(plugin).startPruning(sender, args);
-                }
-                if (first.equals("prunelist")) {
-                    return new TARDISPruneCommand(plugin).listPrunes(sender, args);
-                }
-                if (first.equals("purge")) {
-                    return new TARDISPurgeCommand(plugin).clearAll(sender, args);
-                }
-                if (first.equals("recharger")) {
-                    return new TARDISRechargerCommand(plugin).setRecharger(sender, args);
-                }
-                if (first.equals("decharge")) {
-                    return new TARDISDechargeCommand(plugin).removeChargerStatus(sender, args);
-                }
-                if (first.equals("disguise")) {
-                    return new TARDISDisguiseCommand(plugin).disguise(sender, args);
-                }
-                if (first.equals("enter")) {
-                    return new TARDISEnterCommand(plugin).enterTARDIS(sender, args);
-                }
-                if (first.equals("delete")) {
-                    return new TARDISDeleteCommand(plugin).deleteTARDIS(sender, args);
-                }
-                if (first.equals("repair")) {
-                    return new TARDISRepairCommand(plugin).setFreeCount(sender, args);
-                }
-                if (first.equals("revoke")) {
-                    return new TARDISRevokeCommand(plugin).removePermission(sender, args);
-                }
-                return true;
-            } else {
-                TARDISMessage.send(sender, "CMD_ADMIN");
+            }
+            if (first.equals("list")) {
+                return new TARDISListCommand(plugin).listStuff(sender, args);
+            }
+            if (first.equals("purge_portals")) {
+                return new TARDISPortalCommand(plugin).clearAll(sender);
+            }
+            if (first.equals("undisguise")) {
+                return new TARDISDisguiseCommand(plugin).disguise(sender, args);
+            }
+            if (args.length < 2) {
+                TARDISMessage.send(sender, "TOO_FEW_ARGS");
                 return false;
             }
+            if (first.equals("arch")) {
+                if (args.length > 2) {
+                    return new TARDISArchCommand(plugin).force(sender, args);
+                } else {
+                    return new TARDISArchCommand(plugin).whois(sender, args);
+                }
+            }
+            if (first.equals("assemble")) {
+                return new TARDISDispersedCommand(plugin).assemble(sender, args[1]);
+            }
+            if (first.equals("set_size")) {
+                return new TARDISSetSizeCommand(plugin).overwrite(sender, args);
+            }
+            if (first.equals("spawn_abandoned")) {
+                return new TARDISAbandonedCommand(plugin).spawn(sender, args);
+            }
+            if (first.equals("make_preset")) {
+                return new TARDISMakePresetCommand(plugin).scanBlocks(sender, args);
+            }
+            if (first.equals("playercount")) {
+                return new TARDISPlayerCountCommand(plugin).countPlayers(sender, args);
+            }
+            if (first.equals("prune")) {
+                return new TARDISPruneCommand(plugin).startPruning(sender, args);
+            }
+            if (first.equals("prunelist")) {
+                return new TARDISPruneCommand(plugin).listPrunes(sender, args);
+            }
+            if (first.equals("purge")) {
+                return new TARDISPurgeCommand(plugin).clearAll(sender, args);
+            }
+            if (first.equals("recharger")) {
+                return new TARDISRechargerCommand(plugin).setRecharger(sender, args);
+            }
+            if (first.equals("decharge")) {
+                return new TARDISDechargeCommand(plugin).removeChargerStatus(sender, args);
+            }
+            if (first.equals("disguise")) {
+                return new TARDISDisguiseCommand(plugin).disguise(sender, args);
+            }
+            if (first.equals("enter")) {
+                return new TARDISEnterCommand(plugin).enterTARDIS(sender, args);
+            }
+            if (first.equals("delete")) {
+                return new TARDISDeleteCommand(plugin).deleteTARDIS(sender, args);
+            }
+            if (first.equals("repair")) {
+                return new TARDISRepairCommand(plugin).setFreeCount(sender, args);
+            }
+            if (first.equals("revoke")) {
+                return new TARDISRevokeCommand(plugin).removePermission(sender, args);
+            }
+            return true;
+        } else {
+            TARDISMessage.send(sender, "CMD_ADMIN");
+            return false;
         }
-        return false;
     }
 }

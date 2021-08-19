@@ -75,7 +75,7 @@ public class TARDISFarmer {
             default -> l.setX(l.getX() + 1);
         }
         l.setY(l.getY() + 1);
-        // spawn an entity at this location so we can get nearby entities - an egg will do
+        // spawn an entity at this location, so we can get nearby entities - an egg will do
         World w = l.getWorld();
         Entity egg = w.spawnEntity(l, EntityType.EGG);
         List<Entity> mobs = egg.getNearbyEntities(3.75D, 3.75D, 3.75D);

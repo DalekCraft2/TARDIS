@@ -48,43 +48,40 @@ public class TARDISJunkCommands implements CommandExecutor {
     }
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
-        // If the player typed /tardisjunk then do the following...
-        if (cmd.getName().equalsIgnoreCase("tardisjunk")) {
-            if (args.length == 0) {
-                // find Junk TARDIS
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
+        if (args.length == 0) {
+            // find Junk TARDIS
+            return new TARDISJunkFind(plugin).find(sender);
+        }
+        String first = args[0].toLowerCase(Locale.ENGLISH);
+        if (args.length == 1 && firstArgs.contains(first)) {
+            if (first.equals("create")) {
+                Player p = null;
+                if (sender instanceof Player) {
+                    p = (Player) sender;
+                }
+                if (p == null) {
+                    TARDISMessage.send(sender, "CMD_PLAYER");
+                    return false;
+                }
+                return new TARDISJunkCreator(plugin, p).createJunkTARDIS();
+            }
+            if (first.equals("find")) {
                 return new TARDISJunkFind(plugin).find(sender);
             }
-            String first = args[0].toLowerCase(Locale.ENGLISH);
-            if (args.length == 1 && firstArgs.contains(first)) {
-                if (first.equals("create")) {
-                    Player p = null;
-                    if (sender instanceof Player) {
-                        p = (Player) sender;
-                    }
-                    if (p == null) {
-                        TARDISMessage.send(sender, "CMD_PLAYER");
-                        return false;
-                    }
-                    return new TARDISJunkCreator(plugin, p).createJunkTARDIS();
-                }
-                if (first.equals("find")) {
-                    return new TARDISJunkFind(plugin).find(sender);
-                }
-                if (first.equals("time")) {
-                    return new TARDISJunkTime(plugin).elapsed(sender);
-                }
-                if (first.equals("return")) {
-                    return new TARDISJunkReturn(plugin).recall(sender);
-                }
-                if (first.equals("delete")) {
-                    return new TARDISJunkDelete(plugin).delete(sender);
-                }
-                return true;
+            if (first.equals("time")) {
+                return new TARDISJunkTime(plugin).elapsed(sender);
             }
-            if (args.length == 2 && first.equals("floor") || first.equals("wall")) {
-                return new TARDISJunkFloorWall(plugin).setJunkWallOrFloor(sender, args);
+            if (first.equals("return")) {
+                return new TARDISJunkReturn(plugin).recall(sender);
             }
+            if (first.equals("delete")) {
+                return new TARDISJunkDelete(plugin).delete(sender);
+            }
+            return true;
+        }
+        if (args.length == 2 && first.equals("floor") || first.equals("wall")) {
+            return new TARDISJunkFloorWall(plugin).setJunkWallOrFloor(sender, args);
         }
         return false;
     }

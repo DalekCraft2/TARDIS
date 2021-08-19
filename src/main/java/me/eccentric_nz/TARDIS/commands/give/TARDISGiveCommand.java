@@ -26,7 +26,10 @@ import me.eccentric_nz.TARDIS.enumeration.RecipeItem;
 import me.eccentric_nz.TARDIS.messaging.TARDISGiveLister;
 import me.eccentric_nz.TARDIS.messaging.TARDISMessage;
 import me.eccentric_nz.TARDIS.utility.TARDISStaticUtils;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -71,153 +74,150 @@ public class TARDISGiveCommand implements CommandExecutor {
     }
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
-        // If the player typed /tardisgive then do the following...
-        if (cmd.getName().equalsIgnoreCase("tardisgive")) {
-            if (sender instanceof ConsoleCommandSender || sender.hasPermission("tardis.admin")) {
-                if (args.length == 1 && args[0].equalsIgnoreCase("list")) {
-                    new TARDISGiveLister(plugin, sender).list();
-                    return true;
-                }
-                if (args.length < 3) {
-                    TARDISMessage.send(sender, "TOO_FEW_ARGS");
-                    TARDISMessage.message(sender, "/tardisgive [player] [item] [amount]");
-                    return true;
-                }
-                String item = args[1].toLowerCase(Locale.ENGLISH);
-                if (!items.containsKey(item)) {
-                    new TARDISGiveLister(plugin, sender).list();
-                    return true;
-                }
-                if (item.equals("kit")) {
-                    Player p = plugin.getServer().getPlayer(args[0]);
-                    if (p == null) { // player must be online
-                        TARDISMessage.send(sender, "COULD_NOT_FIND_NAME");
-                        return true;
-                    }
-                    if (!plugin.getKitsConfig().contains("kits." + args[2])) {
-                        TARDISMessage.send(sender, "ARG_KIT");
-                        return true;
-                    }
-                    plugin.getKitsConfig().getStringList("kits." + args[2]).forEach((k) -> giveItem(k, p));
-                    TARDISMessage.send(p, "GIVE_KIT", sender.getName(), args[2]);
-                    return true;
-                }
-                if (item.equals("blueprint")) {
-                    String blueprint = args[2].toUpperCase(Locale.ENGLISH);
-                    if (TARDISGiveTabComplete.getBlueprints().contains(blueprint)) {
-                        return giveBlueprint(sender, args, blueprint);
-                    } else {
-                        TARDISMessage.send(sender, "ARG_BLUEPRINT");
-                        return true;
-                    }
-                }
-                if (item.equals("recipes")) {
-                    if (args[2].equalsIgnoreCase("all")) {
-                        return grantRecipes(sender, args);
-                    } else {
-                        grantRecipe(sender, args);
-                    }
-                }
-                if (item.equals("seed")) {
-                    String seed = args[2].toUpperCase(Locale.ENGLISH);
-                    if (Consoles.getByNames().containsKey(seed) && !seed.equals("SMALL") && !seed.equals("MEDIUM") && !seed.equals("TALL") && !seed.equals("ARCHIVE")) {
-                        if (args.length > 3 && args[3].equalsIgnoreCase("knowledge")) {
-                            Player sp = plugin.getServer().getPlayer(args[0]);
-                            if (sp == null) { // player must be online
-                                TARDISMessage.send(sender, "COULD_NOT_FIND_NAME");
-                                return true;
-                            }
-                            return giveKnowledgeBook(sender, seed.toLowerCase() + "_seed", sp);
-                        } else {
-                            return giveSeed(sender, args);
-                        }
-                    } else {
-                        TARDISMessage.send(sender, "ARG_SEED");
-                        return true;
-                    }
-                }
-                int amount;
-                switch (args[2]) {
-                    case "full":
-                        amount = full;
-                        break;
-                    case "empty":
-                        amount = 0;
-                        break;
-                    case "knowledge":
-                        amount = 1;
-                        break;
-                    default:
-                        try {
-                            amount = Integer.parseInt(args[2]);
-                        } catch (NumberFormatException nfe) {
-                            TARDISMessage.send(sender, "ARG_GIVE");
-                            return true;
-                        }
-                        break;
-                }
-                if (item.equals("mushroom")) {
-                    if (args.length < 4) {
-                        TARDISMessage.send(sender, "TOO_FEW_ARGS");
-                        TARDISMessage.message(sender, "/tardisgive [player] mushroom [amount] [type]");
-                        return true;
-                    }
-                    Player p = plugin.getServer().getPlayer(args[0]);
-                    if (p == null) { // player must be online
-                        TARDISMessage.send(sender, "COULD_NOT_FIND_NAME");
-                        return true;
-                    }
-                    ItemStack mushroom = new TARDISMushroomCommand(plugin).getStack(args);
-                    p.getInventory().addItem(mushroom);
-                    p.updateInventory();
-                    TARDISMessage.send(p, "GIVE_ITEM", sender.getName(), amount + " " + args[3]);
-                    return true;
-                }
-                if (item.equals("artron")) {
-                    if (TARDISStaticUtils.getOfflinePlayer(args[0]) == null) {
-                        TARDISMessage.send(sender, "COULD_NOT_FIND_NAME");
-                        return true;
-                    }
-                    return giveArtron(sender, args[0], amount);
-                } else {
-                    Player player = null;
-                    if (args[0].equals("@s") && sender instanceof Player) {
-                        player = (Player) sender;
-                    } else if (args[0].equals("@p")) {
-                        List<Entity> near = Bukkit.selectEntities(sender, "@p");
-                        if (near.size() > 0 && near.get(0) instanceof Player) {
-                            player = (Player) near.get(0);
-                            if (player == null) {
-                                TARDISMessage.send(sender, "COULD_NOT_NEARBY_PLAYER");
-                                return true;
-                            }
-                        }
-                    } else {
-                        player = plugin.getServer().getPlayer(args[0]);
-                    }
-                    if (player == null) { // player must be online
-                        TARDISMessage.send(sender, "COULD_NOT_FIND_NAME");
-                        return true;
-                    }
-                    if (args[1].equalsIgnoreCase("cell") && args.length == 4 && args[3].equalsIgnoreCase("full")) {
-                        return giveFullCell(sender, amount, player);
-                    } else if (args[2].equals("knowledge")) {
-                        if (item.equalsIgnoreCase("all")) {
-                            return giveAllKnowledge(sender, player);
-                        } else {
-                            return giveKnowledgeBook(sender, item, player);
-                        }
-                    } else if (!args[2].endsWith("_seed")) {
-                        return giveItem(sender, item, amount, player);
-                    }
-                }
-            } else {
-                TARDISMessage.send(sender, "NO_PERMS");
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
+        if (sender instanceof ConsoleCommandSender || sender.hasPermission("tardis.admin")) {
+            if (args.length == 1 && args[0].equalsIgnoreCase("list")) {
+                new TARDISGiveLister(plugin, sender).list();
                 return true;
             }
+            if (args.length < 3) {
+                TARDISMessage.send(sender, "TOO_FEW_ARGS");
+                TARDISMessage.message(sender, "/tardisgive [player] [item] [amount]");
+                return true;
+            }
+            String item = args[1].toLowerCase(Locale.ENGLISH);
+            if (!items.containsKey(item)) {
+                new TARDISGiveLister(plugin, sender).list();
+                return true;
+            }
+            if (item.equals("kit")) {
+                Player p = plugin.getServer().getPlayer(args[0]);
+                if (p == null) { // player must be online
+                    TARDISMessage.send(sender, "COULD_NOT_FIND_NAME");
+                    return true;
+                }
+                if (!plugin.getKitsConfig().contains("kits." + args[2])) {
+                    TARDISMessage.send(sender, "ARG_KIT");
+                    return true;
+                }
+                plugin.getKitsConfig().getStringList("kits." + args[2]).forEach((k) -> giveItem(k, p));
+                TARDISMessage.send(p, "GIVE_KIT", sender.getName(), args[2]);
+                return true;
+            }
+            if (item.equals("blueprint")) {
+                String blueprint = args[2].toUpperCase(Locale.ENGLISH);
+                if (TARDISGiveTabComplete.getBlueprints().contains(blueprint)) {
+                    return giveBlueprint(sender, args, blueprint);
+                } else {
+                    TARDISMessage.send(sender, "ARG_BLUEPRINT");
+                    return true;
+                }
+            }
+            if (item.equals("recipes")) {
+                if (args[2].equalsIgnoreCase("all")) {
+                    return grantRecipes(sender, args);
+                } else {
+                    grantRecipe(sender, args);
+                }
+            }
+            if (item.equals("seed")) {
+                String seed = args[2].toUpperCase(Locale.ENGLISH);
+                if (Consoles.getByNames().containsKey(seed) && !seed.equals("SMALL") && !seed.equals("MEDIUM") && !seed.equals("TALL") && !seed.equals("ARCHIVE")) {
+                    if (args.length > 3 && args[3].equalsIgnoreCase("knowledge")) {
+                        Player sp = plugin.getServer().getPlayer(args[0]);
+                        if (sp == null) { // player must be online
+                            TARDISMessage.send(sender, "COULD_NOT_FIND_NAME");
+                            return true;
+                        }
+                        return giveKnowledgeBook(sender, seed.toLowerCase() + "_seed", sp);
+                    } else {
+                        return giveSeed(sender, args);
+                    }
+                } else {
+                    TARDISMessage.send(sender, "ARG_SEED");
+                    return true;
+                }
+            }
+            int amount;
+            switch (args[2]) {
+                case "full":
+                    amount = full;
+                    break;
+                case "empty":
+                    amount = 0;
+                    break;
+                case "knowledge":
+                    amount = 1;
+                    break;
+                default:
+                    try {
+                        amount = Integer.parseInt(args[2]);
+                    } catch (NumberFormatException nfe) {
+                        TARDISMessage.send(sender, "ARG_GIVE");
+                        return true;
+                    }
+                    break;
+            }
+            if (item.equals("mushroom")) {
+                if (args.length < 4) {
+                    TARDISMessage.send(sender, "TOO_FEW_ARGS");
+                    TARDISMessage.message(sender, "/tardisgive [player] mushroom [amount] [type]");
+                    return true;
+                }
+                Player p = plugin.getServer().getPlayer(args[0]);
+                if (p == null) { // player must be online
+                    TARDISMessage.send(sender, "COULD_NOT_FIND_NAME");
+                    return true;
+                }
+                ItemStack mushroom = new TARDISMushroomCommand(plugin).getStack(args);
+                p.getInventory().addItem(mushroom);
+                p.updateInventory();
+                TARDISMessage.send(p, "GIVE_ITEM", sender.getName(), amount + " " + args[3]);
+                return true;
+            }
+            if (item.equals("artron")) {
+                if (TARDISStaticUtils.getOfflinePlayer(args[0]) == null) {
+                    TARDISMessage.send(sender, "COULD_NOT_FIND_NAME");
+                    return true;
+                }
+                return giveArtron(sender, args[0], amount);
+            } else {
+                Player player = null;
+                if (args[0].equals("@s") && sender instanceof Player) {
+                    player = (Player) sender;
+                } else if (args[0].equals("@p")) {
+                    List<Entity> near = Bukkit.selectEntities(sender, "@p");
+                    if (near.size() > 0 && near.get(0) instanceof Player) {
+                        player = (Player) near.get(0);
+                        if (player == null) {
+                            TARDISMessage.send(sender, "COULD_NOT_NEARBY_PLAYER");
+                            return true;
+                        }
+                    }
+                } else {
+                    player = plugin.getServer().getPlayer(args[0]);
+                }
+                if (player == null) { // player must be online
+                    TARDISMessage.send(sender, "COULD_NOT_FIND_NAME");
+                    return true;
+                }
+                if (args[1].equalsIgnoreCase("cell") && args.length == 4 && args[3].equalsIgnoreCase("full")) {
+                    return giveFullCell(sender, amount, player);
+                } else if (args[2].equals("knowledge")) {
+                    if (item.equalsIgnoreCase("all")) {
+                        return giveAllKnowledge(sender, player);
+                    } else {
+                        return giveKnowledgeBook(sender, item, player);
+                    }
+                } else if (!args[2].endsWith("_seed")) {
+                    return giveItem(sender, item, amount, player);
+                }
+            }
+        } else {
+            TARDISMessage.send(sender, "NO_PERMS");
+            return true;
         }
-        return false;
+        return true;
     }
 
     private boolean giveItem(CommandSender sender, String item, int amount, Player player) {

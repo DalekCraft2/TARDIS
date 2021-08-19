@@ -169,7 +169,7 @@ public class TARDISMazeGenerator {
             }
             return cut;
         } else {
-            // otherwise trim the array to the right length and return it
+            // otherwise, trim the array to the right length and return it
             int[] cancut = new int[place];
             System.arraycopy(cut, 0, cancut, 0, place);
             return cancut;

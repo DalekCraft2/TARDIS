@@ -91,7 +91,7 @@ public class TARDISStringUtils {
      * TARDIS Seed block.
      *
      * @param str the lore stored in the TARDIS Seed block's Item Meta
-     * @return an String representing the Material
+     * @return a String representing the Material
      */
     public static String getValuesFromWallString(String str) {
         String[] split = str.split(": ");

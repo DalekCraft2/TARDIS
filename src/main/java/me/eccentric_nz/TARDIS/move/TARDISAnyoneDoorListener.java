@@ -361,7 +361,7 @@ public class TARDISAnyoneDoorListener extends TARDISDoorListener implements List
                                             }
                                             exitLoc.setYaw(yaw);
                                             // get location from database
-                                            // make location safe ie. outside of the bluebox
+                                            // make location safe i.e. outside the blue box
                                             double ex = exitLoc.getX();
                                             double ez = exitLoc.getZ();
                                             if (opened) {
@@ -453,7 +453,7 @@ public class TARDISAnyoneDoorListener extends TARDISDoorListener implements List
                                             // enter TARDIS!
                                             cw.getChunkAt(tardis_loc).load();
                                             tardis_loc.setPitch(pitch);
-                                            // get inner door direction so we can adjust yaw if necessary
+                                            // get inner door direction, so we can adjust yaw if necessary
                                             if (!innerD.equals(pd)) {
                                                 yaw += adjustYaw(pd, innerD);
                                             }
@@ -473,7 +473,7 @@ public class TARDISAnyoneDoorListener extends TARDISDoorListener implements List
                                                 }
                                             }
                                             // put player into travellers table
-                                            // remove them first as they may have exited incorrectly and we only want them listed once
+                                            // remove them first as they may have exited incorrectly, and we only want them listed once
                                             removeTraveller(playerUUID);
                                             HashMap<String, Object> set = new HashMap<>();
                                             set.put("tardis_id", id);

@@ -46,7 +46,7 @@ import java.util.HashMap;
 
 /**
  * At one point, the Tenth Doctor installed a system that allowed him to lock the TARDIS remotely using a fob. As a
- * joke, the TARDIS roof light flashed and a alarm chirp sound was heard, similar to that used on vehicles on Earth.
+ * joke, the TARDIS roof light flashed and an alarm chirp sound was heard, similar to that used on vehicles on Earth.
  *
  * @author eccentric_nz
  */

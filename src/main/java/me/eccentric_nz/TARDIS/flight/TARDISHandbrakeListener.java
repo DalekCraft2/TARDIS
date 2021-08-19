@@ -143,7 +143,7 @@ public class TARDISHandbrakeListener implements Listener {
                         }
                         UUID ownerUUID = tardis.getUuid();
                         if ((tardis.isIso_on() && !uuid.equals(ownerUUID) && event.useInteractedBlock().equals(Event.Result.DENY) && !TARDISPermission.hasPermission(player, "tardis.skeletonkey")) || plugin.getTrackerKeeper().getJohnSmith().containsKey(uuid)) {
-                            // check if cancelled so we don't get double messages from the bind listener
+                            // check if cancelled, so we don't get double messages from the bind listener
                             TARDISMessage.send(player, "ISO_HANDS_OFF");
                             return;
                         }

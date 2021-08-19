@@ -47,48 +47,46 @@ public class TARDISSayCommand implements CommandExecutor {
     }
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
-        if (cmd.getName().equalsIgnoreCase("tardissay")) {
-            if (!TARDISPermission.hasPermission(sender, "tardis.translate")) {
-                TARDISMessage.send(sender, "NO_PERMS");
-                return false;
-            }
-            if (args.length < 2) {
-                TARDISMessage.send(sender, "TOO_FEW_ARGS");
-                return false;
-            }
-            String preferedLang = "ENGLISH";
-            if (sender instanceof Player player) {
-                ResultSetPlayerPrefs rs = new ResultSetPlayerPrefs(plugin, player.getUniqueId().toString());
-                if (rs.resultSet() && !rs.getLanguage().isEmpty()) {
-                    if (!rs.getLanguage().equalsIgnoreCase("AUTO_DETECT")) {
-                        preferedLang = rs.getLanguage();
-                    }
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
+        if (!TARDISPermission.hasPermission(sender, "tardis.translate")) {
+            TARDISMessage.send(sender, "NO_PERMS");
+            return false;
+        }
+        if (args.length < 2) {
+            TARDISMessage.send(sender, "TOO_FEW_ARGS");
+            return false;
+        }
+        String preferedLang = "ENGLISH";
+        if (sender instanceof Player player) {
+            ResultSetPlayerPrefs rs = new ResultSetPlayerPrefs(plugin, player.getUniqueId().toString());
+            if (rs.resultSet() && !rs.getLanguage().isEmpty()) {
+                if (!rs.getLanguage().equalsIgnoreCase("AUTO_DETECT")) {
+                    preferedLang = rs.getLanguage();
                 }
-            }
-            String whatToTranslate = String.join(" ", Arrays.copyOfRange(args, 1, args.length));
-            String lang = args[0].toUpperCase(Locale.ENGLISH);
-            try {
-                Language to = Language.valueOf(lang);
-                Language from = Language.valueOf(preferedLang);
-                Translate.setKey("trnsl.1.1.20170312T202552Z.b0bd3c7ce48fe120.8d084aec9ae76b8d17b7882cd3026202c61ee7e0");
-                try {
-                    String translatedText = Translate.execute(whatToTranslate, from, to);
-                    if (sender instanceof Player player) {
-                        player.chat(UT + translatedText);
-                    } else {
-                        plugin.getServer().dispatchCommand(sender, "say " + UT + translatedText);
-                    }
-                    return true;
-                } catch (Exception ex) {
-                    plugin.debug("Could not get translation! " + ex);
-                    ex.printStackTrace();
-                    TARDISMessage.send(sender, "YT_UNAVAILABLE");
-                }
-            } catch (IllegalArgumentException e) {
-                TARDISMessage.send(sender, "LANG_NOT_VALID");
             }
         }
-        return false;
+        String whatToTranslate = String.join(" ", Arrays.copyOfRange(args, 1, args.length));
+        String lang = args[0].toUpperCase(Locale.ENGLISH);
+        try {
+            Language to = Language.valueOf(lang);
+            Language from = Language.valueOf(preferedLang);
+            Translate.setKey("trnsl.1.1.20170312T202552Z.b0bd3c7ce48fe120.8d084aec9ae76b8d17b7882cd3026202c61ee7e0");
+            try {
+                String translatedText = Translate.execute(whatToTranslate, from, to);
+                if (sender instanceof Player player) {
+                    player.chat(UT + translatedText);
+                } else {
+                    plugin.getServer().dispatchCommand(sender, "say " + UT + translatedText);
+                }
+                return true;
+            } catch (Exception ex) {
+                plugin.debug("Could not get translation! " + ex);
+                ex.printStackTrace();
+                TARDISMessage.send(sender, "YT_UNAVAILABLE");
+            }
+        } catch (IllegalArgumentException e) {
+            TARDISMessage.send(sender, "LANG_NOT_VALID");
+        }
+        return true;
     }
 }

@@ -104,7 +104,7 @@ public class TARDISSeedBlockPersister {
             if (count > 0) {
                 plugin.getLogger().log(Level.INFO, "Loaded " + count + " placed seed blocks.");
             }
-            // clear the portals table so we don't get any duplicates when saving them
+            // clear the portals table, so we don't get any duplicates when saving them
             ps = connection.prepareStatement("DELETE FROM " + prefix + "seeds");
             ps.executeUpdate();
         } catch (SQLException sqlException) {

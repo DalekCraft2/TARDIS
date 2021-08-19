@@ -18,6 +18,7 @@ package me.eccentric_nz.TARDIS.info;
 
 import me.eccentric_nz.TARDIS.TARDIS;
 import me.eccentric_nz.TARDIS.chatGUI.TARDISUpdateChatGUI;
+import me.eccentric_nz.TARDIS.control.TARDISInfoMenuButton;
 import me.eccentric_nz.TARDIS.messaging.TARDISMessage;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.command.Command;
@@ -46,22 +47,25 @@ public class TARDISInformationSystemListener implements Listener, CommandExecuto
         this.plugin = plugin;
     }
 
+    // TODO Fix this
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
-        if (!(sender instanceof Player p)) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
+        if (!(sender instanceof Player player)) {
             return true;
         }
-        UUID uuid = p.getUniqueId();
+        UUID uuid = player.getUniqueId();
         if (plugin.getTrackerKeeper().getInfoMenu().containsKey(uuid)) {
-            if (args[0].equalsIgnoreCase("E")) {
-                exit(p);
+            if (args.length == 1 && args[0].equalsIgnoreCase("E")) {
+                exit(player);
                 return true;
             }
             if (args.length == 1) {
-                processInput(p, uuid, args[0]);
+                processInput(player, uuid, args[0]);
             } else {
-                TARDISMessage.send(p, "TIS_EXIT");
+                TARDISMessage.send(player, "TIS_EXIT");
             }
+        } else {
+            new TARDISInfoMenuButton(plugin, player).clickButton();
         }
         return true;
     }

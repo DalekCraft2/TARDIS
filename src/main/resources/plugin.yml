@@ -55,7 +55,7 @@ permissions:
       tardis.advanced: true
       tardis.storage: true
       tardis.vault: true
-      tardis.preset.*: true
+    #      tardis.preset.*: true
     default: op
   tardis.preset.*:
     description: Allows a player to use all Chameleon Presets.

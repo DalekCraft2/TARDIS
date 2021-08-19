@@ -76,7 +76,7 @@ public class TARDISStaticUtils {
     }
 
     /**
-     * Get a human readable time from server ticks.
+     * Get a human-readable time from server ticks.
      *
      * @param t the time in ticks
      * @return a string representation of the time

@@ -163,7 +163,7 @@ public class TARDISTownyChecker {
     }
 
     /**
-     * Data class to store check results so we can reuse them again if needed.
+     * Data class to store check results, so we can reuse them again if needed.
      */
     public static class TownyData {
 

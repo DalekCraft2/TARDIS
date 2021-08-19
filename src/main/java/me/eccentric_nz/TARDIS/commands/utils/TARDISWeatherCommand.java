@@ -45,48 +45,45 @@ public class TARDISWeatherCommand extends TARDISCompleter implements CommandExec
     }
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
-        if (cmd.getName().equalsIgnoreCase("tardisweather")) {
-            if (args.length < 1) {
-                TARDISMessage.send(sender, "TOO_FEW_ARGS");
-                return true;
-            }
-            if (sender instanceof Player player) {
-                if (player == null) {
-                    TARDISMessage.send(sender, "CMD_PLAYER");
-                    return true;
-                }
-                Location location = player.getLocation();
-                World world = location.getWorld();
-                if (plugin.getUtils().inTARDISWorld(player)) {
-                    // get TARDIS player is in
-                    int id = plugin.getTardisAPI().getIdOfTARDISPlayerIsIn(player);
-                    // get current TARDIS location
-                    HashMap<String, Object> where = new HashMap<>();
-                    where.put("tardis_id", id);
-                    ResultSetCurrentLocation rsc = new ResultSetCurrentLocation(plugin, where);
-                    if (rsc.resultSet()) {
-                        world = rsc.getWorld();
-                    } else {
-                        // can't change weather in TARDIS world
-                        TARDISMessage.send(player, "WEATHER_TARDIS");
-                        return true;
-                    }
-                }
-                Weather weather = Weather.fromString(args[0]);
-                String perm = weather.toString().toLowerCase();
-                if (!TARDISPermission.hasPermission(player, "tardis.weather." + perm)) {
-                    TARDISMessage.send(sender, "NO_PERMS");
-                    return true;
-                }
-                TARDISWeather.setWeather(world, weather);
-                TARDISMessage.send(player, "WEATHER_SET", perm);
-            } else {
-                TARDISMessage.send(sender, "CMD_PLAYER");
-            }
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
+        if (args.length < 1) {
+            TARDISMessage.send(sender, "TOO_FEW_ARGS");
             return true;
         }
-        return false;
+        if (sender instanceof Player player) {
+            if (player == null) {
+                TARDISMessage.send(sender, "CMD_PLAYER");
+                return true;
+            }
+            Location location = player.getLocation();
+            World world = location.getWorld();
+            if (plugin.getUtils().inTARDISWorld(player)) {
+                // get TARDIS player is in
+                int id = plugin.getTardisAPI().getIdOfTARDISPlayerIsIn(player);
+                // get current TARDIS location
+                HashMap<String, Object> where = new HashMap<>();
+                where.put("tardis_id", id);
+                ResultSetCurrentLocation rsc = new ResultSetCurrentLocation(plugin, where);
+                if (rsc.resultSet()) {
+                    world = rsc.getWorld();
+                } else {
+                    // can't change weather in TARDIS world
+                    TARDISMessage.send(player, "WEATHER_TARDIS");
+                    return true;
+                }
+            }
+            Weather weather = Weather.fromString(args[0]);
+            String perm = weather.toString().toLowerCase();
+            if (!TARDISPermission.hasPermission(player, "tardis.weather." + perm)) {
+                TARDISMessage.send(sender, "NO_PERMS");
+                return true;
+            }
+            TARDISWeather.setWeather(world, weather);
+            TARDISMessage.send(player, "WEATHER_SET", perm);
+        } else {
+            TARDISMessage.send(sender, "CMD_PLAYER");
+        }
+        return true;
     }
 
     @Override

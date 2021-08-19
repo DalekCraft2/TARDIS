@@ -201,139 +201,135 @@ public class TARDISConfigCommand implements CommandExecutor {
     }
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
-        // If the player typed /tardisadmin then do the following...
-        if (cmd.getName().equalsIgnoreCase("tardisconfig")) {
-            if (sender instanceof ConsoleCommandSender || sender.hasPermission("tardis.admin")) {
-                if (args.length == 0) {
-                    new TARDISCommandHelper(plugin).getCommand("tardisadmin", sender);
-                    return true;
-                }
-                String first = args[0].toLowerCase(Locale.ENGLISH);
-                if (!firstsStr.containsKey(first) && !firstsBool.containsKey(first) && !firstsInt.containsKey(first) && !firstsIntArtron.contains(first) && !firstsStrArtron.contains(first)) {
-                    TARDISMessage.send(sender, "ARG_NOT_VALID");
-                    return false;
-                }
-                if (args.length == 1 && first.equals("reload")) {
-                    return new TARDISReloadCommand(plugin).reloadConfig(sender);
-                }
-                if (args.length < 2) {
-                    TARDISMessage.send(sender, "TOO_FEW_ARGS");
-                    return false;
-                }
-                if (first.equals("reload")) {
-                    return new TARDISReloadCommand(plugin).reloadOtherConfig(sender, args);
-                }
-                if (first.equals("area")) {
-                    plugin.getConfig().set("creation.area", args[1]);
-                }
-                if (first.equals("options")) {
-                    return new TARDISConfigOptionsCommand(plugin).showConfigOptions(sender, args);
-                }
-                if (first.equals("language")) {
-                    return new TARDISLanguageCommand(plugin).setLanguage(sender, args);
-                }
-                if (first.equals("power_down")) {
-                    return new TARDISPowerDownCommand(plugin).togglePowerDown(sender, args);
-                }
-                if (first.equals("database")) {
-                    String dbtype = args[1].toLowerCase(Locale.ENGLISH);
-                    if (!dbtype.equals("mysql") && !dbtype.equals("sqlite")) {
-                        TARDISMessage.send(sender, "ARG_DB");
-                        return true;
-                    }
-                    plugin.getConfig().set("database", dbtype);
-                }
-                if (first.equals("include") || first.equals("exclude")) {
-                    return new TARDISSetWorldInclusionCommand(plugin).setWorldStatus(sender, args);
-                }
-                if (first.equals("siege")) {
-                    return new TARDISSiegeCommand(plugin).setOption(sender, args);
-                }
-                if (first.equals("sign_colour")) {
-                    return new TARDISSignColourCommand(plugin).setColour(sender, args);
-                }
-                if (first.equals("key") || first.equals("custom_schematic_seed")) {
-                    return new TARDISSetMaterialCommand(plugin).setConfigMaterial(sender, args, firstsStr.get(first));
-                }
-                if (first.equals("full_charge_item") || first.equals("jettison_seed")) {
-                    return new TARDISSetMaterialCommand(plugin).setConfigMaterial(sender, args);
-                }
-                if (first.equals("default_key") || first.equals("default_sonic")) {
-                    return new TARDISDefaultCommand(plugin).setDefaultItem(sender, args);
-                }
-                if (first.equals("default_world_name")) {
-                    return new TARDISDefaultWorldNameCommand(plugin).setName(sender, args);
-                }
-                if (first.equals("respect_towny")) {
-                    return new TARDISSetRespectCommand(plugin).setRegion(sender, args);
-                }
-                if (first.equals("respect_worldguard")) {
-                    return new TARDISSetRespectCommand(plugin).setFlag(sender, args);
-                }
-                if (first.equals("difficulty")) {
-                    if (!args[1].equalsIgnoreCase("easy") && !args[1].equalsIgnoreCase("medium") && !args[1].equalsIgnoreCase("hard")) {
-                        TARDISMessage.send(sender, "ARG_DIFF");
-                        return true;
-                    }
-                    plugin.getConfig().set("preferences.difficulty", args[1].toLowerCase(Locale.ENGLISH));
-                    plugin.setDifficulty(Difficulty.valueOf(args[1].toUpperCase(Locale.ENGLISH)));
-                }
-                if (first.equals("default_preset")) {
-                    try {
-                        PRESET.valueOf(args[1].toUpperCase(Locale.ENGLISH));
-                    } catch (IllegalArgumentException e) {
-                        TARDISMessage.send(sender, "ARG_PRESET");
-                        return true;
-                    }
-                    plugin.getConfig().set("police_box.default_preset", args[1].toUpperCase(Locale.ENGLISH));
-                }
-                if (first.equals("use_clay")) {
-                    try {
-                        UseClay.valueOf(args[1].toUpperCase(Locale.ENGLISH));
-                    } catch (IllegalArgumentException e) {
-                        TARDISMessage.send(sender, "ARG_USE_CLAY");
-                        return true;
-                    }
-                    plugin.getConfig().set("creation.use_clay", args[1].toUpperCase(Locale.ENGLISH));
-                }
-                if (first.equals("inventory_group")) {
-                    plugin.getConfig().set("creation.inventory_group", args[1]);
-                }
-                if (first.equals("vortex_fall")) {
-                    if (!args[1].equalsIgnoreCase("kill") && !args[1].equalsIgnoreCase("teleport")) {
-                        TARDISMessage.send(sender, "ARG_VORTEX");
-                        return true;
-                    }
-                    plugin.getConfig().set("preferences.vortex_fall", args[1].toLowerCase(Locale.ENGLISH));
-                }
-                // checks if it's a boolean config option
-                if (firstsBool.containsKey(first)) {
-                    if (first.equals("zero_room")) {
-                        return new TARDISSetZeroRoomCommand(plugin).setConfigZero(sender, args);
-                    } else {
-                        return new TARDISSetBooleanCommand(plugin).setConfigBool(sender, args, firstsBool.get(first));
-                    }
-                }
-                // checks if it's a number config option
-                if (firstsInt.containsKey(first)) {
-                    if (first.equalsIgnoreCase("random_circuit")) {
-                        return new TARDISSetIntegerCommand(plugin).setRandomInt(sender, args);
-                    } else {
-                        return new TARDISSetIntegerCommand(plugin).setConfigInt(sender, args, firstsInt.get(first));
-                    }
-                }
-                if (firstsIntArtron.contains(first)) {
-                    return new TARDISSetIntegerCommand(plugin).setConfigInt(sender, args);
-                }
-                plugin.saveConfig();
-                TARDISMessage.send(sender, "CONFIG_UPDATED");
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
+        if (sender instanceof ConsoleCommandSender || sender.hasPermission("tardis.admin")) {
+            if (args.length == 0) {
+                new TARDISCommandHelper(plugin).getCommand("tardisadmin", sender);
                 return true;
-            } else {
-                TARDISMessage.send(sender, "CMD_ADMIN");
+            }
+            String first = args[0].toLowerCase(Locale.ENGLISH);
+            if (!firstsStr.containsKey(first) && !firstsBool.containsKey(first) && !firstsInt.containsKey(first) && !firstsIntArtron.contains(first) && !firstsStrArtron.contains(first)) {
+                TARDISMessage.send(sender, "ARG_NOT_VALID");
                 return false;
             }
+            if (args.length == 1 && first.equals("reload")) {
+                return new TARDISReloadCommand(plugin).reloadConfig(sender);
+            }
+            if (args.length < 2) {
+                TARDISMessage.send(sender, "TOO_FEW_ARGS");
+                return false;
+            }
+            if (first.equals("reload")) {
+                return new TARDISReloadCommand(plugin).reloadOtherConfig(sender, args);
+            }
+            if (first.equals("area")) {
+                plugin.getConfig().set("creation.area", args[1]);
+            }
+            if (first.equals("options")) {
+                return new TARDISConfigOptionsCommand(plugin).showConfigOptions(sender, args);
+            }
+            if (first.equals("language")) {
+                return new TARDISLanguageCommand(plugin).setLanguage(sender, args);
+            }
+            if (first.equals("power_down")) {
+                return new TARDISPowerDownCommand(plugin).togglePowerDown(sender, args);
+            }
+            if (first.equals("database")) {
+                String dbtype = args[1].toLowerCase(Locale.ENGLISH);
+                if (!dbtype.equals("mysql") && !dbtype.equals("sqlite")) {
+                    TARDISMessage.send(sender, "ARG_DB");
+                    return true;
+                }
+                plugin.getConfig().set("database", dbtype);
+            }
+            if (first.equals("include") || first.equals("exclude")) {
+                return new TARDISSetWorldInclusionCommand(plugin).setWorldStatus(sender, args);
+            }
+            if (first.equals("siege")) {
+                return new TARDISSiegeCommand(plugin).setOption(sender, args);
+            }
+            if (first.equals("sign_colour")) {
+                return new TARDISSignColourCommand(plugin).setColour(sender, args);
+            }
+            if (first.equals("key") || first.equals("custom_schematic_seed")) {
+                return new TARDISSetMaterialCommand(plugin).setConfigMaterial(sender, args, firstsStr.get(first));
+            }
+            if (first.equals("full_charge_item") || first.equals("jettison_seed")) {
+                return new TARDISSetMaterialCommand(plugin).setConfigMaterial(sender, args);
+            }
+            if (first.equals("default_key") || first.equals("default_sonic")) {
+                return new TARDISDefaultCommand(plugin).setDefaultItem(sender, args);
+            }
+            if (first.equals("default_world_name")) {
+                return new TARDISDefaultWorldNameCommand(plugin).setName(sender, args);
+            }
+            if (first.equals("respect_towny")) {
+                return new TARDISSetRespectCommand(plugin).setRegion(sender, args);
+            }
+            if (first.equals("respect_worldguard")) {
+                return new TARDISSetRespectCommand(plugin).setFlag(sender, args);
+            }
+            if (first.equals("difficulty")) {
+                if (!args[1].equalsIgnoreCase("easy") && !args[1].equalsIgnoreCase("medium") && !args[1].equalsIgnoreCase("hard")) {
+                    TARDISMessage.send(sender, "ARG_DIFF");
+                    return true;
+                }
+                plugin.getConfig().set("preferences.difficulty", args[1].toLowerCase(Locale.ENGLISH));
+                plugin.setDifficulty(Difficulty.valueOf(args[1].toUpperCase(Locale.ENGLISH)));
+            }
+            if (first.equals("default_preset")) {
+                try {
+                    PRESET.valueOf(args[1].toUpperCase(Locale.ENGLISH));
+                } catch (IllegalArgumentException e) {
+                    TARDISMessage.send(sender, "ARG_PRESET");
+                    return true;
+                }
+                plugin.getConfig().set("police_box.default_preset", args[1].toUpperCase(Locale.ENGLISH));
+            }
+            if (first.equals("use_clay")) {
+                try {
+                    UseClay.valueOf(args[1].toUpperCase(Locale.ENGLISH));
+                } catch (IllegalArgumentException e) {
+                    TARDISMessage.send(sender, "ARG_USE_CLAY");
+                    return true;
+                }
+                plugin.getConfig().set("creation.use_clay", args[1].toUpperCase(Locale.ENGLISH));
+            }
+            if (first.equals("inventory_group")) {
+                plugin.getConfig().set("creation.inventory_group", args[1]);
+            }
+            if (first.equals("vortex_fall")) {
+                if (!args[1].equalsIgnoreCase("kill") && !args[1].equalsIgnoreCase("teleport")) {
+                    TARDISMessage.send(sender, "ARG_VORTEX");
+                    return true;
+                }
+                plugin.getConfig().set("preferences.vortex_fall", args[1].toLowerCase(Locale.ENGLISH));
+            }
+            // checks if it's a boolean config option
+            if (firstsBool.containsKey(first)) {
+                if (first.equals("zero_room")) {
+                    return new TARDISSetZeroRoomCommand(plugin).setConfigZero(sender, args);
+                } else {
+                    return new TARDISSetBooleanCommand(plugin).setConfigBool(sender, args, firstsBool.get(first));
+                }
+            }
+            // checks if it's a number config option
+            if (firstsInt.containsKey(first)) {
+                if (first.equalsIgnoreCase("random_circuit")) {
+                    return new TARDISSetIntegerCommand(plugin).setRandomInt(sender, args);
+                } else {
+                    return new TARDISSetIntegerCommand(plugin).setConfigInt(sender, args, firstsInt.get(first));
+                }
+            }
+            if (firstsIntArtron.contains(first)) {
+                return new TARDISSetIntegerCommand(plugin).setConfigInt(sender, args);
+            }
+            plugin.saveConfig();
+            TARDISMessage.send(sender, "CONFIG_UPDATED");
+            return true;
+        } else {
+            TARDISMessage.send(sender, "CMD_ADMIN");
+            return false;
         }
-        return false;
     }
 }

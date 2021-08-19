@@ -176,7 +176,7 @@ class TARDISComehereCommand {
                     TARDISMessage.send(player, "WOULD_GRIEF_BLOCKS");
                     return true;
                 }
-                // get space time throttle
+                // get space-time throttle
                 SpaceTimeThrottle spaceTimeThrottle = new ResultSetThrottle(plugin).getSpeed(uuid.toString());
                 int ch = Math.round(plugin.getArtronConfig().getInt("comehere") * spaceTimeThrottle.getArtronMultiplier());
                 if (level < ch) {

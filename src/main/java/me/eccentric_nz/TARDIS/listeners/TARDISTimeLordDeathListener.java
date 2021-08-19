@@ -149,7 +149,7 @@ public class TARDISTimeLordDeathListener implements Listener {
                                             going_home = true;
                                         }
                                     } else {
-                                        // died in home world get closest location
+                                        // died in home world get the closest location
                                         Location recharger = getRecharger(death_world, player);
                                         if (recharger != null) {
                                             // which is closer?

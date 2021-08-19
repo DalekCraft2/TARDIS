@@ -127,7 +127,7 @@ public class TARDISPortalPersister {
             if (counta > 0) {
                 plugin.getLogger().log(Level.INFO, "Loaded " + counta + " abandoned portals.");
             }
-            // clear the portals table so we don't get any duplicates when saving them
+            // clear the portals table, so we don't get any duplicates when saving them
             ps = connection.prepareStatement("DELETE FROM " + prefix + "portals");
             ps.executeUpdate();
             // load the players associated with the portals
@@ -138,7 +138,7 @@ public class TARDISPortalPersister {
                     plugin.getTrackerKeeper().getMover().add(UUID.fromString(rs.getString("uuid")));
                 }
             }
-            // clear the movers table so we don't get any duplicates when saving them
+            // clear the movers table, so we don't get any duplicates when saving them
             ps = connection.prepareStatement("DELETE FROM " + prefix + "movers");
             ps.executeUpdate();
         } catch (SQLException ex) {

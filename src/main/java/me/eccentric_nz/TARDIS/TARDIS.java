@@ -1417,7 +1417,7 @@ public class TARDIS extends JavaPlugin {
     }
 
     /**
-     * Gets whether theres is a TARDIS plugin spawn
+     * Gets whether there is a TARDIS plugin spawn
      *
      * @return true if it is a TARDIS plugin spawn
      */

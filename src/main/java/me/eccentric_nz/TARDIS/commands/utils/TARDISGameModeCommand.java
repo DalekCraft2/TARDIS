@@ -38,33 +38,30 @@ public class TARDISGameModeCommand extends TARDISCompleter implements CommandExe
     }
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
-        if (cmd.getName().equalsIgnoreCase("tardisgamemode")) {
-            if (label.equalsIgnoreCase("tgms")) {
-                // set survival
-                return setPlayerGameMode(sender, args, GameMode.SURVIVAL);
-            }
-            if (label.equalsIgnoreCase("tgmc")) {
-                // set creative
-                return setPlayerGameMode(sender, args, GameMode.CREATIVE);
-            }
-            if (label.equalsIgnoreCase("tgma")) {
-                // set adventure
-                return setPlayerGameMode(sender, args, GameMode.ADVENTURE);
-            }
-            if (label.equalsIgnoreCase("tgmsp")) {
-                // set spectator
-                return setPlayerGameMode(sender, args, GameMode.SPECTATOR);
-            }
-            return setPlayerGameMode(sender, args, null);
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
+        if (label.equalsIgnoreCase("tgms")) {
+            // set survival
+            return setPlayerGameMode(sender, args, GameMode.SURVIVAL);
         }
-        return false;
+        if (label.equalsIgnoreCase("tgmc")) {
+            // set creative
+            return setPlayerGameMode(sender, args, GameMode.CREATIVE);
+        }
+        if (label.equalsIgnoreCase("tgma")) {
+            // set adventure
+            return setPlayerGameMode(sender, args, GameMode.ADVENTURE);
+        }
+        if (label.equalsIgnoreCase("tgmsp")) {
+            // set spectator
+            return setPlayerGameMode(sender, args, GameMode.SPECTATOR);
+        }
+        return setPlayerGameMode(sender, args, null);
     }
 
     private boolean setPlayerGameMode(CommandSender sender, String[] args, GameMode gm) {
         if (gm == null && args.length < 1) {
             TARDISMessage.send(sender, "TOO_FEW_ARGS");
-            return true;
+            return false;
         }
         Player player = null;
         boolean thirdperson = false;

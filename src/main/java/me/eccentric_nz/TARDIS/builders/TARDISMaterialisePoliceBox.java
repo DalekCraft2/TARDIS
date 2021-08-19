@@ -167,7 +167,7 @@ public class TARDISMaterialisePoliceBox implements Runnable {
                             if (p != null) {
                                 String message = (bd.isMalfunction()) ? "MALFUNCTION" : "HANDBRAKE_LEFT_CLICK";
                                 TARDISMessage.send(p, message);
-                                // TARDIS has travelled so add players to list so they can receive Artron on exit
+                                // TARDIS has travelled so add players to list, so they can receive Artron on exit
                                 plugin.getTrackerKeeper().getHasTravelled().add(s);
                             }
                         });

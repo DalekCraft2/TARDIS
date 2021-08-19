@@ -62,28 +62,25 @@ public class TARDISNetherPortalCommand extends TARDISCompleter implements Comman
     }
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
-        if (cmd.getName().equalsIgnoreCase("tardisnetherportal")) {
-            Player player = null;
-            if (sender instanceof Player) {
-                player = (Player) sender;
-            }
-            if (player == null) {
-                // must provide coords
-                if (args.length < 4) {
-                    new TARDISCommandHelper(plugin).getCommand("tardisnetherportal", sender);
-                    return true;
-                }
-                int x = TARDISNumberParsers.parseInt(args[0]);
-                int y = TARDISNumberParsers.parseInt(args[1]);
-                int z = TARDISNumberParsers.parseInt(args[2]);
-                return o2n(sender, x, y, z, args[3].equalsIgnoreCase("overworld"));
-            } else {
-                // get player's coords and environment
-                return o2n(player);
-            }
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
+        Player player = null;
+        if (sender instanceof Player) {
+            player = (Player) sender;
         }
-        return false;
+        if (player == null) {
+            // must provide coords
+            if (args.length < 4) {
+                new TARDISCommandHelper(plugin).getCommand("tardisnetherportal", sender);
+                return true;
+            }
+            int x = TARDISNumberParsers.parseInt(args[0]);
+            int y = TARDISNumberParsers.parseInt(args[1]);
+            int z = TARDISNumberParsers.parseInt(args[2]);
+            return o2n(sender, x, y, z, args[3].equalsIgnoreCase("overworld"));
+        } else {
+            // get player's coords and environment
+            return o2n(player);
+        }
     }
 
     private boolean o2n(Player player) {

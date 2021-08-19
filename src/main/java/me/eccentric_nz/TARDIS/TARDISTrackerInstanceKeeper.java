@@ -157,7 +157,7 @@ public class TARDISTrackerInstanceKeeper {
     }
 
     /**
-     * Tracks who is using the the immortality gate
+     * Tracks who is using the immortality gate
      *
      * @return the name of the player using the immortality gate or an empty string if not in use
      */
@@ -283,7 +283,7 @@ public class TARDISTrackerInstanceKeeper {
     }
 
     /**
-     * Tracks TARDIS keyboard signs so they can be processed for travel commands
+     * Tracks TARDIS keyboard signs, so they can be processed for travel commands
      *
      * @return a Map of locations and signs
      */
@@ -851,7 +851,7 @@ public class TARDISTrackerInstanceKeeper {
     }
 
     /**
-     * Tracks players that have discovered the TARDIS easter egg. Used for cooldown purposes
+     * Tracks players that have discovered the TARDIS Easter egg. Used for cooldown purposes
      *
      * @return a list of player UUIDs
      */

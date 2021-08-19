@@ -36,25 +36,22 @@ public class TARDISQuestionMarkCommand implements CommandExecutor {
     }
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
-        if (cmd.getName().equalsIgnoreCase("tardis?")) {
-            TARDISCommandHelper tch = new TARDISCommandHelper(plugin);
-            switch (args.length) {
-                case 2 -> {
-                    String cmds = args[0].toLowerCase(Locale.ENGLISH) + " " + args[1].toLowerCase(Locale.ENGLISH);
-                    tch.getCommand(cmds, sender);
-                    return true;
-                }
-                case 1 -> {
-                    tch.getCommand(args[0].toLowerCase(Locale.ENGLISH), sender);
-                    return true;
-                }
-                default -> {
-                    tch.getCommand("", sender);
-                    return true;
-                }
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
+        TARDISCommandHelper tch = new TARDISCommandHelper(plugin);
+        switch (args.length) {
+            case 2 -> {
+                String cmds = args[0].toLowerCase(Locale.ENGLISH) + " " + args[1].toLowerCase(Locale.ENGLISH);
+                tch.getCommand(cmds, sender);
+                return true;
+            }
+            case 1 -> {
+                tch.getCommand(args[0].toLowerCase(Locale.ENGLISH), sender);
+                return true;
+            }
+            default -> {
+                tch.getCommand("", sender);
+                return true;
             }
         }
-        return false;
     }
 }

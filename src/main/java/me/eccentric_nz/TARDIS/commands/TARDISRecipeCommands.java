@@ -96,65 +96,62 @@ public class TARDISRecipeCommands implements CommandExecutor {
     }
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
-        if (cmd.getName().equalsIgnoreCase("tardisrecipe")) {
-            if (!TARDISPermission.hasPermission(sender, "tardis.help")) {
-                TARDISMessage.send(sender, "NO_PERMS");
-                return true;
-            }
-            Player player = null;
-            if (sender instanceof Player) {
-                player = (Player) sender;
-            }
-            if (player == null) {
-                if (args.length == 0) {
-                    new TARDISRecipeLister(sender).list();
-                } else {
-                    TARDISMessage.send(sender, "CMD_PLAYER");
-                }
-                return true;
-            }
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
+        if (!TARDISPermission.hasPermission(sender, "tardis.help")) {
+            TARDISMessage.send(sender, "NO_PERMS");
+            return true;
+        }
+        Player player = null;
+        if (sender instanceof Player) {
+            player = (Player) sender;
+        }
+        if (player == null) {
             if (args.length == 0) {
-                // open recipe GUI
-                ItemStack[] emenu = new TARDISRecipeCategoryInventory().getMenu();
-                Inventory categories = plugin.getServer().createInventory(player, 27, ChatColor.DARK_RED + "Recipe Categories");
-                categories.setContents(emenu);
-                player.openInventory(categories);
-                return true;
-            }
-            if (!recipeItems.containsKey(args[0].toLowerCase(Locale.ENGLISH))) {
                 new TARDISRecipeLister(sender).list();
+            } else {
+                TARDISMessage.send(sender, "CMD_PLAYER");
+            }
+            return true;
+        }
+        if (args.length == 0) {
+            // open recipe GUI
+            ItemStack[] emenu = new TARDISRecipeCategoryInventory().getMenu();
+            Inventory categories = plugin.getServer().createInventory(player, 54, ChatColor.DARK_RED + "Recipe Categories");
+            categories.setContents(emenu);
+            player.openInventory(categories);
+            return true;
+        }
+        if (!recipeItems.containsKey(args[0].toLowerCase(Locale.ENGLISH))) {
+            new TARDISRecipeLister(sender).list();
+            return true;
+        }
+        if (args.length < 1) {
+            TARDISMessage.send(player, "TOO_FEW_ARGS");
+            return false;
+        }
+        if ((args[0].equalsIgnoreCase("seed") || args[0].equalsIgnoreCase("tardis")) && args.length < 2) {
+            TARDISMessage.send(player, "TOO_FEW_ARGS");
+            return true;
+        }
+        if ((args[0].equalsIgnoreCase("seed") || args[0].equalsIgnoreCase("tardis")) && args.length == 2) {
+            if (!t.containsKey(args[1].toUpperCase(Locale.ENGLISH))) {
+                TARDISMessage.send(player, "ARG_NOT_VALID");
                 return true;
             }
-            if (args.length < 1) {
-                TARDISMessage.send(player, "TOO_FEW_ARGS");
-                return false;
-            }
-            if ((args[0].equalsIgnoreCase("seed") || args[0].equalsIgnoreCase("tardis")) && args.length < 2) {
-                TARDISMessage.send(player, "TOO_FEW_ARGS");
+            showTARDISRecipe(player, args[1]);
+            return true;
+        }
+        String which = args[0].toLowerCase();
+        switch (which) {
+            case "bowl-of-custard", "jelly-baby", "biome-storage-disk", "player-storage-disk", "preset-storage-disk", "save-storage-disk", "schematic-wand", "admin-upgrade", "bio-scanner-upgrade", "redstone-upgrade", "diamond-upgrade", "emerald-upgrade", "painter-upgrade", "ignite-upgrade", "pickup-arrows-upgrade", "knockback-upgrade" -> {
+                showShapelessRecipe(player, recipeItems.get(which));
                 return true;
             }
-            if ((args[0].equalsIgnoreCase("seed") || args[0].equalsIgnoreCase("tardis")) && args.length == 2) {
-                if (!t.containsKey(args[1].toUpperCase(Locale.ENGLISH))) {
-                    TARDISMessage.send(player, "ARG_NOT_VALID");
-                    return true;
-                }
-                showTARDISRecipe(player, args[1]);
+            default -> {
+                showShapedRecipe(player, recipeItems.get(which));
                 return true;
-            }
-            String which = args[0].toLowerCase();
-            switch (which) {
-                case "bowl-of-custard", "jelly-baby", "biome-storage-disk", "player-storage-disk", "preset-storage-disk", "save-storage-disk", "schematic-wand", "admin-upgrade", "bio-scanner-upgrade", "redstone-upgrade", "diamond-upgrade", "emerald-upgrade", "painter-upgrade", "ignite-upgrade", "pickup-arrows-upgrade", "knockback-upgrade" -> {
-                    showShapelessRecipe(player, recipeItems.get(which));
-                    return true;
-                }
-                default -> {
-                    showShapedRecipe(player, recipeItems.get(which));
-                    return true;
-                }
             }
         }
-        return false;
     }
 
     // Maps still seem to use numeric values
@@ -163,7 +160,7 @@ public class TARDISRecipeCommands implements CommandExecutor {
         player.discoverRecipe(recipe.getKey());
         player.closeInventory();
         plugin.getTrackerKeeper().getRecipeViewers().add(player.getUniqueId());
-        Inventory inv = plugin.getServer().createInventory(player, 27, ChatColor.DARK_RED + "" + str + " recipe");
+        Inventory inv = plugin.getServer().createInventory(player, 54, ChatColor.DARK_RED + "" + str + " recipe");
         String[] recipeShape = recipe.getShape();
         Map<Character, ItemStack> ingredientMap = recipe.getIngredientMap();
         int glowstoneCount = 0;
@@ -228,7 +225,7 @@ public class TARDISRecipeCommands implements CommandExecutor {
         player.discoverRecipe(recipe.getKey());
         List<ItemStack> ingredients = recipe.getIngredientList();
         plugin.getTrackerKeeper().getRecipeViewers().add(player.getUniqueId());
-        Inventory inv = plugin.getServer().createInventory(player, 27, ChatColor.DARK_RED + "" + str + " recipe");
+        Inventory inv = plugin.getServer().createInventory(player, 54, ChatColor.DARK_RED + "" + str + " recipe");
         int glowstoneCount = 0;
         for (int i = 0; i < ingredients.size(); i++) {
             ItemMeta im = ingredients.get(i).getItemMeta();
@@ -272,7 +269,7 @@ public class TARDISRecipeCommands implements CommandExecutor {
 
     private void showTARDISRecipe(Player player, String type) {
         plugin.getTrackerKeeper().getRecipeViewers().add(player.getUniqueId());
-        Inventory inv = plugin.getServer().createInventory(player, 27, ChatColor.DARK_RED + "TARDIS " + type.toUpperCase(Locale.ENGLISH) + " seed recipe");
+        Inventory inv = plugin.getServer().createInventory(player, 54, ChatColor.DARK_RED + "TARDIS " + type.toUpperCase(Locale.ENGLISH) + " seed recipe");
         // redstone torch
         ItemStack red = new ItemStack(Material.REDSTONE_TORCH, 1);
         // lapis block

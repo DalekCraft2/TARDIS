@@ -70,22 +70,22 @@ public enum RecipeItem {
     TIME_ROTOR_TENTH(10000003, RecipeCategory.ROTORS),
     TIME_ROTOR_ELEVENTH(10000004, RecipeCategory.ROTORS),
     TIME_ROTOR_TWELFTH(10000005, RecipeCategory.ROTORS),
-    WHITE_BOW_TIE(10000023),
-    ORANGE_BOW_TIE(10000024),
-    MAGENTA_BOW_TIE(10000025),
-    LIGHT_BLUE_BOW_TIE(10000026),
-    YELLOW_BOW_TIE(10000027),
-    LIME_BOW_TIE(10000028),
-    PINK_BOW_TIE(10000029),
-    GREY_BOW_TIE(10000030),
-    LIGHT_GREY_BOW_TIE(10000031),
-    CYAN_BOW_TIE(10000032),
-    PURPLE_BOW_TIE(10000033),
-    BLUE_BOW_TIE(10000034),
-    BROWN_BOW_TIE(10000035),
-    GREEN_BOW_TIE(10000036),
+    WHITE_BOW_TIE(10000023, RecipeCategory.ACCESSORIES),
+    ORANGE_BOW_TIE(10000024, RecipeCategory.ACCESSORIES),
+    MAGENTA_BOW_TIE(10000025, RecipeCategory.ACCESSORIES),
+    LIGHT_BLUE_BOW_TIE(10000026, RecipeCategory.ACCESSORIES),
+    YELLOW_BOW_TIE(10000027, RecipeCategory.ACCESSORIES),
+    LIME_BOW_TIE(10000028, RecipeCategory.ACCESSORIES),
+    PINK_BOW_TIE(10000029, RecipeCategory.ACCESSORIES),
+    GREY_BOW_TIE(10000030, RecipeCategory.ACCESSORIES),
+    LIGHT_GREY_BOW_TIE(10000031, RecipeCategory.ACCESSORIES),
+    CYAN_BOW_TIE(10000032, RecipeCategory.ACCESSORIES),
+    PURPLE_BOW_TIE(10000033, RecipeCategory.ACCESSORIES),
+    BLUE_BOW_TIE(10000034, RecipeCategory.ACCESSORIES),
+    BROWN_BOW_TIE(10000035, RecipeCategory.ACCESSORIES),
+    GREEN_BOW_TIE(10000036, RecipeCategory.ACCESSORIES),
     RED_BOW_TIE(10000037, RecipeCategory.ACCESSORIES),
-    BLACK_BOW_TIE(10000038),
+    BLACK_BOW_TIE(10000038, RecipeCategory.ACCESSORIES),
     THREE_D_GLASSES(10000039, RecipeCategory.ACCESSORIES),
     VORTEX_MANIPULATOR(10000002, RecipeCategory.ACCESSORIES),
     // unshaped recipes start here
@@ -96,22 +96,22 @@ public enum RecipeItem {
     SAVE_STORAGE_DISK(10000001, RecipeCategory.STORAGE_DISKS),
     TARDIS_SCHEMATIC_WAND(10000001, RecipeCategory.MISC),
     // jelly babies
-    VANILLA_JELLY_BABY(10000001),
+    VANILLA_JELLY_BABY(10000001, RecipeCategory.FOOD),
     ORANGE_JELLY_BABY(10000002, RecipeCategory.FOOD),
-    WATERMELON_JELLY_BABY(10000003),
-    BUBBLEGUM_JELLY_BABY(10000004),
-    LEMON_JELLY_BABY(10000005),
-    LIME_JELLY_BABY(10000006),
-    STRAWBERRY_JELLY_BABY(10000007),
-    EARL_GREY_JELLY_BABY(10000008),
-    VODKA_JELLY_BABY(10000009),
-    ISLAND_PUNCH_JELLY_BABY(10000010),
-    GRAPE_JELLY_BABY(10000011),
-    BLUEBERRY_JELLY_BABY(10000012),
-    CAPPUCCINO_JELLY_BABY(10000013),
-    APPLE_JELLY_BABY(10000014),
-    RASPBERRY_JELLY_BABY(10000015),
-    LICORICE_JELLY_BABY(10000016),
+    WATERMELON_JELLY_BABY(10000003, RecipeCategory.FOOD),
+    BUBBLEGUM_JELLY_BABY(10000004, RecipeCategory.FOOD),
+    LEMON_JELLY_BABY(10000005, RecipeCategory.FOOD),
+    LIME_JELLY_BABY(10000006, RecipeCategory.FOOD),
+    STRAWBERRY_JELLY_BABY(10000007, RecipeCategory.FOOD),
+    EARL_GREY_JELLY_BABY(10000008, RecipeCategory.FOOD),
+    VODKA_JELLY_BABY(10000009, RecipeCategory.FOOD),
+    ISLAND_PUNCH_JELLY_BABY(10000010, RecipeCategory.FOOD),
+    GRAPE_JELLY_BABY(10000011, RecipeCategory.FOOD),
+    BLUEBERRY_JELLY_BABY(10000012, RecipeCategory.FOOD),
+    CAPPUCCINO_JELLY_BABY(10000013, RecipeCategory.FOOD),
+    APPLE_JELLY_BABY(10000014, RecipeCategory.FOOD),
+    RASPBERRY_JELLY_BABY(10000015, RecipeCategory.FOOD),
+    LICORICE_JELLY_BABY(10000016, RecipeCategory.FOOD),
     // sonic upgrades
     ADMIN_UPGRADE(10000010, RecipeCategory.SONIC_UPGRADES),
     BIO_SCANNER_UPGRADE(10000010, RecipeCategory.SONIC_UPGRADES),
@@ -125,7 +125,7 @@ public enum RecipeItem {
     // planet items
     ACID_BUCKET(1, RecipeCategory.UNCRAFTABLE),
     RUST_BUCKET(1, RecipeCategory.UNCRAFTABLE),
-    // not fond
+    // not found
     NOT_FOUND(-1, RecipeCategory.UNCRAFTABLE);
 
     private final int customModelData;
@@ -170,17 +170,11 @@ public enum RecipeItem {
     }
 
     public String toTabCompletionString() {
-        String recipe = toRecipeString();
-        if (this == THREE_D_GLASSES) {
-            return "3-d-glasses";
-        } else if (recipe.startsWith("TARDIS")) {
-            return TARDISStringUtils.toLowercaseDashed(recipe).replace("tardis-", "");
-        } else if (recipe.endsWith("Baby")) {
-            return "jelly-baby";
-        } else if (recipe.endsWith("Tie")) {
-            return "bow-tie";
+        String recipe = this.toString().toLowerCase();
+        if (recipe.startsWith("tardis")) {
+            return recipe.replace("tardis_", "");
         } else {
-            return TARDISStringUtils.toLowercaseDashed(recipe);
+            return recipe;
         }
     }
 }

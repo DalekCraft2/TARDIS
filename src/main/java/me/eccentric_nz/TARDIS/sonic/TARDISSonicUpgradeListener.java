@@ -132,7 +132,7 @@ public class TARDISSonicUpgradeListener implements Listener {
                         // get the current sonic's upgrades
                         lore = sim.getLore();
                     } else {
-                        // otherwise this is the first upgrade
+                        // otherwise, this is the first upgrade
                         lore = new ArrayList<>();
                         lore.add("Upgrades:");
                     }

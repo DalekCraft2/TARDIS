@@ -42,7 +42,7 @@ public class Converter implements Runnable {
      *
      * @param plugin an instance of the TARDIS JavaPlugin class
      * @param sender the player using the /tadmin convert_database command
-     * @throws SQLException if their is an SQL error
+     * @throws SQLException if there is an SQL error
      **/
     public Converter(TARDIS plugin, CommandSender sender) throws Exception {
         this.plugin = plugin;
@@ -65,13 +65,13 @@ public class Converter implements Runnable {
             int i = 0;
             for (Table table : Table.values()) {
                 TARDISMessage.message(sender, plugin.getMessagePrefix() + "Reading and writing " + table.toString() + " table");
-                String count = "SELECT COUNT(*) AS count FROM " + table.toString();
+                String count = "SELECT COUNT(*) AS count FROM " + table;
                 ResultSet rsc = readStatement.executeQuery(count);
                 if (rsc.isBeforeFirst()) {
                     rsc.next();
                     int c = rsc.getInt("count");
-                    TARDISMessage.message(sender, plugin.getMessagePrefix() + "Found " + c + " " + table.toString() + " records");
-                    String query = "SELECT * FROM " + table.toString();
+                    TARDISMessage.message(sender, plugin.getMessagePrefix() + "Found " + c + " " + table + " records");
+                    String query = "SELECT * FROM " + table;
                     ResultSet rs = readStatement.executeQuery(query);
                     if (rs.isBeforeFirst()) {
                         int b = 1;
@@ -79,7 +79,7 @@ public class Converter implements Runnable {
                         try {
                             sb.append(String.format(SQL.INSERTS.get(i), prefix));
                         } catch (MissingFormatArgumentException e) {
-                            TARDISMessage.message(sender, plugin.getMessagePrefix() + "INSERT " + table.toString());
+                            TARDISMessage.message(sender, plugin.getMessagePrefix() + "INSERT " + table);
                         }
                         while (rs.next()) {
                             boolean section = (b % 100 == 0);
@@ -288,7 +288,7 @@ public class Converter implements Runnable {
                                         break;
                                 }
                             } catch (MissingFormatArgumentException e) {
-                                TARDISMessage.message(sender, plugin.getMessagePrefix() + "VALUES " + table.toString());
+                                TARDISMessage.message(sender, plugin.getMessagePrefix() + "VALUES " + table);
                             }
                             if (section) {
                                 // only one statement per add to batch operation
@@ -298,7 +298,7 @@ public class Converter implements Runnable {
                                 try {
                                     sb.append(String.format(SQL.INSERTS.get(i), prefix));
                                 } catch (MissingFormatArgumentException e) {
-                                    TARDISMessage.message(sender, plugin.getMessagePrefix() + "INSERTS " + table.toString());
+                                    TARDISMessage.message(sender, plugin.getMessagePrefix() + "INSERTS " + table);
                                 }
                             }
                         }

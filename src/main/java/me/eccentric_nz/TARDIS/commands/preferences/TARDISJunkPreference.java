@@ -52,7 +52,7 @@ class TARDISJunkPreference {
             int id = tardis.getTardis_id();
             // get current preset
             String current = tardis.getPreset().toString();
-            // must be outside of the TARDIS
+            // must be outside the TARDIS
             HashMap<String, Object> wheret = new HashMap<>();
             wheret.put("uuid", ustr);
             ResultSetTravellers rst = new ResultSetTravellers(plugin, wheret, false);

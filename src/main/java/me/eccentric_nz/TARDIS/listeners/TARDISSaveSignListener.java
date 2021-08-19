@@ -111,7 +111,7 @@ public class TARDISSaveSignListener extends TARDISMenuListener implements Listen
                                 event.setCancelled(true);
                             } else {
                                 ItemMeta cim = cursor.getItemMeta();
-                                String save = cim.getDisplayName();
+                                String save = ChatColor.stripColor(cim.getDisplayName());
                                 HashMap<String, Object> where = new HashMap<>();
                                 where.put("tardis_id", id);
                                 where.put("dest_name", save);
@@ -227,11 +227,11 @@ public class TARDISSaveSignListener extends TARDISMenuListener implements Listen
                                     HashMap<String, Object> wheret = new HashMap<>();
                                     wheret.put("tardis_id", id);
                                     plugin.getQueryFactory().doSyncUpdate("next", set, wheret);
-                                    TravelType travelType = (is.getItemMeta().getDisplayName().equals("Home")) ? TravelType.HOME : TravelType.SAVE;
+                                    TravelType travelType = (ChatColor.stripColor(is.getItemMeta().getDisplayName()).equals("Home")) ? TravelType.HOME : TravelType.SAVE;
                                     plugin.getTrackerKeeper().getHasDestination().put(id, new TravelCostAndType(travel, travelType));
                                     plugin.getTrackerKeeper().getRescue().remove(id);
                                     close(player);
-                                    TARDISMessage.send(player, "DEST_SET_TERMINAL", im.getDisplayName(), !plugin.getTrackerKeeper().getDestinationVortex().containsKey(id));
+                                    TARDISMessage.send(player, "DEST_SET_TERMINAL", ChatColor.stripColor(im.getDisplayName()), !plugin.getTrackerKeeper().getDestinationVortex().containsKey(id));
                                     if (plugin.getTrackerKeeper().getDestinationVortex().containsKey(id)) {
                                         new TARDISLand(plugin, id, player).exitVortex();
                                         plugin.getPM().callEvent(new TARDISTravelEvent(player, null, travelType, id));
@@ -243,7 +243,7 @@ public class TARDISSaveSignListener extends TARDISMenuListener implements Listen
                                 }
                             } else {
                                 close(player);
-                                TARDISMessage.send(player, "DEST_NOT_VALID", im.getDisplayName());
+                                TARDISMessage.send(player, "DEST_NOT_VALID", ChatColor.stripColor(im.getDisplayName()));
                             }
                         }
                     }
@@ -346,7 +346,7 @@ public class TARDISSaveSignListener extends TARDISMenuListener implements Listen
                 for (int i = start; i < 45; i++) {
                     if (stack[i] != null) {
                         ItemMeta im = stack[i].getItemMeta();
-                        String save = im.getDisplayName();
+                        String save = ChatColor.stripColor(im.getDisplayName());
                         HashMap<String, Object> set = new HashMap<>();
                         int slot = (isPageTwo) ? 45 + i : i;
                         set.put("slot", slot);

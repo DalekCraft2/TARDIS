@@ -106,7 +106,7 @@ public class TARDISMonsterRunnable implements Runnable {
                     break;
                 }
             }
-            // nobody there so continue
+            // nobody is there so continue
             if (!take_action) {
                 continue;
             }

@@ -183,7 +183,7 @@ public class TARDISPresetBuilderFactory {
                     new TARDISInstantPreset(plugin, bd, PRESET.INVISIBLE, material.createBlockData(), false).buildPreset();
                 }, 375L);
             }
-            // update demat so it knows about the current preset after it has changed
+            // update demat, so it knows about the current preset after it has changed
             HashMap<String, Object> whered = new HashMap<>();
             whered.put("tardis_id", bd.getTardisID());
             HashMap<String, Object> set = new HashMap<>();

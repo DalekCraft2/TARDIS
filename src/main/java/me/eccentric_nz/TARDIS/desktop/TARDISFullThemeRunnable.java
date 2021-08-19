@@ -462,7 +462,7 @@ public class TARDISFullThemeRunnable extends TARDISThemeRunnable {
                     type = data.getMaterial();
                 } catch (IllegalArgumentException e) {
                     // probably an archived console with legacy block data for wall blocks
-                    // eg.
+                    // e.g.
                     // minecraft:cobblestone_wall[east=false,north=false,south=false,up=true,waterlogged=false,west=false]
                     String[] split1 = bb.get("data").getAsString().split("\\[");
                     String[] split2 = split1[0].split(":");
@@ -549,7 +549,7 @@ public class TARDISFullThemeRunnable extends TARDISThemeRunnable {
                 if (type.equals(Material.CAKE)) {
                     /*
                      * This block will be converted to a lever by setBlock(),
-                     * but remember it so we can use it as the handbrake!
+                     * but remember it, so we can use it as the handbrake!
                      */
                     String handbrakeloc = TARDISStaticLocationGetters.makeLocationStr(world, x, y, z);
                     plugin.getQueryFactory().insertSyncControl(id, 0, handbrakeloc, 0);
