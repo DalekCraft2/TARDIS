@@ -231,7 +231,7 @@ public class TARDISGiveCommand implements CommandExecutor {
             TARDISMessage.send(sender, "RECIPE_VORTEX");
             return true;
         }
-        if (item.equals("save_storage_disk") || item.equals("preset_storage_disk") || item.equals("biome_storage_disk") || item.equals("player_storage_disk") || item.equals("bowl_of_custard") || item.equals("jelly_baby") || item.equals("schematic_wand")) {
+        if (item.equals("save_storage_disk") || item.equals("preset_storage_disk") || item.equals("biome_storage_disk") || item.equals("player_storage_disk") || item.equals("bowl_of_custard") || item.equals("jelly_baby") || item.equals("vanilla_jelly_baby") || item.equals("orange_jelly_baby") || item.equals("watermelon_jelly_baby") || item.equals("bubblegum_jelly_baby") || item.equals("lemon_jelly_baby") || item.equals("lime_jelly_baby") || item.equals("strawberry_jelly_baby") || item.equals("earl_grey_jelly_baby") || item.equals("vodka_jelly_baby") || item.equals("island_punch_jelly_baby") || item.equals("grape_jelly_baby") || item.equals("blueberry_jelly_baby") || item.equals("cappuccino_jelly_baby") || item.equals("apple_jelly_baby") || item.equals("raspberry_jelly_baby") || item.equals("licorice_jelly_baby") || item.equals("schematic_wand")) {
             ShapelessRecipe recipe = plugin.getIncomposita().getShapelessRecipes().get(item_to_give);
             result = recipe.getResult();
         } else {
