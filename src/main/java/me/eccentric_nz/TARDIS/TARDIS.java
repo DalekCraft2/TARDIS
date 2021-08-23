@@ -703,7 +703,7 @@ public class TARDIS extends JavaPlugin {
             }
         }
         Set<String> booknames = achievementConfig.getKeys(false);
-        booknames.forEach((b) -> TARDISFileCopier.copy(getDataFolder() + File.separator + "books" + File.separator + b + ".txt", getResource("books/" + ".txt"), false));
+        booknames.forEach((b) -> TARDISFileCopier.copy(getDataFolder() + File.separator + "books" + File.separator + b + ".txt", getResource("books/" + b + ".txt"), false));
     }
 
     /**
