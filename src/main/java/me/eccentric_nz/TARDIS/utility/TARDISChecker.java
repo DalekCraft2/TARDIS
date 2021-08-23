@@ -64,12 +64,12 @@ public class TARDISChecker {
         File dimFile = new File(dimensionDir, dimension + ".json");
         if (!dimFile.exists()) {
             exists = false;
-            TARDISChecker.copy(dimension + "_d.json", dimFile);
+            copy("datapacks/" + dimension + "/data/tardis/dimension/" + dimension + ".json", dimFile);
         }
         File dimTypeFile = new File(dimensionTypeDir, dimension + ".json");
         if (!dimTypeFile.exists()) {
             exists = false;
-            TARDISChecker.copy(dimension + "_dt.json", dimTypeFile);
+            copy("datapacks/" + dimension + "/data/tardis/dimension_type/" + dimension + ".json", dimTypeFile);
         }
         switch (dimension) {
             case "skaro":
@@ -79,10 +79,10 @@ public class TARDISChecker {
                 File lakes = new File(biomeDir, "skaro_lakes.json");
                 if (!tree.exists()) {
                     exists = false;
-                    TARDISChecker.copy("skaro_tree.json", tree);
-                    TARDISChecker.copy("skaro_desert.json", desert);
-                    TARDISChecker.copy("skaro_hills.json", hills);
-                    TARDISChecker.copy("skaro_lakes.json", lakes);
+                    copy("datapacks/" + dimension + "/data/tardis/worldgen/configured_feature/skaro_tree.json", tree);
+                    copy("datapacks/" + dimension + "/data/tardis/worldgen/biome/skaro_desert.json", desert);
+                    copy("datapacks/" + dimension + "/data/tardis/worldgen/biome/skaro_hills.json", hills);
+                    copy("datapacks/" + dimension + "/data/tardis/worldgen/biome/skaro_lakes.json", lakes);
                 }
                 break;
             case "gallifrey":
@@ -93,11 +93,11 @@ public class TARDISChecker {
                 File eroded = new File(biomeDir, "gallifrey_eroded.json");
                 if (!plant.exists()) {
                     exists = false;
-                    TARDISChecker.copy("gallifrey_tree.json", plant);
-                    TARDISChecker.copy("gallifrey_grass.json", grass);
-                    TARDISChecker.copy("gallifrey_badlands.json", badlands);
-                    TARDISChecker.copy("gallifrey_plateau.json", plateau);
-                    TARDISChecker.copy("gallifrey_eroded.json", eroded);
+                    copy("datapacks/" + dimension + "/data/tardis/worldgen/configured_feature/gallifrey_tree.json", plant);
+                    copy("datapacks/" + dimension + "/data/tardis/worldgen/configured_feature/gallifrey_grass.json", grass);
+                    copy("datapacks/" + dimension + "/data/tardis/worldgen/biome/gallifrey_badlands.json", badlands);
+                    copy("datapacks/" + dimension + "/data/tardis/worldgen/biome/gallifrey_plateau.json", plateau);
+                    copy("datapacks/" + dimension + "/data/tardis/worldgen/biome/gallifrey_eroded.json", eroded);
                 }
                 break;
             default:
@@ -108,7 +108,7 @@ public class TARDISChecker {
         File mcmeta = new File(dataPacksMeta, "pack.mcmeta");
         if (!mcmeta.exists()) {
             exists = false;
-            copy("pack_" + dimension + ".mcmeta", mcmeta);
+            copy("datapacks/" + dimension + "/pack.mcmeta", mcmeta);
         }
         return exists;
     }
@@ -126,21 +126,21 @@ public class TARDISChecker {
             File featureDir = new File(dimensionRoot + "worldgen" + File.separator + "configured_feature");
             // overwrite files
             File dimFile = new File(dimensionDir, dimension + ".json");
-            TARDISChecker.copy(dimension + "_d.json", dimFile);
+            copy("datapacks/" + dimension + "/data/tardis/dimension/" + dimension + ".json", dimFile);
             File dimTypeFile = new File(dimensionTypeDir, dimension + ".json");
-            TARDISChecker.copy(dimension + "_dt.json", dimTypeFile);
+            copy("datapacks/" + dimension + "/data/tardis/dimension_type/" + dimension + ".json", dimTypeFile);
             File metaFile = new File(dataPacksRoot + dimension, "pack.mcmeta");
-            TARDISChecker.copy("pack_" + dimension + ".mcmeta", metaFile);
+            copy("datapacks/" + dimension + "/pack.mcmeta", metaFile);
             switch (dimension) {
                 case "skaro":
                     File tree = new File(featureDir, "skaro_tree.json");
                     File desert = new File(biomeDir, "skaro_desert.json");
                     File hills = new File(biomeDir, "skaro_hills.json");
                     File lakes = new File(biomeDir, "skaro_lakes.json");
-                    TARDISChecker.copy("skaro_tree.json", tree);
-                    TARDISChecker.copy("skaro_desert.json", desert);
-                    TARDISChecker.copy("skaro_hills.json", hills);
-                    TARDISChecker.copy("skaro_lakes.json", lakes);
+                    copy("datapacks/" + dimension + "/data/tardis/worldgen/configured_feature/skaro_tree.json", tree);
+                    copy("datapacks/" + dimension + "/data/tardis/worldgen/biome/skaro_desert.json", desert);
+                    copy("datapacks/" + dimension + "/data/tardis/worldgen/biome/skaro_hills.json", hills);
+                    copy("datapacks/" + dimension + "/data/tardis/worldgen/biome/skaro_lakes.json", lakes);
                     break;
                 case "gallifrey":
                     File plant = new File(featureDir, "gallifrey_tree.json");
@@ -148,11 +148,11 @@ public class TARDISChecker {
                     File badlands = new File(biomeDir, "gallifrey_badlands.json");
                     File plateau = new File(biomeDir, "gallifrey_plateau.json");
                     File eroded = new File(biomeDir, "gallifrey_eroded.json");
-                    TARDISChecker.copy("gallifrey_tree.json", plant);
-                    TARDISChecker.copy("gallifrey_grass.json", grass);
-                    TARDISChecker.copy("gallifrey_badlands.json", badlands);
-                    TARDISChecker.copy("gallifrey_plateau.json", plateau);
-                    TARDISChecker.copy("gallifrey_eroded.json", eroded);
+                    copy("datapacks/" + dimension + "/data/tardis/worldgen/configured_feature/gallifrey_tree.json", plant);
+                    copy("datapacks/" + dimension + "/data/tardis/worldgen/configured_feature/gallifrey_grass.json", grass);
+                    copy("datapacks/" + dimension + "/data/tardis/worldgen/biome/gallifrey_badlands.json", badlands);
+                    copy("datapacks/" + dimension + "/data/tardis/worldgen/biome/gallifrey_plateau.json", plateau);
+                    copy("datapacks/" + dimension + "/data/tardis/worldgen/biome/gallifrey_eroded.json", eroded);
                     break;
                 default:
                     // nothing to do
