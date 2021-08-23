@@ -227,18 +227,18 @@ public class TARDISGiveCommand implements CommandExecutor {
         }
         String item_to_give = items.get(item);
         ItemStack result;
-        if (item.equals("vortex-manipulator") && !plugin.getPM().isPluginEnabled("TARDISVortexManipulator")) {
+        if (item.equals("vortex_manipulator") && !plugin.getPM().isPluginEnabled("TARDISVortexManipulator")) {
             TARDISMessage.send(sender, "RECIPE_VORTEX");
             return true;
         }
-        if (item.equals("save-storage-disk") || item.equals("preset-storage-disk") || item.equals("biome-storage-disk") || item.equals("player-storage-disk") || item.equals("bowl-of-custard") || item.equals("jelly-baby") || item.equals("schematic-wand")) {
+        if (item.equals("save_storage_disk") || item.equals("preset_storage_disk") || item.equals("biome_storage_disk") || item.equals("player_storage_disk") || item.equals("bowl_of_custard") || item.equals("jelly_baby") || item.equals("schematic_wand")) {
             ShapelessRecipe recipe = plugin.getIncomposita().getShapelessRecipes().get(item_to_give);
             result = recipe.getResult();
         } else {
             ShapedRecipe recipe = plugin.getFigura().getShapedRecipes().get(item_to_give);
             result = recipe.getResult();
         }
-        if (item.equals("vortex-manipulator")) {
+        if (item.equals("vortex_manipulator")) {
             TARDISMessage.send(sender, "GIVE_VORTEX", player.getName());
         }
         if (item.equals("invisible")) {
@@ -250,7 +250,7 @@ public class TARDISGiveCommand implements CommandExecutor {
             im.setLore(lore);
             result.setItemMeta(im);
         }
-        if (item.equals("blank") || item.equals("save-disk") || item.equals("preset-disk") || item.equals("biome-disk") || item.equals("player-disk") || item.equals("blaster") || item.equals("control")) {
+        if (item.equals("blank") || item.equals("save_disk") || item.equals("preset_disk") || item.equals("biome_disk") || item.equals("player_disk") || item.equals("control")) {
             ItemMeta im = result.getItemMeta();
             im.addItemFlags(ItemFlag.values());
             result.setItemMeta(im);
@@ -459,14 +459,14 @@ public class TARDISGiveCommand implements CommandExecutor {
         for (Map.Entry<String, String> map : items.entrySet()) {
             if (!map.getValue().isEmpty()) {
                 switch (map.getKey()) {
-                    case "bow-tie" -> {
+                    case "bow_tie" -> {
                         List<String> colours = Arrays.asList("white", "orange", "magenta", "light_blue", "yellow", "lime", "pink", "grey", "light_grey", "cyan", "purple", "blue", "brown", "green", "red", "black");
                         colours.forEach((bt) -> {
                             NamespacedKey nsk = new NamespacedKey(plugin, bt + "_bow_tie");
                             kbm.addRecipe(nsk);
                         });
                     }
-                    case "jelly-baby" -> {
+                    case "jelly_baby" -> {
                         List<String> flavours = Arrays.asList("vanilla", "orange", "watermelon", "bubblegum", "lemon", "lime", "strawberry", "earl_grey", "vodka", "island_punch", "grape", "blueberry", "cappuccino", "apple", "raspberry", "licorice");
                         flavours.forEach((jelly) -> {
                             NamespacedKey nsk = new NamespacedKey(plugin, jelly + "_jelly_baby");
