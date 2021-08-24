@@ -8,9 +8,7 @@ load: POSTWORLD
 loadbefore: [ ItemSlotMachine ]
 depend: [ TARDISChunkGenerator ]
 softdepend: [ Blocklocker,CoreProtect,dynmap,Essentials,Factions,floodgate,GriefPrevention,LibsDisguises,LockettePro,LWC,Multiverse-Core,Multiverse-Adventure,Multiverse-Inventories,My_Worlds,PerWorldInventory,PlaceholderAPI,RedProtect,TARDISWeepingAngels,Towny,WorldBorder,WorldGuard ]
-website: http://tardisjenkins.duckdns.org:8080/job/TARDIS/
-dev-url: https://github.com/eccentricdevotion/TARDIS/
-url: http://eccentricdevotion.github.io/TARDIS/
+website: https://github.com/eccentricdevotion/TARDIS/
 permissions:
   tardis.admin:
     description: Allows a player to use TARDIS admin commands.
