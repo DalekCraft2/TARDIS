@@ -44,24 +44,36 @@ public class TARDISUpdateChecker implements Runnable {
 
     @Override
     public void run() {
-        if (!plugin.getGeneralKeeper().getPluginYAML().contains("build-number")) {
-            // should never happen
+        String version = plugin.getGeneralKeeper().getPluginYAML().getString("version");
+        if (!version.contains("-")) {
+            // TODO Figure out what to do if the version has no build number and is a release
+            sender.sendMessage(plugin.getMessagePrefix() + "Plugin has no build number!");
             return;
         }
-        String build = plugin.getGeneralKeeper().getPluginYAML().getString("build-number");
-        if (build.contains(":")) {
-            // local build, not a Jenkins build
+        if (version.indexOf("-") >= version.length()) {
+            // Version has a hyphen but no build number
+            sender.sendMessage(plugin.getMessagePrefix() + "Plugin has no build number!");
             return;
         }
-        int buildNumber = Integer.parseInt(build);
+        String build = version.split("-")[1];
+        int buildNumber;
+        try {
+            buildNumber = Integer.parseInt(build);
+        } catch (NumberFormatException numberFormatException) {
+            // Build number is not a number
+            sender.sendMessage(plugin.getMessagePrefix() + "Plugin build number is not a valid number!");
+            return;
+        }
         JsonObject lastBuild = fetchLatestJenkinsBuild();
         if (lastBuild == null || !lastBuild.has("id")) {
             // couldn't get Jenkins info
+            sender.sendMessage(plugin.getMessagePrefix() + "Failed to get Jenkins info!");
             return;
         }
         int newBuildNumber = lastBuild.get("id").getAsInt();
-        if (newBuildNumber <= buildNumber) {
-            // if new build number is same or older
+        if (newBuildNumber < buildNumber) {
+            // if new build number is older
+            sender.sendMessage(plugin.getMessagePrefix() + "The latest build number is older than this plugin's!");
             return;
         }
         plugin.setUpdateFound(true);
@@ -71,11 +83,10 @@ public class TARDISUpdateChecker implements Runnable {
             plugin.getLogger().log(Level.WARNING, String.format(TARDISMessage.JENKINS_UPDATE_READY, buildNumber, newBuildNumber));
             plugin.getLogger().log(Level.WARNING, TARDISMessage.UPDATE_COMMAND);
         } else {
-            // TODO This is always "false"; figure out why
             if (buildNumber == newBuildNumber) {
-                sender.sendMessage(plugin.getMessagePrefix() + "You are running the latest version!");
+                sender.sendMessage(plugin.getMessagePrefix() + "TARDIS is up-to-date!");
             } else {
-                sender.sendMessage(plugin.getMessagePrefix() + "You are " + (newBuildNumber - buildNumber) + " builds behind! Type " + ChatColor.AQUA + "/tadmin update_plugins" + ChatColor.RESET + " to update!");
+                sender.sendMessage(plugin.getMessagePrefix() + "TARDIS is " + (newBuildNumber - buildNumber) + " builds behind! Type " + ChatColor.AQUA + "/tadmin update_plugins" + ChatColor.RESET + " to update!");
             }
         }
     }
