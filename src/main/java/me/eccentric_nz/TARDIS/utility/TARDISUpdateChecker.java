@@ -46,7 +46,8 @@ public class TARDISUpdateChecker implements Runnable {
     public void run() {
         String version = plugin.getGeneralKeeper().getPluginYAML().getString("version");
         if (!version.contains("-")) {
-            // TODO Figure out what to do if the version has no build number and is a release
+            // Version has no "-SNAPSHOT" suffix
+            // TODO Make one of the Jenkins properties contain the version number so releases can be checked as well
             sender.sendMessage(plugin.getMessagePrefix() + "Plugin has no build number!");
             return;
         }
