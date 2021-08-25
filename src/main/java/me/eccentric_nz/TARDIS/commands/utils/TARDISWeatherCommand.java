@@ -51,10 +51,6 @@ public class TARDISWeatherCommand extends TARDISCompleter implements CommandExec
             return true;
         }
         if (sender instanceof Player player) {
-            if (player == null) {
-                TARDISMessage.send(sender, "CMD_PLAYER");
-                return true;
-            }
             Location location = player.getLocation();
             World world = location.getWorld();
             if (plugin.getUtils().inTARDISWorld(player)) {

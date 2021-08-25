@@ -557,25 +557,21 @@ public class TARDISThemeRepairRunnable extends TARDISThemeRunnable {
                         switch (j) {
                             case 2 -> {
                                 directional.setFacing(BlockFace.WEST);
-                                data = directional;
                                 postRepeaterBlocks.put(world.getBlockAt(x, y, z), data);
                                 plugin.getQueryFactory().insertSyncControl(id, 3, repeater, 0);
                             }
                             case 3 -> {
                                 directional.setFacing(BlockFace.NORTH);
-                                data = directional;
                                 postRepeaterBlocks.put(world.getBlockAt(x, y, z), data);
                                 plugin.getQueryFactory().insertSyncControl(id, 2, repeater, 0);
                             }
                             case 4 -> {
                                 directional.setFacing(BlockFace.SOUTH);
-                                data = directional;
                                 postRepeaterBlocks.put(world.getBlockAt(x, y, z), data);
                                 plugin.getQueryFactory().insertSyncControl(id, 5, repeater, 0);
                             }
                             default -> {
                                 directional.setFacing(BlockFace.EAST);
-                                data = directional;
                                 postRepeaterBlocks.put(world.getBlockAt(x, y, z), data);
                                 plugin.getQueryFactory().insertSyncControl(id, 4, repeater, 0);
                             }
@@ -586,17 +582,8 @@ public class TARDISThemeRepairRunnable extends TARDISThemeRunnable {
                     TARDISBlockSetters.setBlock(world, x, y, z, Material.AIR);
                 } else {
                     BlockState state = world.getBlockAt(x, y, z).getState();
-                    if (state instanceof BlockState) {
-                        plugin.getTardisHelper().removeTileEntity(state);
-                        TARDISBlockSetters.setBlock(world, x, y, z, data);
-                    } else {
-                        Block tmp = world.getBlockAt(x, y, z);
-                        if (clean && !tmp.getType().equals(type) && !tmp.getType().isAir()) {
-                            TARDISBlockSetters.setBlock(world, x, y, z, data);
-                        } else if (!tmp.getType().equals(type)) {
-                            TARDISBlockSetters.setBlock(world, x, y, z, data);
-                        }
-                    }
+                    plugin.getTardisHelper().removeTileEntity(state);
+                    TARDISBlockSetters.setBlock(world, x, y, z, data);
                 }
             }
             // remove items

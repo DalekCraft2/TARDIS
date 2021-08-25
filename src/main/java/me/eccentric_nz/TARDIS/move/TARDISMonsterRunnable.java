@@ -178,6 +178,7 @@ public class TARDISMonsterRunnable implements Runnable {
                             if (type.equals(EntityType.ZOMBIE_VILLAGER)) {
                                 ZombieVillager zombie_villager = (ZombieVillager) e;
                                 Profession prof = zombie_villager.getVillagerProfession();
+                                // TODO Fix prof always being null.
                                 tm.setProfession(prof);
                                 dn = "Zombie Villager";
                             }

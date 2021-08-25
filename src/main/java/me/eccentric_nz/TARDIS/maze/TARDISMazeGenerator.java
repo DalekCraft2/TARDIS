@@ -85,6 +85,7 @@ public class TARDISMazeGenerator {
             if (cut_order[0] != 0) {
                 // shuffle the available directions take the first direction to be cut into after shuffling and
                 // cut into it - like shuffling a deck of cards and drawing the top card
+                // TODO Figure out whether the IDE is correct about this variable already being assigned to what should be a randomizer method.
                 cut_order = mix(cut_order);
                 switch (cut_order[0]) {
                     case 1:

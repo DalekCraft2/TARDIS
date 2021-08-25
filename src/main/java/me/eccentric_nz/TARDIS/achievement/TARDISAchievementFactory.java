@@ -129,7 +129,7 @@ public class TARDISAchievementFactory {
                     plugin.getQueryFactory().doUpdate("achievements", seta, wherem);
                 } else {
                     if (obj.getClass().equals(String.class)) {
-                        if (data != null && !data.contains(obj)) {
+                        if (!data.contains(obj)) {
                             seta.put("amount", amount + ":" + obj);
                             plugin.getQueryFactory().doUpdate("achievements", seta, wherem);
                         }

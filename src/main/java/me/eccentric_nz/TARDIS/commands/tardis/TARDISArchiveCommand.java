@@ -234,6 +234,7 @@ class TARDISArchiveCommand {
                             TARDISMessage.send(player, "ARCHIVE_ADD", name);
                             return true;
                         }
+                        // TODO Maybe make this a switch statement.
                         if (sub.equals("update")) {
                             // update json in database
                             HashMap<String, Object> whereu = new HashMap<>();

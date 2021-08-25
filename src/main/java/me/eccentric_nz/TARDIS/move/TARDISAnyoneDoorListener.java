@@ -227,9 +227,7 @@ public class TARDISAnyoneDoorListener extends TARDISDoorListener implements List
                                                     // must be admin sonic
                                                     String[] split = plugin.getRecipesConfig().getString("shaped.Sonic Screwdriver.result").split(":");
                                                     Material sonic = Material.valueOf(split[0]);
-                                                    if (material.equals(sonic) && TARDISPermission.hasPermission(player, "tardis.sonic.admin")) {
-                                                        toggle = true;
-                                                    } else {
+                                                    if (!material.equals(sonic) || !TARDISPermission.hasPermission(player, "tardis.sonic.admin")) {
                                                         TARDISMessage.send(player, "NOT_KEY", key);
                                                         toggle = false;
                                                     }

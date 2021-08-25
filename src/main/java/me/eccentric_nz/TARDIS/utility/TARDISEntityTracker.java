@@ -104,6 +104,7 @@ public class TARDISEntityTracker {
                         options = new Object[]{PROFESSION.getFromVillagerProfession(((Villager) e).getProfession()), AGE.getFromBoolean(!((Ageable) e).isAdult())};
                         break;
                     case ZOMBIE_VILLAGER:
+                        // TODO Fix nullability issue.
                         options = new Object[]{PROFESSION.getFromVillagerProfession(((ZombieVillager) e).getVillagerProfession()), AGE.getFromBoolean(!((Ageable) e).isAdult())};
                         break;
                     case SLIME:

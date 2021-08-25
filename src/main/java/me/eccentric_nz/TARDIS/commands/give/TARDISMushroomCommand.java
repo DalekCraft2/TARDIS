@@ -45,7 +45,6 @@ public class TARDISMushroomCommand {
         String displayName = "";
         if (redSubs.contains(args[3])) {
             which = redSubs.indexOf(args[3]) + 13;
-            mushroom = Material.RED_MUSHROOM_BLOCK;
             displayName = redBlockNames.get(which);
         } else if (brownSubs.contains(args[3])) {
             which = brownSubs.indexOf(args[3]);

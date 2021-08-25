@@ -142,7 +142,7 @@ public class TARDISSaveSignInventory {
                     }
                 }
             }
-            hasSecondPage = (data != null && data.size() > 44) || highest > 44;
+            hasSecondPage = data.size() > 44 || highest > 44;
             for (int s = 1; s < 45; s++) {
                 stack[s] = dests.getOrDefault(s, null);
             }

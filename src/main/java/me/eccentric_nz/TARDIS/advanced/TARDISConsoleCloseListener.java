@@ -121,7 +121,6 @@ public class TARDISConsoleCloseListener implements Listener {
                     if (is != null) {
                         Material mat = is.getType();
                         if (!mat.equals(Material.GLOWSTONE_DUST) && is.hasItemMeta()) {
-                            boolean ignore = false;
                             HashMap<String, Object> set_next = new HashMap<>();
                             HashMap<String, Object> set_tardis = new HashMap<>();
                             HashMap<String, Object> where_next = new HashMap<>();
@@ -253,10 +252,8 @@ public class TARDISConsoleCloseListener implements Listener {
                                             }
                                             break;
                                         case MUSIC_DISC_MALL: // preset
-                                            if (!ignore) {
-                                                // apply the preset
-                                                set_tardis.put("chameleon_preset", first);
-                                            }
+                                            // apply the preset
+                                            set_tardis.put("chameleon_preset", first);
                                             break;
                                         case MUSIC_DISC_CHIRP: // save
                                             if (TARDISPermission.hasPermission(p, "tardis.save")) {
@@ -284,7 +281,6 @@ public class TARDISConsoleCloseListener implements Listener {
                                                     plugin.debug("Invalid PRESET value \"" + lore.get(5) + "\": " + illegalArgumentException.getMessage());
                                                 }
                                                 TARDISMessage.send(p, "LOC_SET", !plugin.getTrackerKeeper().getDestinationVortex().containsKey(id));
-                                                travelType = TravelType.SAVE;
                                             } else {
                                                 TARDISMessage.send(p, "TRAVEL_NO_PERM_SAVE");
                                                 continue;

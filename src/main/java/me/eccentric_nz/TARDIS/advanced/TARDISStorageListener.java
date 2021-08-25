@@ -208,7 +208,7 @@ public class TARDISStorageListener extends TARDISMenuListener implements Listene
     @EventHandler(ignoreCancelled = true)
     public void onPlayerDropAreaDisk(PlayerDropItemEvent event) {
         ItemStack stack = event.getItemDrop().getItemStack();
-        if (stack != null && stack.getType().equals(Material.MUSIC_DISC_BLOCKS) && stack.hasItemMeta()) {
+        if (stack.getType().equals(Material.MUSIC_DISC_BLOCKS) && stack.hasItemMeta()) {
             ItemMeta ims = stack.getItemMeta();
             if (ims.hasDisplayName() && ims.getDisplayName().equals("Area Storage Disk")) {
                 event.setCancelled(true);

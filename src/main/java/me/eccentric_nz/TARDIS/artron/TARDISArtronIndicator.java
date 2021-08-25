@@ -85,9 +85,7 @@ public class TARDISArtronIndicator {
                 p.setScoreboard(board);
                 plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> {
                     if (p.isOnline() && p.isValid()) {
-                        if (manager != null) {
-                            p.setScoreboard(currentScoreboard);
-                        }
+                        p.setScoreboard(currentScoreboard);
                     }
                 }, 150L);
             } else if (used > 0) {

@@ -38,7 +38,7 @@ public class TARDISItemCommand {
         }
         if (args[1].equalsIgnoreCase("hand")) {
             ItemStack inHand = player.getInventory().getItemInMainHand();
-            if (inHand == null || !inHand.hasItemMeta()) {
+            if (!inHand.hasItemMeta()) {
                 TARDISMessage.send(player, "ITEM_IN_HAND");
                 return true;
             }

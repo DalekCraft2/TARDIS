@@ -235,28 +235,28 @@ public class TARDISUtils {
 
     public String getFacing(Player player) {
         double yaw = player.getLocation().getYaw();
-        if (yaw >= 337.5 || (yaw <= 22.5 && yaw >= 0.0) || (yaw >= -22.5 && yaw <= 0.0) || (yaw <= -337.5 && yaw <= 0.0)) {
+        if (yaw >= 337.5 || yaw <= 22.5 && yaw >= 0.0 || yaw >= -22.5 && yaw <= 0.0 || yaw <= -337.5) {
             return "S";
         }
-        if ((yaw >= 22.5 && yaw <= 67.5) || (yaw <= -292.5 && yaw >= -337.5)) {
+        if (yaw >= 22.5 && yaw <= 67.5 || yaw <= -292.5) {
             return "SW";
         }
-        if ((yaw >= 67.5 && yaw <= 112.5) || (yaw <= -247.5 && yaw >= -292.5)) {
+        if (yaw >= 67.5 && yaw <= 112.5 || yaw <= -247.5) {
             return "W";
         }
-        if ((yaw >= 112.5 && yaw <= 157.5) || (yaw <= -202.5 && yaw >= -247.5)) {
+        if (yaw >= 112.5 && yaw <= 157.5 || yaw <= -202.5) {
             return "NW";
         }
-        if ((yaw >= 157.5 && yaw <= 202.5) || (yaw <= -157.5 && yaw >= -202.5)) {
+        if (yaw >= 157.5 && yaw <= 202.5 || yaw <= -157.5) {
             return "N";
         }
-        if ((yaw >= 202.5 && yaw <= 247.5) || (yaw <= -112.5 && yaw >= -157.5)) {
+        if (yaw >= 202.5 && yaw <= 247.5 || yaw <= -112.5) {
             return "NE";
         }
-        if ((yaw >= 247.5 && yaw <= 292.5) || (yaw <= -67.5 && yaw >= -112.5)) {
+        if (yaw >= 247.5 && yaw <= 292.5 || yaw <= -67.5) {
             return "E";
         }
-        if ((yaw >= 292.5 && yaw <= 337.5) || (yaw <= -22.5 && yaw >= -67.5)) {
+        if (yaw >= 292.5 || yaw <= -22.5) {
             return "SE";
         }
         return "Error!";
@@ -266,31 +266,31 @@ public class TARDISUtils {
         TARDISDisplayType displayType = plugin.getTrackerKeeper().getDisplay().get(player.getUniqueId());
         return switch (displayType) {
             case BIOME -> ChatColor.translateAlternateColorCodes('&', displayType.getFormat()
-                .replace("%BIOME%", TARDISStaticUtils.getBiomeAt(player.getLocation()).name())
+                    .replace("%BIOME%", TARDISStaticUtils.getBiomeAt(player.getLocation()).name())
             );
             case COORDS -> ChatColor.translateAlternateColorCodes('&', displayType.getFormat()
-                .replace("%X%", String.format("%,d", player.getLocation().getBlockX()))
-                .replace("%Y%", String.format("%,d", player.getLocation().getBlockY()))
-                .replace("%Z%", String.format("%,d", player.getLocation().getBlockZ()))
-            );
-            case DIRECTION -> ChatColor.translateAlternateColorCodes('&', displayType.getFormat()
-                .replace("%FACING%", getFacing(player))
-                .replace("%FACING_XZ%", getFacingXZ(player))
-            );
-            case TARGET_BLOCK -> ChatColor.translateAlternateColorCodes('&', displayType.getFormat()
-                .replace("%TARGET_BLOCK%", player.getTargetBlock(null, 5).getType().toString()));
-            default -> // ALL
-                ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("display.all")
                     .replace("%X%", String.format("%,d", player.getLocation().getBlockX()))
                     .replace("%Y%", String.format("%,d", player.getLocation().getBlockY()))
                     .replace("%Z%", String.format("%,d", player.getLocation().getBlockZ()))
+            );
+            case DIRECTION -> ChatColor.translateAlternateColorCodes('&', displayType.getFormat()
                     .replace("%FACING%", getFacing(player))
                     .replace("%FACING_XZ%", getFacingXZ(player))
-                    .replace("%YAW%", String.format("%.1f", player.getLocation().getYaw()))
-                    .replace("%PITCH%", String.format("%.1f", player.getLocation().getPitch()))
-                    .replace("%BIOME%", TARDISStaticUtils.getBiomeAt(player.getLocation()).name())
-                    .replace("%TARGET_BLOCK%", player.getTargetBlock(null, 5).getType().toString())
-                );
+            );
+            case TARGET_BLOCK -> ChatColor.translateAlternateColorCodes('&', displayType.getFormat()
+                    .replace("%TARGET_BLOCK%", player.getTargetBlock(null, 5).getType().toString()));
+            default -> // ALL
+                    ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("display.all")
+                            .replace("%X%", String.format("%,d", player.getLocation().getBlockX()))
+                            .replace("%Y%", String.format("%,d", player.getLocation().getBlockY()))
+                            .replace("%Z%", String.format("%,d", player.getLocation().getBlockZ()))
+                            .replace("%FACING%", getFacing(player))
+                            .replace("%FACING_XZ%", getFacingXZ(player))
+                            .replace("%YAW%", String.format("%.1f", player.getLocation().getYaw()))
+                            .replace("%PITCH%", String.format("%.1f", player.getLocation().getPitch()))
+                            .replace("%BIOME%", TARDISStaticUtils.getBiomeAt(player.getLocation()).name())
+                            .replace("%TARGET_BLOCK%", player.getTargetBlock(null, 5).getType().toString())
+                    );
         };
     }
 }

@@ -663,25 +663,21 @@ public class TARDISBuilderInner implements Runnable {
                     switch (j) {
                         case 2 -> {
                             directional.setFacing(BlockFace.WEST);
-                            data = directional;
                             postRepeaterBlocks.put(world.getBlockAt(x, y, z), data);
                             plugin.getQueryFactory().insertSyncControl(dbID, 3, repeater, 0);
                         }
                         case 3 -> {
                             directional.setFacing(BlockFace.NORTH);
-                            data = directional;
                             postRepeaterBlocks.put(world.getBlockAt(x, y, z), data);
                             plugin.getQueryFactory().insertSyncControl(dbID, 2, repeater, 0);
                         }
                         case 4 -> {
                             directional.setFacing(BlockFace.SOUTH);
-                            data = directional;
                             postRepeaterBlocks.put(world.getBlockAt(x, y, z), data);
                             plugin.getQueryFactory().insertSyncControl(dbID, 5, repeater, 0);
                         }
                         default -> {
                             directional.setFacing(BlockFace.EAST);
-                            data = directional;
                             postRepeaterBlocks.put(world.getBlockAt(x, y, z), data);
                             plugin.getQueryFactory().insertSyncControl(dbID, 4, repeater, 0);
                         }

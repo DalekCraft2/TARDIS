@@ -177,6 +177,7 @@ public class TARDISMaterialseFromVortex implements Runnable {
                     switch (spaceTimeThrottle) {
                         case WARP -> {
                             flight_mode_delay = ((plugin.getTrackerKeeper().getDestinationVortex().containsKey(id)) ? 0L : 130L);
+                            // TODO Resolve issue with this always being false.
                             travel_time = (malfunction) ? 400L : 94L;
                             landSFX = "tardis_land_warp";
                         }

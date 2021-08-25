@@ -61,7 +61,7 @@ public class TARDISPoliceBoxDoorListener extends TARDISDoorListener implements L
         if (event.getRightClicked() instanceof ItemFrame frame) {
             UUID uuid = player.getUniqueId();
             ItemStack dye = frame.getItem();
-            if (dye != null && TARDISConstants.DYES.contains(dye.getType()) && dye.hasItemMeta()) {
+            if (TARDISConstants.DYES.contains(dye.getType()) && dye.hasItemMeta()) {
                 ItemMeta dim = dye.getItemMeta();
                 if (dim.hasCustomModelData()) {
                     int cmd = dim.getCustomModelData();

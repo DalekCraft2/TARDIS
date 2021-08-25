@@ -125,10 +125,6 @@ public class TARDISRecipeCommands implements CommandExecutor {
             new TARDISRecipeLister(sender).list();
             return true;
         }
-        if (args.length < 1) {
-            TARDISMessage.send(player, "TOO_FEW_ARGS");
-            return false;
-        }
         if ((args[0].equalsIgnoreCase("seed") || args[0].equalsIgnoreCase("tardis")) && args.length < 2) {
             TARDISMessage.send(player, "TOO_FEW_ARGS");
             return true;

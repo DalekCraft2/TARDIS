@@ -116,18 +116,16 @@ class TARDISBuildGallifreyanStructure implements Runnable {
                     case CHEST -> {
                         chest = world.getBlockAt(x, y, z);
                         // set chest contents
-                        if (chest != null) {
-                            TARDISBlockSetters.setBlock(world, x, y, z, data);
-                            chest = world.getBlockAt(x, y, z);
-                            if (chest != null && chest.getType().equals(Material.CHEST)) {
-                                try {
-                                    // set chest contents
-                                    Chest container = (Chest) chest.getState();
-                                    container.setLootTable(TARDISConstants.LOOT.get(TARDISConstants.RANDOM.nextInt(11)));
-                                    container.update();
-                                } catch (ClassCastException e) {
-                                    plugin.debug("Could not cast " + chest.getType() + "to Gallifreyan Chest." + e.getMessage());
-                                }
+                        TARDISBlockSetters.setBlock(world, x, y, z, data);
+                        chest = world.getBlockAt(x, y, z);
+                        if (chest.getType().equals(Material.CHEST)) {
+                            try {
+                                // set chest contents
+                                Chest container = (Chest) chest.getState();
+                                container.setLootTable(TARDISConstants.LOOT.get(TARDISConstants.RANDOM.nextInt(11)));
+                                container.update();
+                            } catch (ClassCastException e) {
+                                plugin.debug("Could not cast " + chest.getType() + "to Gallifreyan Chest." + e.getMessage());
                             }
                         }
                     }

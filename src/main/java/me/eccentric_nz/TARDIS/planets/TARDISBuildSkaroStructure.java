@@ -117,7 +117,7 @@ class TARDISBuildSkaroStructure implements Runnable {
                     case CHEST -> {
                         TARDISBlockSetters.setBlock(world, x, y, z, data);
                         Block chest = world.getBlockAt(x, y, z);
-                        if (chest != null && chest.getType().equals(Material.CHEST)) {
+                        if (chest.getType().equals(Material.CHEST)) {
                             try {
                                 // set chest contents
                                 Chest container = (Chest) chest.getState();

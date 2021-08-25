@@ -763,25 +763,21 @@ public class TARDISFullThemeRunnable extends TARDISThemeRunnable {
                         switch (j) {
                             case 2 -> {
                                 directional.setFacing(BlockFace.WEST);
-                                data = directional;
                                 postRepeaterBlocks.put(world.getBlockAt(x, y, z), data);
                                 plugin.getQueryFactory().insertSyncControl(id, 3, repeater, 0);
                             }
                             case 3 -> {
                                 directional.setFacing(BlockFace.NORTH);
-                                data = directional;
                                 postRepeaterBlocks.put(world.getBlockAt(x, y, z), data);
                                 plugin.getQueryFactory().insertSyncControl(id, 2, repeater, 0);
                             }
                             case 4 -> {
                                 directional.setFacing(BlockFace.SOUTH);
-                                data = directional;
                                 postRepeaterBlocks.put(world.getBlockAt(x, y, z), data);
                                 plugin.getQueryFactory().insertSyncControl(id, 5, repeater, 0);
                             }
                             default -> {
                                 directional.setFacing(BlockFace.EAST);
-                                data = directional;
                                 postRepeaterBlocks.put(world.getBlockAt(x, y, z), data);
                                 plugin.getQueryFactory().insertSyncControl(id, 4, repeater, 0);
                             }
@@ -797,9 +793,7 @@ public class TARDISFullThemeRunnable extends TARDISThemeRunnable {
                     TARDISBlockSetters.setBlock(world, x, y, z, Material.AIR);
                 } else {
                     BlockState state = world.getBlockAt(x, y, z).getState();
-                    if (state instanceof BlockState) {
-                        plugin.getTardisHelper().removeTileEntity(state);
-                    }
+                    plugin.getTardisHelper().removeTileEntity(state);
                     TARDISBlockSetters.setBlock(world, x, y, z, data);
                 }
             }
@@ -932,9 +926,7 @@ public class TARDISFullThemeRunnable extends TARDISThemeRunnable {
                 for (int zz = jz; zz < (jz + 16); zz++) {
                     Block b = jw.getBlockAt(xx, yy, zz);
                     BlockState state = b.getState();
-                    if (state instanceof BlockState) {
-                        plugin.getTardisHelper().removeTileEntity(state);
-                    }
+                    plugin.getTardisHelper().removeTileEntity(state);
                     b.setBlockData(TARDISConstants.AIR);
                 }
             }

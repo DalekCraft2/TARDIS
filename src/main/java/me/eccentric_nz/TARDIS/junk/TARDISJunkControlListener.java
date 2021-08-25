@@ -256,7 +256,7 @@ public class TARDISJunkControlListener implements Listener {
         Repeater r = (Repeater) getControlBlock(id, 2).getBlockData();
         // get comparator data
         Comparator c = (Comparator) getControlBlock(id, 3).getBlockData();
-        if (s != null && r != null && c != null) {
+        if (s != null) {
             String txt = s.getLine(line);
             if (txt.isEmpty()) {
                 txt = "0";

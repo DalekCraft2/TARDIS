@@ -119,6 +119,7 @@ public class TARDISDeleteCommand {
                 TARDISMessage.send(sender, "CURRENT_NOT_FOUND");
                 return true;
             }
+            // TODO Make player not null here.
             plugin.getPM().callEvent(new TARDISDestructionEvent(player, bb_loc, tardis.getOwner()));
             // destroy outer TARDIS
             if (!hidden) {

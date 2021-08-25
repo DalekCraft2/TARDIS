@@ -86,7 +86,7 @@ public class TARDISDiskWriterCommand {
                     int id = tardis.getTardis_id();
                     PRESET preset = tardis.getPreset();
                     // check has unique name - this will always return false in HARD & MEDIUM difficulty
-                    // TODO check for disk lore if MEDIUM difficulty
+                    // TODO Check for disk lore if MEDIUM difficulty
                     HashMap<String, Object> wherename = new HashMap<>();
                     wherename.put("tardis_id", id);
                     wherename.put("dest_name", args[1]);
@@ -240,7 +240,7 @@ public class TARDISDiskWriterCommand {
 
     public boolean writeSaveToControlDisk(Player player, String[] args) {
         ItemStack is = player.getInventory().getItemInMainHand();
-        if (is != null && is.hasItemMeta()) {
+        if (is.hasItemMeta()) {
             ItemMeta im = is.getItemMeta();
             if (im.hasDisplayName() && im.getDisplayName().equals("Authorised Control Disk") && im.getPersistentDataContainer().has(plugin.getTimeLordUuidKey(), plugin.getPersistentDataTypeUUID())) {
                 if (args.length < 2) {

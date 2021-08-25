@@ -79,9 +79,7 @@ class TARDISARSJettisonRunnable implements Runnable {
                         }
                     }
                     BlockState state = b.getState();
-                    if (state instanceof BlockState) {
-                        plugin.getTardisHelper().removeTileEntity(state);
-                    }
+                    plugin.getTardisHelper().removeTileEntity(state);
                     b.setBlockData(TARDISConstants.AIR);
                 }
             }

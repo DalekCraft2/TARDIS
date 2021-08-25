@@ -70,10 +70,6 @@ public class TARDISWorldCommand extends TARDISCompleter implements CommandExecut
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
-        if (sender == null) {
-            plugin.debug("Sender was null!");
-            return true;
-        }
         if (args.length < 2) {
             TARDISMessage.send(sender, "TOO_FEW_ARGS");
             return false;

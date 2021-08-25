@@ -55,7 +55,7 @@ class TARDISArtronRunnable implements Runnable {
             HashMap<String, Object> set = new HashMap<>();
             set.put("recharging", 0);
             plugin.getQueryFactory().doUpdate("tardis", set, where);
-        } else if (near) {
+        } else {
             // calculate percentage
             int onepercent = Math.round(plugin.getArtronConfig().getInt("full_charge") / 100.0F);
             // update TARDIS artron_level

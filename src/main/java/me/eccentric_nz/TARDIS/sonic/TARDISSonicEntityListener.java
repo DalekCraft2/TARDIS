@@ -54,7 +54,7 @@ public class TARDISSonicEntityListener implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onInteract(PlayerInteractEntityEvent event) {
-        if (event.getHand() == null || event.getHand().equals(EquipmentSlot.OFF_HAND)) {
+        if (event.getHand().equals(EquipmentSlot.OFF_HAND)) {
             return;
         }
         Player player = event.getPlayer();

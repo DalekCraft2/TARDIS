@@ -275,7 +275,6 @@ class TARDISDematerialisePreset implements Runnable {
                         }
                     }
                     for (int yy = 0; yy < 4; yy++) {
-                        boolean change = true;
                         Material mat = colData[yy].getMaterial();
                         switch (mat) {
                             case GRASS_BLOCK:
@@ -385,9 +384,7 @@ class TARDISDematerialisePreset implements Runnable {
                                 TARDISBlockSetters.setBlock(world, xx, (y + yy), zz, chai);
                                 break;
                             default: // everything else
-                                if (change) {
-                                    TARDISBlockSetters.setBlock(world, xx, (y + yy), zz, colData[yy]);
-                                }
+                                TARDISBlockSetters.setBlock(world, xx, (y + yy), zz, colData[yy]);
                                 break;
                         }
                     }

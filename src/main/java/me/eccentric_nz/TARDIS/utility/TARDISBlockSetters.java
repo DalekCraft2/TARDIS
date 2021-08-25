@@ -43,29 +43,27 @@ public class TARDISBlockSetters {
     public static void setBlock(Location l, BlockData bd) {
         Block b = l.getBlock();
         BlockData blockData;
-        if (b != null) {
-            switch (bd.getMaterial()) {
-                case CAKE -> {
-                    // cake -> handbrake
-                    blockData = Material.LEVER.createBlockData();
-                    Switch lever = (Switch) blockData;
-                    lever.setAttachedFace(FaceAttachable.AttachedFace.FLOOR);
-                    lever.setFacing(BlockFace.SOUTH);
-                    b.setBlockData(lever);
-                }
-                case SPAWNER -> {
-                    // mob spawner -> scanner button
-                    blockData = Material.OAK_BUTTON.createBlockData();
-                    Switch button = (Switch) blockData;
-                    button.setAttachedFace(FaceAttachable.AttachedFace.WALL);
-                    button.setFacing(BlockFace.SOUTH);
-                    b.setBlockData(button);
-                }
-                default -> b.setBlockData(bd);
+        switch (bd.getMaterial()) {
+            case CAKE -> {
+                // cake -> handbrake
+                blockData = Material.LEVER.createBlockData();
+                Switch lever = (Switch) blockData;
+                lever.setAttachedFace(FaceAttachable.AttachedFace.FLOOR);
+                lever.setFacing(BlockFace.SOUTH);
+                b.setBlockData(lever);
             }
-            if (TARDIS.plugin.getBlockLogger().isLogging()) {
-                TARDIS.plugin.getBlockLogger().logPlacement(b);
+            case SPAWNER -> {
+                // mob spawner -> scanner button
+                blockData = Material.OAK_BUTTON.createBlockData();
+                Switch button = (Switch) blockData;
+                button.setAttachedFace(FaceAttachable.AttachedFace.WALL);
+                button.setFacing(BlockFace.SOUTH);
+                b.setBlockData(button);
             }
+            default -> b.setBlockData(bd);
+        }
+        if (TARDIS.plugin.getBlockLogger().isLogging()) {
+            TARDIS.plugin.getBlockLogger().logPlacement(b);
         }
     }
 
@@ -80,29 +78,27 @@ public class TARDISBlockSetters {
      */
     public static void setBlock(World w, int x, int y, int z, BlockData data) {
         Block b = w.getBlockAt(x, y, z);
-        if (b != null) {
-            switch (data.getMaterial()) {
-                case CAKE -> {
-                    // cake -> handbrake
-                    BlockData blockData = Material.LEVER.createBlockData();
-                    Switch lever = (Switch) blockData;
-                    lever.setAttachedFace(FaceAttachable.AttachedFace.FLOOR);
-                    lever.setFacing(BlockFace.SOUTH);
-                    b.setBlockData(lever);
-                }
-                case SPAWNER -> {
-                    // mob spawner -> scanner button
-                    BlockData oak = Material.OAK_BUTTON.createBlockData();
-                    Switch button = (Switch) oak;
-                    button.setAttachedFace(FaceAttachable.AttachedFace.WALL);
-                    button.setFacing(BlockFace.SOUTH);
-                    b.setBlockData(button);
-                }
-                default -> b.setBlockData(data);
+        switch (data.getMaterial()) {
+            case CAKE -> {
+                // cake -> handbrake
+                BlockData blockData = Material.LEVER.createBlockData();
+                Switch lever = (Switch) blockData;
+                lever.setAttachedFace(FaceAttachable.AttachedFace.FLOOR);
+                lever.setFacing(BlockFace.SOUTH);
+                b.setBlockData(lever);
             }
-            if (TARDIS.plugin.getBlockLogger().isLogging()) {
-                TARDIS.plugin.getBlockLogger().logPlacement(b);
+            case SPAWNER -> {
+                // mob spawner -> scanner button
+                BlockData oak = Material.OAK_BUTTON.createBlockData();
+                Switch button = (Switch) oak;
+                button.setAttachedFace(FaceAttachable.AttachedFace.WALL);
+                button.setFacing(BlockFace.SOUTH);
+                b.setBlockData(button);
             }
+            default -> b.setBlockData(data);
+        }
+        if (TARDIS.plugin.getBlockLogger().isLogging()) {
+            TARDIS.plugin.getBlockLogger().logPlacement(b);
         }
     }
 
@@ -118,29 +114,27 @@ public class TARDISBlockSetters {
     public static void setBlock(World w, int x, int y, int z, Material material) {
         Block b = w.getBlockAt(x, y, z);
         BlockData blockData = material.createBlockData();
-        if (b != null) {
-            switch (material) {
-                case CAKE -> {
-                    // cake -> handbrake
-                    blockData = Material.LEVER.createBlockData();
-                    Switch lever = (Switch) blockData;
-                    lever.setAttachedFace(FaceAttachable.AttachedFace.FLOOR);
-                    lever.setFacing(BlockFace.SOUTH);
-                    b.setBlockData(lever);
-                }
-                case SPAWNER -> {
-                    // mob spawner -> scanner button
-                    blockData = Material.OAK_BUTTON.createBlockData();
-                    Switch button = (Switch) blockData;
-                    button.setAttachedFace(FaceAttachable.AttachedFace.WALL);
-                    button.setFacing(BlockFace.SOUTH);
-                    b.setBlockData(button);
-                }
-                default -> b.setBlockData(blockData);
+        switch (material) {
+            case CAKE -> {
+                // cake -> handbrake
+                blockData = Material.LEVER.createBlockData();
+                Switch lever = (Switch) blockData;
+                lever.setAttachedFace(FaceAttachable.AttachedFace.FLOOR);
+                lever.setFacing(BlockFace.SOUTH);
+                b.setBlockData(lever);
             }
-            if (TARDIS.plugin.getBlockLogger().isLogging()) {
-                TARDIS.plugin.getBlockLogger().logPlacement(b);
+            case SPAWNER -> {
+                // mob spawner -> scanner button
+                blockData = Material.OAK_BUTTON.createBlockData();
+                Switch button = (Switch) blockData;
+                button.setAttachedFace(FaceAttachable.AttachedFace.WALL);
+                button.setFacing(BlockFace.SOUTH);
+                b.setBlockData(button);
             }
+            default -> b.setBlockData(blockData);
+        }
+        if (TARDIS.plugin.getBlockLogger().isLogging()) {
+            TARDIS.plugin.getBlockLogger().logPlacement(b);
         }
     }
 

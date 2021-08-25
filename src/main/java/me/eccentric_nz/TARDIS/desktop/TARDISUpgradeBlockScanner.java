@@ -171,14 +171,13 @@ public class TARDISUpgradeBlockScanner {
                                     break;
                                 case LIGHT_GRAY_WOOL:
                                     if (!tud.getSchematic().getPermission().equals("eleventh")) {
+                                        // TODO Find cause of this condition always evaluating to false.
                                         if (floor_type == Material.LAPIS_BLOCK) { // if using the default Lapis Block - then use Light Grey Wool / Terracotta
                                             type = switch (use_clay) {
                                                 case TERRACOTTA -> Material.LIGHT_GRAY_TERRACOTTA;
                                                 case CONCRETE -> Material.LIGHT_GRAY_CONCRETE;
                                                 default -> Material.LIGHT_GRAY_WOOL;
                                             };
-                                        } else {
-                                            type = floor_type;
                                         }
                                     } else {
                                         String[] tsplit = type.toString().split("_");

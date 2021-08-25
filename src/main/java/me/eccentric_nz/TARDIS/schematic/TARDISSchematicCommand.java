@@ -191,6 +191,7 @@ public class TARDISSchematicCommand implements CommandExecutor {
                 TARDISMessage.send(player, "SCHM_SQUARE");
                 return true;
             }
+            // TODO Figure out whether this second condition is always false.
             if ((width % 16 != 0 || length % 16 != 0) && !args[1].equals("zero") && !args[1].equals("junk")) {
                 TARDISMessage.send(player, "SCHM_MULTIPLE");
                 return true;
@@ -328,9 +329,7 @@ public class TARDISSchematicCommand implements CommandExecutor {
                             Block b = w.getBlockAt(r, l, c);
                             if (b.getType().equals(from)) {
                                 BlockState state = b.getState();
-                                if (state instanceof BlockState) {
-                                    plugin.getTardisHelper().removeTileEntity(state);
-                                }
+                                plugin.getTardisHelper().removeTileEntity(state);
                                 b.setType(to);
                             }
                         }
