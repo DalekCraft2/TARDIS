@@ -6,7 +6,7 @@
 
     <groupId>me.eccentric_nz.TARDIS</groupId>
     <artifactId>TARDIS</artifactId>
-    <version>4.7.5-SNAPSHOT</version>
+    <version>4.7.6-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>TARDIS</name>
@@ -57,7 +57,7 @@
             <!-- TARDISChunkGenerator -->
             <groupId>me.eccentric_nz.tardischunkgenerator</groupId>
             <artifactId>TARDISChunkGenerator</artifactId>
-            <version>4.7.5-SNAPSHOT</version>
+            <version>4.7.6-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
 
@@ -635,7 +635,8 @@
                             </filters>
                             <transformers>
                                 <!-- Set the main class for database conversion tool -->
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <mainClass>me.eccentric_nz.TARDIS.database.tool.Main</mainClass>
                                 </transformer>
                             </transformers>
