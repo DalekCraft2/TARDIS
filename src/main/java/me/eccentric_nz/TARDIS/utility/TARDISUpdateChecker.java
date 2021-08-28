@@ -33,12 +33,12 @@ import java.util.logging.Level;
 public class TARDISUpdateChecker implements Runnable {
 
     private final TARDIS plugin;
-    private final JsonParser jp;
+    private final JsonParser jsonParser;
     private final CommandSender sender;
 
     public TARDISUpdateChecker(TARDIS plugin, CommandSender sender) {
         this.plugin = plugin;
-        jp = new JsonParser();
+        jsonParser = new JsonParser();
         this.sender = sender;
     }
 
@@ -48,44 +48,68 @@ public class TARDISUpdateChecker implements Runnable {
         if (!version.contains("-")) {
             // Version has no "-SNAPSHOT" suffix
             // TODO Make one of the Jenkins properties contain the version number so releases can be checked as well.
-            sender.sendMessage(plugin.getMessagePrefix() + "Plugin has no build number!");
+            if (sender == null) {
+                plugin.getLogger().log(Level.WARNING, "Build number is missing from plugin.yml!");
+            } else {
+                sender.sendMessage(plugin.getMessagePrefix() + "Build number is missing from plugin.yml!");
+            }
             return;
         }
         if (version.indexOf("-") >= version.length()) {
             // Version has a hyphen but no build number
-            sender.sendMessage(plugin.getMessagePrefix() + "Plugin has no build number!");
+            if (sender == null) {
+                plugin.getLogger().log(Level.WARNING, "Build number is missing from plugin.yml!");
+            } else {
+                sender.sendMessage(plugin.getMessagePrefix() + "Build number is missing from plugin.yml!");
+            }
             return;
         }
         String build = version.split("-")[1];
         int buildNumber;
         try {
             buildNumber = Integer.parseInt(build);
-        } catch (NumberFormatException numberFormatException) {
+        } catch (NumberFormatException e) {
             // Build number is not a number
-            sender.sendMessage(plugin.getMessagePrefix() + "Plugin build number is not a valid number!");
+            if (sender == null) {
+                plugin.getLogger().log(Level.WARNING, "Build number is invalid!");
+            } else {
+                sender.sendMessage(plugin.getMessagePrefix() + "Build number is invalid!");
+            }
             return;
         }
         JsonObject lastBuild = fetchLatestJenkinsBuild();
         if (lastBuild == null || !lastBuild.has("id")) {
             // couldn't get Jenkins info
-            sender.sendMessage(plugin.getMessagePrefix() + "Failed to get Jenkins info!");
+            if (sender == null) {
+                plugin.getLogger().log(Level.WARNING, "Failed to fetch latest build from Jenkins!");
+            } else {
+                sender.sendMessage(plugin.getMessagePrefix() + "Failed to fetch latest build from Jenkins!");
+            }
             return;
         }
         int newBuildNumber = lastBuild.get("id").getAsInt();
         if (newBuildNumber < buildNumber) {
             // if new build number is older
-            sender.sendMessage(plugin.getMessagePrefix() + "The latest build number is older than this plugin's!");
+            if (sender == null) {
+                plugin.getLogger().log(Level.WARNING, "The latest build number is older than this version's!");
+            } else {
+                sender.sendMessage(plugin.getMessagePrefix() + "The latest build number is older than this version's!");
+            }
             return;
         }
         plugin.setUpdateFound(true);
         plugin.setBuildNumber(buildNumber);
         plugin.setUpdateNumber(newBuildNumber);
-        if (sender == null) {
-            plugin.getLogger().log(Level.WARNING, String.format(TARDISMessage.JENKINS_UPDATE_READY, buildNumber, newBuildNumber));
-            plugin.getLogger().log(Level.WARNING, TARDISMessage.UPDATE_COMMAND);
-        } else {
-            if (buildNumber == newBuildNumber) {
+        if (buildNumber == newBuildNumber) {
+            if (sender == null) {
+                plugin.getLogger().log(Level.INFO, "TARDIS is up-to-date!");
+            } else {
                 sender.sendMessage(plugin.getMessagePrefix() + "TARDIS is up-to-date!");
+            }
+        } else {
+            if (sender == null) {
+                plugin.getLogger().log(Level.WARNING, String.format(TARDISMessage.JENKINS_UPDATE_READY, buildNumber, newBuildNumber));
+                plugin.getLogger().log(Level.WARNING, TARDISMessage.UPDATE_COMMAND);
             } else {
                 sender.sendMessage(plugin.getMessagePrefix() + "TARDIS is " + (newBuildNumber - buildNumber) + " builds behind! Type " + ChatColor.AQUA + "/tadmin update_plugins" + ChatColor.RESET + " to update!");
             }
@@ -104,9 +128,9 @@ public class TARDISUpdateChecker implements Runnable {
             request.setRequestProperty("User-Agent", "TARDISPlugin");
             request.connect();
             // Convert to a JSON object
-            JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
+            JsonElement root = jsonParser.parse(new InputStreamReader((InputStream) request.getContent()));
             return root.getAsJsonObject();
-        } catch (Exception ex) {
+        } catch (Exception e) {
             plugin.debug("Failed to check for a snapshot update on TARDIS Jenkins.");
         }
         return null;
