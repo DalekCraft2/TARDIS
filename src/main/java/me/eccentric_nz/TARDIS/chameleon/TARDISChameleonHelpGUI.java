@@ -43,154 +43,154 @@ class TARDISChameleonHelpGUI {
 
         // back
         ItemStack back = new ItemStack(Material.ARROW, 1);
-        ItemMeta bk = back.getItemMeta();
-        bk.setDisplayName(ChatColor.RESET + plugin.getChameleonGuis().getString("BACK_CONSTRUCT"));
-        back.setItemMeta(bk);
+        ItemMeta backMeta = back.getItemMeta();
+        backMeta.setDisplayName(ChatColor.RESET + plugin.getChameleonGuis().getString("BACK_CONSTRUCT"));
+        back.setItemMeta(backMeta);
         // help
         ItemStack info = new ItemStack(Material.BOWL, 1);
-        ItemMeta io = info.getItemMeta();
-        io.setDisplayName(ChatColor.RESET + plugin.getChameleonGuis().getString("INFO"));
+        ItemMeta infoMeta = info.getItemMeta();
+        infoMeta.setDisplayName(ChatColor.RESET + plugin.getChameleonGuis().getString("INFO"));
         List<String> infoLore = plugin.getChameleonGuis().getStringList("INFO_HELP_1");
         for (int i = 0; i < infoLore.size(); i++) {
             infoLore.set(i, ChatColor.GRAY + infoLore.get(i));
         }
-        io.setLore(infoLore);
-        io.setCustomModelData(GUIChameleonHelp.INFO_HELP_1.getCustomModelData());
-        info.setItemMeta(io);
+        infoMeta.setLore(infoLore);
+        infoMeta.setCustomModelData(GUIChameleonHelp.INFO_HELP_1.getCustomModelData());
+        info.setItemMeta(infoMeta);
         // help
         ItemStack info2 = new ItemStack(Material.BOWL, 1);
-        ItemMeta io2 = info2.getItemMeta();
-        io2.setDisplayName(ChatColor.RESET + plugin.getChameleonGuis().getString("INFO"));
+        ItemMeta info2Meta = info2.getItemMeta();
+        info2Meta.setDisplayName(ChatColor.RESET + plugin.getChameleonGuis().getString("INFO"));
         List<String> info2Lore = plugin.getChameleonGuis().getStringList("INFO_HELP_2");
         for (int i = 0; i < info2Lore.size(); i++) {
             info2Lore.set(i, ChatColor.GRAY + info2Lore.get(i));
         }
-        io2.setLore(info2Lore);
-        io2.setCustomModelData(GUIChameleonHelp.INFO_HELP_2.getCustomModelData());
-        info2.setItemMeta(io2);
+        info2Meta.setLore(info2Lore);
+        info2Meta.setCustomModelData(GUIChameleonHelp.INFO_HELP_2.getCustomModelData());
+        info2.setItemMeta(info2Meta);
         // one
-        ItemStack one = new ItemStack(Material.BOWL, 1);
-        ItemMeta oe = one.getItemMeta();
-        oe.setDisplayName(ChatColor.RESET + "1");
-        oe.setLore(Collections.singletonList(ChatColor.GRAY + plugin.getChameleonGuis().getString("COL_L_FRONT")));
-        oe.setCustomModelData(GUIChameleonHelp.COL_L_FRONT.getCustomModelData());
-        one.setItemMeta(oe);
+        ItemStack column1 = new ItemStack(Material.BOWL, 1);
+        ItemMeta column1Meta = column1.getItemMeta();
+        column1Meta.setDisplayName(ChatColor.RESET + "1");
+        column1Meta.setLore(Collections.singletonList(ChatColor.GRAY + plugin.getChameleonGuis().getString("COL_L_FRONT")));
+        column1Meta.setCustomModelData(GUIChameleonHelp.COL_L_FRONT.getCustomModelData());
+        column1.setItemMeta(column1Meta);
         // two
-        ItemStack two = new ItemStack(Material.BOWL, 1);
-        ItemMeta to = two.getItemMeta();
-        to.setDisplayName(ChatColor.RESET + "2");
-        to.setLore(Collections.singletonList(ChatColor.GRAY + plugin.getChameleonGuis().getString("COL_L_MIDDLE")));
-        to.setCustomModelData(GUIChameleonHelp.COL_L_MIDDLE.getCustomModelData());
-        two.setItemMeta(to);
+        ItemStack column2 = new ItemStack(Material.BOWL, 1);
+        ItemMeta column2Meta = column2.getItemMeta();
+        column2Meta.setDisplayName(ChatColor.RESET + "2");
+        column2Meta.setLore(Collections.singletonList(ChatColor.GRAY + plugin.getChameleonGuis().getString("COL_L_MIDDLE")));
+        column2Meta.setCustomModelData(GUIChameleonHelp.COL_L_MIDDLE.getCustomModelData());
+        column2.setItemMeta(column2Meta);
         // three
-        ItemStack three = new ItemStack(Material.BOWL, 1);
-        ItemMeta te = three.getItemMeta();
-        te.setDisplayName(ChatColor.RESET + "3");
-        te.setLore(Collections.singletonList(ChatColor.GRAY + plugin.getChameleonGuis().getString("COL_L_BACK")));
-        te.setCustomModelData(GUIChameleonHelp.COL_L_BACK.getCustomModelData());
-        three.setItemMeta(te);
+        ItemStack column3 = new ItemStack(Material.BOWL, 1);
+        ItemMeta column3Meta = column3.getItemMeta();
+        column3Meta.setDisplayName(ChatColor.RESET + "3");
+        column3Meta.setLore(Collections.singletonList(ChatColor.GRAY + plugin.getChameleonGuis().getString("COL_L_BACK")));
+        column3Meta.setCustomModelData(GUIChameleonHelp.COL_L_BACK.getCustomModelData());
+        column3.setItemMeta(column3Meta);
         // four
-        ItemStack four = new ItemStack(Material.BOWL, 1);
-        ItemMeta fr = four.getItemMeta();
-        fr.setDisplayName(ChatColor.RESET + "4");
-        fr.setLore(Collections.singletonList(ChatColor.GRAY + plugin.getChameleonGuis().getString("COL_B_MIDDLE")));
-        fr.setCustomModelData(GUIChameleonHelp.COL_B_MIDDLE.getCustomModelData());
-        four.setItemMeta(fr);
+        ItemStack column4 = new ItemStack(Material.BOWL, 1);
+        ItemMeta column4Meta = column4.getItemMeta();
+        column4Meta.setDisplayName(ChatColor.RESET + "4");
+        column4Meta.setLore(Collections.singletonList(ChatColor.GRAY + plugin.getChameleonGuis().getString("COL_B_MIDDLE")));
+        column4Meta.setCustomModelData(GUIChameleonHelp.COL_B_MIDDLE.getCustomModelData());
+        column4.setItemMeta(column4Meta);
         // five
-        ItemStack five = new ItemStack(Material.BOWL, 1);
-        ItemMeta fe = five.getItemMeta();
-        fe.setDisplayName(ChatColor.RESET + "5");
-        fe.setLore(Collections.singletonList(ChatColor.GRAY + plugin.getChameleonGuis().getString("COL_R_BACK")));
-        fe.setCustomModelData(GUIChameleonHelp.COL_R_BACK.getCustomModelData());
-        five.setItemMeta(fe);
+        ItemStack column5 = new ItemStack(Material.BOWL, 1);
+        ItemMeta column5Meta = column5.getItemMeta();
+        column5Meta.setDisplayName(ChatColor.RESET + "5");
+        column5Meta.setLore(Collections.singletonList(ChatColor.GRAY + plugin.getChameleonGuis().getString("COL_R_BACK")));
+        column5Meta.setCustomModelData(GUIChameleonHelp.COL_R_BACK.getCustomModelData());
+        column5.setItemMeta(column5Meta);
         // six
-        ItemStack six = new ItemStack(Material.BOWL, 1);
-        ItemMeta sx = six.getItemMeta();
-        sx.setDisplayName(ChatColor.RESET + "6");
-        sx.setLore(Collections.singletonList(ChatColor.GRAY + plugin.getChameleonGuis().getString("COL_R_MIDDLE")));
-        sx.setCustomModelData(GUIChameleonHelp.COL_R_MIDDLE.getCustomModelData());
-        six.setItemMeta(sx);
+        ItemStack column6 = new ItemStack(Material.BOWL, 1);
+        ItemMeta column6Meta = column6.getItemMeta();
+        column6Meta.setDisplayName(ChatColor.RESET + "6");
+        column6Meta.setLore(Collections.singletonList(ChatColor.GRAY + plugin.getChameleonGuis().getString("COL_R_MIDDLE")));
+        column6Meta.setCustomModelData(GUIChameleonHelp.COL_R_MIDDLE.getCustomModelData());
+        column6.setItemMeta(column6Meta);
         // seven
-        ItemStack seven = new ItemStack(Material.BOWL, 1);
-        ItemMeta sn = seven.getItemMeta();
-        sn.setDisplayName(ChatColor.RESET + "7");
-        sn.setLore(Collections.singletonList(ChatColor.GRAY + plugin.getChameleonGuis().getString("COL_R_FRONT")));
-        sn.setCustomModelData(GUIChameleonHelp.COL_R_FRONT.getCustomModelData());
-        seven.setItemMeta(sn);
+        ItemStack column7 = new ItemStack(Material.BOWL, 1);
+        ItemMeta column7Meta = column7.getItemMeta();
+        column7Meta.setDisplayName(ChatColor.RESET + "7");
+        column7Meta.setLore(Collections.singletonList(ChatColor.GRAY + plugin.getChameleonGuis().getString("COL_R_FRONT")));
+        column7Meta.setCustomModelData(GUIChameleonHelp.COL_R_FRONT.getCustomModelData());
+        column7.setItemMeta(column7Meta);
         // eight
-        ItemStack eight = new ItemStack(Material.BOWL, 1);
-        ItemMeta et = eight.getItemMeta();
-        et.setDisplayName(ChatColor.RESET + "8");
-        et.setLore(Collections.singletonList(ChatColor.GRAY + plugin.getChameleonGuis().getString("COL_F_MIDDLE")));
-        et.setCustomModelData(GUIChameleonHelp.COL_F_MIDDLE.getCustomModelData());
-        eight.setItemMeta(et);
+        ItemStack column8 = new ItemStack(Material.BOWL, 1);
+        ItemMeta column8Meta = column8.getItemMeta();
+        column8Meta.setDisplayName(ChatColor.RESET + "8");
+        column8Meta.setLore(Collections.singletonList(ChatColor.GRAY + plugin.getChameleonGuis().getString("COL_F_MIDDLE")));
+        column8Meta.setCustomModelData(GUIChameleonHelp.COL_F_MIDDLE.getCustomModelData());
+        column8.setItemMeta(column8Meta);
         // nine
-        ItemStack nine = new ItemStack(Material.BOWL, 1);
-        ItemMeta ne = nine.getItemMeta();
-        ne.setDisplayName(ChatColor.RESET + "9");
-        ne.setLore(Collections.singletonList(ChatColor.GRAY + plugin.getChameleonGuis().getString("COL_C_LAMP")));
-        ne.setCustomModelData(GUIChameleonHelp.COL_C_LAMP.getCustomModelData());
-        nine.setItemMeta(ne);
+        ItemStack column9 = new ItemStack(Material.BOWL, 1);
+        ItemMeta column9Meta = column9.getItemMeta();
+        column9Meta.setDisplayName(ChatColor.RESET + "9");
+        column9Meta.setLore(Collections.singletonList(ChatColor.GRAY + plugin.getChameleonGuis().getString("COL_C_LAMP")));
+        column9Meta.setCustomModelData(GUIChameleonHelp.COL_C_LAMP.getCustomModelData());
+        column9.setItemMeta(column9Meta);
         // grid
-        ItemStack grid = new ItemStack(Material.BOWL, 1);
-        ItemMeta gd = grid.getItemMeta();
-        gd.setDisplayName(ChatColor.RESET + plugin.getChameleonGuis().getString("INFO"));
-        List<String> gridLore = plugin.getChameleonGuis().getStringList("INFO_HELP_3");
-        for (int i = 0; i < gridLore.size(); i++) {
-            gridLore.set(i, ChatColor.GRAY + gridLore.get(i));
+        ItemStack gridInfo = new ItemStack(Material.BOWL, 1);
+        ItemMeta gridInfoMeta = gridInfo.getItemMeta();
+        gridInfoMeta.setDisplayName(ChatColor.RESET + plugin.getChameleonGuis().getString("INFO"));
+        List<String> gridInfoLore = plugin.getChameleonGuis().getStringList("INFO_HELP_3");
+        for (int i = 0; i < gridInfoLore.size(); i++) {
+            gridInfoLore.set(i, ChatColor.GRAY + gridInfoLore.get(i));
         }
-        gd.setLore(gridLore);
-        gd.setCustomModelData(GUIChameleonHelp.INFO_HELP_3.getCustomModelData());
-        grid.setItemMeta(gd);
+        gridInfoMeta.setLore(gridInfoLore);
+        gridInfoMeta.setCustomModelData(GUIChameleonHelp.INFO_HELP_3.getCustomModelData());
+        gridInfo.setItemMeta(gridInfoMeta);
         // column
-        ItemStack column = new ItemStack(Material.BOWL, 1);
-        ItemMeta cn = column.getItemMeta();
-        cn.setDisplayName(ChatColor.RESET + plugin.getChameleonGuis().getString("INFO"));
-        List<String> columnLore = plugin.getChameleonGuis().getStringList("INFO_HELP_4");
-        for (int i = 0; i < columnLore.size(); i++) {
-            columnLore.set(i, ChatColor.GRAY + columnLore.get(i));
+        ItemStack columnInfo = new ItemStack(Material.BOWL, 1);
+        ItemMeta columnInfoMeta = columnInfo.getItemMeta();
+        columnInfoMeta.setDisplayName(ChatColor.RESET + plugin.getChameleonGuis().getString("INFO"));
+        List<String> columnInfoLore = plugin.getChameleonGuis().getStringList("INFO_HELP_4");
+        for (int i = 0; i < columnInfoLore.size(); i++) {
+            columnInfoLore.set(i, ChatColor.GRAY + columnInfoLore.get(i));
         }
-        cn.setLore(columnLore);
-        cn.setCustomModelData(GUIChameleonHelp.INFO_HELP_4.getCustomModelData());
-        column.setItemMeta(cn);
+        columnInfoMeta.setLore(columnInfoLore);
+        columnInfoMeta.setCustomModelData(GUIChameleonHelp.INFO_HELP_4.getCustomModelData());
+        columnInfo.setItemMeta(columnInfoMeta);
         // example
-        ItemStack example = new ItemStack(Material.BOWL, 1);
-        ItemMeta ee = example.getItemMeta();
-        ee.setDisplayName(ChatColor.RESET + plugin.getChameleonGuis().getString("VIEW_TEMP"));
-        ee.setCustomModelData(GUIChameleonHelp.VIEW_TEMP.getCustomModelData());
-        example.setItemMeta(ee);
+        ItemStack exampleButton = new ItemStack(Material.BOWL, 1);
+        ItemMeta exampleButtonMeta = exampleButton.getItemMeta();
+        exampleButtonMeta.setDisplayName(ChatColor.RESET + plugin.getChameleonGuis().getString("VIEW_TEMP"));
+        exampleButtonMeta.setCustomModelData(GUIChameleonHelp.VIEW_TEMP.getCustomModelData());
+        exampleButton.setItemMeta(exampleButtonMeta);
         // one
-        ItemStack o = new ItemStack(Material.BOWL, 1);
-        ItemMeta en = o.getItemMeta();
-        en.setDisplayName(ChatColor.RESET + "1");
-        en.setCustomModelData(GUIChameleonHelp.ROW_1.getCustomModelData());
-        o.setItemMeta(en);
+        ItemStack row1 = new ItemStack(Material.BOWL, 1);
+        ItemMeta row1Meta = row1.getItemMeta();
+        row1Meta.setDisplayName(ChatColor.RESET + "1");
+        row1Meta.setCustomModelData(GUIChameleonHelp.ROW_1.getCustomModelData());
+        row1.setItemMeta(row1Meta);
         // two
-        ItemStack w = new ItemStack(Material.BOWL, 1);
-        ItemMeta wo = w.getItemMeta();
-        wo.setDisplayName(ChatColor.RESET + "2");
-        wo.setCustomModelData(GUIChameleonHelp.ROW_2.getCustomModelData());
-        w.setItemMeta(wo);
+        ItemStack row2 = new ItemStack(Material.BOWL, 1);
+        ItemMeta row2Meta = row2.getItemMeta();
+        row2Meta.setDisplayName(ChatColor.RESET + "2");
+        row2Meta.setCustomModelData(GUIChameleonHelp.ROW_2.getCustomModelData());
+        row2.setItemMeta(row2Meta);
         // three
-        ItemStack t = new ItemStack(Material.BOWL, 1);
-        ItemMeta hr = t.getItemMeta();
-        hr.setDisplayName(ChatColor.RESET + "3");
-        hr.setCustomModelData(GUIChameleonHelp.ROW_3.getCustomModelData());
-        t.setItemMeta(hr);
+        ItemStack row3 = new ItemStack(Material.BOWL, 1);
+        ItemMeta row3Meta = row3.getItemMeta();
+        row3Meta.setDisplayName(ChatColor.RESET + "3");
+        row3Meta.setCustomModelData(GUIChameleonHelp.ROW_3.getCustomModelData());
+        row3.setItemMeta(row3Meta);
         // four
-        ItemStack f = new ItemStack(Material.BOWL, 1);
-        ItemMeta ou = f.getItemMeta();
-        ou.setDisplayName(ChatColor.RESET + "4");
-        ou.setCustomModelData(GUIChameleonHelp.ROW_4.getCustomModelData());
-        f.setItemMeta(ou);
+        ItemStack row4 = new ItemStack(Material.BOWL, 1);
+        ItemMeta row4Meta = row4.getItemMeta();
+        row4Meta.setDisplayName(ChatColor.RESET + "4");
+        row4Meta.setCustomModelData(GUIChameleonHelp.ROW_4.getCustomModelData());
+        row4.setItemMeta(row4Meta);
 
         return new ItemStack[]{
                 back, null, null, info, info2, null, null, null, null,
-                null, null, null, null, null, null, null, column, null,
-                null, grid, null, null, null, null, null, f, null,
-                three, four, five, null, null, null, null, t, null,
-                two, nine, six, null, example, null, null, w, null,
-                one, eight, seven, null, null, null, null, o, null
+                null, null, null, null, null, null, null, columnInfo, null,
+                null, gridInfo, null, null, null, null, null, row4, null,
+                column3, column4, column5, null, null, null, null, row3, null,
+                column2, column9, column6, null, exampleButton, null, null, row2, null,
+                column1, column8, column7, null, null, null, null, row1, null
         };
     }
 

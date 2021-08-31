@@ -57,12 +57,12 @@ public class TARDISAnvilListener implements Listener {
             int slot = event.getRawSlot();
             // slot 2 = result item slot
             if (slot == 2) {
-                ItemStack is = event.getCurrentItem();
-                if (is != null && is.hasItemMeta()) {
-                    ItemMeta im = is.getItemMeta();
-                    ItemStack one = inv.getItem(0);
-                    ItemStack two = inv.getItem(1);
-                    if (checkRepair(one, two) && im.hasDisplayName() && disallow.containsKey(im.getDisplayName()) && is.getType() == disallow.get(im.getDisplayName())) {
+                ItemStack currentItem = event.getCurrentItem();
+                if (currentItem != null && currentItem.hasItemMeta()) {
+                    ItemMeta itemMeta = currentItem.getItemMeta();
+                    ItemStack itemStack1 = inv.getItem(0);
+                    ItemStack itemStack2 = inv.getItem(1);
+                    if (checkRepair(itemStack1, itemStack2) && itemMeta.hasDisplayName() && disallow.containsKey(itemMeta.getDisplayName()) && currentItem.getType() == disallow.get(itemMeta.getDisplayName())) {
                         TARDISMessage.send(player, "NO_RENAME");
                         event.setCancelled(true);
                     }
@@ -71,20 +71,20 @@ public class TARDISAnvilListener implements Listener {
         }
     }
 
-    private boolean checkRepair(ItemStack one, ItemStack two) {
-        if (two == null) {
+    private boolean checkRepair(ItemStack itemStack1, ItemStack itemStack2) {
+        if (itemStack2 == null) {
             return true;
         }
-        if (!one.hasItemMeta() || !two.hasItemMeta()) {
+        if (!itemStack1.hasItemMeta() || !itemStack2.hasItemMeta()) {
             return true;
         }
-        ItemMeta im_one = one.getItemMeta();
-        ItemMeta im_two = two.getItemMeta();
-        if (!im_one.hasDisplayName() || !im_two.hasDisplayName()) {
+        ItemMeta itemMeta1 = itemStack1.getItemMeta();
+        ItemMeta itemMeta2 = itemStack2.getItemMeta();
+        if (!itemMeta1.hasDisplayName() || !itemMeta2.hasDisplayName()) {
             return true;
         }
-        String dn_one = im_one.getDisplayName();
-        String dn_two = im_two.getDisplayName();
-        return !dn_one.equals(dn_two);
+        String displayName1 = itemMeta1.getDisplayName();
+        String displayName2 = itemMeta2.getDisplayName();
+        return !displayName1.equals(displayName2);
     }
 }

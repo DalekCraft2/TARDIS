@@ -90,21 +90,21 @@ public class TARDISLazarusGUIListener extends TARDISMenuListener implements List
             int slot = event.getRawSlot();
             Player player = (Player) event.getWhoClicked();
             UUID uuid = player.getUniqueId();
-            Block b = plugin.getTrackerKeeper().getLazarus().get(uuid);
-            if (b == null) {
+            Block block = plugin.getTrackerKeeper().getLazarus().get(uuid);
+            if (block == null) {
                 return;
             }
-            int max_slot = 45;
-            if (slot >= 0 && slot < max_slot) {
+            int maxSlot = 45;
+            if (slot >= 0 && slot < maxSlot) {
                 // get selection
-                ItemStack is = view.getItem(slot);
-                if (is != null) {
-                    ItemMeta im = is.getItemMeta();
+                ItemStack itemStack = view.getItem(slot);
+                if (itemStack != null) {
+                    ItemMeta itemMeta = itemStack.getItemMeta();
                     // remember selection
-                    String display = im.getDisplayName();
+                    String display = ChatColor.stripColor(itemMeta.getDisplayName());
                     if (twaMonsters.contains(display) && !plugin.checkTWA()) {
-                        im.setLore(Collections.singletonList(ChatColor.GRAY + "Genetic modification not available!"));
-                        is.setItemMeta(im);
+                        itemMeta.setLore(Collections.singletonList(ChatColor.GRAY + "Genetic modification not available!"));
+                        itemStack.setItemMeta(itemMeta);
                     } else {
                         if (display.equals("HEROBRINE")) {
                             display = "PLAYER";
@@ -117,29 +117,29 @@ public class TARDISLazarusGUIListener extends TARDISMenuListener implements List
                 }
             }
             if (slot == 45) { // The Master Switch : ON | OFF
-                ItemStack is = view.getItem(slot);
-                ItemMeta im = is.getItemMeta();
+                ItemStack itemStack = view.getItem(slot);
+                ItemMeta itemMeta = itemStack.getItemMeta();
                 if (TARDISPermission.hasPermission(player, "tardis.themaster")) {
                     if (plugin.getTrackerKeeper().getImmortalityGate().equals("")) {
-                        boolean isOff = im.getLore().get(0).equals(plugin.getLanguage().getString("SET_OFF"));
-                        String onoff = isOff ? plugin.getLanguage().getString("SET_ON") : plugin.getLanguage().getString("SET_OFF");
-                        im.setLore(Collections.singletonList(ChatColor.GRAY + onoff));
-                        int cmd = isOff ? 2 : 3;
-                        im.setCustomModelData(cmd);
+                        boolean isOff = ChatColor.stripColor(itemMeta.getLore().get(0)).equals(plugin.getLanguage().getString("SET_OFF"));
+                        String onOff = isOff ? plugin.getLanguage().getString("SET_ON") : plugin.getLanguage().getString("SET_OFF");
+                        itemMeta.setLore(Collections.singletonList(ChatColor.GRAY + onOff));
+                        int customModelData = isOff ? 2 : 3;
+                        itemMeta.setCustomModelData(customModelData);
                     } else {
-                        im.setLore(Arrays.asList(ChatColor.GRAY + "The Master Race is already", ChatColor.GRAY + "set to " + plugin.getTrackerKeeper().getImmortalityGate() + "!", ChatColor.GRAY + "Try again later."));
+                        itemMeta.setLore(Arrays.asList(ChatColor.GRAY + "The Master Race is already", ChatColor.GRAY + "set to " + plugin.getTrackerKeeper().getImmortalityGate() + "!", ChatColor.GRAY + "Try again later."));
                     }
                 } else {
-                    im.setLore(Arrays.asList(ChatColor.GRAY + "You do not have permission", ChatColor.GRAY + "to be The Master!"));
+                    itemMeta.setLore(Arrays.asList(ChatColor.GRAY + "You do not have permission", ChatColor.GRAY + "to be The Master!"));
                 }
-                is.setItemMeta(im);
+                itemStack.setItemMeta(itemMeta);
             }
             if (slot == 47) { // adult / baby
-                ItemStack is = view.getItem(slot);
-                ItemMeta im = is.getItemMeta();
-                String onoff = (im.getLore().get(0).equals("ADULT")) ? "BABY" : "ADULT";
-                im.setLore(Collections.singletonList(ChatColor.GRAY + onoff));
-                is.setItemMeta(im);
+                ItemStack itemStack = view.getItem(slot);
+                ItemMeta itemMeta = itemStack.getItemMeta();
+                String onOff = (ChatColor.stripColor(itemMeta.getLore().get(0)).equals("ADULT")) ? "BABY" : "ADULT";
+                itemMeta.setLore(Collections.singletonList(ChatColor.GRAY + onOff));
+                itemStack.setItemMeta(itemMeta);
             }
             if (slot == 48) { // type / colour
                 if (disguises.containsKey(uuid)) {
@@ -147,20 +147,20 @@ public class TARDISLazarusGUIListener extends TARDISMenuListener implements List
                 }
             }
             if (slot == 49) { // Tamed / Flying / Blazing / Powered / Beaming / Aggressive / Decorated / Chest carrying : TRUE | FALSE
-                ItemStack is = view.getItem(slot);
-                ItemMeta im = is.getItemMeta();
-                List<String> lore = im.getLore();
-                int pos = lore.size() - 1;
-                String truefalse = (ChatColor.stripColor(lore.get(pos)).equals("FALSE")) ? ChatColor.GREEN + "TRUE" : ChatColor.RED + "FALSE";
-                lore.set(pos, ChatColor.GRAY + truefalse);
-                im.setLore(lore);
-                is.setItemMeta(im);
+                ItemStack itemStack = view.getItem(slot);
+                ItemMeta itemMeta = itemStack.getItemMeta();
+                List<String> lore = itemMeta.getLore();
+                int position = lore.size() - 1;
+                String trueFalse = (ChatColor.stripColor(lore.get(position)).equals("FALSE")) ? ChatColor.GREEN + "TRUE" : ChatColor.RED + "FALSE";
+                lore.set(position, ChatColor.GRAY + trueFalse);
+                itemMeta.setLore(lore);
+                itemStack.setItemMeta(itemMeta);
             }
             if (slot == 51) { //remove disguise
                 plugin.getTrackerKeeper().getGeneticManipulation().add(uuid);
                 close(player);
                 // animate the manipulator walls
-                TARDISLazarusRunnable runnable = new TARDISLazarusRunnable(plugin, b);
+                TARDISLazarusRunnable runnable = new TARDISLazarusRunnable(plugin, block);
                 int taskId = plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, runnable, 6L, 6L);
                 runnable.setTaskID(taskId);
                 TARDISSounds.playTARDISSound(player.getLocation(), "lazarus_machine");
@@ -178,7 +178,7 @@ public class TARDISLazarusGUIListener extends TARDISMenuListener implements List
                 }, 80L);
                 // open the door
                 plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> {
-                    openDoor(b);
+                    openDoor(block);
                     untrack(uuid, true);
                     plugin.getTrackerKeeper().getGeneticallyModified().remove(uuid);
                 }, 100L);
@@ -187,7 +187,7 @@ public class TARDISLazarusGUIListener extends TARDISMenuListener implements List
                 plugin.getTrackerKeeper().getGeneticManipulation().add(uuid);
                 close(player);
                 // animate the manipulator walls
-                TARDISLazarusRunnable runnable = new TARDISLazarusRunnable(plugin, b);
+                TARDISLazarusRunnable runnable = new TARDISLazarusRunnable(plugin, block);
                 int taskId = plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, runnable, 6L, 6L);
                 runnable.setTaskID(taskId);
                 TARDISSounds.playTARDISSound(player.getLocation(), "lazarus_machine");
@@ -271,9 +271,9 @@ public class TARDISLazarusGUIListener extends TARDISMenuListener implements List
                                 plugin.getServer().dispatchCommand(plugin.getConsole(), "twa disguise ZYGON on " + player.getUniqueId());
                             }
                         } else {
-                            EntityType dt = EntityType.valueOf(disguise);
+                            EntityType disguiseType = EntityType.valueOf(disguise);
                             Object[] options = null;
-                            switch (dt) {
+                            switch (disguiseType) {
                                 case AXOLOTL:
                                     if (!plugin.isDisguisesOnServer()) {
                                         options = new Object[]{getAxolotlVariant(view), AGE.getFromBoolean(getBaby(view))};
@@ -424,7 +424,7 @@ public class TARDISLazarusGUIListener extends TARDISMenuListener implements List
                                     break;
                             }
                             if (!plugin.isDisguisesOnServer()) {
-                                new TARDISLazarusDisguise(plugin, player, dt, options).createDisguise();
+                                new TARDISLazarusDisguise(plugin, player, disguiseType, options).createDisguise();
                             }
                         }
                         TARDISMessage.send(player, "GENETICS_MODIFIED", disguise);
@@ -433,14 +433,14 @@ public class TARDISLazarusGUIListener extends TARDISMenuListener implements List
                 }, 80L);
                 // open the door
                 plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> {
-                    openDoor(b);
+                    openDoor(block);
                     untrack(uuid, false);
                     plugin.getTrackerKeeper().getGeneticallyModified().add(uuid);
                 }, 100L);
             }
             if (slot == 53) {
                 close(player);
-                openDoor(b);
+                openDoor(block);
             }
         }
     }
@@ -450,10 +450,10 @@ public class TARDISLazarusGUIListener extends TARDISMenuListener implements List
         String name = event.getView().getTitle();
         UUID uuid = event.getPlayer().getUniqueId();
         if (name.equals(ChatColor.DARK_RED + "Genetic Manipulator") && !plugin.getTrackerKeeper().getGeneticManipulation().contains(uuid)) {
-            Block b = plugin.getTrackerKeeper().getLazarus().get(event.getPlayer().getUniqueId());
-            if (b.getRelative(BlockFace.SOUTH).getType().equals(Material.COBBLESTONE_WALL)) {
-                b.getRelative(BlockFace.SOUTH).setType(Material.AIR);
-                b.getRelative(BlockFace.SOUTH).getRelative(BlockFace.UP).setType(Material.AIR);
+            Block block = plugin.getTrackerKeeper().getLazarus().get(event.getPlayer().getUniqueId());
+            if (block.getRelative(BlockFace.SOUTH).getType().equals(Material.COBBLESTONE_WALL)) {
+                block.getRelative(BlockFace.SOUTH).setType(Material.AIR);
+                block.getRelative(BlockFace.SOUTH).getRelative(BlockFace.UP).setType(Material.AIR);
             }
             untrack(uuid, false);
         }
@@ -473,25 +473,25 @@ public class TARDISLazarusGUIListener extends TARDISMenuListener implements List
         plugin.getTrackerKeeper().getGeneticManipulation().remove(uuid);
     }
 
-    private void openDoor(Block b) {
-        b.getRelative(BlockFace.SOUTH).setType(Material.AIR);
-        b.getRelative(BlockFace.SOUTH).getRelative(BlockFace.UP).setType(Material.AIR);
+    private void openDoor(Block block) {
+        block.getRelative(BlockFace.SOUTH).setType(Material.AIR);
+        block.getRelative(BlockFace.SOUTH).getRelative(BlockFace.UP).setType(Material.AIR);
     }
 
-    private void setSlotFourtyEight(InventoryView i, String d, UUID uuid) {
-        String t = null;
-        int o;
-        switch (d) {
-            case "AXOLOTL":
+    private void setSlotFourtyEight(InventoryView view, String disguise, UUID uuid) {
+        String type = null;
+        int option;
+        switch (ChatColor.stripColor(disguise)) {
+            case "AXOLOTL" -> {
                 if (axolotls.containsKey(uuid)) {
-                    o = (axolotls.get(uuid) + 1 < 5) ? axolotls.get(uuid) + 1 : 0;
+                    option = (axolotls.get(uuid) + 1 < 5) ? axolotls.get(uuid) + 1 : 0;
                 } else {
-                    o = 0;
+                    option = 0;
                 }
-                t = Axolotl.Variant.values()[o].toString();
-                axolotls.put(uuid, o);
-                break;
-            case "SNOW_GOLEM":
+                type = Axolotl.Variant.values()[option].toString();
+                axolotls.put(uuid, option);
+            }
+            case "SNOW_GOLEM" -> {
                 boolean derp;
                 if (snowmen.containsKey(uuid)) {
                     derp = !snowmen.get(uuid);
@@ -499,281 +499,278 @@ public class TARDISLazarusGUIListener extends TARDISMenuListener implements List
                     derp = true;
                 }
                 snowmen.put(uuid, derp);
-                t = (derp) ? "Pumpkin head" : "Derp face";
-                break;
-            case "SHEEP":
-            case "WOLF":
+                type = (derp) ? "Pumpkin head" : "Derp face";
+            }
+            case "SHEEP", "WOLF" -> {
                 if (sheep.containsKey(uuid)) {
-                    o = (sheep.get(uuid) + 1 < 16) ? sheep.get(uuid) + 1 : 0;
+                    option = (sheep.get(uuid) + 1 < 16) ? sheep.get(uuid) + 1 : 0;
                 } else {
-                    o = 0;
+                    option = 0;
                 }
-                t = DyeColor.values()[o].toString();
-                sheep.put(uuid, o);
-                break;
-            case "HORSE":
+                type = DyeColor.values()[option].toString();
+                sheep.put(uuid, option);
+            }
+            case "HORSE" -> {
                 if (horses.containsKey(uuid)) {
-                    o = (horses.get(uuid) + 1 < 7) ? horses.get(uuid) + 1 : 0;
+                    option = (horses.get(uuid) + 1 < 7) ? horses.get(uuid) + 1 : 0;
                 } else {
-                    o = 0;
+                    option = 0;
                 }
-                t = Horse.Color.values()[o].toString();
-                horses.put(uuid, o);
-                break;
-            case "LLAMA":
+                type = Horse.Color.values()[option].toString();
+                horses.put(uuid, option);
+            }
+            case "LLAMA" -> {
                 if (llamas.containsKey(uuid)) {
-                    o = (llamas.get(uuid) + 1 < 4) ? llamas.get(uuid) + 1 : 0;
+                    option = (llamas.get(uuid) + 1 < 4) ? llamas.get(uuid) + 1 : 0;
                 } else {
-                    o = 0;
+                    option = 0;
                 }
-                t = Llama.Color.values()[o].toString();
-                llamas.put(uuid, o);
-                break;
-            case "CAT":
+                type = Llama.Color.values()[option].toString();
+                llamas.put(uuid, option);
+            }
+            case "CAT" -> {
                 if (cats.containsKey(uuid)) {
-                    o = (cats.get(uuid) + 1 < 11) ? cats.get(uuid) + 1 : 0;
+                    option = (cats.get(uuid) + 1 < 11) ? cats.get(uuid) + 1 : 0;
                 } else {
-                    o = 0;
+                    option = 0;
                 }
-                t = Type.values()[o].toString();
-                cats.put(uuid, o);
-                break;
-            case "FOX":
+                type = Type.values()[option].toString();
+                cats.put(uuid, option);
+            }
+            case "FOX" -> {
                 if (foxes.containsKey(uuid)) {
-                    o = (foxes.get(uuid) + 1 < 2) ? foxes.get(uuid) + 1 : 0;
+                    option = (foxes.get(uuid) + 1 < 2) ? foxes.get(uuid) + 1 : 0;
                 } else {
-                    o = 0;
+                    option = 0;
                 }
-                t = Fox.Type.values()[o].toString();
-                foxes.put(uuid, o);
-                break;
-            case "RABBIT":
+                type = Fox.Type.values()[option].toString();
+                foxes.put(uuid, option);
+            }
+            case "RABBIT" -> {
                 if (rabbits.containsKey(uuid)) {
-                    o = (rabbits.get(uuid) + 1 < 7) ? rabbits.get(uuid) + 1 : 0;
+                    option = (rabbits.get(uuid) + 1 < 7) ? rabbits.get(uuid) + 1 : 0;
                 } else {
-                    o = 0;
+                    option = 0;
                 }
-                t = Rabbit.Type.values()[o].toString();
-                rabbits.put(uuid, o);
-                break;
-            case "PARROT":
+                type = Rabbit.Type.values()[option].toString();
+                rabbits.put(uuid, option);
+            }
+            case "PARROT" -> {
                 if (parrots.containsKey(uuid)) {
-                    o = (parrots.get(uuid) + 1 < 5) ? parrots.get(uuid) + 1 : 0;
+                    option = (parrots.get(uuid) + 1 < 5) ? parrots.get(uuid) + 1 : 0;
                 } else {
-                    o = 0;
+                    option = 0;
                 }
-                t = Parrot.Variant.values()[o].toString();
-                parrots.put(uuid, o);
-                break;
-            case "VILLAGER":
-            case "ZOMBIE_VILLAGER":
+                type = Parrot.Variant.values()[option].toString();
+                parrots.put(uuid, option);
+            }
+            case "VILLAGER", "ZOMBIE_VILLAGER" -> {
                 if (professions.containsKey(uuid)) {
-                    o = (professions.get(uuid) + 1 < 6) ? professions.get(uuid) + 1 : 1;
+                    option = (professions.get(uuid) + 1 < Profession.values().length) ? professions.get(uuid) + 1 : 0;
                 } else {
-                    o = 1;
+                    option = 0;
                 }
-                t = Profession.values()[o].toString();
-                professions.put(uuid, o);
-                break;
-            case "SLIME":
-            case "MAGMA_CUBE":
+                type = Profession.values()[option].toString();
+                professions.put(uuid, option);
+            }
+            case "SLIME", "MAGMA_CUBE" -> {
                 if (slimes.containsKey(uuid)) {
-                    o = (slimes.get(uuid) + 1 < 3) ? slimes.get(uuid) + 1 : 0;
+                    option = (slimes.get(uuid) + 1 < 3) ? slimes.get(uuid) + 1 : 0;
                 } else {
-                    o = 0;
+                    option = 0;
                 }
-                t = slimeSizes.get(o).toString();
-                slimes.put(uuid, o);
-                break;
-            case "MUSHROOM_COW":
+                type = slimeSizes.get(option).toString();
+                slimes.put(uuid, option);
+            }
+            case "MUSHROOM_COW" -> {
                 if (moos.containsKey(uuid)) {
-                    o = (moos.get(uuid) + 1 < 2) ? moos.get(uuid) + 1 : 0;
+                    option = (moos.get(uuid) + 1 < 2) ? moos.get(uuid) + 1 : 0;
                 } else {
-                    o = 0;
+                    option = 0;
                 }
-                t = MushroomCow.Variant.values()[o].toString();
-                moos.put(uuid, o);
-                break;
-            case "PUFFERFISH":
+                type = MushroomCow.Variant.values()[option].toString();
+                moos.put(uuid, option);
+            }
+            case "PUFFERFISH" -> {
                 if (puffers.containsKey(uuid)) {
-                    o = (puffers.get(uuid) + 1 < 3) ? puffers.get(uuid) + 1 : 0;
+                    option = (puffers.get(uuid) + 1 < 3) ? puffers.get(uuid) + 1 : 0;
                 } else {
-                    o = 0;
+                    option = 0;
                 }
-                t = pufferStates.get(o).toString();
-                puffers.put(uuid, o);
-                break;
-            case "TROPICAL_FISH":
+                type = pufferStates.get(option).toString();
+                puffers.put(uuid, option);
+            }
+            case "TROPICAL_FISH" -> {
                 if (tropics.containsKey(uuid)) {
-                    o = (tropics.get(uuid) + 1 < 12) ? tropics.get(uuid) + 1 : 0;
+                    option = (tropics.get(uuid) + 1 < 12) ? tropics.get(uuid) + 1 : 0;
                 } else {
-                    o = 0;
+                    option = 0;
                 }
-                t = TropicalFish.Pattern.values()[o].toString();
-                tropics.put(uuid, o);
-                break;
-            case "PANDA":
+                type = TropicalFish.Pattern.values()[option].toString();
+                tropics.put(uuid, option);
+            }
+            case "PANDA" -> {
                 if (genes.containsKey(uuid)) {
-                    o = (genes.get(uuid) + 1 < 7) ? genes.get(uuid) + 1 : 0;
+                    option = (genes.get(uuid) + 1 < 7) ? genes.get(uuid) + 1 : 0;
                 } else {
-                    o = 0;
+                    option = 0;
                 }
-                t = Panda.Gene.values()[o].toString();
-                genes.put(uuid, o);
-                break;
-            default:
-                break;
+                type = Panda.Gene.values()[option].toString();
+                genes.put(uuid, option);
+            }
+            default -> {
+            }
         }
-        if (t != null) {
-            ItemStack is = i.getItem(48);
-            ItemMeta im = is.getItemMeta();
-            im.setLore(Collections.singletonList(ChatColor.GRAY + t));
-            is.setItemMeta(im);
+        if (type != null) {
+            ItemStack itemStack = view.getItem(48);
+            ItemMeta itemMeta = itemStack.getItemMeta();
+            itemMeta.setLore(Collections.singletonList(ChatColor.GRAY + type));
+            itemStack.setItemMeta(itemMeta);
         }
     }
 
-    private boolean isReversedPolarity(InventoryView i) {
-        ItemStack is = i.getItem(45);
-        ItemMeta im = is.getItemMeta();
-        return im.getLore().get(0).equals(plugin.getLanguage().getString("SET_ON"));
+    private boolean isReversedPolarity(InventoryView view) {
+        ItemStack itemStack = view.getItem(45);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        return ChatColor.stripColor(itemMeta.getLore().get(0)).equals(plugin.getLanguage().getString("SET_ON"));
     }
 
-    private DyeColor getColor(InventoryView i) {
-        ItemStack is = i.getItem(48);
-        ItemMeta im = is.getItemMeta();
+    private DyeColor getColor(InventoryView view) {
+        ItemStack itemStack = view.getItem(48);
+        ItemMeta itemMeta = itemStack.getItemMeta();
         try {
-            return DyeColor.valueOf(im.getLore().get(0));
+            return DyeColor.valueOf(ChatColor.stripColor(itemMeta.getLore().get(0)));
         } catch (IllegalArgumentException e) {
             return DyeColor.WHITE;
         }
     }
 
-    private Horse.Color getHorseColor(InventoryView i) {
-        ItemStack is = i.getItem(48);
-        ItemMeta im = is.getItemMeta();
+    private Horse.Color getHorseColor(InventoryView view) {
+        ItemStack itemStack = view.getItem(48);
+        ItemMeta itemMeta = itemStack.getItemMeta();
         try {
-            return Horse.Color.valueOf(im.getLore().get(0));
+            return Horse.Color.valueOf(ChatColor.stripColor(itemMeta.getLore().get(0)));
         } catch (IllegalArgumentException e) {
             return Horse.Color.WHITE;
         }
     }
 
-    private MushroomCow.Variant getCowVariant(InventoryView i) {
-        ItemStack is = i.getItem(48);
-        ItemMeta im = is.getItemMeta();
+    private MushroomCow.Variant getCowVariant(InventoryView view) {
+        ItemStack itemStack = view.getItem(48);
+        ItemMeta itemMeta = itemStack.getItemMeta();
         try {
-            return MushroomCow.Variant.valueOf(im.getLore().get(0));
+            return MushroomCow.Variant.valueOf(ChatColor.stripColor(itemMeta.getLore().get(0)));
         } catch (IllegalArgumentException e) {
             return MushroomCow.Variant.RED;
         }
     }
 
-    private Llama.Color getLlamaColor(InventoryView i) {
-        ItemStack is = i.getItem(48);
-        ItemMeta im = is.getItemMeta();
+    private Llama.Color getLlamaColor(InventoryView view) {
+        ItemStack itemStack = view.getItem(48);
+        ItemMeta itemMeta = itemStack.getItemMeta();
         try {
-            return Llama.Color.valueOf(im.getLore().get(0));
+            return Llama.Color.valueOf(ChatColor.stripColor(itemMeta.getLore().get(0)));
         } catch (IllegalArgumentException e) {
             return org.bukkit.entity.Llama.Color.CREAMY;
         }
     }
 
-    private Axolotl.Variant getAxolotlVariant(InventoryView i) {
-        ItemStack is = i.getItem(48);
-        ItemMeta im = is.getItemMeta();
+    private Axolotl.Variant getAxolotlVariant(InventoryView view) {
+        ItemStack itemStack = view.getItem(48);
+        ItemMeta itemMeta = itemStack.getItemMeta();
         try {
-            return Axolotl.Variant.valueOf(im.getLore().get(0));
+            return Axolotl.Variant.valueOf(ChatColor.stripColor(itemMeta.getLore().get(0)));
         } catch (IllegalArgumentException e) {
             return Axolotl.Variant.WILD;
         }
     }
 
-    private Type getCatType(InventoryView i) {
-        ItemStack is = i.getItem(48);
-        ItemMeta im = is.getItemMeta();
+    private Type getCatType(InventoryView view) {
+        ItemStack itemStack = view.getItem(48);
+        ItemMeta itemMeta = itemStack.getItemMeta();
         try {
-            return Type.valueOf(im.getLore().get(0));
+            return Type.valueOf(ChatColor.stripColor(itemMeta.getLore().get(0)));
         } catch (IllegalArgumentException e) {
             return Type.TABBY;
         }
     }
 
-    private Fox.Type getFoxType(InventoryView i) {
-        ItemStack is = i.getItem(48);
-        ItemMeta im = is.getItemMeta();
+    private Fox.Type getFoxType(InventoryView view) {
+        ItemStack itemStack = view.getItem(48);
+        ItemMeta itemMeta = itemStack.getItemMeta();
         try {
-            return Fox.Type.valueOf(im.getLore().get(0));
+            return Fox.Type.valueOf(ChatColor.stripColor(itemMeta.getLore().get(0)));
         } catch (IllegalArgumentException e) {
             return Fox.Type.RED;
         }
     }
 
-    private Panda.Gene getGene(InventoryView i) {
-        ItemStack is = i.getItem(48);
-        ItemMeta im = is.getItemMeta();
+    private Panda.Gene getGene(InventoryView view) {
+        ItemStack itemStack = view.getItem(48);
+        ItemMeta itemMeta = itemStack.getItemMeta();
         try {
-            return Panda.Gene.valueOf(im.getLore().get(0));
+            return Panda.Gene.valueOf(ChatColor.stripColor(itemMeta.getLore().get(0)));
         } catch (IllegalArgumentException e) {
             return Panda.Gene.NORMAL;
         }
     }
 
-    private Parrot.Variant getParrotVariant(InventoryView i) {
-        ItemStack is = i.getItem(48);
-        ItemMeta im = is.getItemMeta();
+    private Parrot.Variant getParrotVariant(InventoryView view) {
+        ItemStack itemStack = view.getItem(48);
+        ItemMeta itemMeta = itemStack.getItemMeta();
         try {
-            return Parrot.Variant.valueOf(im.getLore().get(0));
+            return Parrot.Variant.valueOf(ChatColor.stripColor(itemMeta.getLore().get(0)));
         } catch (IllegalArgumentException e) {
             return Parrot.Variant.GRAY;
         }
     }
 
-    private Rabbit.Type getRabbitType(InventoryView i) {
-        ItemStack is = i.getItem(48);
-        ItemMeta im = is.getItemMeta();
+    private Rabbit.Type getRabbitType(InventoryView view) {
+        ItemStack itemStack = view.getItem(48);
+        ItemMeta itemMeta = itemStack.getItemMeta();
         try {
-            return Rabbit.Type.valueOf(im.getLore().get(0));
+            return Rabbit.Type.valueOf(ChatColor.stripColor(itemMeta.getLore().get(0)));
         } catch (IllegalArgumentException e) {
             return Rabbit.Type.BROWN;
         }
     }
 
-    private Profession getProfession(InventoryView i) {
-        ItemStack is = i.getItem(48);
-        ItemMeta im = is.getItemMeta();
+    private Profession getProfession(InventoryView view) {
+        ItemStack itemStack = view.getItem(48);
+        ItemMeta itemMeta = itemStack.getItemMeta();
         try {
-            return Profession.valueOf(im.getLore().get(0));
+            return Profession.valueOf(ChatColor.stripColor(itemMeta.getLore().get(0)));
         } catch (IllegalArgumentException e) {
             return Profession.FARMER;
         }
     }
 
-    private int getSlimeSize(InventoryView i) {
-        ItemStack is = i.getItem(48);
-        ItemMeta im = is.getItemMeta();
-        int size = TARDISNumberParsers.parseInt(im.getLore().get(0));
+    private int getSlimeSize(InventoryView view) {
+        ItemStack itemStack = view.getItem(48);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        int size = TARDISNumberParsers.parseInt(ChatColor.stripColor(itemMeta.getLore().get(0)));
         return (size == 0) ? 2 : size;
     }
 
-    private boolean getBaby(InventoryView i) {
-        ItemStack is = i.getItem(47);
-        ItemMeta im = is.getItemMeta();
-        return im.getLore().get(0).equals("BABY");
+    private boolean getBaby(InventoryView view) {
+        ItemStack itemStack = view.getItem(47);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        return ChatColor.stripColor(itemMeta.getLore().get(0)).equals("BABY");
     }
 
-    private boolean getBoolean(InventoryView i) {
-        ItemStack is = i.getItem(49);
-        ItemMeta im = is.getItemMeta();
-        List<String> lore = im.getLore();
-        int pos = lore.size() - 1;
-        return ChatColor.stripColor(lore.get(pos)).equals("TRUE");
+    private boolean getBoolean(InventoryView view) {
+        ItemStack itemStack = view.getItem(49);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        List<String> lore = itemMeta.getLore();
+        int position = lore.size() - 1;
+        return ChatColor.stripColor(lore.get(position)).equals("TRUE");
     }
 
     private void twaOff(Player player) {
         ItemStack helmet = player.getInventory().getHelmet();
         if (helmet != null && helmet.hasItemMeta() && helmet.getItemMeta().hasDisplayName()) {
-            String metaName = helmet.getItemMeta().getDisplayName();
-            if (twaHelmets.contains(metaName)) {
+            String helmetName = ChatColor.stripColor(helmet.getItemMeta().getDisplayName());
+            if (twaHelmets.contains(helmetName)) {
                 plugin.getServer().dispatchCommand(plugin.getConsole(), "twa disguise WEEPING_ANGEL off " + player.getUniqueId());
             }
         }

@@ -91,8 +91,8 @@ public class ResultSetSonic {
             if (rs.isBeforeFirst()) {
                 rs.next();
                 String colour = rs.getString("sonic_type");
-                ChatColor cc = (colour.isEmpty()) ? ChatColor.RESET : ChatColor.valueOf(colour);
-                sonic = new Sonic(UUID.fromString(rs.getString("uuid")), rs.getBoolean("activated"), cc, rs.getInt("model"), rs.getBoolean("bio"), rs.getBoolean("diamond"), rs.getBoolean("emerald"), rs.getBoolean("redstone"), rs.getBoolean("painter"), rs.getBoolean("ignite"), rs.getBoolean("arrow"), rs.getBoolean("knockback"));
+                ChatColor chatColor = (colour.isEmpty()) ? ChatColor.RESET : ChatColor.valueOf(colour);
+                sonic = new Sonic(UUID.fromString(rs.getString("uuid")), rs.getBoolean("activated"), chatColor, rs.getInt("model"), rs.getBoolean("bio"), rs.getBoolean("diamond"), rs.getBoolean("emerald"), rs.getBoolean("redstone"), rs.getBoolean("painter"), rs.getBoolean("ignite"), rs.getBoolean("arrow"), rs.getBoolean("knockback"));
             } else {
                 return false;
             }

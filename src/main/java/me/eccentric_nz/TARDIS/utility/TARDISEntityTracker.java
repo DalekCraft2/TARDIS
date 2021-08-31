@@ -39,11 +39,11 @@ public class TARDISEntityTracker {
     }
 
     public void addNPCs(Location exterior, Location interior, UUID uuid) {
-        List<Entity> ents = TARDISScanner.getNearbyEntities(exterior, 6);
+        List<Entity> entities = TARDISScanner.getNearbyEntities(exterior, 6);
         List<UUID> npcids = new ArrayList<>();
-        for (Entity e : ents) {
-            if (e instanceof LivingEntity) {
-                Location location = e.getLocation();
+        for (Entity entity : entities) {
+            if (entity instanceof LivingEntity) {
+                Location location = entity.getLocation();
                 // determine relative location
                 double relx = location.getX() - exterior.getX();
                 double rely = location.getY() - exterior.getY();
@@ -59,83 +59,33 @@ public class TARDISEntityTracker {
                 ArmorStand stand = (ArmorStand) interior.getWorld().spawnEntity(l, EntityType.ARMOR_STAND);
                 npcids.add(stand.getUniqueId());
                 Object[] options = null;
-                switch (e.getType()) {
-                    case CAT:
-                        options = new Object[]{((Cat) e).getCatType(), ((Tameable) e).isTamed(), AGE.getFromBoolean(!((Ageable) e).isAdult())};
-                        break;
-                    case PANDA:
-                        options = new Object[]{GENE.getFromPandaGene(((Panda) e).getMainGene()), AGE.getFromBoolean(!((Ageable) e).isAdult())};
-                        break;
-                    case DONKEY:
-                    case MULE:
-                        options = new Object[]{((ChestedHorse) e).isCarryingChest(), AGE.getFromBoolean(!((Ageable) e).isAdult())};
-                        break;
-                    case PIG:
-                        options = new Object[]{((Pig) e).hasSaddle(), AGE.getFromBoolean(!((Ageable) e).isAdult())};
-                        break;
-                    case CREEPER:
-                        options = new Object[]{((Creeper) e).isPowered()};
-                        break;
-                    case ENDERMAN:
-                        options = new Object[]{((Enderman) e).getCarriedBlock() != null};
-                        break;
-                    case SHEEP:
-                        options = new Object[]{((Sheep) e).getColor(), ((Tameable) e).isTamed(), AGE.getFromBoolean(!((Ageable) e).isAdult())};
-                        break;
-                    case WOLF:
-                        options = new Object[]{((Wolf) e).getCollarColor(), ((Tameable) e).isTamed(), AGE.getFromBoolean(!((Ageable) e).isAdult())};
-                        break;
-                    case HORSE:
-                        options = new Object[]{((Horse) e).getColor(), AGE.getFromBoolean(!((Ageable) e).isAdult())};
-                        break;
-                    case LLAMA:
-                        options = new Object[]{((Llama) e).getColor(), ((Llama) e).getInventory().getDecor() != null, AGE.getFromBoolean(!((Ageable) e).isAdult())};
-                        break;
-                    case OCELOT:
-                        options = new Object[]{((Tameable) e).isTamed(), AGE.getFromBoolean(!((Ageable) e).isAdult())};
-                        break;
-                    case PARROT:
-                        options = new Object[]{((Parrot) e).getVariant(), AGE.getFromBoolean(!((Ageable) e).isAdult())};
-                        break;
-                    case RABBIT:
-                        options = new Object[]{((Rabbit) e).getRabbitType(), AGE.getFromBoolean(!((Ageable) e).isAdult())};
-                        break;
-                    case VILLAGER:
-                        options = new Object[]{PROFESSION.getFromVillagerProfession(((Villager) e).getProfession()), AGE.getFromBoolean(!((Ageable) e).isAdult())};
-                        break;
-                    case ZOMBIE_VILLAGER:
-                        // TODO Fix nullability issue.
-                        options = new Object[]{PROFESSION.getFromVillagerProfession(((ZombieVillager) e).getVillagerProfession()), AGE.getFromBoolean(!((Ageable) e).isAdult())};
-                        break;
-                    case SLIME:
-                    case MAGMA_CUBE:
-                        options = new Object[]{((Slime) e).getSize()};
-                        break;
-                    case COW:
-                    case TURTLE:
-                    case ZOMBIE:
-                    case BEE:
-                        options = new Object[]{AGE.getFromBoolean(!((Ageable) e).isAdult())};
-                        break;
-                    case SNOWMAN:
-                        options = new Object[]{((Snowman) e).isDerp()};
-                        break;
-                    case PUFFERFISH:
-                        options = new Object[]{((PufferFish) e).getPuffState()};
-                        break;
-                    case TROPICAL_FISH:
-                        options = new Object[]{((TropicalFish) e).getPattern()};
-                        break;
-                    case MUSHROOM_COW:
-                        options = new Object[]{MUSHROOM_COW.getFromMushroomCowType(((MushroomCow) e).getVariant()), AGE.getFromBoolean(!((Ageable) e).isAdult())};
-                        break;
-                    case FOX:
-                        options = new Object[]{FOX.getFromFoxType(((Fox) e).getFoxType()), AGE.getFromBoolean(!((Ageable) e).isAdult())};
-                        break;
-                    default:
-                        break;
+                switch (entity.getType()) {
+                    case CAT -> options = new Object[]{((Cat) entity).getCatType(), ((Tameable) entity).isTamed(), AGE.getFromBoolean(!((Ageable) entity).isAdult())};
+                    case PANDA -> options = new Object[]{GENE.getFromPandaGene(((Panda) entity).getMainGene()), AGE.getFromBoolean(!((Ageable) entity).isAdult())};
+                    case DONKEY, MULE -> options = new Object[]{((ChestedHorse) entity).isCarryingChest(), AGE.getFromBoolean(!((Ageable) entity).isAdult())};
+                    case PIG -> options = new Object[]{((Pig) entity).hasSaddle(), AGE.getFromBoolean(!((Ageable) entity).isAdult())};
+                    case CREEPER -> options = new Object[]{((Creeper) entity).isPowered()};
+                    case ENDERMAN -> options = new Object[]{((Enderman) entity).getCarriedBlock() != null};
+                    case SHEEP -> options = new Object[]{((Sheep) entity).getColor(), ((Tameable) entity).isTamed(), AGE.getFromBoolean(!((Ageable) entity).isAdult())};
+                    case WOLF -> options = new Object[]{((Wolf) entity).getCollarColor(), ((Tameable) entity).isTamed(), AGE.getFromBoolean(!((Ageable) entity).isAdult())};
+                    case HORSE -> options = new Object[]{((Horse) entity).getColor(), AGE.getFromBoolean(!((Ageable) entity).isAdult())};
+                    case LLAMA -> options = new Object[]{((Llama) entity).getColor(), ((Llama) entity).getInventory().getDecor() != null, AGE.getFromBoolean(!((Ageable) entity).isAdult())};
+                    case OCELOT -> options = new Object[]{((Tameable) entity).isTamed(), AGE.getFromBoolean(!((Ageable) entity).isAdult())};
+                    case PARROT -> options = new Object[]{((Parrot) entity).getVariant(), AGE.getFromBoolean(!((Ageable) entity).isAdult())};
+                    case RABBIT -> options = new Object[]{((Rabbit) entity).getRabbitType(), AGE.getFromBoolean(!((Ageable) entity).isAdult())};
+                    case VILLAGER -> options = new Object[]{PROFESSION.getFromVillagerProfession(((Villager) entity).getProfession()), AGE.getFromBoolean(!((Ageable) entity).isAdult())};
+                    case ZOMBIE_VILLAGER -> options = new Object[]{PROFESSION.getFromVillagerProfession(((ZombieVillager) entity).getVillagerProfession()), AGE.getFromBoolean(!((Ageable) entity).isAdult())};
+                    case SLIME, MAGMA_CUBE -> options = new Object[]{((Slime) entity).getSize()};
+                    case COW, TURTLE, ZOMBIE, BEE -> options = new Object[]{AGE.getFromBoolean(!((Ageable) entity).isAdult())};
+                    case SNOWMAN -> options = new Object[]{((Snowman) entity).isDerp()};
+                    case PUFFERFISH -> options = new Object[]{((PufferFish) entity).getPuffState()};
+                    case TROPICAL_FISH -> options = new Object[]{((TropicalFish) entity).getPattern()};
+                    case MUSHROOM_COW -> options = new Object[]{MUSHROOM_COW.getFromMushroomCowType(((MushroomCow) entity).getVariant()), AGE.getFromBoolean(!((Ageable) entity).isAdult())};
+                    case FOX -> options = new Object[]{FOX.getFromFoxType(((Fox) entity).getFoxType()), AGE.getFromBoolean(!((Ageable) entity).isAdult())};
+                    default -> {
+                    }
                 }
-                plugin.getTardisHelper().disguiseArmourStand(stand, e.getType(), options);
+                plugin.getTardisHelper().disguiseArmourStand(stand, entity.getType(), options);
             }
         }
         if (npcids.size() > 0) {

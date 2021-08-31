@@ -92,7 +92,7 @@ class TARDISBuildAbandoned implements Runnable {
     private UseClay use_clay;
     private int counter = 0;
     private double div = 1.0d;
-    private BossBar bb;
+    private BossBar bossBar;
 
     /**
      * Builds the interior of an abandoned TARDIS.
@@ -172,10 +172,10 @@ class TARDISBuildAbandoned implements Runnable {
             arr = obj.get("input").getAsJsonArray();
             if (player != null) {
                 // start progress bar
-                bb = Bukkit.createBossBar(TARDISConstants.GROWTH_STATES.get(0), BarColor.WHITE, BarStyle.SOLID, TARDISConstants.EMPTY_ARRAY);
-                bb.setProgress(0);
-                bb.addPlayer(player);
-                bb.setVisible(true);
+                bossBar = Bukkit.createBossBar(TARDISConstants.GROWTH_STATES.get(0), BarColor.WHITE, BarStyle.SOLID, TARDISConstants.EMPTY_ARRAY);
+                bossBar.setProgress(0);
+                bossBar.addPlayer(player);
+                bossBar.setVisible(true);
             }
             running = true;
         }
@@ -243,9 +243,9 @@ class TARDISBuildAbandoned implements Runnable {
             plugin.getServer().getScheduler().cancelTask(task);
             task = -1;
             if (player != null) {
-                bb.setProgress(1);
-                bb.setVisible(false);
-                bb.removeAll();
+                bossBar.setProgress(1);
+                bossBar.setVisible(false);
+                bossBar.removeAll();
             }
         }
         JsonArray floor = arr.get(level).getAsJsonArray();
@@ -582,7 +582,7 @@ class TARDISBuildAbandoned implements Runnable {
             }
             if (player != null) {
                 double progress = counter / div;
-                bb.setProgress(progress);
+                bossBar.setProgress(progress);
             }
             if (col == d && row < w) {
                 row++;
@@ -593,9 +593,9 @@ class TARDISBuildAbandoned implements Runnable {
                 if (player != null) {
                     // set progress bar title
                     if (level == h) {
-                        bb.setTitle(TARDISConstants.GROWTH_STATES.get(31));
+                        bossBar.setTitle(TARDISConstants.GROWTH_STATES.get(31));
                     } else {
-                        bb.setTitle(TARDISConstants.GROWTH_STATES.get(level));
+                        bossBar.setTitle(TARDISConstants.GROWTH_STATES.get(level));
                     }
                 }
             }

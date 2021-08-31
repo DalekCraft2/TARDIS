@@ -59,9 +59,9 @@ class TARDISChameleonControl {
             return;
         }
         // open Chameleon Circuit GUI
-        ItemStack[] cc = new TARDISChameleonInventory(plugin, adapt, preset).getMenu();
-        Inventory cc_gui = plugin.getServer().createInventory(player, 27, ChatColor.DARK_RED + "Chameleon Circuit");
-        cc_gui.setContents(cc);
-        player.openInventory(cc_gui);
+        ItemStack[] chameleonStacks = new TARDISChameleonInventory(plugin, adapt, preset).getMenu();
+        Inventory chameleonInventory = plugin.getServer().createInventory(player, 27, ChatColor.DARK_RED + "Chameleon Circuit");
+        chameleonInventory.setContents(chameleonStacks);
+        player.openInventory(chameleonInventory);
     }
 }

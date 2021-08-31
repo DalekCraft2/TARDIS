@@ -119,7 +119,7 @@ public class TARDISAnyoneDoorListener extends TARDISDoorListener implements List
                             TARDISMessage.send(player, "LOST_IN_VORTEX");
                             return;
                         }
-                        COMPASS dd = rsd.getDoor_direction();
+                        COMPASS doorDirection = rsd.getDoor_direction();
                         int doortype = rsd.getDoor_type();
                         int end_doortype = switch (doortype) {
                             case 0 -> 1; // outside preset door
@@ -354,8 +354,8 @@ public class TARDISAnyoneDoorListener extends TARDISDoorListener implements List
                                         }
                                         if (hb && exitLoc != null) {
                                             // change the yaw if the door directions are different
-                                            if (!dd.equals(d)) {
-                                                yaw += adjustYaw(dd, d);
+                                            if (!doorDirection.equals(d)) {
+                                                yaw += adjustYaw(doorDirection, d);
                                             }
                                             exitLoc.setYaw(yaw);
                                             // get location from database

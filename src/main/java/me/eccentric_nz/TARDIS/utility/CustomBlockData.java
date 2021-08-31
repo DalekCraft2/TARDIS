@@ -66,7 +66,7 @@ public class CustomBlockData implements PersistentDataContainer {
      * @param namespace Namespace
      * @deprecated Use {@link #CustomBlockData(Block, Plugin)} instead.
      */
-    @Deprecated()
+    @Deprecated
     public CustomBlockData(final @NotNull Block block, final @NotNull String namespace) {
         this.chunk = block.getChunk();
         this.key = new NamespacedKey(namespace, getKey(block));

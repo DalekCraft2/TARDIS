@@ -68,7 +68,7 @@ public class TARDISDeleteCommand {
         int abandoned = (args.length > 2 && args[2].equals("abandoned")) ? 1 : 0;
         try {
             tmp = Integer.parseInt(args[1]);
-        } catch (NumberFormatException nfe) {
+        } catch (NumberFormatException e) {
             // do nothing
         }
         HashMap<String, Object> where = new HashMap<>();
